@@ -1,0 +1,728 @@
+{
+    "project": {},
+    "files": {
+        "javascript/disSupporting/CoordinateConversion.js": {
+            "name": "javascript/disSupporting/CoordinateConversion.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript/disSupporting/DisAppearance.js": {
+            "name": "javascript/disSupporting/DisAppearance.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript/disSupporting/InputStream.js": {
+            "name": "javascript/disSupporting/InputStream.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript/disSupporting/OutputStream.js": {
+            "name": "javascript/disSupporting/OutputStream.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript/disSupporting/PduFactory.js": {
+            "name": "javascript/disSupporting/PduFactory.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript/disSupporting/RangeCoordinates.js": {
+            "name": "javascript/disSupporting/RangeCoordinates.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "javascript/disSupporting/StringConversion.js": {
+            "name": "javascript/disSupporting/StringConversion.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {},
+    "classes": {},
+    "classitems": [
+        {
+            "file": "javascript/disSupporting/CoordinateConversion.js",
+            "line": 17,
+            "description": "Converts DIS xyz world coordinates to latitude and longitude (IN DEGREES). This algorithm may not be 100% accurate\nnear the poles. Uses WGS84 , though you can change the ellipsoid constants a and b if you want to use something\nelse. These formulas were obtained from Military Handbook 600008. The code itself has been \ntranslated from C to Java to Javascript over the years, so hold onto your hats.",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "X:, y:, z:"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Latitude:, longitude: altitude:"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/CoordinateConversion.js",
+            "line": 46,
+            "description": "Get the longitude.",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/CoordinateConversion.js",
+            "line": 61,
+            "description": "Longitude calculation done. Now calculate latitude.\nNOTE: The handbook mentions using the calculated phi (latitude) value to recalculate B\nusing tan B = (1-f) tan phi and then performing the entire calculation again to get more accurate values.\nHowever, for terrestrial applications, one iteration is accurate to .1 millimeter on the surface  of the\nearth (Rapp, 1984, p.124), so one iteration is enough for our purposes",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/CoordinateConversion.js",
+            "line": 74,
+            "description": "Latitude done, now get the elevation. Note: The handbook states that near the poles, it is preferable to use\nh = (Z / sin phi ) - rSubN + (eSquared * rSubN). Our applications are never near the poles, so this formula\nwas left unimplemented.",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/CoordinateConversion.js",
+            "line": 88,
+            "description": "Converts lat long and geodetic height (elevation) into DIS XYZ\nThis algorithm also uses the WGS84 ellipsoid, though you can change the values\nof a and b for a different ellipsoid. Adapted from Military Handbook 600008",
+            "params": [
+                {
+                    "name": "latLonAlt",
+                    "description": "in degrees and meters",
+                    "type": "Lat: lon: alt:"
+                }
+            ],
+            "return": {
+                "description": "in meters",
+                "type": "X: y: z:"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/DisAppearance.js",
+            "line": 1,
+            "description": "Some code to extract the entity apperance bit fields.<p>\n\nThe entityAppearance field in the espdu is a 32 bit integer. To save\nspace, several different fields are contained within it. \nSpecifically:\n\n Name      bit position        Purpose\n ----      ------------        --------\n Paint            0            0 = uniform color, 1=camo\n Mobility         1            0 = no mobility kill, 1 = mobility kill\n Fire Power       2            0 = no firepower kill, 1 = firepower kill\n Damage           3-4          0=no damange, 1=slight, 2=moderate, 3=destroyed\n Smoke            5-6          0=not smoking, 1=smoke plume, 2=emitting engine smoke, 3=engine smoke + smoke plume\n Trailing effects 7-8          dust cloud, 0=none, 1=small, 2=medium, 3=large\n hatch            9-11         0=NA, 1=hatch closed, 2=popped, 3=popped + person visible, 4=open, 5=open and visible\n head lights      12           0=off, 1=on\n tail light       13           0=off, 1=on\n brake lights     14           0=off, 1=on\n flaming          15           0=none, 1=flames present\n launcher         16           0=not raised, 1=raised\n camo type        17-18        0=desert, 1=winter, 2=forest\n concealed        19           0=not concealed, 1=prepared concealed position (netting, etc)\n frozen status    20           0=not frozen, 1=frozen (in simulation terms)\n power plant      22           0=power plant off 1=on\n state            23           0=active, 1=deactivated\n tent             24           0=not extended 1=extended\n ramp             25           0=not extended, 1=extended\n blackout lights  26           0=off, 1=on\n blackout brake   27           0=off, 1=on\n spot lights      28           0=off, 1=on\n interior lights  29           0=off, 1=on\n unused           30-31\n \n Typical use:\n \n var entityAppearance = new DisAppearance(espdu.entityAppearance);\n var damage = entityAppearance.getBitfield(3, 4);\n \n This returns the \"damage\" bitfield in bits 3-4.\n \n var mobility = entityAppearance.getBitfield(1, 1);\n \n Returns the mobility field, 0 = no mobo kill, 1 = mobility kill",
+            "author": "DMcG",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/DisAppearance.js",
+            "line": 56,
+            "params": [
+                {
+                    "name": "integerValue",
+                    "description": "the entity appearance from the espdu",
+                    "type": "Type"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/DisAppearance.js",
+            "line": 66,
+            "description": "Test code for creating the correct bitmask",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/DisAppearance.js",
+            "line": 81,
+            "params": [
+                {
+                    "name": "startPosition",
+                    "description": "",
+                    "type": "Integer"
+                },
+                {
+                    "name": "finishPosition",
+                    "description": "",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Integer"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/DisAppearance.js",
+            "line": 111,
+            "params": [
+                {
+                    "name": "num",
+                    "description": "the number whose bit we are setting. Typically zero.",
+                    "type": "Integer"
+                },
+                {
+                    "name": "bit",
+                    "description": "which bit to set",
+                    "type": "Integer"
+                }
+            ],
+            "return": {
+                "description": "the number passed in, with the \"bit\"th bit flipped on.",
+                "type": "Integer"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/InputStream.js",
+            "line": 57,
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/OutputStream.js",
+            "line": 8,
+            "params": [
+                {
+                    "name": "binaryDataBuffer",
+                    "description": "ArrayBuffer"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/PduFactory.js",
+            "line": 9,
+            "description": "The PDU factory is responsible for decoding binary data and turning\nit into the appropriate type of PDU.\n\nThe websocket will typically send the web page a IEEE 1278.1 binary\narray of data. It could be any one of dozens of PDUs. The start of\nall PDUs is the same--they have the same header. One of the fields in \nthe header is the PduType, an 8 bit integer with a unqiue value for\neach type of PDU. We have to peak at that value, decide what type\nof PDU to create of the binary we have received, and then decode it.\n\n    * @DMcG",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/PduFactory.js",
+            "line": 28,
+            "description": "decode incoming binary data and\nreturn the correct type of PDU.",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "the IEEE 1278.1 binary data",
+                    "type": "Type"
+                }
+            ],
+            "return": {
+                "description": "Returns an instance of some PDU, be it espdu, fire, detonation, etc. Exception if PduType not known.",
+                "type": "Pdu"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 1,
+            "description": "Sets up a local tangent place (ENU) coordinate system at a given location\nand altitude, and handles conversions between geodetic, ECEF, and local\ntangent plane coordinate systems.\n\nFor reference see  \"Conversion of Geodetic coordinates to the Local\nTangent Plane\", version 2.01, \nhttp://www.psas.pdx.edu/CoordinateSystem/Latitude_to_LocalTangent.pdf\n\nand \"Geodetic Systems\", \nhttp://wiki.gis.com/wiki/index.php/Geodetic_system#From_geodetic_coordinates_to_local_ENU_coordinates\n\nThere's also a bunch of ancient code from older versions that someone, somewhere,\nlifted from a military handbook, originally written in C, translated to Java,\nand now translated to Javascript. \n\nTerminology: \n\nECEF: earth centered, earth fixed coordinate system, same as DIS. Cartesian,\norigin at center of the earth, z through north pole, x out the equator and\nprime meridian, y out equator and 90 deg east. This coordinate system rotates\nwith the earth, ie the x axis always points out the prime meridian and equator\neven as the earth rotates.\n\nGeodetic: latitude, longitude, altitude.\n\nWGS84: Shape of the earth, an ellipsoid roughly, with a and b the semimajor and semiminor axes\n\nENU: East, North, Up: local coordinate system with a given geodetic origin. Tangent\nplane to the earth.\n\nAll Errors mine",
+            "dmcg": "",
+            "params": [
+                {
+                    "name": "lat",
+                    "description": "latitude in degrees of the origin of the local tangent plane coordinate system",
+                    "type": "Float"
+                },
+                {
+                    "name": "lon",
+                    "description": "longitude, in degrees, of origin",
+                    "type": "Float"
+                },
+                {
+                    "name": "alt",
+                    "description": "altitude, in meters, of the origin of the local tangent plane coordinate system",
+                    "type": "Float"
+                }
+            ],
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 48,
+            "description": "Takes a geodetic point that is the origin of a tangent plane to the surface\nof the earth. This is useful for doing local simulation work. The local\ncoordinate system has postive x east, positive y north, and positive Z up,\naka an ENU coordinate system. Methods for converting from that coordinate system\nto the DIS (ECEF) coordinate system or geotetic coordinate systems are provided.",
+            "params": [
+                {
+                    "name": "lat",
+                    "description": "latitude, in degrees, of where the local tangent plane is located",
+                    "type": "Type"
+                },
+                {
+                    "name": "lon",
+                    "description": "longitude, in degrees, of the origin of the local tangent plane",
+                    "type": "Type"
+                },
+                {
+                    "name": "alt",
+                    "description": "altitude, in meters, of the origin of the local tangent plane",
+                    "type": "Type"
+                }
+            ],
+            "return": {
+                "description": "An object that can do coordinate system conversions",
+                "type": "RangeCoordinates"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 65,
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 68,
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 71,
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 74,
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 88,
+            "description": "latitude to the Z-axis running through the center of the earth.\nThis is NOT the same as the distance to the center of the earth.",
+            "params": [
+                {
+                    "name": "lambda",
+                    "description": "the latitude, in radians.",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "distance in meters from the latitude to the axis of the earth",
+                "type": "Float"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 102,
+            "description": "Converts a latitude, longitude, and altitude object to DIS rectilinear\ncoordinates, aka earth-centered, earth-fixed, rectilinear.",
+            "params": [
+                {
+                    "name": "latLonAlt",
+                    "description": "The lat/lon/alt, in degrees and meters",
+                    "type": "Latitude:longitude:altitude:"
+                }
+            ],
+            "return": {
+                "description": "rectilienar coordinates in ECEF, aka DIS coordinates",
+                "type": "X, y, z"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 114,
+            "description": "Converts a latitude, longitude, and altitude to DIS rectilinear\ncoordinates, aka earth-centered, earth-fixed, rectilinear.",
+            "params": [
+                {
+                    "name": "latitude",
+                    "description": "(in radians)",
+                    "type": "Float"
+                },
+                {
+                    "name": "longitude",
+                    "description": "(in radians)",
+                    "type": "Float"
+                },
+                {
+                    "name": "altitude",
+                    "description": "(in meters)",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "rectilienar coordinates in ECEF-r, aka DIS coordinates",
+                "type": "X, y, z"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 161,
+            "description": "Converts DIS xyz world coordinates to latitude and longitude (IN DEGREES). This algorithm may not be 100% accurate\nnear the poles. Uses WGS84 , though you can change the ellipsoid constants a and b if you want to use something\nelse. These formulas were obtained from Military Handbook 600008. The code itself has been\ntranslated from C to Java to Javascript over the years, so hold onto your hats. (This is\ncopied from other sources than those listed above. Seems to work, though.)",
+            "params": [
+                {
+                    "name": "position",
+                    "description": "",
+                    "type": "X:, y:, z:"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Latitude:, longitude: altitude:"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 192,
+            "description": "Get the longitude.",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 207,
+            "description": "Longitude calculation done. Now calculate latitude.\nNOTE: The handbook mentions using the calculated phi (latitude) value to recalculate B\nusing tan B = (1-f) tan phi and then performing the entire calculation again to get more accurate values.\nHowever, for terrestrial applications, one iteration is accurate to .1 millimeter on the surface  of the\nearth (Rapp, 1984, p.124), so one iteration is enough for our purposes",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 219,
+            "description": "Latitude done, now get the elevation. Note: The handbook states that near the poles, it is preferable to use\nh = (Z / sin phi ) - rSubN + (eSquared * rSubN). Our applications are never near the poles, so this formula\nwas left unimplemented.",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 235,
+            "description": "Converts an ECEF position to the local ENU coordinate system. Units are meters,\nand the origin of the ENU coordinate system is set in the constructor.",
+            "params": [
+                {
+                    "name": "ecefPosition",
+                    "description": "ecef position (in meters)",
+                    "type": "X:y:z:"
+                }
+            ],
+            "return": {
+                "description": "object with x, y, and z local coordinates, ENU",
+                "type": "X:y:z:"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 247,
+            "description": "Converts an ECEF position to the local ENU coordinate system. Units are meters,\nand the origin of the ENU coordinate system is set in the constructor.",
+            "params": [
+                {
+                    "name": "X",
+                    "description": "the X coordinate of the ECEF position",
+                    "type": "Float"
+                },
+                {
+                    "name": "Y",
+                    "description": "the Y coordinate",
+                    "type": "Float"
+                },
+                {
+                    "name": "Z",
+                    "description": "the Z coordinate",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "object with x, y, and z local coordinates, ENU",
+                "type": "X:y:z:"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 274,
+            "description": "Converts a local coordinate system / ENU/ Local Tangent Plane object to ECEF, aka DIS coordinates.",
+            "params": [
+                {
+                    "name": "enuPosition",
+                    "description": "local coordinate object",
+                    "type": "X:y:z:"
+                }
+            ],
+            "return": {
+                "description": "point in ECEF / DIS coordinate system",
+                "type": "X:y:z:"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 285,
+            "description": "Converts a local coordinate system / ENU/ Local Tangent Plane point to ECEF, aka DIS coordinates.",
+            "params": [
+                {
+                    "name": "localX",
+                    "description": "local coordinate system X",
+                    "type": "Float"
+                },
+                {
+                    "name": "localY",
+                    "description": "local coordinate system Y",
+                    "type": "Float"
+                },
+                {
+                    "name": "localZ",
+                    "description": "local coordinate system Z",
+                    "type": "Float"
+                }
+            ],
+            "return": {
+                "description": "point in ECEF / DIS coordinate system",
+                "type": "X:y:z:"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/RangeCoordinates.js",
+            "line": 303,
+            "description": "function [X, Y, Z] = enu2xyz(refLat, refLong, refH, e, n, u)\n  % Convert east, north, up coordinates (labeled e, n, u) to ECEF\n  % coordinates. The reference point (phi, lambda, h) must be given. All distances are in metres\n \n  [Xr,Yr,Zr] = llh2xyz(refLat,refLong, refH); % location of reference point\n \n  X = -sin(refLong)*e - cos(refLong)*sin(refLat)*n + cos(refLong)*cos(refLat)*u + Xr;\n  Y = cos(refLong)*e - sin(refLong)*sin(refLat)*n + cos(refLat)*sin(refLong)*u + Yr;\n  Z = cos(refLat)*n + sin(refLat)*u + Zr;",
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/StringConversion.js",
+            "line": 8,
+            "description": "Utility class that converts between strings and the DIS ESPDU marking\nfield. The marking field is 12 bytes long, with the first byte being\nthe character set used, and the remaining 11 bytes character codes in\nthat character set. This is often used for debugging or \"billboard\"\ndisplays in 3D; it's intended for humans. The string character values\nare clamped (or filled) to exactly 11 bytes, so \"This is a long string\"\nwill be clamped to \"This is a l\" (in charachter codes) and \"foo\" will\nbe filled to \"foo\\0\\0\\0\\0\\0\\0\\0\\0\".<p>\n\nIt is recommended that only ASCII character set (character set = 1)\nbe used.",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/StringConversion.js",
+            "line": 27,
+            "description": "Given a string, returns a DIS marking field. The character set is set to\n1, for ascii. The length is clamped to 11, and zero-filled if the string\nis shorter than 11.",
+            "return": {
+                "description": "disMarking field, 12 bytes long, character set = 1 (ascii) in 0, zero-filled to 11 character codes",
+                "type": "Array"
+            },
+            "class": ""
+        },
+        {
+            "file": "javascript/disSupporting/StringConversion.js",
+            "line": 63,
+            "description": "Given a DIS marking field, returns a string. Assumes always ascii.",
+            "params": [
+                {
+                    "name": "disMarking",
+                    "description": "dis marking field, [0] = character set, the rest character codes",
+                    "type": "Array"
+                }
+            ],
+            "return": {
+                "description": "string equivalent of the marking field",
+                "type": "String"
+            },
+            "class": ""
+        }
+    ],
+    "warnings": [
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/DisAppearance.js:56"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/DisAppearance.js:66"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/DisAppearance.js:81"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/PduFactory.js:28"
+        },
+        {
+            "message": "unknown tag: dmcg",
+            "line": " javascript/disSupporting/RangeCoordinates.js:1"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:48"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:88"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:102"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:114"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:235"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:247"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:274"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/RangeCoordinates.js:285"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/StringConversion.js:8"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/StringConversion.js:27"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " javascript/disSupporting/StringConversion.js:63"
+        },
+        {
+            "message": "Missing item type\nConverts DIS xyz world coordinates to latitude and longitude (IN DEGREES). This algorithm may not be 100% accurate\nnear the poles. Uses WGS84 , though you can change the ellipsoid constants a and b if you want to use something\nelse. These formulas were obtained from Military Handbook 600008. The code itself has been \ntranslated from C to Java to Javascript over the years, so hold onto your hats.",
+            "line": " javascript/disSupporting/CoordinateConversion.js:17"
+        },
+        {
+            "message": "Missing item type\nGet the longitude.",
+            "line": " javascript/disSupporting/CoordinateConversion.js:46"
+        },
+        {
+            "message": "Missing item type\nLongitude calculation done. Now calculate latitude.\nNOTE: The handbook mentions using the calculated phi (latitude) value to recalculate B\nusing tan B = (1-f) tan phi and then performing the entire calculation again to get more accurate values.\nHowever, for terrestrial applications, one iteration is accurate to .1 millimeter on the surface  of the\nearth (Rapp, 1984, p.124), so one iteration is enough for our purposes",
+            "line": " javascript/disSupporting/CoordinateConversion.js:61"
+        },
+        {
+            "message": "Missing item type\nLatitude done, now get the elevation. Note: The handbook states that near the poles, it is preferable to use\nh = (Z / sin phi ) - rSubN + (eSquared * rSubN). Our applications are never near the poles, so this formula\nwas left unimplemented.",
+            "line": " javascript/disSupporting/CoordinateConversion.js:74"
+        },
+        {
+            "message": "Missing item type\nConverts lat long and geodetic height (elevation) into DIS XYZ\nThis algorithm also uses the WGS84 ellipsoid, though you can change the values\nof a and b for a different ellipsoid. Adapted from Military Handbook 600008",
+            "line": " javascript/disSupporting/CoordinateConversion.js:88"
+        },
+        {
+            "message": "Missing item type\nSome code to extract the entity apperance bit fields.<p>\n\nThe entityAppearance field in the espdu is a 32 bit integer. To save\nspace, several different fields are contained within it. \nSpecifically:\n\n Name      bit position        Purpose\n ----      ------------        --------\n Paint            0            0 = uniform color, 1=camo\n Mobility         1            0 = no mobility kill, 1 = mobility kill\n Fire Power       2            0 = no firepower kill, 1 = firepower kill\n Damage           3-4          0=no damange, 1=slight, 2=moderate, 3=destroyed\n Smoke            5-6          0=not smoking, 1=smoke plume, 2=emitting engine smoke, 3=engine smoke + smoke plume\n Trailing effects 7-8          dust cloud, 0=none, 1=small, 2=medium, 3=large\n hatch            9-11         0=NA, 1=hatch closed, 2=popped, 3=popped + person visible, 4=open, 5=open and visible\n head lights      12           0=off, 1=on\n tail light       13           0=off, 1=on\n brake lights     14           0=off, 1=on\n flaming          15           0=none, 1=flames present\n launcher         16           0=not raised, 1=raised\n camo type        17-18        0=desert, 1=winter, 2=forest\n concealed        19           0=not concealed, 1=prepared concealed position (netting, etc)\n frozen status    20           0=not frozen, 1=frozen (in simulation terms)\n power plant      22           0=power plant off 1=on\n state            23           0=active, 1=deactivated\n tent             24           0=not extended 1=extended\n ramp             25           0=not extended, 1=extended\n blackout lights  26           0=off, 1=on\n blackout brake   27           0=off, 1=on\n spot lights      28           0=off, 1=on\n interior lights  29           0=off, 1=on\n unused           30-31\n \n Typical use:\n \n var entityAppearance = new DisAppearance(espdu.entityAppearance);\n var damage = entityAppearance.getBitfield(3, 4);\n \n This returns the \"damage\" bitfield in bits 3-4.\n \n var mobility = entityAppearance.getBitfield(1, 1);\n \n Returns the mobility field, 0 = no mobo kill, 1 = mobility kill",
+            "line": " javascript/disSupporting/DisAppearance.js:1"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/DisAppearance.js:56"
+        },
+        {
+            "message": "Missing item type\nTest code for creating the correct bitmask",
+            "line": " javascript/disSupporting/DisAppearance.js:66"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/DisAppearance.js:81"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/DisAppearance.js:111"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/InputStream.js:57"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/OutputStream.js:8"
+        },
+        {
+            "message": "Missing item type\nThe PDU factory is responsible for decoding binary data and turning\nit into the appropriate type of PDU.\n\nThe websocket will typically send the web page a IEEE 1278.1 binary\narray of data. It could be any one of dozens of PDUs. The start of\nall PDUs is the same--they have the same header. One of the fields in \nthe header is the PduType, an 8 bit integer with a unqiue value for\neach type of PDU. We have to peak at that value, decide what type\nof PDU to create of the binary we have received, and then decode it.\n\n    * @DMcG",
+            "line": " javascript/disSupporting/PduFactory.js:9"
+        },
+        {
+            "message": "Missing item type\ndecode incoming binary data and\nreturn the correct type of PDU.",
+            "line": " javascript/disSupporting/PduFactory.js:28"
+        },
+        {
+            "message": "Missing item type\nSets up a local tangent place (ENU) coordinate system at a given location\nand altitude, and handles conversions between geodetic, ECEF, and local\ntangent plane coordinate systems.\n\nFor reference see  \"Conversion of Geodetic coordinates to the Local\nTangent Plane\", version 2.01, \nhttp://www.psas.pdx.edu/CoordinateSystem/Latitude_to_LocalTangent.pdf\n\nand \"Geodetic Systems\", \nhttp://wiki.gis.com/wiki/index.php/Geodetic_system#From_geodetic_coordinates_to_local_ENU_coordinates\n\nThere's also a bunch of ancient code from older versions that someone, somewhere,\nlifted from a military handbook, originally written in C, translated to Java,\nand now translated to Javascript. \n\nTerminology: \n\nECEF: earth centered, earth fixed coordinate system, same as DIS. Cartesian,\norigin at center of the earth, z through north pole, x out the equator and\nprime meridian, y out equator and 90 deg east. This coordinate system rotates\nwith the earth, ie the x axis always points out the prime meridian and equator\neven as the earth rotates.\n\nGeodetic: latitude, longitude, altitude.\n\nWGS84: Shape of the earth, an ellipsoid roughly, with a and b the semimajor and semiminor axes\n\nENU: East, North, Up: local coordinate system with a given geodetic origin. Tangent\nplane to the earth.\n\nAll Errors mine",
+            "line": " javascript/disSupporting/RangeCoordinates.js:1"
+        },
+        {
+            "message": "Missing item type\nTakes a geodetic point that is the origin of a tangent plane to the surface\nof the earth. This is useful for doing local simulation work. The local\ncoordinate system has postive x east, positive y north, and positive Z up,\naka an ENU coordinate system. Methods for converting from that coordinate system\nto the DIS (ECEF) coordinate system or geotetic coordinate systems are provided.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:48"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/RangeCoordinates.js:65"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/RangeCoordinates.js:68"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/RangeCoordinates.js:71"
+        },
+        {
+            "message": "Missing item type",
+            "line": " javascript/disSupporting/RangeCoordinates.js:74"
+        },
+        {
+            "message": "Missing item type\nlatitude to the Z-axis running through the center of the earth.\nThis is NOT the same as the distance to the center of the earth.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:88"
+        },
+        {
+            "message": "Missing item type\nConverts a latitude, longitude, and altitude object to DIS rectilinear\ncoordinates, aka earth-centered, earth-fixed, rectilinear.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:102"
+        },
+        {
+            "message": "Missing item type\nConverts a latitude, longitude, and altitude to DIS rectilinear\ncoordinates, aka earth-centered, earth-fixed, rectilinear.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:114"
+        },
+        {
+            "message": "Missing item type\nConverts DIS xyz world coordinates to latitude and longitude (IN DEGREES). This algorithm may not be 100% accurate\nnear the poles. Uses WGS84 , though you can change the ellipsoid constants a and b if you want to use something\nelse. These formulas were obtained from Military Handbook 600008. The code itself has been\ntranslated from C to Java to Javascript over the years, so hold onto your hats. (This is\ncopied from other sources than those listed above. Seems to work, though.)",
+            "line": " javascript/disSupporting/RangeCoordinates.js:161"
+        },
+        {
+            "message": "Missing item type\nGet the longitude.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:192"
+        },
+        {
+            "message": "Missing item type\nLongitude calculation done. Now calculate latitude.\nNOTE: The handbook mentions using the calculated phi (latitude) value to recalculate B\nusing tan B = (1-f) tan phi and then performing the entire calculation again to get more accurate values.\nHowever, for terrestrial applications, one iteration is accurate to .1 millimeter on the surface  of the\nearth (Rapp, 1984, p.124), so one iteration is enough for our purposes",
+            "line": " javascript/disSupporting/RangeCoordinates.js:207"
+        },
+        {
+            "message": "Missing item type\nLatitude done, now get the elevation. Note: The handbook states that near the poles, it is preferable to use\nh = (Z / sin phi ) - rSubN + (eSquared * rSubN). Our applications are never near the poles, so this formula\nwas left unimplemented.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:219"
+        },
+        {
+            "message": "Missing item type\nConverts an ECEF position to the local ENU coordinate system. Units are meters,\nand the origin of the ENU coordinate system is set in the constructor.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:235"
+        },
+        {
+            "message": "Missing item type\nConverts an ECEF position to the local ENU coordinate system. Units are meters,\nand the origin of the ENU coordinate system is set in the constructor.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:247"
+        },
+        {
+            "message": "Missing item type\nConverts a local coordinate system / ENU/ Local Tangent Plane object to ECEF, aka DIS coordinates.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:274"
+        },
+        {
+            "message": "Missing item type\nConverts a local coordinate system / ENU/ Local Tangent Plane point to ECEF, aka DIS coordinates.",
+            "line": " javascript/disSupporting/RangeCoordinates.js:285"
+        },
+        {
+            "message": "Missing item type\nfunction [X, Y, Z] = enu2xyz(refLat, refLong, refH, e, n, u)\n  % Convert east, north, up coordinates (labeled e, n, u) to ECEF\n  % coordinates. The reference point (phi, lambda, h) must be given. All distances are in metres\n \n  [Xr,Yr,Zr] = llh2xyz(refLat,refLong, refH); % location of reference point\n \n  X = -sin(refLong)*e - cos(refLong)*sin(refLat)*n + cos(refLong)*cos(refLat)*u + Xr;\n  Y = cos(refLong)*e - sin(refLong)*sin(refLat)*n + cos(refLat)*sin(refLong)*u + Yr;\n  Z = cos(refLat)*n + sin(refLat)*u + Zr;",
+            "line": " javascript/disSupporting/RangeCoordinates.js:303"
+        },
+        {
+            "message": "Missing item type\nUtility class that converts between strings and the DIS ESPDU marking\nfield. The marking field is 12 bytes long, with the first byte being\nthe character set used, and the remaining 11 bytes character codes in\nthat character set. This is often used for debugging or \"billboard\"\ndisplays in 3D; it's intended for humans. The string character values\nare clamped (or filled) to exactly 11 bytes, so \"This is a long string\"\nwill be clamped to \"This is a l\" (in charachter codes) and \"foo\" will\nbe filled to \"foo\\0\\0\\0\\0\\0\\0\\0\\0\".<p>\n\nIt is recommended that only ASCII character set (character set = 1)\nbe used.",
+            "line": " javascript/disSupporting/StringConversion.js:8"
+        },
+        {
+            "message": "Missing item type\nGiven a string, returns a DIS marking field. The character set is set to\n1, for ascii. The length is clamped to 11, and zero-filled if the string\nis shorter than 11.",
+            "line": " javascript/disSupporting/StringConversion.js:27"
+        },
+        {
+            "message": "Missing item type\nGiven a DIS marking field, returns a string. Assumes always ascii.",
+            "line": " javascript/disSupporting/StringConversion.js:63"
+        }
+    ]
+}

@@ -1,0 +1,16 @@
+***************
+*** 1,5 ****
+  /**
+   * Section 5.2.15. Specifies the character set used inthe first byte, followed by 11 characters of text data.
+   *
+   * Copyright (c) 2008-2014, MOVES Institute, Naval Postgraduate School. All rights reserved.
+   * This work is licensed under the BSD open source license, available at https://www.movesinstitute.org/licenses/bsd.html
+--- 1,8 ----
+  /**
+   * Section 5.2.15. Specifies the character set used inthe first byte, followed by 11 characters of text data.
++  * The generated Marking class should be augmented with a patch that adds getMarking() and
++  * setMarking() methods that convert between arrays and strings, and clamp the length
++  * of the string to 11 characters.
+   *
+   * Copyright (c) 2008-2014, MOVES Institute, Naval Postgraduate School. All rights reserved.
+   * This work is licensed under the BSD open source license, available at https://www.movesinstitute.org/licenses/bsd.html
