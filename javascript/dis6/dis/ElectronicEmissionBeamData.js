@@ -46,7 +46,7 @@ dis.ElectronicEmissionBeamData = function()
    /** identify jamming techniques used */
    this.jammingModeSequence = 0;
 
-   /** variable length list of track/jam targets */
+   /** variable length variablelist of track/jam targets */
     this.trackJamTargets = new Array();
  
   dis.ElectronicEmissionBeamData.prototype.initFromBinary = function(inputStream)

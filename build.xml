@@ -8,6 +8,8 @@
     <property name="lib" location="lib"/>
     <property name="DIS6SOURCE" location="javascript/dis6"/>
     <property name="DIS7SOURCE" location="javascript/dis7"/>
+    <property name="DIS6XML" location="dis6.xml"/>
+    <property name="DIS7XML" location="dis7.xml"/>
 
     <path id="lib.path">
         <fileset id="lib.jars" dir="${lib}">
@@ -54,7 +56,7 @@
        
         <java classname="edu.nps.moves.xmlpg.Xmlpg">
             <classpath refid="lib.path"/>
-            <arg value="DIS1998.xml"/>
+            <arg value="${DIS6XML}"/>
             <arg value="javascript"/>
             <sysproperty key="xmlpg.generatedSourceDir" value="${DIS6SOURCE}"/>
         </java>
@@ -75,7 +77,7 @@
          <echo message="Generating DIS 7 javascript source code"/>
          <java classname="edu.nps.moves.xmlpg.Xmlpg">
             <classpath refid="lib.path"/>
-            <arg value="DIS2012.xml"/>
+            <arg value="${DIS7XML}"/>
             <arg value="javascript"/>
             <sysproperty key="xmlpg.generatedSourceDir" value="javascript/dis7"/>
         </java>

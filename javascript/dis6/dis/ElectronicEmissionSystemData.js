@@ -34,7 +34,7 @@ dis.ElectronicEmissionSystemData = function()
    /** Location with respect to the entity */
    this.location = new dis.Vector3Float(); 
 
-   /** variable length list of beam data records */
+   /** variable length variablelist of beam data records */
     this.beamDataRecords = new Array();
  
   dis.ElectronicEmissionSystemData.prototype.initFromBinary = function(inputStream)

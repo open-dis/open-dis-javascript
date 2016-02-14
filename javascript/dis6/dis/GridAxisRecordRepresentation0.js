@@ -28,7 +28,7 @@ dis.GridAxisRecordRepresentation0 = function()
    /** number of bytes of environmental state data */
    this.numberOfBytes = 0;
 
-   /** variable length list of data parameters ^^^this is wrong--need padding as well */
+   /** variable length variablelist of data parameters ^^^this is wrong--need padding as well */
     this.dataValues = new Array();
  
   dis.GridAxisRecordRepresentation0.prototype.initFromBinary = function(inputStream)

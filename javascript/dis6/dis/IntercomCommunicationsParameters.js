@@ -25,7 +25,7 @@ dis.IntercomCommunicationsParameters = function()
    /** length of record-specifid field, in octets */
    this.recordLength = 0;
 
-   /** variable length list of data parameters  */
+   /** variable length variablelist of data parameters  */
     this.parameterValues = new Array();
  
   dis.IntercomCommunicationsParameters.prototype.initFromBinary = function(inputStream)

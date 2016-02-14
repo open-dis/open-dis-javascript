@@ -2378,7 +2378,7 @@ exports.AngularVelocityVector = dis.AngularVelocityVector;
 // End of AngularVelocityVector class
 
 /**
- * 5.2.3: location of the radiating portion of the antenna, specified in world coordinates and         entity coordinates.
+ * 5.2.3: location of the radiating portion of the antenna, specified in world coordinates and entity coordinates.
  *
  * Copyright (c) 2008-2015, MOVES Institute, Naval Postgraduate School. All rights reserved.
  * This work is licensed under the BSD open source license, available at https://www.movesinstitute.org/licenses/bsd.html
@@ -3790,14 +3790,14 @@ dis.DataQueryPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis.FixedDatum();
+           var anX = new dis.UnsignedIntegerWrapper();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis.VariableDatum();
+           var anX = new dis.UnsignedIntegerWrapper();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
@@ -4616,7 +4616,7 @@ dis.ElectronicEmissionBeamData = function()
    /** identify jamming techniques used */
    this.jammingModeSequence = 0;
 
-   /** variable length list of track/jam targets */
+   /** variable length variablelist of track/jam targets */
     this.trackJamTargets = new Array();
  
   dis.ElectronicEmissionBeamData.prototype.initFromBinary = function(inputStream)
@@ -4699,7 +4699,7 @@ dis.ElectronicEmissionSystemData = function()
    /** Location with respect to the entity */
    this.location = new dis.Vector3Float(); 
 
-   /** variable length list of beam data records */
+   /** variable length variablelist of beam data records */
     this.beamDataRecords = new Array();
  
   dis.ElectronicEmissionSystemData.prototype.initFromBinary = function(inputStream)
@@ -5134,7 +5134,7 @@ dis.EntityStatePdu = function()
    this.entityID = new dis.EntityID(); 
 
    /** What force this entity is affiliated with, eg red, blue, neutral, etc */
-   this.forceID = 0;
+   this.forceId = 0;
 
    /** How many articulation parameters are in the variable length list */
    this.numberOfArticulationParameters = 0;
@@ -5178,7 +5178,7 @@ dis.EntityStatePdu = function()
        this.pduLength = inputStream.readUShort();
        this.padding = inputStream.readShort();
        this.entityID.initFromBinary(inputStream);
-       this.forceID = inputStream.readUByte();
+       this.forceId = inputStream.readUByte();
        this.numberOfArticulationParameters = inputStream.readByte();
        this.entityType.initFromBinary(inputStream);
        this.alternativeEntityType.initFromBinary(inputStream);
@@ -5208,7 +5208,7 @@ dis.EntityStatePdu = function()
        outputStream.writeUShort(this.pduLength);
        outputStream.writeShort(this.padding);
        this.entityID.encodeToBinary(outputStream);
-       outputStream.writeUByte(this.forceID);
+       outputStream.writeUByte(this.forceId);
        outputStream.writeByte(this.numberOfArticulationParameters);
        this.entityType.encodeToBinary(outputStream);
        this.alternativeEntityType.encodeToBinary(outputStream);
@@ -5225,6 +5225,227 @@ dis.EntityStatePdu = function()
        }
 
   };
+
+/** 0 uniform color, 1 camouflage */
+dis.EntityStatePdu.prototype.getEntityAppearance_paintScheme = function()
+{
+   var val = this.entityAppearance & 0x1;
+   return val >> 0;
+};
+
+
+/** 0 uniform color, 1 camouflage */
+dis.EntityStatePdu.prototype.setEntityAppearance_paintScheme= function(val)
+{
+  this.entityAppearance &= ~0x1; // Zero existing bits
+  val = val << 0;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.EntityStatePdu.prototype.getEntityAppearance_mobility = function()
+{
+   var val = this.entityAppearance & 0x2;
+   return val >> 1;
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.EntityStatePdu.prototype.setEntityAppearance_mobility= function(val)
+{
+  this.entityAppearance &= ~0x2; // Zero existing bits
+  val = val << 1;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.EntityStatePdu.prototype.getEntityAppearance_firepower = function()
+{
+   var val = this.entityAppearance & 0x4;
+   return val >> 2;
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.EntityStatePdu.prototype.setEntityAppearance_firepower= function(val)
+{
+  this.entityAppearance &= ~0x4; // Zero existing bits
+  val = val << 2;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.EntityStatePdu.prototype.getEntityAppearance_damage = function()
+{
+   var val = this.entityAppearance & 0x18;
+   return val >> 3;
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.EntityStatePdu.prototype.setEntityAppearance_damage= function(val)
+{
+  this.entityAppearance &= ~0x18; // Zero existing bits
+  val = val << 3;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.EntityStatePdu.prototype.getEntityAppearance_smoke = function()
+{
+   var val = this.entityAppearance & 0x60;
+   return val >> 5;
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.EntityStatePdu.prototype.setEntityAppearance_smoke= function(val)
+{
+  this.entityAppearance &= ~0x60; // Zero existing bits
+  val = val << 5;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.EntityStatePdu.prototype.getEntityAppearance_trailingEffects = function()
+{
+   var val = this.entityAppearance & 0x180;
+   return val >> 7;
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.EntityStatePdu.prototype.setEntityAppearance_trailingEffects= function(val)
+{
+  this.entityAppearance &= ~0x180; // Zero existing bits
+  val = val << 7;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.EntityStatePdu.prototype.getEntityAppearance_hatch = function()
+{
+   var val = this.entityAppearance & 0xe00;
+   return val >> 9;
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.EntityStatePdu.prototype.setEntityAppearance_hatch= function(val)
+{
+  this.entityAppearance &= ~0xe00; // Zero existing bits
+  val = val << 9;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_headlights = function()
+{
+   var val = this.entityAppearance & 0x1000;
+   return val >> 12;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_headlights= function(val)
+{
+  this.entityAppearance &= ~0x1000; // Zero existing bits
+  val = val << 12;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_tailLights = function()
+{
+   var val = this.entityAppearance & 0x2000;
+   return val >> 13;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_tailLights= function(val)
+{
+  this.entityAppearance &= ~0x2000; // Zero existing bits
+  val = val << 13;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_brakeLights = function()
+{
+   var val = this.entityAppearance & 0x4000;
+   return val >> 14;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_brakeLights= function(val)
+{
+  this.entityAppearance &= ~0x4000; // Zero existing bits
+  val = val << 14;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_flaming = function()
+{
+   var val = this.entityAppearance & 0x8000;
+   return val >> 15;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_flaming= function(val)
+{
+  this.entityAppearance &= ~0x8000; // Zero existing bits
+  val = val << 15;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 not raised 1 raised */
+dis.EntityStatePdu.prototype.getEntityAppearance_launcher = function()
+{
+   var val = this.entityAppearance & 0x10000;
+   return val >> 16;
+};
+
+
+/** 0 not raised 1 raised */
+dis.EntityStatePdu.prototype.setEntityAppearance_launcher= function(val)
+{
+  this.entityAppearance &= ~0x10000; // Zero existing bits
+  val = val << 16;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.EntityStatePdu.prototype.getEntityAppearance_camouflageType = function()
+{
+   var val = this.entityAppearance & 0x60000;
+   return val >> 17;
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.EntityStatePdu.prototype.setEntityAppearance_camouflageType= function(val)
+{
+  this.entityAppearance &= ~0x60000; // Zero existing bits
+  val = val << 17;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
 }; // end of class
 
  // node.js module support
@@ -5344,6 +5565,227 @@ dis.EntityStateUpdatePdu = function()
        }
 
   };
+
+/** 0 uniform color, 1 camouflage */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_paintScheme = function()
+{
+   var val = this.entityAppearance & 0x1;
+   return val >> 0;
+};
+
+
+/** 0 uniform color, 1 camouflage */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_paintScheme= function(val)
+{
+  this.entityAppearance &= ~0x1; // Zero existing bits
+  val = val << 0;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_mobility = function()
+{
+   var val = this.entityAppearance & 0x2;
+   return val >> 1;
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_mobility= function(val)
+{
+  this.entityAppearance &= ~0x2; // Zero existing bits
+  val = val << 1;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_firepower = function()
+{
+   var val = this.entityAppearance & 0x4;
+   return val >> 2;
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_firepower= function(val)
+{
+  this.entityAppearance &= ~0x4; // Zero existing bits
+  val = val << 2;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_damage = function()
+{
+   var val = this.entityAppearance & 0x18;
+   return val >> 3;
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_damage= function(val)
+{
+  this.entityAppearance &= ~0x18; // Zero existing bits
+  val = val << 3;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_smoke = function()
+{
+   var val = this.entityAppearance & 0x60;
+   return val >> 5;
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_smoke= function(val)
+{
+  this.entityAppearance &= ~0x60; // Zero existing bits
+  val = val << 5;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_trailingEffects = function()
+{
+   var val = this.entityAppearance & 0x180;
+   return val >> 7;
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_trailingEffects= function(val)
+{
+  this.entityAppearance &= ~0x180; // Zero existing bits
+  val = val << 7;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_hatch = function()
+{
+   var val = this.entityAppearance & 0xe00;
+   return val >> 9;
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_hatch= function(val)
+{
+  this.entityAppearance &= ~0xe00; // Zero existing bits
+  val = val << 9;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_headlights = function()
+{
+   var val = this.entityAppearance & 0x1000;
+   return val >> 12;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_headlights= function(val)
+{
+  this.entityAppearance &= ~0x1000; // Zero existing bits
+  val = val << 12;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_tailLights = function()
+{
+   var val = this.entityAppearance & 0x2000;
+   return val >> 13;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_tailLights= function(val)
+{
+  this.entityAppearance &= ~0x2000; // Zero existing bits
+  val = val << 13;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_brakeLights = function()
+{
+   var val = this.entityAppearance & 0x4000;
+   return val >> 14;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_brakeLights= function(val)
+{
+  this.entityAppearance &= ~0x4000; // Zero existing bits
+  val = val << 14;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_flaming = function()
+{
+   var val = this.entityAppearance & 0x8000;
+   return val >> 15;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_flaming= function(val)
+{
+  this.entityAppearance &= ~0x8000; // Zero existing bits
+  val = val << 15;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 not raised 1 raised */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_launcher = function()
+{
+   var val = this.entityAppearance & 0x10000;
+   return val >> 16;
+};
+
+
+/** 0 not raised 1 raised */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_launcher= function(val)
+{
+  this.entityAppearance &= ~0x10000; // Zero existing bits
+  val = val << 16;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.EntityStateUpdatePdu.prototype.getEntityAppearance_camouflageType = function()
+{
+   var val = this.entityAppearance & 0x60000;
+   return val >> 17;
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.EntityStateUpdatePdu.prototype.setEntityAppearance_camouflageType= function(val)
+{
+  this.entityAppearance &= ~0x60000; // Zero existing bits
+  val = val << 17;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
 }; // end of class
 
  // node.js module support
@@ -5962,7 +6404,7 @@ dis.FastEntityStatePdu = function()
    this.entity = 0;
 
    /** what force this entity is affiliated with, eg red, blue, neutral, etc */
-   this.forceID = 0;
+   this.forceId = 0;
 
    /** How many articulation parameters are in the variable length list */
    this.numberOfArticulationParameters = 0;
@@ -6079,7 +6521,7 @@ dis.FastEntityStatePdu = function()
        this.site = inputStream.readUShort();
        this.application = inputStream.readUShort();
        this.entity = inputStream.readUShort();
-       this.forceID = inputStream.readUByte();
+       this.forceId = inputStream.readUByte();
        this.numberOfArticulationParameters = inputStream.readByte();
        this.entityKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -6142,7 +6584,7 @@ dis.FastEntityStatePdu = function()
        outputStream.writeUShort(this.site);
        outputStream.writeUShort(this.application);
        outputStream.writeUShort(this.entity);
-       outputStream.writeUByte(this.forceID);
+       outputStream.writeUByte(this.forceId);
        outputStream.writeByte(this.numberOfArticulationParameters);
        outputStream.writeUByte(this.entityKind);
        outputStream.writeUByte(this.domain);
@@ -6190,6 +6632,227 @@ dis.FastEntityStatePdu = function()
        }
 
   };
+
+/** 0 uniform color, 1 camouflage */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_paintScheme = function()
+{
+   var val = this.entityAppearance & 0x1;
+   return val >> 0;
+};
+
+
+/** 0 uniform color, 1 camouflage */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_paintScheme= function(val)
+{
+  this.entityAppearance &= ~0x1; // Zero existing bits
+  val = val << 0;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_mobility = function()
+{
+   var val = this.entityAppearance & 0x2;
+   return val >> 1;
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_mobility= function(val)
+{
+  this.entityAppearance &= ~0x2; // Zero existing bits
+  val = val << 1;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_firepower = function()
+{
+   var val = this.entityAppearance & 0x4;
+   return val >> 2;
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_firepower= function(val)
+{
+  this.entityAppearance &= ~0x4; // Zero existing bits
+  val = val << 2;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_damage = function()
+{
+   var val = this.entityAppearance & 0x18;
+   return val >> 3;
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_damage= function(val)
+{
+  this.entityAppearance &= ~0x18; // Zero existing bits
+  val = val << 3;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_smoke = function()
+{
+   var val = this.entityAppearance & 0x60;
+   return val >> 5;
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_smoke= function(val)
+{
+  this.entityAppearance &= ~0x60; // Zero existing bits
+  val = val << 5;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_trailingEffects = function()
+{
+   var val = this.entityAppearance & 0x180;
+   return val >> 7;
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_trailingEffects= function(val)
+{
+  this.entityAppearance &= ~0x180; // Zero existing bits
+  val = val << 7;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_hatch = function()
+{
+   var val = this.entityAppearance & 0xe00;
+   return val >> 9;
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_hatch= function(val)
+{
+  this.entityAppearance &= ~0xe00; // Zero existing bits
+  val = val << 9;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_headlights = function()
+{
+   var val = this.entityAppearance & 0x1000;
+   return val >> 12;
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_headlights= function(val)
+{
+  this.entityAppearance &= ~0x1000; // Zero existing bits
+  val = val << 12;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_tailLights = function()
+{
+   var val = this.entityAppearance & 0x2000;
+   return val >> 13;
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_tailLights= function(val)
+{
+  this.entityAppearance &= ~0x2000; // Zero existing bits
+  val = val << 13;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_brakeLights = function()
+{
+   var val = this.entityAppearance & 0x4000;
+   return val >> 14;
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_brakeLights= function(val)
+{
+  this.entityAppearance &= ~0x4000; // Zero existing bits
+  val = val << 14;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_flaming = function()
+{
+   var val = this.entityAppearance & 0x8000;
+   return val >> 15;
+};
+
+
+/** 0 off 1 on */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_flaming= function(val)
+{
+  this.entityAppearance &= ~0x8000; // Zero existing bits
+  val = val << 15;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 not raised 1 raised */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_launcher = function()
+{
+   var val = this.entityAppearance & 0x10000;
+   return val >> 16;
+};
+
+
+/** 0 not raised 1 raised */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_launcher= function(val)
+{
+  this.entityAppearance &= ~0x10000; // Zero existing bits
+  val = val << 16;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.FastEntityStatePdu.prototype.getEntityAppearance_camouflageType = function()
+{
+   var val = this.entityAppearance & 0x60000;
+   return val >> 17;
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.FastEntityStatePdu.prototype.setEntityAppearance_camouflageType= function(val)
+{
+  this.entityAppearance &= ~0x60000; // Zero existing bits
+  val = val << 17;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
 }; // end of class
 
  // node.js module support
@@ -6637,7 +7300,7 @@ dis.GridAxisRecordRepresentation0 = function()
    /** number of bytes of environmental state data */
    this.numberOfBytes = 0;
 
-   /** variable length list of data parameters ^^^this is wrong--need padding as well */
+   /** variable length variablelist of data parameters ^^^this is wrong--need padding as well */
     this.dataValues = new Array();
  
   dis.GridAxisRecordRepresentation0.prototype.initFromBinary = function(inputStream)
@@ -7309,7 +7972,7 @@ dis.IntercomCommunicationsParameters = function()
    /** length of record-specifid field, in octets */
    this.recordLength = 0;
 
-   /** variable length list of data parameters  */
+   /** variable length variablelist of data parameters  */
     this.parameterValues = new Array();
  
   dis.IntercomCommunicationsParameters.prototype.initFromBinary = function(inputStream)
@@ -9191,7 +9854,7 @@ exports.Pdu = dis.Pdu;
 // End of Pdu class
 
 /**
- * Used for XML compatability. A container that holds PDUs
+ * A container that holds PDUs
  *
  * Copyright (c) 2008-2015, MOVES Institute, Naval Postgraduate School. All rights reserved.
  * This work is licensed under the BSD open source license, available at https://www.movesinstitute.org/licenses/bsd.html
@@ -9214,7 +9877,7 @@ dis.PduContainer = function()
    /** Number of PDUs in the container list */
    this.numberOfPdus = 0;
 
-   /** record sets */
+   /** List of PDUs */
     this.pdus = new Array();
  
   dis.PduContainer.prototype.initFromBinary = function(inputStream)
@@ -9246,7 +9909,7 @@ exports.PduContainer = dis.PduContainer;
 // End of PduContainer class
 
 /**
- * Non-DIS class, used on SQL databases
+ * Non-DIS class, used to describe streams of PDUs when logging to SQL databases
  *
  * Copyright (c) 2008-2015, MOVES Institute, Naval Postgraduate School. All rights reserved.
  * This work is licensed under the BSD open source license, available at https://www.movesinstitute.org/licenses/bsd.html
@@ -9266,11 +9929,17 @@ if (typeof exports === "undefined")
 
 dis.PduStream = function()
 {
-   /** Longish description of this PDU stream */
-   this.description = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
    /** short description of this PDU stream */
-   this.name = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+   this.shortDescription = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+   /** Longish description of this PDU stream */
+   this.longDescription = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+   /** Name of person performing recording */
+   this.personRecording = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+
+   /** Email of person performing recording */
+   this.authorEmail = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
    /** Start time of recording, in Unix time */
    this.startTime = 0;
@@ -9278,32 +9947,68 @@ dis.PduStream = function()
    /** stop time of recording, in Unix time */
    this.stopTime = 0;
 
+   /** how many PDUs in this stream */
+   this.pduCount = 0;
+
+   /** variable length list of PDUs */
+    this.pdusInStream = new Array();
+ 
   dis.PduStream.prototype.initFromBinary = function(inputStream)
   {
-       for(var idx = 0; idx < 512; idx++)
-       {
-          this.description[ idx ] = inputStream.readByte();
-       }
        for(var idx = 0; idx < 256; idx++)
        {
-          this.name[ idx ] = inputStream.readByte();
+          this.shortDescription[ idx ] = inputStream.readByte();
+       }
+       for(var idx = 0; idx < 512; idx++)
+       {
+          this.longDescription[ idx ] = inputStream.readByte();
+       }
+       for(var idx = 0; idx < 128; idx++)
+       {
+          this.personRecording[ idx ] = inputStream.readByte();
+       }
+       for(var idx = 0; idx < 128; idx++)
+       {
+          this.authorEmail[ idx ] = inputStream.readByte();
        }
        this.startTime = inputStream.readLong();
        this.stopTime = inputStream.readLong();
+       this.pduCount = inputStream.readUInt();
+       for(var idx = 0; idx < this.pduCount; idx++)
+       {
+           var anX = new dis.Pdu();
+           anX.initFromBinary(inputStream);
+           this.pdusInStream.push(anX);
+       }
+
   };
 
   dis.PduStream.prototype.encodeToBinary = function(outputStream)
   {
-       for(var idx = 0; idx < 512; idx++)
-       {
-          outputStream.writeByte(this.description[ idx ] );
-       }
        for(var idx = 0; idx < 256; idx++)
        {
-          outputStream.writeByte(this.name[ idx ] );
+          outputStream.writeByte(this.shortDescription[ idx ] );
+       }
+       for(var idx = 0; idx < 512; idx++)
+       {
+          outputStream.writeByte(this.longDescription[ idx ] );
+       }
+       for(var idx = 0; idx < 128; idx++)
+       {
+          outputStream.writeByte(this.personRecording[ idx ] );
+       }
+       for(var idx = 0; idx < 128; idx++)
+       {
+          outputStream.writeByte(this.authorEmail[ idx ] );
        }
        outputStream.writeLong(this.startTime);
        outputStream.writeLong(this.stopTime);
+       outputStream.writeUInt(this.pduCount);
+       for(var idx = 0; idx < this.pdusInStream.length; idx++)
+       {
+           pdusInStream[idx].encodeToBinary(outputStream);
+       }
+
   };
 }; // end of class
 
@@ -11001,14 +11706,14 @@ dis.SetDataPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis.FixedDatum();
+           var anX = new dis.UnsignedIntegerWrapper();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis.VariableDatum();
+           var anX = new dis.UnsignedIntegerWrapper();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
@@ -12929,6 +13634,46 @@ exports.UaPdu = dis.UaPdu;
 // End of UaPdu class
 
 /**
+ * Wrapper for an unsigned 32 bit integer
+ *
+ * Copyright (c) 2008-2015, MOVES Institute, Naval Postgraduate School. All rights reserved.
+ * This work is licensed under the BSD open source license, available at https://www.movesinstitute.org/licenses/bsd.html
+ *
+ * @author DMcG
+ */
+// On the client side, support for a  namespace.
+if (typeof dis === "undefined")
+ dis = {};
+
+
+// Support for node.js style modules. Ignored if used in a client context.
+// See http://howtonode.org/creating-custom-modules
+if (typeof exports === "undefined")
+ exports = {};
+
+
+dis.UnsignedIntegerWrapper = function()
+{
+   /** name can't be too accurate or the generated source code will have reserved word problems */
+   this.wrapper = 0;
+
+  dis.UnsignedIntegerWrapper.prototype.initFromBinary = function(inputStream)
+  {
+       this.wrapper = inputStream.readUInt();
+  };
+
+  dis.UnsignedIntegerWrapper.prototype.encodeToBinary = function(outputStream)
+  {
+       outputStream.writeUInt(this.wrapper);
+  };
+}; // end of class
+
+ // node.js module support
+exports.UnsignedIntegerWrapper = dis.UnsignedIntegerWrapper;
+
+// End of UnsignedIntegerWrapper class
+
+/**
  * Section 5.2.32. Variable Datum Record
  *
  * Copyright (c) 2008-2015, MOVES Institute, Naval Postgraduate School. All rights reserved.
@@ -12956,26 +13701,30 @@ dis.VariableDatum = function()
    this.variableDatumLength = 0;
 
    /** data can be any length, but must increase in 8 byte quanta. This requires some postprocessing patches. Note that setting the data allocates a new internal array to account for the possibly increased size. The default initial size is 64 bits. */
-   this.variableData = new Array(0, 0, 0, 0, 0, 0, 0, 0);
-
+    this.variableData = new Array();
+ 
   dis.VariableDatum.prototype.initFromBinary = function(inputStream)
   {
        this.variableDatumID = inputStream.readUInt();
        this.variableDatumLength = inputStream.readUInt();
-       for(var idx = 0; idx < 8; idx++)
+       for(var idx = 0; idx < this.variableDatumLength; idx++)
        {
-          this.variableData[ idx ] = inputStream.readByte();
+           var anX = new dis.OneByteChunk();
+           anX.initFromBinary(inputStream);
+           this.variableData.push(anX);
        }
+
   };
 
   dis.VariableDatum.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.variableDatumID);
        outputStream.writeUInt(this.variableDatumLength);
-       for(var idx = 0; idx < 8; idx++)
+       for(var idx = 0; idx < this.variableData.length; idx++)
        {
-          outputStream.writeByte(this.variableData[ idx ] );
+           variableData[idx].encodeToBinary(outputStream);
        }
+
   };
 }; // end of class
 
