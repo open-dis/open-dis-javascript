@@ -115,6 +115,10 @@ dis.CoordinateConversion = function()
  
  exports.CoordinateConversion = dis.CoordinateConversion;
 /**
+ * Obsolete--the code generation now includes methods for accessing bit
+ * fields such as this. Remains only for backward compatiblity, and I doubt
+ * anyone is using it.
+ * 
  * Some code to extract the entity apperance bit fields.<p>
  * 
  * The entityAppearance field in the espdu is a 32 bit integer. To save
