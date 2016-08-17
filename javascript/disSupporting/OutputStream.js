@@ -14,6 +14,21 @@ dis.OutputStream = function(binaryDataBuffer)
     this.dataView = new DataView(this.binaryData); // data, byte offset
     this.currentPosition = 0;                    // ptr to current position in array
     
+    /**
+     * Returns a byte array trimmed to the maximum number of bytes written
+     * to the stream. Eg, if we initialize with a 500 byte bufer, and we
+     * only write 10 bytes to the output stream, this will return the first
+     * ten bytes of the array.
+     * 
+     * @returns {ArrayBuffer} Only the data written
+     */
+    dis.OutputStream.prototype.toByteArray = function()
+    {
+        var trimmedData = this.binaryDataBuffer.slice(0, this.currentPosition); 
+        return trimmedData;
+    };
+    
+    
     dis.OutputStream.prototype.writeUByte = function(userData)
     {   
         this.dataView.setUint8(this.currentPosition, userData);
