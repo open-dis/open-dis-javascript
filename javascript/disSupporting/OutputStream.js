@@ -24,7 +24,7 @@ dis.OutputStream = function(binaryDataBuffer)
      */
     dis.OutputStream.prototype.toByteArray = function()
     {
-        var trimmedData = this.binaryDataBuffer.slice(0, this.currentPosition); 
+        var trimmedData = this.binaryData.slice(0, this.currentPosition); 
         return trimmedData;
     };
     
