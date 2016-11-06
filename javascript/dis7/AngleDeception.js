@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AngleDeception = function()
+dis7.AngleDeception = function()
 {
    this.recordType = 3501;
 
@@ -51,7 +51,7 @@ null.AngleDeception = function()
 
    this.padding3 = 0;
 
-  null.AngleDeception.prototype.initFromBinary = function(inputStream)
+  dis7.AngleDeception.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -71,7 +71,7 @@ null.AngleDeception = function()
        this.padding3 = inputStream.readUInt();
   };
 
-  null.AngleDeception.prototype.encodeToBinary = function(outputStream)
+  dis7.AngleDeception.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -93,7 +93,7 @@ null.AngleDeception = function()
 }; // end of class
 
  // node.js module support
-exports.AngleDeception = null.AngleDeception;
+exports.AngleDeception = dis7.AngleDeception;
 
 // End of AngleDeception class
 

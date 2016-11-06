@@ -37,7 +37,9 @@
 
 <objc directory="Objc"/>
 
-<javascript namespace="dis"/>
+<javascript 
+    directory="javascript"
+    namespace="dis"/>
 
 <class name="AngularVelocityVector" inheritsFrom="root" 
        comment="5.2.2: angular velocity measured in radians per second out each of the entity's own coordinate axes.">

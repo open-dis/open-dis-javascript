@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.SystemIdentifier = function()
+dis7.SystemIdentifier = function()
 {
    /** general type of emitting system, an enumeration */
    this.systemType = 0;
@@ -29,9 +29,9 @@ null.SystemIdentifier = function()
    this.systemMode = 0;
 
    /** status of this PDU, see section 6.2.15 */
-   this.changeOptions = new null.ChangeOptions(); 
+   this.changeOptions = new dis7.ChangeOptions(); 
 
-  null.SystemIdentifier.prototype.initFromBinary = function(inputStream)
+  dis7.SystemIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.systemType = inputStream.readUShort();
        this.systemName = inputStream.readUShort();
@@ -39,7 +39,7 @@ null.SystemIdentifier = function()
        this.changeOptions.initFromBinary(inputStream);
   };
 
-  null.SystemIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis7.SystemIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.systemType);
        outputStream.writeUShort(this.systemName);
@@ -49,7 +49,7 @@ null.SystemIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.SystemIdentifier = null.SystemIdentifier;
+exports.SystemIdentifier = dis7.SystemIdentifier;
 
 // End of SystemIdentifier class
 

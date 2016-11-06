@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AttributePdu = function()
+dis7.AttributePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,7 +44,7 @@ null.AttributePdu = function()
    this.padding = 0;
 
    /** This field shall identify the simulation issuing the Attribute PDU. It shall be represented by a Simulation Address record (see 6.2.79). */
-   this.originatingSimulationAddress = new null.SimulationAddress(); 
+   this.originatingSimulationAddress = new dis7.SimulationAddress(); 
 
    /** Padding */
    this.padding1 = 0;
@@ -70,7 +70,7 @@ null.AttributePdu = function()
    /** This field shall specify the number of Attribute Record Sets that make up the remainder of the PDU. It shall be represented by a 16-bit unsigned integer. */
    this.numberAttributeRecordSet = 0;
 
-  null.AttributePdu.prototype.initFromBinary = function(inputStream)
+  dis7.AttributePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -91,7 +91,7 @@ null.AttributePdu = function()
        this.numberAttributeRecordSet = inputStream.readUShort();
   };
 
-  null.AttributePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.AttributePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -114,7 +114,7 @@ null.AttributePdu = function()
 }; // end of class
 
  // node.js module support
-exports.AttributePdu = null.AttributePdu;
+exports.AttributePdu = dis7.AttributePdu;
 
 // End of AttributePdu class
 

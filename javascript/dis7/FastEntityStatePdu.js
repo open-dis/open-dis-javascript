@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.FastEntityStatePdu = function()
+dis7.FastEntityStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -158,7 +158,7 @@ null.FastEntityStatePdu = function()
    /** variable length list of variable parameters. In earlier versions of DIS these were known as articulation parameters */
     this.variableParameters = new Array();
  
-  null.FastEntityStatePdu.prototype.initFromBinary = function(inputStream)
+  dis7.FastEntityStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -215,14 +215,14 @@ null.FastEntityStatePdu = function()
        this.capabilities = inputStream.readInt();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new null.VariableParameter();
+           var anX = new dis7.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  null.FastEntityStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.FastEntityStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -286,7 +286,7 @@ null.FastEntityStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.FastEntityStatePdu = null.FastEntityStatePdu;
+exports.FastEntityStatePdu = dis7.FastEntityStatePdu;
 
 // End of FastEntityStatePdu class
 

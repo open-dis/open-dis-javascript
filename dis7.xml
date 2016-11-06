@@ -37,7 +37,9 @@
         namespace="DIS1998net"
         directory="CSharp/DIS"/>
 
-<javascript namespace="dis7"/>
+<javascript 
+    directory="javascript"
+    namespace="dis7"/>
 
  <!-- C++ specific information, used by xmlpg -->     
 <cpp namespace="DIS"

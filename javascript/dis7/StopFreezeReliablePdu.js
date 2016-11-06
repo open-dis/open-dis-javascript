@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.StopFreezeReliablePdu = function()
+dis7.StopFreezeReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,13 +44,13 @@ null.StopFreezeReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** time in real world for this operation to happen */
-   this.realWorldTime = new null.ClockTime(); 
+   this.realWorldTime = new dis7.ClockTime(); 
 
    /** Reason for stopping/freezing simulation */
    this.reason = 0;
@@ -67,7 +67,7 @@ null.StopFreezeReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  null.StopFreezeReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis7.StopFreezeReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -87,7 +87,7 @@ null.StopFreezeReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  null.StopFreezeReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.StopFreezeReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -109,7 +109,7 @@ null.StopFreezeReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StopFreezeReliablePdu = null.StopFreezeReliablePdu;
+exports.StopFreezeReliablePdu = dis7.StopFreezeReliablePdu;
 
 // End of StopFreezeReliablePdu class
 

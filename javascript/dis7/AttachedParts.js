@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AttachedParts = function()
+dis7.AttachedParts = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 1;
@@ -34,7 +34,7 @@ null.AttachedParts = function()
    /** The definition of the 64 bits shall be determined based on the type of parameter specified in the Parameter Type field  */
    this.parameterValue = 0;
 
-  null.AttachedParts.prototype.initFromBinary = function(inputStream)
+  dis7.AttachedParts.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.detachedIndicator = inputStream.readUByte();
@@ -43,7 +43,7 @@ null.AttachedParts = function()
        this.parameterValue = inputStream.readLong();
   };
 
-  null.AttachedParts.prototype.encodeToBinary = function(outputStream)
+  dis7.AttachedParts.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.detachedIndicator);
@@ -54,7 +54,7 @@ null.AttachedParts = function()
 }; // end of class
 
  // node.js module support
-exports.AttachedParts = null.AttachedParts;
+exports.AttachedParts = dis7.AttachedParts;
 
 // End of AttachedParts class
 

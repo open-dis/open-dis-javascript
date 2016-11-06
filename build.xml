@@ -6,8 +6,8 @@
 
 <project name="open-dis codebase" default="generateJavascriptSourceCode" basedir=".">
     <property name="lib" location="lib"/>
-    <property name="DIS6SOURCE" location="javascript/dis6"/>
-    <property name="DIS7SOURCE" location="javascript/dis7"/>
+    <property name="DIS6SOURCE" location="javascript/dis/"/>
+    <property name="DIS7SOURCE" location="javascript/dis7/"/>
     <property name="DIS6XML" location="dis6.xml"/>
     <property name="DIS7XML" location="dis7.xml"/>
 
@@ -68,7 +68,7 @@
            <fileset dir="javascript/disSupporting">
             <include name="**/*.js"/>
           </fileset>
-          <fileset dir="${DIS6SOURCE}/dis">
+          <fileset dir="${DIS6SOURCE}">
             <include name="**/*.js"/>
           </fileset>
         </concat>
@@ -79,7 +79,7 @@
             <classpath refid="lib.path"/>
             <arg value="${DIS7XML}"/>
             <arg value="javascript"/>
-            <sysproperty key="xmlpg.generatedSourceDir" value="javascript/dis7"/>
+            <sysproperty key="xmlpg.generatedSourceDir" value="${DIS7SOURCE}"/>
         </java>
         
         <!-- apply the patches, manual changes to the code captured in the patch files -->
@@ -90,7 +90,7 @@
            <fileset dir="javascript/disSupporting">
             <include name="**/*.js"/>
           </fileset>
-          <fileset dir="${DIS7SOURCE}/dis">
+          <fileset dir="${DIS7SOURCE}">
             <include name="**/*.js"/>
           </fileset>
         </concat>

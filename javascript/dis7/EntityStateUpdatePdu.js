@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EntityStateUpdatePdu = function()
+dis7.EntityStateUpdatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,7 +44,7 @@ null.EntityStateUpdatePdu = function()
    this.padding = 0;
 
    /** This field shall identify the entity issuing the PDU, and shall be represented by an Entity Identifier record (see 6.2.28). */
-   this.entityID = new null.EntityID(); 
+   this.entityID = new dis7.EntityID(); 
 
    /** Padding */
    this.padding1 = 0;
@@ -53,13 +53,13 @@ null.EntityStateUpdatePdu = function()
    this.numberOfVariableParameters = 0;
 
    /** This field shall specify an entity’s linear velocity. The coordinate system for an entity’s linear velocity depends on the dead reckoning algorithm used. This field shall be represented by a Linear Velocity Vector record [see 6.2.95 item c)]). */
-   this.entityLinearVelocity = new null.Vector3Float(); 
+   this.entityLinearVelocity = new dis7.Vector3Float(); 
 
    /** This field shall specify an entity’s physical location in the simulated world and shall be represented by a World Coordinates record (see 6.2.97). */
-   this.entityLocation = new null.Vector3Double(); 
+   this.entityLocation = new dis7.Vector3Double(); 
 
    /** This field shall specify an entity’s orientation and shall be represented by an Euler Angles record (see 6.2.33). */
-   this.entityOrientation = new null.EulerAngles(); 
+   this.entityOrientation = new dis7.EulerAngles(); 
 
    /** This field shall specify the dynamic changes to the entity’s appearance attributes. This field shall be represented by an Entity Appearance record (see 6.2.26). */
    this.entityAppearance = 0;
@@ -67,7 +67,7 @@ null.EntityStateUpdatePdu = function()
    /** This field shall specify the parameter values for each Variable Parameter record that is included (see 6.2.93 and Annex I). */
     this.variableParameters = new Array();
  
-  null.EntityStateUpdatePdu.prototype.initFromBinary = function(inputStream)
+  dis7.EntityStateUpdatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -86,14 +86,14 @@ null.EntityStateUpdatePdu = function()
        this.entityAppearance = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new null.VariableParameter();
+           var anX = new dis7.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  null.EntityStateUpdatePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.EntityStateUpdatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -119,7 +119,7 @@ null.EntityStateUpdatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.EntityStateUpdatePdu = null.EntityStateUpdatePdu;
+exports.EntityStateUpdatePdu = dis7.EntityStateUpdatePdu;
 
 // End of EntityStateUpdatePdu class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ClockTime = function()
+dis7.ClockTime = function()
 {
    /** Hours since midnight, 1970, UTC */
    this.hour = 0;
 
    /** Time past the hour, in timestamp form */
-   this.timePastHour = new null.Timestamp(); 
+   this.timePastHour = new dis7.Timestamp(); 
 
-  null.ClockTime.prototype.initFromBinary = function(inputStream)
+  dis7.ClockTime.prototype.initFromBinary = function(inputStream)
   {
        this.hour = inputStream.readUInt();
        this.timePastHour.initFromBinary(inputStream);
   };
 
-  null.ClockTime.prototype.encodeToBinary = function(outputStream)
+  dis7.ClockTime.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.hour);
        this.timePastHour.encodeToBinary(outputStream);
@@ -39,7 +39,7 @@ null.ClockTime = function()
 }; // end of class
 
  // node.js module support
-exports.ClockTime = null.ClockTime;
+exports.ClockTime = dis7.ClockTime;
 
 // End of ClockTime class
 

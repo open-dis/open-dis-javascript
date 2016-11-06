@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.VariableParameter = function()
+dis7.VariableParameter = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 0;
@@ -34,7 +34,7 @@ null.VariableParameter = function()
    /** Variable parameter data fields.  */
    this.variableParameterFields4 = 0;
 
-  null.VariableParameter.prototype.initFromBinary = function(inputStream)
+  dis7.VariableParameter.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.variableParameterFields1 = inputStream.readFloat64();
@@ -43,7 +43,7 @@ null.VariableParameter = function()
        this.variableParameterFields4 = inputStream.readUByte();
   };
 
-  null.VariableParameter.prototype.encodeToBinary = function(outputStream)
+  dis7.VariableParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeFloat64(this.variableParameterFields1);
@@ -54,7 +54,7 @@ null.VariableParameter = function()
 }; // end of class
 
  // node.js module support
-exports.VariableParameter = null.VariableParameter;
+exports.VariableParameter = dis7.VariableParameter;
 
 // End of VariableParameter class
 

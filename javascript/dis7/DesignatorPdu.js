@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DesignatorPdu = function()
+dis7.DesignatorPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,13 +44,13 @@ null.DesignatorPdu = function()
    this.padding = 0;
 
    /** ID of the entity designating */
-   this.designatingEntityID = new null.EntityID(); 
+   this.designatingEntityID = new dis7.EntityID(); 
 
    /** This field shall specify a unique emitter database number assigned to  differentiate between otherwise similar or identical emitter beams within an emitter system. */
    this.codeName = 0;
 
    /** ID of the entity being designated */
-   this.designatedEntityID = new null.EntityID(); 
+   this.designatedEntityID = new dis7.EntityID(); 
 
    /** This field shall identify the designator code being used by the designating entity  */
    this.designatorCode = 0;
@@ -62,10 +62,10 @@ null.DesignatorPdu = function()
    this.designatorWavelength = 0;
 
    /** designtor spot wrt the designated entity */
-   this.designatorSpotWrtDesignated = new null.Vector3Float(); 
+   this.designatorSpotWrtDesignated = new dis7.Vector3Float(); 
 
    /** designtor spot wrt the designated entity */
-   this.designatorSpotLocation = new null.Vector3Double(); 
+   this.designatorSpotLocation = new dis7.Vector3Double(); 
 
    /** Dead reckoning algorithm */
    this.deadReckoningAlgorithm = 0;
@@ -77,9 +77,9 @@ null.DesignatorPdu = function()
    this.padding2 = 0;
 
    /** linear accelleration of entity */
-   this.entityLinearAcceleration = new null.Vector3Float(); 
+   this.entityLinearAcceleration = new dis7.Vector3Float(); 
 
-  null.DesignatorPdu.prototype.initFromBinary = function(inputStream)
+  dis7.DesignatorPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -103,7 +103,7 @@ null.DesignatorPdu = function()
        this.entityLinearAcceleration.initFromBinary(inputStream);
   };
 
-  null.DesignatorPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.DesignatorPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -129,7 +129,7 @@ null.DesignatorPdu = function()
 }; // end of class
 
  // node.js module support
-exports.DesignatorPdu = null.DesignatorPdu;
+exports.DesignatorPdu = dis7.DesignatorPdu;
 
 // End of DesignatorPdu class
 

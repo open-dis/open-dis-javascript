@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.MinefieldIdentifier = function()
+dis7.MinefieldIdentifier = function()
 {
    /**  */
-   this.simulationAddress = new null.SimulationAddress(); 
+   this.simulationAddress = new dis7.SimulationAddress(); 
 
    /**  */
    this.minefieldNumber = 0;
 
-  null.MinefieldIdentifier.prototype.initFromBinary = function(inputStream)
+  dis7.MinefieldIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.minefieldNumber = inputStream.readUShort();
   };
 
-  null.MinefieldIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis7.MinefieldIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.minefieldNumber);
@@ -39,7 +39,7 @@ null.MinefieldIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldIdentifier = null.MinefieldIdentifier;
+exports.MinefieldIdentifier = dis7.MinefieldIdentifier;
 
 // End of MinefieldIdentifier class
 

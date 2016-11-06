@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.BeamData = function()
+dis7.BeamData = function()
 {
    /** Specifies the beam azimuth an elevation centers and corresponding half-angles to describe the scan volume */
    this.beamAzimuthCenter = 0;
@@ -34,7 +34,7 @@ null.BeamData = function()
    /** allows receiver to synchronize its regenerated scan pattern to that of the emmitter. Specifies the percentage of time a scan is through its pattern from its origion. */
    this.beamSweepSync = 0;
 
-  null.BeamData.prototype.initFromBinary = function(inputStream)
+  dis7.BeamData.prototype.initFromBinary = function(inputStream)
   {
        this.beamAzimuthCenter = inputStream.readFloat32();
        this.beamAzimuthSweep = inputStream.readFloat32();
@@ -43,7 +43,7 @@ null.BeamData = function()
        this.beamSweepSync = inputStream.readFloat32();
   };
 
-  null.BeamData.prototype.encodeToBinary = function(outputStream)
+  dis7.BeamData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.beamAzimuthCenter);
        outputStream.writeFloat32(this.beamAzimuthSweep);
@@ -54,7 +54,7 @@ null.BeamData = function()
 }; // end of class
 
  // node.js module support
-exports.BeamData = null.BeamData;
+exports.BeamData = dis7.BeamData;
 
 // End of BeamData class
 

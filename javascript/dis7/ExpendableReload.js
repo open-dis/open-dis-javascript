@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ExpendableReload = function()
+dis7.ExpendableReload = function()
 {
    /** Type of expendable */
-   this.expendable = new null.EntityType(); 
+   this.expendable = new dis7.EntityType(); 
 
    this.station = 0;
 
@@ -32,7 +32,7 @@ null.ExpendableReload = function()
 
    this.maximumQuantityReloadTime = 0;
 
-  null.ExpendableReload.prototype.initFromBinary = function(inputStream)
+  dis7.ExpendableReload.prototype.initFromBinary = function(inputStream)
   {
        this.expendable.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -42,7 +42,7 @@ null.ExpendableReload = function()
        this.maximumQuantityReloadTime = inputStream.readUInt();
   };
 
-  null.ExpendableReload.prototype.encodeToBinary = function(outputStream)
+  dis7.ExpendableReload.prototype.encodeToBinary = function(outputStream)
   {
        this.expendable.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -54,7 +54,7 @@ null.ExpendableReload = function()
 }; // end of class
 
  // node.js module support
-exports.ExpendableReload = null.ExpendableReload;
+exports.ExpendableReload = dis7.ExpendableReload;
 
 // End of ExpendableReload class
 

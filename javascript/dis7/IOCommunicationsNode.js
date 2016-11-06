@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.IOCommunicationsNode = function()
+dis7.IOCommunicationsNode = function()
 {
    this.recordType = 5501;
 
@@ -27,9 +27,9 @@ null.IOCommunicationsNode = function()
 
    this.padding = 0;
 
-   this.communicationsNodeID = new null.CommunicationsNodeID(); 
+   this.communicationsNodeID = new dis7.CommunicationsNodeID(); 
 
-  null.IOCommunicationsNode.prototype.initFromBinary = function(inputStream)
+  dis7.IOCommunicationsNode.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -38,7 +38,7 @@ null.IOCommunicationsNode = function()
        this.communicationsNodeID.initFromBinary(inputStream);
   };
 
-  null.IOCommunicationsNode.prototype.encodeToBinary = function(outputStream)
+  dis7.IOCommunicationsNode.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -49,7 +49,7 @@ null.IOCommunicationsNode = function()
 }; // end of class
 
  // node.js module support
-exports.IOCommunicationsNode = null.IOCommunicationsNode;
+exports.IOCommunicationsNode = dis7.IOCommunicationsNode;
 
 // End of IOCommunicationsNode class
 

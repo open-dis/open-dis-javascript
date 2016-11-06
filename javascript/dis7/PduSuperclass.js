@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.PduSuperclass = function()
+dis7.PduSuperclass = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -37,7 +37,7 @@ null.PduSuperclass = function()
    /** Length, in bytes, of the PDU */
    this.length = 0;
 
-  null.PduSuperclass.prototype.initFromBinary = function(inputStream)
+  dis7.PduSuperclass.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -47,7 +47,7 @@ null.PduSuperclass = function()
        this.length = inputStream.readUShort();
   };
 
-  null.PduSuperclass.prototype.encodeToBinary = function(outputStream)
+  dis7.PduSuperclass.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -59,7 +59,7 @@ null.PduSuperclass = function()
 }; // end of class
 
  // node.js module support
-exports.PduSuperclass = null.PduSuperclass;
+exports.PduSuperclass = dis7.PduSuperclass;
 
 // End of PduSuperclass class
 

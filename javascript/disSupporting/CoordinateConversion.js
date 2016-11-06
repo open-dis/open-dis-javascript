@@ -32,14 +32,14 @@ dis.CoordinateConversion = function()
         answer[0] = 0.0;
         answer[1] = 0.0;
         answer[2] = 0.0;
-        var a = 6378137.0;    //semi major axis (WGS 84)
-        var b = 6356752.3142; //semi minor axis (WGX 84)
 
-        var eSquared; //first eccentricity squared
-        var rSubN; //radius of the curvature of the prime vertical
-        var ePrimeSquared;//second eccentricity squared
+        var eSquared;      //first eccentricity squared
+        var rSubN;         //radius of the curvature of the prime vertical
+        var ePrimeSquared; //second eccentricity squared
         var W = Math.sqrt((x*x + y*y));
-
+        var a = 6378137.0;    // shorter variable names
+        var b = 6356752.3142;
+        
         eSquared = (a*a - b*b) / (a*a);
         ePrimeSquared = (a*a - b*b) / (b*b);
         
@@ -58,6 +58,7 @@ dis.CoordinateConversion = function()
         {
             answer[1] = Math.atan(y/x) - Math.PI;
         }
+        
         /**
          * Longitude calculation done. Now calculate latitude.
          * NOTE: The handbook mentions using the calculated phi (latitude) value to recalculate B
@@ -76,15 +77,15 @@ dis.CoordinateConversion = function()
          * h = (Z / sin phi ) - rSubN + (eSquared * rSubN). Our applications are never near the poles, so this formula
          * was left unimplemented.
          */
-        rSubN = (a*a) / Math.sqrt(((a*a) * (Math.cos(phi)*Math.cos(phi)) + ((b*b) * (Math.sin(phi)*Math.sin(phi)))));
+        rSubN = (a * a) / Math.sqrt(((a * a) * (Math.cos(phi)*Math.cos(phi)) + ((b*b) * (Math.sin(phi)*Math.sin(phi)))));
 
         answer[2] = (W / Math.cos(phi)) - rSubN;
     
-        var result = {latitude:answer[0] * this.RADIANS_TO_DEGREES, longitude:answer[1] * this.RADIANS_TO_DEGREES, altitude:answer[2] * this.RADIANS_TO_DEGREES};
+        var result = {latitude:answer[0] * this.RADIANS_TO_DEGREES, longitude:answer[1] * this.RADIANS_TO_DEGREES, altitude:answer[2]};
         return result;
 
     };
-    
+   
     /**
      * Converts lat long and geodetic height (elevation) into DIS XYZ
      * This algorithm also uses the WGS84 ellipsoid, though you can change the values
@@ -97,17 +98,15 @@ dis.CoordinateConversion = function()
         var latitudeRadians = latLonAlt.lat   * this.DEGREES_TO_RADIANS;
         var longtitudeRadians = latLonAlt.lon * this.DEGREES_TO_RADIANS;
         
-        //var a = 6378137.0; //semi major axis
-        //var b = 6356752.3142; //semi minor axis
         var cosLat = Math.cos(latitudeRadians);
         var sinLat = Math.sin(latitudeRadians);
 
 
-        var rSubN = (this.a*this.a) / Math.sqrt(((this.a*this.a) * (cosLat*cosLat) + ((this.b*this.b) * (sinLat*sinLat))));
+        var rSubN = (this.a * this.a) / Math.sqrt(((this.a * this.a) * (cosLat * cosLat) + ((this.b * this.b) * (sinLat*sinLat))));
 
         var X = (rSubN + latLonAlt.alt) * cosLat * Math.cos(longtitudeRadians);
         var Y = (rSubN + latLonAlt.alt) * cosLat * Math.sin(longtitudeRadians);
-        var Z = ((((this.b*this.b) / (this.a*this.a)) * rSubN) + latLonAlt.alt) * sinLat;
+        var Z = ((((this.b * this.b) / (this.a * this.a)) * rSubN) + latLonAlt.alt) * sinLat;
 
         return {x:X, y:Y, z:Z};
     };

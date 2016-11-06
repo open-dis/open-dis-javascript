@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ObjectIdentifier = function()
+dis7.ObjectIdentifier = function()
 {
    /**  Simulation Address */
-   this.simulationAddress = new null.SimulationAddress(); 
+   this.simulationAddress = new dis7.SimulationAddress(); 
 
    /** object number */
    this.objectNumber = 0;
 
-  null.ObjectIdentifier.prototype.initFromBinary = function(inputStream)
+  dis7.ObjectIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.objectNumber = inputStream.readUShort();
   };
 
-  null.ObjectIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis7.ObjectIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.objectNumber);
@@ -39,7 +39,7 @@ null.ObjectIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.ObjectIdentifier = null.ObjectIdentifier;
+exports.ObjectIdentifier = dis7.ObjectIdentifier;
 
 // End of ObjectIdentifier class
 

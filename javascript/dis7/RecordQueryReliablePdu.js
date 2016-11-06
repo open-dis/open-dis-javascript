@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.RecordQueryReliablePdu = function()
+dis7.RecordQueryReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ null.RecordQueryReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** request ID */
    this.requestID = 0;
@@ -73,7 +73,7 @@ null.RecordQueryReliablePdu = function()
    /** record IDs */
     this.recordIDs = new Array();
  
-  null.RecordQueryReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis7.RecordQueryReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -94,14 +94,14 @@ null.RecordQueryReliablePdu = function()
        this.numberOfRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfRecords; idx++)
        {
-           var anX = new null.FourByteChunk();
+           var anX = new dis7.FourByteChunk();
            anX.initFromBinary(inputStream);
            this.recordIDs.push(anX);
        }
 
   };
 
-  null.RecordQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.RecordQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -129,7 +129,7 @@ null.RecordQueryReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.RecordQueryReliablePdu = null.RecordQueryReliablePdu;
+exports.RecordQueryReliablePdu = dis7.RecordQueryReliablePdu;
 
 // End of RecordQueryReliablePdu class
 

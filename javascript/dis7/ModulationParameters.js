@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,19 +17,19 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ModulationParameters = function()
+dis7.ModulationParameters = function()
 {
-  null.ModulationParameters.prototype.initFromBinary = function(inputStream)
+  dis7.ModulationParameters.prototype.initFromBinary = function(inputStream)
   {
   };
 
-  null.ModulationParameters.prototype.encodeToBinary = function(outputStream)
+  dis7.ModulationParameters.prototype.encodeToBinary = function(outputStream)
   {
   };
 }; // end of class
 
  // node.js module support
-exports.ModulationParameters = null.ModulationParameters;
+exports.ModulationParameters = dis7.ModulationParameters;
 
 // End of ModulationParameters class
 

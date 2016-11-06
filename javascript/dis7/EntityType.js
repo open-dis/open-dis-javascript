@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EntityType = function()
+dis7.EntityType = function()
 {
    /** Kind of entity */
    this.entityKind = 0;
@@ -39,7 +39,7 @@ null.EntityType = function()
 
    this.extra = 0;
 
-  null.EntityType.prototype.initFromBinary = function(inputStream)
+  dis7.EntityType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -50,7 +50,7 @@ null.EntityType = function()
        this.extra = inputStream.readUByte();
   };
 
-  null.EntityType.prototype.encodeToBinary = function(outputStream)
+  dis7.EntityType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);
        outputStream.writeUByte(this.domain);
@@ -63,7 +63,7 @@ null.EntityType = function()
 }; // end of class
 
  // node.js module support
-exports.EntityType = null.EntityType;
+exports.EntityType = dis7.EntityType;
 
 // End of EntityType class
 

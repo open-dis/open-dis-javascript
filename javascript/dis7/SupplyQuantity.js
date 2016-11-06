@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.SupplyQuantity = function()
+dis7.SupplyQuantity = function()
 {
    /** Type of supply */
-   this.supplyType = new null.EntityType(); 
+   this.supplyType = new dis7.EntityType(); 
 
    /** the number of units of a supply type.  */
    this.quantity = 0;
 
-  null.SupplyQuantity.prototype.initFromBinary = function(inputStream)
+  dis7.SupplyQuantity.prototype.initFromBinary = function(inputStream)
   {
        this.supplyType.initFromBinary(inputStream);
        this.quantity = inputStream.readFloat32();
   };
 
-  null.SupplyQuantity.prototype.encodeToBinary = function(outputStream)
+  dis7.SupplyQuantity.prototype.encodeToBinary = function(outputStream)
   {
        this.supplyType.encodeToBinary(outputStream);
        outputStream.writeFloat32(this.quantity);
@@ -39,7 +39,7 @@ null.SupplyQuantity = function()
 }; // end of class
 
  // node.js module support
-exports.SupplyQuantity = null.SupplyQuantity;
+exports.SupplyQuantity = dis7.SupplyQuantity;
 
 // End of SupplyQuantity class
 

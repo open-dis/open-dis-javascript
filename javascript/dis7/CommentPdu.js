@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.CommentPdu = function()
+dis7.CommentPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ null.CommentPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** Number of fixed datum records */
    this.numberOfFixedDatumRecords = 0;
@@ -61,7 +61,7 @@ null.CommentPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  null.CommentPdu.prototype.initFromBinary = function(inputStream)
+  dis7.CommentPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -77,21 +77,21 @@ null.CommentPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new null.FixedDatum();
+           var anX = new dis7.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new null.VariableDatum();
+           var anX = new dis7.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  null.CommentPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.CommentPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -119,7 +119,7 @@ null.CommentPdu = function()
 }; // end of class
 
  // node.js module support
-exports.CommentPdu = null.CommentPdu;
+exports.CommentPdu = dis7.CommentPdu;
 
 // End of CommentPdu class
 

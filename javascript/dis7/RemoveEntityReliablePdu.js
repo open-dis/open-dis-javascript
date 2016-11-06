@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.RemoveEntityReliablePdu = function()
+dis7.RemoveEntityReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ null.RemoveEntityReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -61,7 +61,7 @@ null.RemoveEntityReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  null.RemoveEntityReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis7.RemoveEntityReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -79,7 +79,7 @@ null.RemoveEntityReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  null.RemoveEntityReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.RemoveEntityReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -99,7 +99,7 @@ null.RemoveEntityReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.RemoveEntityReliablePdu = null.RemoveEntityReliablePdu;
+exports.RemoveEntityReliablePdu = dis7.RemoveEntityReliablePdu;
 
 // End of RemoveEntityReliablePdu class
 

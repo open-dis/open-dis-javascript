@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.Expendable = function()
+dis7.Expendable = function()
 {
    /** Type of expendable */
-   this.expendable = new null.EntityType(); 
+   this.expendable = new dis7.EntityType(); 
 
    this.station = 0;
 
@@ -30,7 +30,7 @@ null.Expendable = function()
 
    this.padding = 0;
 
-  null.Expendable.prototype.initFromBinary = function(inputStream)
+  dis7.Expendable.prototype.initFromBinary = function(inputStream)
   {
        this.expendable.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -39,7 +39,7 @@ null.Expendable = function()
        this.padding = inputStream.readUByte();
   };
 
-  null.Expendable.prototype.encodeToBinary = function(outputStream)
+  dis7.Expendable.prototype.encodeToBinary = function(outputStream)
   {
        this.expendable.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -50,7 +50,7 @@ null.Expendable = function()
 }; // end of class
 
  // node.js module support
-exports.Expendable = null.Expendable;
+exports.Expendable = dis7.Expendable;
 
 // End of Expendable class
 

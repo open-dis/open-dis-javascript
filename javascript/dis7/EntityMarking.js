@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EntityMarking = function()
+dis7.EntityMarking = function()
 {
    /** The character set */
    this.characterSet = 0;
@@ -25,21 +25,68 @@ null.EntityMarking = function()
    /** The characters */
    this.characters = 0;
 
-  null.EntityMarking.prototype.initFromBinary = function(inputStream)
+  dis7.EntityMarking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
        this.characters = inputStream.readByte();
   };
 
-  null.EntityMarking.prototype.encodeToBinary = function(outputStream)
+  dis7.EntityMarking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);
        outputStream.writeByte(this.characters);
   };
+
+  /*
+   * Returns the byte array marking, in string format.
+   * @return string format marking characters
+   */
+  dis.EntityMarking.prototype.getMarking = function()
+  {
+      var marking = "";
+      for(var idx = 0; idx < 11; idx++)
+      {
+          marking = marking + String.fromCharCode(this.characters[idx]);
+      }
+
+      return marking;
+  };
+
+/**
+   * Given a string format marking, sets the bytes of the marking object
+   * to the appropriate character values. Clamps the string to no more
+   * than 11 characters.
+   *
+   * @param {String} newMarking string format marking
+   * @returns {nothing}
+   */
+  dis.EntityMarking.prototype.setMarking = function(newMarking)
+  {
+      var stringLen = newMarking.length;
+      if(stringLen > 11)
+          stringLen = 11;
+
+      // Copy over up to 11 characters from the string to the array
+      var charsCopied = 0;
+      while(charsCopied < stringLen)
+      {
+          this.characters[charsCopied] = newMarking.charCodeAt( charsCopied );
+          charsCopied++;
+      }
+
+      // Zero-fill the remainer of the character array
+      while(charsCopied < 11)
+      {
+          this.characters[ charsCopied ] = 0;
+          charsCopied++;
+      }
+
+  };
+
 }; // end of class
 
  // node.js module support
-exports.EntityMarking = null.EntityMarking;
+exports.EntityMarking = dis7.EntityMarking;
 
 // End of EntityMarking class
 

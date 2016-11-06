@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.WarfareFamilyPdu = function()
+dis7.WarfareFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,12 +44,12 @@ null.WarfareFamilyPdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new null.EntityID(); 
+   this.firingEntityID = new dis7.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new null.EntityID(); 
+   this.targetEntityID = new dis7.EntityID(); 
 
-  null.WarfareFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis7.WarfareFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -63,7 +63,7 @@ null.WarfareFamilyPdu = function()
        this.targetEntityID.initFromBinary(inputStream);
   };
 
-  null.WarfareFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.WarfareFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -79,7 +79,7 @@ null.WarfareFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.WarfareFamilyPdu = null.WarfareFamilyPdu;
+exports.WarfareFamilyPdu = dis7.WarfareFamilyPdu;
 
 // End of WarfareFamilyPdu class
 

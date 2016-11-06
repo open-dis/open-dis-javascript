@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EntityStatePdu = function()
+dis7.EntityStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,7 +44,7 @@ null.EntityStatePdu = function()
    this.padding = 0;
 
    /** Unique ID for an entity that is tied to this state information */
-   this.entityID = new null.EntityID(); 
+   this.entityID = new dis7.EntityID(); 
 
    /** What force this entity is affiliated with, eg red, blue, neutral, etc */
    this.forceId = 0;
@@ -53,27 +53,27 @@ null.EntityStatePdu = function()
    this.numberOfVariableParameters = 0;
 
    /** Describes the type of entity in the world */
-   this.entityType = new null.EntityType(); 
+   this.entityType = new dis7.EntityType(); 
 
-   this.alternativeEntityType = new null.EntityType(); 
+   this.alternativeEntityType = new dis7.EntityType(); 
 
    /** Describes the speed of the entity in the world */
-   this.entityLinearVelocity = new null.Vector3Float(); 
+   this.entityLinearVelocity = new dis7.Vector3Float(); 
 
    /** describes the location of the entity in the world */
-   this.entityLocation = new null.Vector3Double(); 
+   this.entityLocation = new dis7.Vector3Double(); 
 
    /** describes the orientation of the entity, in euler angles */
-   this.entityOrientation = new null.EulerAngles(); 
+   this.entityOrientation = new dis7.EulerAngles(); 
 
    /** a series of bit flags that are used to help draw the entity, such as smoking, on fire, etc. */
    this.entityAppearance = 0;
 
    /** parameters used for dead reckoning */
-   this.deadReckoningParameters = new null.DeadReckoningParameters(); 
+   this.deadReckoningParameters = new dis7.DeadReckoningParameters(); 
 
    /** characters that can be used for debugging, or to draw unique strings on the side of entities in the world */
-   this.marking = new null.EntityMarking(); 
+   this.marking = new dis7.EntityMarking(); 
 
    /** a series of bit flags */
    this.capabilities = 0;
@@ -81,7 +81,7 @@ null.EntityStatePdu = function()
    /** variable length list of variable parameters. In earlier DIS versions this was articulation parameters. */
     this.variableParameters = new Array();
  
-  null.EntityStatePdu.prototype.initFromBinary = function(inputStream)
+  dis7.EntityStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -105,14 +105,14 @@ null.EntityStatePdu = function()
        this.capabilities = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new null.VariableParameter();
+           var anX = new dis7.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  null.EntityStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.EntityStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -143,7 +143,7 @@ null.EntityStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.EntityStatePdu = null.EntityStatePdu;
+exports.EntityStatePdu = dis7.EntityStatePdu;
 
 // End of EntityStatePdu class
 

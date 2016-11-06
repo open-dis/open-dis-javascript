@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.RadioIdentifier = function()
+dis7.RadioIdentifier = function()
 {
    /**  site */
    this.siteNumber = 0;
@@ -31,7 +31,7 @@ null.RadioIdentifier = function()
    /**  Radio number */
    this.radioNumber = 0;
 
-  null.RadioIdentifier.prototype.initFromBinary = function(inputStream)
+  dis7.RadioIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.siteNumber = inputStream.readUShort();
        this.applicationNumber = inputStream.readUShort();
@@ -39,7 +39,7 @@ null.RadioIdentifier = function()
        this.radioNumber = inputStream.readUShort();
   };
 
-  null.RadioIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis7.RadioIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.siteNumber);
        outputStream.writeUShort(this.applicationNumber);
@@ -49,7 +49,7 @@ null.RadioIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.RadioIdentifier = null.RadioIdentifier;
+exports.RadioIdentifier = dis7.RadioIdentifier;
 
 // End of RadioIdentifier class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ResupplyReceivedPdu = function()
+dis7.ResupplyReceivedPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ null.ResupplyReceivedPdu = function()
    this.padding = 0;
 
    /** Entity that is receiving service.  Shall be represented by Entity Identifier record (see 6.2.28) */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** Entity that is supplying.  Shall be represented by Entity Identifier record (see 6.2.28) */
-   this.supplyingEntityID = new null.EntityID(); 
+   this.supplyingEntityID = new dis7.EntityID(); 
 
    /** How many supplies are taken by receiving entity */
    this.numberOfSupplyTypes = 0;
@@ -61,7 +61,7 @@ null.ResupplyReceivedPdu = function()
    /** Type and amount of supplies for each specified supply type.  See 6.2.85 for supply quantity record. */
     this.supplies = new Array();
  
-  null.ResupplyReceivedPdu.prototype.initFromBinary = function(inputStream)
+  dis7.ResupplyReceivedPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -78,14 +78,14 @@ null.ResupplyReceivedPdu = function()
        this.padding2 = inputStream.readByte();
        for(var idx = 0; idx < this.numberOfSupplyTypes; idx++)
        {
-           var anX = new null.SupplyQuantity();
+           var anX = new dis7.SupplyQuantity();
            anX.initFromBinary(inputStream);
            this.supplies.push(anX);
        }
 
   };
 
-  null.ResupplyReceivedPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.ResupplyReceivedPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -109,7 +109,7 @@ null.ResupplyReceivedPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ResupplyReceivedPdu = null.ResupplyReceivedPdu;
+exports.ResupplyReceivedPdu = dis7.ResupplyReceivedPdu;
 
 // End of ResupplyReceivedPdu class
 

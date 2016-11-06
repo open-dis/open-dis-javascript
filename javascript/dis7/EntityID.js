@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EntityID = function()
+dis7.EntityID = function()
 {
    /** Site ID */
    this.siteID = 0;
@@ -28,14 +28,14 @@ null.EntityID = function()
    /** Entity number ID */
    this.entityID = 0;
 
-  null.EntityID.prototype.initFromBinary = function(inputStream)
+  dis7.EntityID.prototype.initFromBinary = function(inputStream)
   {
        this.siteID = inputStream.readUShort();
        this.applicationID = inputStream.readUShort();
        this.entityID = inputStream.readUShort();
   };
 
-  null.EntityID.prototype.encodeToBinary = function(outputStream)
+  dis7.EntityID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.siteID);
        outputStream.writeUShort(this.applicationID);
@@ -44,7 +44,7 @@ null.EntityID = function()
 }; // end of class
 
  // node.js module support
-exports.EntityID = null.EntityID;
+exports.EntityID = dis7.EntityID;
 
 // End of EntityID class
 

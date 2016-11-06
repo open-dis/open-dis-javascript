@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.Attribute = function()
+dis7.Attribute = function()
 {
    this.recordType = 0;
 
@@ -25,14 +25,14 @@ null.Attribute = function()
 
    this.recordSpecificFields = 0;
 
-  null.Attribute.prototype.initFromBinary = function(inputStream)
+  dis7.Attribute.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
        this.recordSpecificFields = inputStream.readLong();
   };
 
-  null.Attribute.prototype.encodeToBinary = function(outputStream)
+  dis7.Attribute.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -41,7 +41,7 @@ null.Attribute = function()
 }; // end of class
 
  // node.js module support
-exports.Attribute = null.Attribute;
+exports.Attribute = dis7.Attribute;
 
 // End of Attribute class
 

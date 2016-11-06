@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AggregateIdentifier = function()
+dis7.AggregateIdentifier = function()
 {
    /** Simulation address, ie site and application, the first two fields of the entity ID */
-   this.simulationAddress = new null.SimulationAddress(); 
+   this.simulationAddress = new dis7.SimulationAddress(); 
 
    /** the aggregate ID, an object identifier */
    this.aggregateID = 0;
 
-  null.AggregateIdentifier.prototype.initFromBinary = function(inputStream)
+  dis7.AggregateIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.aggregateID = inputStream.readUShort();
   };
 
-  null.AggregateIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis7.AggregateIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.aggregateID);
@@ -39,7 +39,7 @@ null.AggregateIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.AggregateIdentifier = null.AggregateIdentifier;
+exports.AggregateIdentifier = dis7.AggregateIdentifier;
 
 // End of AggregateIdentifier class
 

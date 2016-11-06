@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DirectedEnergyPrecisionAimpoint = function()
+dis7.DirectedEnergyPrecisionAimpoint = function()
 {
    /** Type of Record */
    this.recordType = 4000;
@@ -29,19 +29,19 @@ null.DirectedEnergyPrecisionAimpoint = function()
    this.padding = 0;
 
    /** Position of Target Spot in World Coordinates. */
-   this.targetSpotLocation = new null.Vector3Double(); 
+   this.targetSpotLocation = new dis7.Vector3Double(); 
 
    /** Position (meters) of Target Spot relative to Entity Position. */
-   this.targetSpotEntityLocation = new null.Vector3Float(); 
+   this.targetSpotEntityLocation = new dis7.Vector3Float(); 
 
    /** Velocity (meters/sec) of Target Spot. */
-   this.targetSpotVelocity = new null.Vector3Float(); 
+   this.targetSpotVelocity = new dis7.Vector3Float(); 
 
    /** Acceleration (meters/sec/sec) of Target Spot. */
-   this.targetSpotAcceleration = new null.Vector3Float(); 
+   this.targetSpotAcceleration = new dis7.Vector3Float(); 
 
    /** Unique ID of the target entity. */
-   this.targetEntityID = new null.EntityID(); 
+   this.targetEntityID = new dis7.EntityID(); 
 
    /** Target Component ID ENUM, same as in DamageDescriptionRecord. */
    this.targetComponentID = 0;
@@ -64,7 +64,7 @@ null.DirectedEnergyPrecisionAimpoint = function()
    /** padding */
    this.padding2 = 0;
 
-  null.DirectedEnergyPrecisionAimpoint.prototype.initFromBinary = function(inputStream)
+  dis7.DirectedEnergyPrecisionAimpoint.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -83,7 +83,7 @@ null.DirectedEnergyPrecisionAimpoint = function()
        this.padding2 = inputStream.readUInt();
   };
 
-  null.DirectedEnergyPrecisionAimpoint.prototype.encodeToBinary = function(outputStream)
+  dis7.DirectedEnergyPrecisionAimpoint.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -104,7 +104,7 @@ null.DirectedEnergyPrecisionAimpoint = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyPrecisionAimpoint = null.DirectedEnergyPrecisionAimpoint;
+exports.DirectedEnergyPrecisionAimpoint = dis7.DirectedEnergyPrecisionAimpoint;
 
 // End of DirectedEnergyPrecisionAimpoint class
 

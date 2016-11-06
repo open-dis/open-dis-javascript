@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.IsPartOfPdu = function()
+dis7.IsPartOfPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,24 +44,24 @@ null.IsPartOfPdu = function()
    this.padding = 0;
 
    /** ID of entity originating PDU */
-   this.orginatingEntityID = new null.EntityID(); 
+   this.orginatingEntityID = new dis7.EntityID(); 
 
    /** ID of entity receiving PDU */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** relationship of joined parts */
-   this.relationship = new null.Relationship(); 
+   this.relationship = new dis7.Relationship(); 
 
    /** location of part; centroid of part in host's coordinate system. x=range, y=bearing, z=0 */
-   this.partLocation = new null.Vector3Float(); 
+   this.partLocation = new dis7.Vector3Float(); 
 
    /** named location */
-   this.namedLocationID = new null.NamedLocationIdentification(); 
+   this.namedLocationID = new dis7.NamedLocationIdentification(); 
 
    /** entity type */
-   this.partEntityType = new null.EntityType(); 
+   this.partEntityType = new dis7.EntityType(); 
 
-  null.IsPartOfPdu.prototype.initFromBinary = function(inputStream)
+  dis7.IsPartOfPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -79,7 +79,7 @@ null.IsPartOfPdu = function()
        this.partEntityType.initFromBinary(inputStream);
   };
 
-  null.IsPartOfPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.IsPartOfPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -99,7 +99,7 @@ null.IsPartOfPdu = function()
 }; // end of class
 
  // node.js module support
-exports.IsPartOfPdu = null.IsPartOfPdu;
+exports.IsPartOfPdu = dis7.IsPartOfPdu;
 
 // End of IsPartOfPdu class
 

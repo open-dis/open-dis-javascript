@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ExplosionDescriptor = function()
+dis7.ExplosionDescriptor = function()
 {
    /** Type of the object that exploded. See 6.2.30 */
-   this.explodingObject = new null.EntityType(); 
+   this.explodingObject = new dis7.EntityType(); 
 
    /** Material that exploded. Can be grain dust, tnt, gasoline, etc. Enumeration */
    this.explosiveMaterial = 0;
@@ -31,7 +31,7 @@ null.ExplosionDescriptor = function()
    /** Force of explosion, in equivalent KG of TNT */
    this.explosiveForce = 0;
 
-  null.ExplosionDescriptor.prototype.initFromBinary = function(inputStream)
+  dis7.ExplosionDescriptor.prototype.initFromBinary = function(inputStream)
   {
        this.explodingObject.initFromBinary(inputStream);
        this.explosiveMaterial = inputStream.readUShort();
@@ -39,7 +39,7 @@ null.ExplosionDescriptor = function()
        this.explosiveForce = inputStream.readFloat32();
   };
 
-  null.ExplosionDescriptor.prototype.encodeToBinary = function(outputStream)
+  dis7.ExplosionDescriptor.prototype.encodeToBinary = function(outputStream)
   {
        this.explodingObject.encodeToBinary(outputStream);
        outputStream.writeUShort(this.explosiveMaterial);
@@ -49,7 +49,7 @@ null.ExplosionDescriptor = function()
 }; // end of class
 
  // node.js module support
-exports.ExplosionDescriptor = null.ExplosionDescriptor;
+exports.ExplosionDescriptor = dis7.ExplosionDescriptor;
 
 // End of ExplosionDescriptor class
 

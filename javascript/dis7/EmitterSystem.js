@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EmitterSystem = function()
+dis7.EmitterSystem = function()
 {
    /** Name of the emitter, 16 bit enumeration */
    this.emitterName = 0;
@@ -28,14 +28,14 @@ null.EmitterSystem = function()
    /** emitter ID, 8 bit enumeration */
    this.emitterIDNumber = 0;
 
-  null.EmitterSystem.prototype.initFromBinary = function(inputStream)
+  dis7.EmitterSystem.prototype.initFromBinary = function(inputStream)
   {
        this.emitterName = inputStream.readUShort();
        this.emitterFunction = inputStream.readUByte();
        this.emitterIDNumber = inputStream.readUByte();
   };
 
-  null.EmitterSystem.prototype.encodeToBinary = function(outputStream)
+  dis7.EmitterSystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.emitterName);
        outputStream.writeUByte(this.emitterFunction);
@@ -44,7 +44,7 @@ null.EmitterSystem = function()
 }; // end of class
 
  // node.js module support
-exports.EmitterSystem = null.EmitterSystem;
+exports.EmitterSystem = dis7.EmitterSystem;
 
 // End of EmitterSystem class
 

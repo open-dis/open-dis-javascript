@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.LayerHeader = function()
+dis7.LayerHeader = function()
 {
    this.layerNumber = 0;
 
@@ -27,14 +27,14 @@ null.LayerHeader = function()
    /** This field shall specify the length in octets of the layer, including the Layer Header record */
    this.length = 0;
 
-  null.LayerHeader.prototype.initFromBinary = function(inputStream)
+  dis7.LayerHeader.prototype.initFromBinary = function(inputStream)
   {
        this.layerNumber = inputStream.readUByte();
        this.layerSpecificInformation = inputStream.readUByte();
        this.length = inputStream.readUShort();
   };
 
-  null.LayerHeader.prototype.encodeToBinary = function(outputStream)
+  dis7.LayerHeader.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.layerNumber);
        outputStream.writeUByte(this.layerSpecificInformation);
@@ -43,7 +43,7 @@ null.LayerHeader = function()
 }; // end of class
 
  // node.js module support
-exports.LayerHeader = null.LayerHeader;
+exports.LayerHeader = dis7.LayerHeader;
 
 // End of LayerHeader class
 

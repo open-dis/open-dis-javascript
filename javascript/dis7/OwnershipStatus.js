@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.OwnershipStatus = function()
+dis7.OwnershipStatus = function()
 {
    /** EntityID */
-   this.entityId = new null.EntityID(); 
+   this.entityId = new dis7.EntityID(); 
 
    /** The ownership and/or ownership conflict status of the entity represented by the Entity ID field. */
    this.ownershipStatus = 0;
@@ -28,14 +28,14 @@ null.OwnershipStatus = function()
    /** padding */
    this.padding = 0;
 
-  null.OwnershipStatus.prototype.initFromBinary = function(inputStream)
+  dis7.OwnershipStatus.prototype.initFromBinary = function(inputStream)
   {
        this.entityId.initFromBinary(inputStream);
        this.ownershipStatus = inputStream.readUByte();
        this.padding = inputStream.readUByte();
   };
 
-  null.OwnershipStatus.prototype.encodeToBinary = function(outputStream)
+  dis7.OwnershipStatus.prototype.encodeToBinary = function(outputStream)
   {
        this.entityId.encodeToBinary(outputStream);
        outputStream.writeUByte(this.ownershipStatus);
@@ -44,7 +44,7 @@ null.OwnershipStatus = function()
 }; // end of class
 
  // node.js module support
-exports.OwnershipStatus = null.OwnershipStatus;
+exports.OwnershipStatus = dis7.OwnershipStatus;
 
 // End of OwnershipStatus class
 

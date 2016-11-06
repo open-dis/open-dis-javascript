@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.SeesPdu = function()
+dis7.SeesPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,7 +44,7 @@ null.SeesPdu = function()
    this.padding = 0;
 
    /** Originating entity ID */
-   this.orginatingEntityID = new null.EntityID(); 
+   this.orginatingEntityID = new dis7.EntityID(); 
 
    /** IR Signature representation index */
    this.infraredSignatureRepresentationIndex = 0;
@@ -67,7 +67,7 @@ null.SeesPdu = function()
    /** variable length list of vectoring system data */
     this.vectoringSystemData = new Array();
  
-  null.SeesPdu.prototype.initFromBinary = function(inputStream)
+  dis7.SeesPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -85,21 +85,21 @@ null.SeesPdu = function()
        this.numberOfVectoringNozzleSystems = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfPropulsionSystems; idx++)
        {
-           var anX = new null.PropulsionSystemData();
+           var anX = new dis7.PropulsionSystemData();
            anX.initFromBinary(inputStream);
            this.propulsionSystemData.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVectoringNozzleSystems; idx++)
        {
-           var anX = new null.VectoringNozzleSystem();
+           var anX = new dis7.VectoringNozzleSystem();
            anX.initFromBinary(inputStream);
            this.vectoringSystemData.push(anX);
        }
 
   };
 
-  null.SeesPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.SeesPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -129,7 +129,7 @@ null.SeesPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SeesPdu = null.SeesPdu;
+exports.SeesPdu = dis7.SeesPdu;
 
 // End of SeesPdu class
 

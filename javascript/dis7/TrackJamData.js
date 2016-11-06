@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.TrackJamData = function()
+dis7.TrackJamData = function()
 {
    /** the entity tracked or illumated, or an emitter beam targeted with jamming */
-   this.entityID = new null.EntityID(); 
+   this.entityID = new dis7.EntityID(); 
 
    /** Emitter system associated with the entity */
    this.emitterNumber = 0;
@@ -28,14 +28,14 @@ null.TrackJamData = function()
    /** Beam associated with the entity */
    this.beamNumber = 0;
 
-  null.TrackJamData.prototype.initFromBinary = function(inputStream)
+  dis7.TrackJamData.prototype.initFromBinary = function(inputStream)
   {
        this.entityID.initFromBinary(inputStream);
        this.emitterNumber = inputStream.readUByte();
        this.beamNumber = inputStream.readUByte();
   };
 
-  null.TrackJamData.prototype.encodeToBinary = function(outputStream)
+  dis7.TrackJamData.prototype.encodeToBinary = function(outputStream)
   {
        this.entityID.encodeToBinary(outputStream);
        outputStream.writeUByte(this.emitterNumber);
@@ -44,7 +44,7 @@ null.TrackJamData = function()
 }; // end of class
 
  // node.js module support
-exports.TrackJamData = null.TrackJamData;
+exports.TrackJamData = dis7.TrackJamData;
 
 // End of TrackJamData class
 

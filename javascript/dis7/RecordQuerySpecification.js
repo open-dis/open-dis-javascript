@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,26 +17,26 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.RecordQuerySpecification = function()
+dis7.RecordQuerySpecification = function()
 {
    this.numberOfRecords = 0;
 
    /** variable length list of 32 bit records */
     this.records = new Array();
  
-  null.RecordQuerySpecification.prototype.initFromBinary = function(inputStream)
+  dis7.RecordQuerySpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfRecords; idx++)
        {
-           var anX = new null.FourByteChunk();
+           var anX = new dis7.FourByteChunk();
            anX.initFromBinary(inputStream);
            this.records.push(anX);
        }
 
   };
 
-  null.RecordQuerySpecification.prototype.encodeToBinary = function(outputStream)
+  dis7.RecordQuerySpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfRecords);
        for(var idx = 0; idx < this.records.length; idx++)
@@ -48,7 +48,7 @@ null.RecordQuerySpecification = function()
 }; // end of class
 
  // node.js module support
-exports.RecordQuerySpecification = null.RecordQuerySpecification;
+exports.RecordQuerySpecification = dis7.RecordQuerySpecification;
 
 // End of RecordQuerySpecification class
 

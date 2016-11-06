@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ElectronicEmissionsPdu = function()
+dis7.ElectronicEmissionsPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ null.ElectronicEmissionsPdu = function()
    this.padding = 0;
 
    /** ID of the entity emitting */
-   this.emittingEntityID = new null.EntityID(); 
+   this.emittingEntityID = new dis7.EntityID(); 
 
    /** ID of event */
-   this.eventID = new null.EventIdentifier(); 
+   this.eventID = new dis7.EventIdentifier(); 
 
    /** This field shall be used to indicate if the data in the PDU represents a state update or just data that has changed since issuance of the last Electromagnetic Emission PDU [relative to the identified entity and emission system(s)]. */
    this.stateUpdateIndicator = 0;
@@ -65,15 +65,15 @@ null.ElectronicEmissionsPdu = function()
    this.numberOfBeams = 0;
 
    /**  information about a particular emitter system and shall be represented by an Emitter System record (see 6.2.23). */
-   this.emitterSystem = new null.EmitterSystem(); 
+   this.emitterSystem = new dis7.EmitterSystem(); 
 
    /** the location of the antenna beam source with respect to the emitting entity's coordinate system. This location shall be the origin of the emitter coordinate system that shall have the same orientation as the entity coordinate system. This field shall be represented by an Entity Coordinate Vector record see 6.2.95  */
-   this.location = new null.Vector3Float(); 
+   this.location = new dis7.Vector3Float(); 
 
    /** Electronic emmissions systems THIS IS WRONG. It has the WRONG class type and will cause problems in any marshalling. */
     this.systems = new Array();
  
-  null.ElectronicEmissionsPdu.prototype.initFromBinary = function(inputStream)
+  dis7.ElectronicEmissionsPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -94,14 +94,14 @@ null.ElectronicEmissionsPdu = function()
        this.location.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfSystems; idx++)
        {
-           var anX = new null.Vector3Float();
+           var anX = new dis7.Vector3Float();
            anX.initFromBinary(inputStream);
            this.systems.push(anX);
        }
 
   };
 
-  null.ElectronicEmissionsPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.ElectronicEmissionsPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -129,7 +129,7 @@ null.ElectronicEmissionsPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ElectronicEmissionsPdu = null.ElectronicEmissionsPdu;
+exports.ElectronicEmissionsPdu = dis7.ElectronicEmissionsPdu;
 
 // End of ElectronicEmissionsPdu class
 

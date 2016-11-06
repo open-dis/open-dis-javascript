@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DirectedEnergyDamage = function()
+dis7.DirectedEnergyDamage = function()
 {
    /** DE Record Type. */
    this.recordType = 4500;
@@ -29,7 +29,7 @@ null.DirectedEnergyDamage = function()
    this.padding = 0;
 
    /** location of damage, relative to center of entity */
-   this.damageLocation = new null.Vector3Float(); 
+   this.damageLocation = new dis7.Vector3Float(); 
 
    /** Size of damaged area, in meters. */
    this.damageDiameter = 0;
@@ -50,12 +50,12 @@ null.DirectedEnergyDamage = function()
    this.componentVisualSmokeColor = 0;
 
    /** For any component damage resulting this field shall be set to the fire event ID from that PDU. */
-   this.fireEventID = new null.EventIdentifier(); 
+   this.fireEventID = new dis7.EventIdentifier(); 
 
    /** padding */
    this.padding2 = 0;
 
-  null.DirectedEnergyDamage.prototype.initFromBinary = function(inputStream)
+  dis7.DirectedEnergyDamage.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -71,7 +71,7 @@ null.DirectedEnergyDamage = function()
        this.padding2 = inputStream.readUShort();
   };
 
-  null.DirectedEnergyDamage.prototype.encodeToBinary = function(outputStream)
+  dis7.DirectedEnergyDamage.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -89,7 +89,7 @@ null.DirectedEnergyDamage = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyDamage = null.DirectedEnergyDamage;
+exports.DirectedEnergyDamage = dis7.DirectedEnergyDamage;
 
 // End of DirectedEnergyDamage class
 

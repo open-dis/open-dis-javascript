@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.BlankingSector = function()
+dis7.BlankingSector = function()
 {
    this.recordType = 3500;
 
@@ -47,7 +47,7 @@ null.BlankingSector = function()
 
    this.padding4 = 0;
 
-  null.BlankingSector.prototype.initFromBinary = function(inputStream)
+  dis7.BlankingSector.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readInt();
        this.recordLength = inputStream.readUShort();
@@ -65,7 +65,7 @@ null.BlankingSector = function()
        this.padding4 = inputStream.readInt();
   };
 
-  null.BlankingSector.prototype.encodeToBinary = function(outputStream)
+  dis7.BlankingSector.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -85,7 +85,7 @@ null.BlankingSector = function()
 }; // end of class
 
  // node.js module support
-exports.BlankingSector = null.BlankingSector;
+exports.BlankingSector = dis7.BlankingSector;
 
 // End of BlankingSector class
 

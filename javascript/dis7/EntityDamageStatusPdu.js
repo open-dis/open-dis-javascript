@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EntityDamageStatusPdu = function()
+dis7.EntityDamageStatusPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,13 +44,13 @@ null.EntityDamageStatusPdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new null.EntityID(); 
+   this.firingEntityID = new dis7.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new null.EntityID(); 
+   this.targetEntityID = new dis7.EntityID(); 
 
    /** Field shall identify the damaged entity (see 6.2.28), Section 7.3.4 COMPLETE */
-   this.damagedEntityID = new null.EntityID(); 
+   this.damagedEntityID = new dis7.EntityID(); 
 
    /** Padding. */
    this.padding1 = 0;
@@ -64,7 +64,7 @@ null.EntityDamageStatusPdu = function()
    /** Fields shall contain one or more Damage Description records (see 6.2.17) and may contain other Standard Variable records, Section 7.3.5 */
     this.damageDescriptionRecords = new Array();
  
-  null.EntityDamageStatusPdu.prototype.initFromBinary = function(inputStream)
+  dis7.EntityDamageStatusPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -82,14 +82,14 @@ null.EntityDamageStatusPdu = function()
        this.numberOfDamageDescription = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfDamageDescription; idx++)
        {
-           var anX = new null.DirectedEnergyDamage();
+           var anX = new dis7.DirectedEnergyDamage();
            anX.initFromBinary(inputStream);
            this.damageDescriptionRecords.push(anX);
        }
 
   };
 
-  null.EntityDamageStatusPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.EntityDamageStatusPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -114,7 +114,7 @@ null.EntityDamageStatusPdu = function()
 }; // end of class
 
  // node.js module support
-exports.EntityDamageStatusPdu = null.EntityDamageStatusPdu;
+exports.EntityDamageStatusPdu = dis7.EntityDamageStatusPdu;
 
 // End of EntityDamageStatusPdu class
 

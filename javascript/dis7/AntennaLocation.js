@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AntennaLocation = function()
+dis7.AntennaLocation = function()
 {
    /** Location of the radiating portion of the antenna in world    coordinates */
-   this.antennaLocation = new null.Vector3Double(); 
+   this.antennaLocation = new dis7.Vector3Double(); 
 
    /** Location of the radiating portion of the antenna     in entity coordinates */
-   this.relativeAntennaLocation = new null.Vector3Float(); 
+   this.relativeAntennaLocation = new dis7.Vector3Float(); 
 
-  null.AntennaLocation.prototype.initFromBinary = function(inputStream)
+  dis7.AntennaLocation.prototype.initFromBinary = function(inputStream)
   {
        this.antennaLocation.initFromBinary(inputStream);
        this.relativeAntennaLocation.initFromBinary(inputStream);
   };
 
-  null.AntennaLocation.prototype.encodeToBinary = function(outputStream)
+  dis7.AntennaLocation.prototype.encodeToBinary = function(outputStream)
   {
        this.antennaLocation.encodeToBinary(outputStream);
        this.relativeAntennaLocation.encodeToBinary(outputStream);
@@ -39,7 +39,7 @@ null.AntennaLocation = function()
 }; // end of class
 
  // node.js module support
-exports.AntennaLocation = null.AntennaLocation;
+exports.AntennaLocation = dis7.AntennaLocation;
 
 // End of AntennaLocation class
 

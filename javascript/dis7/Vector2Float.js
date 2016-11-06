@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.Vector2Float = function()
+dis7.Vector2Float = function()
 {
    /** X value */
    this.x = 0;
@@ -25,13 +25,13 @@ null.Vector2Float = function()
    /** y Value */
    this.y = 0;
 
-  null.Vector2Float.prototype.initFromBinary = function(inputStream)
+  dis7.Vector2Float.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat32();
        this.y = inputStream.readFloat32();
   };
 
-  null.Vector2Float.prototype.encodeToBinary = function(outputStream)
+  dis7.Vector2Float.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.x);
        outputStream.writeFloat32(this.y);
@@ -39,7 +39,7 @@ null.Vector2Float = function()
 }; // end of class
 
  // node.js module support
-exports.Vector2Float = null.Vector2Float;
+exports.Vector2Float = dis7.Vector2Float;
 
 // End of Vector2Float class
 

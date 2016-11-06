@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.IntercomSignalPdu = function()
+dis7.IntercomSignalPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,7 +44,7 @@ null.IntercomSignalPdu = function()
    this.padding = 0;
 
    /** entity ID */
-   this.entityID = new null.EntityID(); 
+   this.entityID = new dis7.EntityID(); 
 
    /** ID of communications device */
    this.communicationsDeviceID = 0;
@@ -67,7 +67,7 @@ null.IntercomSignalPdu = function()
    /** data bytes */
     this.data = new Array();
  
-  null.IntercomSignalPdu.prototype.initFromBinary = function(inputStream)
+  dis7.IntercomSignalPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -86,14 +86,14 @@ null.IntercomSignalPdu = function()
        this.samples = inputStream.readUShort();
        for(var idx = 0; idx < this.dataLength; idx++)
        {
-           var anX = new null.OneByteChunk();
+           var anX = new dis7.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.data.push(anX);
        }
 
   };
 
-  null.IntercomSignalPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.IntercomSignalPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -119,7 +119,7 @@ null.IntercomSignalPdu = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomSignalPdu = null.IntercomSignalPdu;
+exports.IntercomSignalPdu = dis7.IntercomSignalPdu;
 
 // End of IntercomSignalPdu class
 

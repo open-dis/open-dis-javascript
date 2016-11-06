@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AggregateType = function()
+dis7.AggregateType = function()
 {
    /** Grouping criterion used to group the aggregate. Enumeration from EBV document */
    this.aggregateKind = 0;
@@ -40,7 +40,7 @@ null.AggregateType = function()
    /** extra information needed to describe the aggregate */
    this.extra = 0;
 
-  null.AggregateType.prototype.initFromBinary = function(inputStream)
+  dis7.AggregateType.prototype.initFromBinary = function(inputStream)
   {
        this.aggregateKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -51,7 +51,7 @@ null.AggregateType = function()
        this.extra = inputStream.readUByte();
   };
 
-  null.AggregateType.prototype.encodeToBinary = function(outputStream)
+  dis7.AggregateType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.aggregateKind);
        outputStream.writeUByte(this.domain);
@@ -64,7 +64,7 @@ null.AggregateType = function()
 }; // end of class
 
  // node.js module support
-exports.AggregateType = null.AggregateType;
+exports.AggregateType = dis7.AggregateType;
 
 // End of AggregateType class
 

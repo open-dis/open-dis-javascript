@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.PropulsionSystemData = function()
+dis7.PropulsionSystemData = function()
 {
    /** powerSetting */
    this.powerSetting = 0;
@@ -25,13 +25,13 @@ null.PropulsionSystemData = function()
    /** engine RPMs */
    this.engineRpm = 0;
 
-  null.PropulsionSystemData.prototype.initFromBinary = function(inputStream)
+  dis7.PropulsionSystemData.prototype.initFromBinary = function(inputStream)
   {
        this.powerSetting = inputStream.readFloat32();
        this.engineRpm = inputStream.readFloat32();
   };
 
-  null.PropulsionSystemData.prototype.encodeToBinary = function(outputStream)
+  dis7.PropulsionSystemData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.powerSetting);
        outputStream.writeFloat32(this.engineRpm);
@@ -39,7 +39,7 @@ null.PropulsionSystemData = function()
 }; // end of class
 
  // node.js module support
-exports.PropulsionSystemData = null.PropulsionSystemData;
+exports.PropulsionSystemData = dis7.PropulsionSystemData;
 
 // End of PropulsionSystemData class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.VariableTransmitterParameters = function()
+dis7.VariableTransmitterParameters = function()
 {
    /** Type of VTP. Enumeration from EBV */
    this.recordType = 0;
@@ -25,13 +25,13 @@ null.VariableTransmitterParameters = function()
    /** Length, in bytes */
    this.recordLength = 4;
 
-  null.VariableTransmitterParameters.prototype.initFromBinary = function(inputStream)
+  dis7.VariableTransmitterParameters.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUInt();
   };
 
-  null.VariableTransmitterParameters.prototype.encodeToBinary = function(outputStream)
+  dis7.VariableTransmitterParameters.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUInt(this.recordLength);
@@ -39,7 +39,7 @@ null.VariableTransmitterParameters = function()
 }; // end of class
 
  // node.js module support
-exports.VariableTransmitterParameters = null.VariableTransmitterParameters;
+exports.VariableTransmitterParameters = dis7.VariableTransmitterParameters;
 
 // End of VariableTransmitterParameters class
 

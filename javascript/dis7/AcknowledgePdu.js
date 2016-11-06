@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AcknowledgePdu = function()
+dis7.AcknowledgePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,16 +44,16 @@ null.AcknowledgePdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** Identifier for originating entity(or simulation) */
-   this.originatingID = new null.EntityID(); 
+   this.originatingID = new dis7.EntityID(); 
 
    /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new null.EntityID(); 
+   this.receivingID = new dis7.EntityID(); 
 
    /** type of message being acknowledged */
    this.acknowledgeFlag = 0;
@@ -64,7 +64,7 @@ null.AcknowledgePdu = function()
    /** Request ID that is unique */
    this.requestID = 0;
 
-  null.AcknowledgePdu.prototype.initFromBinary = function(inputStream)
+  dis7.AcknowledgePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -83,7 +83,7 @@ null.AcknowledgePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  null.AcknowledgePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.AcknowledgePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -104,7 +104,7 @@ null.AcknowledgePdu = function()
 }; // end of class
 
  // node.js module support
-exports.AcknowledgePdu = null.AcknowledgePdu;
+exports.AcknowledgePdu = dis7.AcknowledgePdu;
 
 // End of AcknowledgePdu class
 

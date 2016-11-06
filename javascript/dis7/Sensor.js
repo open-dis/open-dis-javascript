@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.Sensor = function()
+dis7.Sensor = function()
 {
    /**  the source of the Sensor Type field  */
    this.sensorTypeSource = 0;
@@ -37,7 +37,7 @@ null.Sensor = function()
    /** padding */
    this.padding = 0;
 
-  null.Sensor.prototype.initFromBinary = function(inputStream)
+  dis7.Sensor.prototype.initFromBinary = function(inputStream)
   {
        this.sensorTypeSource = inputStream.readUByte();
        this.sensorOnOffStatus = inputStream.readUByte();
@@ -47,7 +47,7 @@ null.Sensor = function()
        this.padding = inputStream.readUShort();
   };
 
-  null.Sensor.prototype.encodeToBinary = function(outputStream)
+  dis7.Sensor.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.sensorTypeSource);
        outputStream.writeUByte(this.sensorOnOffStatus);
@@ -59,7 +59,7 @@ null.Sensor = function()
 }; // end of class
 
  // node.js module support
-exports.Sensor = null.Sensor;
+exports.Sensor = dis7.Sensor;
 
 // End of Sensor class
 

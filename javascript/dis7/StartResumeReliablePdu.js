@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.StartResumeReliablePdu = function()
+dis7.StartResumeReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,16 +44,16 @@ null.StartResumeReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** time in real world for this operation to happen */
-   this.realWorldTime = new null.ClockTime(); 
+   this.realWorldTime = new dis7.ClockTime(); 
 
    /** time in simulation for the simulation to resume */
-   this.simulationTime = new null.ClockTime(); 
+   this.simulationTime = new dis7.ClockTime(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -67,7 +67,7 @@ null.StartResumeReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  null.StartResumeReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis7.StartResumeReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -87,7 +87,7 @@ null.StartResumeReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  null.StartResumeReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.StartResumeReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -109,7 +109,7 @@ null.StartResumeReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StartResumeReliablePdu = null.StartResumeReliablePdu;
+exports.StartResumeReliablePdu = dis7.StartResumeReliablePdu;
 
 // End of StartResumeReliablePdu class
 

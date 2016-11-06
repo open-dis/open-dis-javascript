@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.StartResumePdu = function()
+dis7.StartResumePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,27 +44,27 @@ null.StartResumePdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** Identifier for originating entity(or simulation) */
-   this.originatingID = new null.EntityID(); 
+   this.originatingID = new dis7.EntityID(); 
 
    /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new null.EntityID(); 
+   this.receivingID = new dis7.EntityID(); 
 
    /** This field shall specify the real-world time (UTC) at which the entity is to start/resume in the exercise. This information shall be used by the participating simulation applications to start/resume an exercise synchronously. This field shall be represented by a Clock Time record (see 6.2.16). */
-   this.realWorldTime = new null.ClockTime(); 
+   this.realWorldTime = new dis7.ClockTime(); 
 
    /** The reference time within a simulation exercise. This time is established ahead of time by simulation management and is common to all participants in a particular exercise. Simulation time may be either Absolute Time or Relative Time. This field shall be represented by a Clock Time record (see 6.2.16) */
-   this.simulationTime = new null.ClockTime(); 
+   this.simulationTime = new dis7.ClockTime(); 
 
    /** Identifier for the specific and unique start/resume request */
    this.requestID = 0;
 
-  null.StartResumePdu.prototype.initFromBinary = function(inputStream)
+  dis7.StartResumePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -83,7 +83,7 @@ null.StartResumePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  null.StartResumePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.StartResumePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -104,7 +104,7 @@ null.StartResumePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StartResumePdu = null.StartResumePdu;
+exports.StartResumePdu = dis7.StartResumePdu;
 
 // End of StartResumePdu class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,24 +17,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.PduStatus = function()
+dis7.PduStatus = function()
 {
    /** Bit fields. The semantics of the bit fields depend on the PDU type */
    this.pduStatus = 0;
 
-  null.PduStatus.prototype.initFromBinary = function(inputStream)
+  dis7.PduStatus.prototype.initFromBinary = function(inputStream)
   {
        this.pduStatus = inputStream.readUByte();
   };
 
-  null.PduStatus.prototype.encodeToBinary = function(outputStream)
+  dis7.PduStatus.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.pduStatus);
   };
 }; // end of class
 
  // node.js module support
-exports.PduStatus = null.PduStatus;
+exports.PduStatus = dis7.PduStatus;
 
 // End of PduStatus class
 

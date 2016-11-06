@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,24 +17,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.UnsignedDISInteger = function()
+dis7.UnsignedDISInteger = function()
 {
    /** unsigned integer */
    this.val = 0;
 
-  null.UnsignedDISInteger.prototype.initFromBinary = function(inputStream)
+  dis7.UnsignedDISInteger.prototype.initFromBinary = function(inputStream)
   {
        this.val = inputStream.readUInt();
   };
 
-  null.UnsignedDISInteger.prototype.encodeToBinary = function(outputStream)
+  dis7.UnsignedDISInteger.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.val);
   };
 }; // end of class
 
  // node.js module support
-exports.UnsignedDISInteger = null.UnsignedDISInteger;
+exports.UnsignedDISInteger = dis7.UnsignedDISInteger;
 
 // End of UnsignedDISInteger class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.EngineFuelReload = function()
+dis7.EngineFuelReload = function()
 {
    /** standard quantity of fuel loaded */
    this.standardQuantity = 0;
@@ -40,7 +40,7 @@ null.EngineFuelReload = function()
    /** padding */
    this.padding = 0;
 
-  null.EngineFuelReload.prototype.initFromBinary = function(inputStream)
+  dis7.EngineFuelReload.prototype.initFromBinary = function(inputStream)
   {
        this.standardQuantity = inputStream.readUInt();
        this.maximumQuantity = inputStream.readUInt();
@@ -51,7 +51,7 @@ null.EngineFuelReload = function()
        this.padding = inputStream.readUByte();
   };
 
-  null.EngineFuelReload.prototype.encodeToBinary = function(outputStream)
+  dis7.EngineFuelReload.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.standardQuantity);
        outputStream.writeUInt(this.maximumQuantity);
@@ -64,7 +64,7 @@ null.EngineFuelReload = function()
 }; // end of class
 
  // node.js module support
-exports.EngineFuelReload = null.EngineFuelReload;
+exports.EngineFuelReload = dis7.EngineFuelReload;
 
 // End of EngineFuelReload class
 

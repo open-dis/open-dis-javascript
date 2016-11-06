@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,25 +17,25 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.SimulationManagementPduHeader = function()
+dis7.SimulationManagementPduHeader = function()
 {
    /** Conventional PDU header */
-   this.pduHeader = new null.PduHeader(); 
+   this.pduHeader = new dis7.PduHeader(); 
 
    /** IDs the simulation or entity, etiehr a simulation or an entity. Either 6.2.80 or 6.2.28 */
-   this.originatingID = new null.SimulationIdentifier(); 
+   this.originatingID = new dis7.SimulationIdentifier(); 
 
    /** simulation, all simulations, a special ID, or an entity. See 5.6.5 and 5.12.4 */
-   this.receivingID = new null.SimulationIdentifier(); 
+   this.receivingID = new dis7.SimulationIdentifier(); 
 
-  null.SimulationManagementPduHeader.prototype.initFromBinary = function(inputStream)
+  dis7.SimulationManagementPduHeader.prototype.initFromBinary = function(inputStream)
   {
        this.pduHeader.initFromBinary(inputStream);
        this.originatingID.initFromBinary(inputStream);
        this.receivingID.initFromBinary(inputStream);
   };
 
-  null.SimulationManagementPduHeader.prototype.encodeToBinary = function(outputStream)
+  dis7.SimulationManagementPduHeader.prototype.encodeToBinary = function(outputStream)
   {
        this.pduHeader.encodeToBinary(outputStream);
        this.originatingID.encodeToBinary(outputStream);
@@ -44,7 +44,7 @@ null.SimulationManagementPduHeader = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationManagementPduHeader = null.SimulationManagementPduHeader;
+exports.SimulationManagementPduHeader = dis7.SimulationManagementPduHeader;
 
 // End of SimulationManagementPduHeader class
 

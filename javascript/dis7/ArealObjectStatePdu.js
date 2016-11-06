@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ArealObjectStatePdu = function()
+dis7.ArealObjectStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ null.ArealObjectStatePdu = function()
    this.padding = 0;
 
    /** Object in synthetic environment */
-   this.objectID = new null.EntityID(); 
+   this.objectID = new dis7.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.referencedObjectID = new null.EntityID(); 
+   this.referencedObjectID = new dis7.EntityID(); 
 
    /** unique update number of each state transition of an object */
    this.updateNumber = 0;
@@ -59,7 +59,7 @@ null.ArealObjectStatePdu = function()
    this.modifications = 0;
 
    /** Object type */
-   this.objectType = new null.EntityType(); 
+   this.objectType = new dis7.EntityType(); 
 
    /** Object appearance */
    this.specificObjectAppearance = 0;
@@ -71,15 +71,15 @@ null.ArealObjectStatePdu = function()
    this.numberOfPoints = 0;
 
    /** requesterID */
-   this.requesterID = new null.SimulationAddress(); 
+   this.requesterID = new dis7.SimulationAddress(); 
 
    /** receiver ID */
-   this.receivingID = new null.SimulationAddress(); 
+   this.receivingID = new dis7.SimulationAddress(); 
 
    /** location of object */
     this.objectLocation = new Array();
  
-  null.ArealObjectStatePdu.prototype.initFromBinary = function(inputStream)
+  dis7.ArealObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -102,14 +102,14 @@ null.ArealObjectStatePdu = function()
        this.receivingID.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfPoints; idx++)
        {
-           var anX = new null.Vector3Double();
+           var anX = new dis7.Vector3Double();
            anX.initFromBinary(inputStream);
            this.objectLocation.push(anX);
        }
 
   };
 
-  null.ArealObjectStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.ArealObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -139,7 +139,7 @@ null.ArealObjectStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.ArealObjectStatePdu = null.ArealObjectStatePdu;
+exports.ArealObjectStatePdu = dis7.ArealObjectStatePdu;
 
 // End of ArealObjectStatePdu class
 

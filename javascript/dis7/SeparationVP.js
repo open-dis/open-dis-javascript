@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.SeparationVP = function()
+dis7.SeparationVP = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 2;
@@ -32,7 +32,7 @@ null.SeparationVP = function()
    this.padding1 = 0;
 
    /** ID of parent */
-   this.parentEntityID = new null.EntityID(); 
+   this.parentEntityID = new dis7.EntityID(); 
 
    /** padding */
    this.padding2 = 0;
@@ -40,7 +40,7 @@ null.SeparationVP = function()
    /** Station separated from */
    this.stationLocation = 0;
 
-  null.SeparationVP.prototype.initFromBinary = function(inputStream)
+  dis7.SeparationVP.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.reasonForSeparation = inputStream.readUByte();
@@ -51,7 +51,7 @@ null.SeparationVP = function()
        this.stationLocation = inputStream.readUInt();
   };
 
-  null.SeparationVP.prototype.encodeToBinary = function(outputStream)
+  dis7.SeparationVP.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.reasonForSeparation);
@@ -64,7 +64,7 @@ null.SeparationVP = function()
 }; // end of class
 
  // node.js module support
-exports.SeparationVP = null.SeparationVP;
+exports.SeparationVP = dis7.SeparationVP;
 
 // End of SeparationVP class
 

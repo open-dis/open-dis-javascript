@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.MinefieldFamilyPdu = function()
+dis7.MinefieldFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -43,7 +43,7 @@ null.MinefieldFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  null.MinefieldFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis7.MinefieldFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -55,7 +55,7 @@ null.MinefieldFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  null.MinefieldFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.MinefieldFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -69,7 +69,7 @@ null.MinefieldFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldFamilyPdu = null.MinefieldFamilyPdu;
+exports.MinefieldFamilyPdu = dis7.MinefieldFamilyPdu;
 
 // End of MinefieldFamilyPdu class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.GridAxis = function()
+dis7.GridAxis = function()
 {
    /** coordinate of the grid origin or initial value */
    this.domainInitialXi = 0;
@@ -40,7 +40,7 @@ null.GridAxis = function()
    /** initial grid point for the current pdu */
    this.initialIndex = 0;
 
-  null.GridAxis.prototype.initFromBinary = function(inputStream)
+  dis7.GridAxis.prototype.initFromBinary = function(inputStream)
   {
        this.domainInitialXi = inputStream.readFloat64();
        this.domainFinalXi = inputStream.readFloat64();
@@ -51,7 +51,7 @@ null.GridAxis = function()
        this.initialIndex = inputStream.readUShort();
   };
 
-  null.GridAxis.prototype.encodeToBinary = function(outputStream)
+  dis7.GridAxis.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat64(this.domainInitialXi);
        outputStream.writeFloat64(this.domainFinalXi);
@@ -64,7 +64,7 @@ null.GridAxis = function()
 }; // end of class
 
  // node.js module support
-exports.GridAxis = null.GridAxis;
+exports.GridAxis = dis7.GridAxis;
 
 // End of GridAxis class
 

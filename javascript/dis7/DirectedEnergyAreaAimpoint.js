@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DirectedEnergyAreaAimpoint = function()
+dis7.DirectedEnergyAreaAimpoint = function()
 {
    /** Type of Record enumeration */
    this.recordType = 4001;
@@ -35,12 +35,12 @@ null.DirectedEnergyAreaAimpoint = function()
    this.directedEnergyTargetEnergyDepositionRecordCount = 0;
 
    /** list of beam antenna records. See 6.2.9.2 */
-   this.beamAntennaParameterList = new null.BeamAntennaPattern(); 
+   this.beamAntennaParameterList = new dis7.BeamAntennaPattern(); 
 
    /** list of DE target deposition records. See 6.2.21.4 */
-   this.directedEnergyTargetEnergyDepositionRecordList = new null.DirectedEnergyTargetEnergyDeposition(); 
+   this.directedEnergyTargetEnergyDepositionRecordList = new dis7.DirectedEnergyTargetEnergyDeposition(); 
 
-  null.DirectedEnergyAreaAimpoint.prototype.initFromBinary = function(inputStream)
+  dis7.DirectedEnergyAreaAimpoint.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -51,7 +51,7 @@ null.DirectedEnergyAreaAimpoint = function()
        this.directedEnergyTargetEnergyDepositionRecordList.initFromBinary(inputStream);
   };
 
-  null.DirectedEnergyAreaAimpoint.prototype.encodeToBinary = function(outputStream)
+  dis7.DirectedEnergyAreaAimpoint.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -64,7 +64,7 @@ null.DirectedEnergyAreaAimpoint = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyAreaAimpoint = null.DirectedEnergyAreaAimpoint;
+exports.DirectedEnergyAreaAimpoint = dis7.DirectedEnergyAreaAimpoint;
 
 // End of DirectedEnergyAreaAimpoint class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.RecordSpecificationElement = function()
+dis7.RecordSpecificationElement = function()
 {
    /** the data structure used to convey the parameter values of the record for each record. 32 bit enumeration. */
    this.recordID = 0;
@@ -37,7 +37,7 @@ null.RecordSpecificationElement = function()
    /** Padding of 0 to 31 unused bits as required for 32-bit alignment of the Record Set field. ^^^This is wrong--variable sized padding. MUST be patched post-code generation */
    this.pad4 = 0;
 
-  null.RecordSpecificationElement.prototype.initFromBinary = function(inputStream)
+  dis7.RecordSpecificationElement.prototype.initFromBinary = function(inputStream)
   {
        this.recordID = inputStream.readUInt();
        this.recordSetSerialNumber = inputStream.readUInt();
@@ -47,7 +47,7 @@ null.RecordSpecificationElement = function()
        this.pad4 = inputStream.readUByte();
   };
 
-  null.RecordSpecificationElement.prototype.encodeToBinary = function(outputStream)
+  dis7.RecordSpecificationElement.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordID);
        outputStream.writeUInt(this.recordSetSerialNumber);
@@ -59,7 +59,7 @@ null.RecordSpecificationElement = function()
 }; // end of class
 
  // node.js module support
-exports.RecordSpecificationElement = null.RecordSpecificationElement;
+exports.RecordSpecificationElement = dis7.RecordSpecificationElement;
 
 // End of RecordSpecificationElement class
 

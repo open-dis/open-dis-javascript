@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ObjectType = function()
+dis7.ObjectType = function()
 {
    /** Domain of entity (air, surface, subsurface, space, etc) */
    this.domain = 0;
@@ -31,7 +31,7 @@ null.ObjectType = function()
    /** subcategory of entity */
    this.subcategory = 0;
 
-  null.ObjectType.prototype.initFromBinary = function(inputStream)
+  dis7.ObjectType.prototype.initFromBinary = function(inputStream)
   {
        this.domain = inputStream.readUByte();
        this.objectKind = inputStream.readUByte();
@@ -39,7 +39,7 @@ null.ObjectType = function()
        this.subcategory = inputStream.readUByte();
   };
 
-  null.ObjectType.prototype.encodeToBinary = function(outputStream)
+  dis7.ObjectType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.domain);
        outputStream.writeUByte(this.objectKind);
@@ -49,7 +49,7 @@ null.ObjectType = function()
 }; // end of class
 
  // node.js module support
-exports.ObjectType = null.ObjectType;
+exports.ObjectType = dis7.ObjectType;
 
 // End of ObjectType class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.AcousticEmitter = function()
+dis7.AcousticEmitter = function()
 {
    /** the system for a particular UA emitter, and an enumeration */
    this.acousticSystemName = 0;
@@ -28,14 +28,14 @@ null.AcousticEmitter = function()
    /** The UA emitter identification number relative to a specific system */
    this.acousticIDNumber = 0;
 
-  null.AcousticEmitter.prototype.initFromBinary = function(inputStream)
+  dis7.AcousticEmitter.prototype.initFromBinary = function(inputStream)
   {
        this.acousticSystemName = inputStream.readUShort();
        this.acousticFunction = inputStream.readUByte();
        this.acousticIDNumber = inputStream.readUByte();
   };
 
-  null.AcousticEmitter.prototype.encodeToBinary = function(outputStream)
+  dis7.AcousticEmitter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.acousticSystemName);
        outputStream.writeUByte(this.acousticFunction);
@@ -44,7 +44,7 @@ null.AcousticEmitter = function()
 }; // end of class
 
  // node.js module support
-exports.AcousticEmitter = null.AcousticEmitter;
+exports.AcousticEmitter = dis7.AcousticEmitter;
 
 // End of AcousticEmitter class
 

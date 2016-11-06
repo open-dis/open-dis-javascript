@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.SilentEntitySystem = function()
+dis7.SilentEntitySystem = function()
 {
    /** number of the type specified by the entity type field */
    this.numberOfEntities = 0;
@@ -26,26 +26,26 @@ null.SilentEntitySystem = function()
    this.numberOfAppearanceRecords = 0;
 
    /** Entity type */
-   this.entityType = new null.EntityType(); 
+   this.entityType = new dis7.EntityType(); 
 
    /** Variable length list of appearance records */
     this.appearanceRecordList = new Array();
  
-  null.SilentEntitySystem.prototype.initFromBinary = function(inputStream)
+  dis7.SilentEntitySystem.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfEntities = inputStream.readUShort();
        this.numberOfAppearanceRecords = inputStream.readUShort();
        this.entityType.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfAppearanceRecords; idx++)
        {
-           var anX = new null.FourByteChunk();
+           var anX = new dis7.FourByteChunk();
            anX.initFromBinary(inputStream);
            this.appearanceRecordList.push(anX);
        }
 
   };
 
-  null.SilentEntitySystem.prototype.encodeToBinary = function(outputStream)
+  dis7.SilentEntitySystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.numberOfEntities);
        outputStream.writeUShort(this.numberOfAppearanceRecords);
@@ -59,7 +59,7 @@ null.SilentEntitySystem = function()
 }; // end of class
 
  // node.js module support
-exports.SilentEntitySystem = null.SilentEntitySystem;
+exports.SilentEntitySystem = dis7.SilentEntitySystem;
 
 // End of SilentEntitySystem class
 

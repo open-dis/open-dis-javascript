@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DirectedEnergyFirePdu = function()
+dis7.DirectedEnergyFirePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,22 +44,22 @@ null.DirectedEnergyFirePdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new null.EntityID(); 
+   this.firingEntityID = new dis7.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new null.EntityID(); 
+   this.targetEntityID = new dis7.EntityID(); 
 
    /** Field shall identify the munition type enumeration for the DE weapon beam, Section 7.3.4  */
-   this.munitionType = new null.EntityType(); 
+   this.munitionType = new dis7.EntityType(); 
 
    /** Field shall indicate the simulation time at start of the shot, Section 7.3.4  */
-   this.shotStartTime = new null.ClockTime(); 
+   this.shotStartTime = new dis7.ClockTime(); 
 
    /** Field shall indicate the current cumulative duration of the shot, Section 7.3.4  */
    this.commulativeShotTime = 0;
 
    /** Field shall identify the location of the DE weapon aperture/emitter, Section 7.3.4  */
-   this.ApertureEmitterLocation = new null.Vector3Float(); 
+   this.ApertureEmitterLocation = new dis7.Vector3Float(); 
 
    /** Field shall identify the beam diameter at the aperture/emitter, Section 7.3.4  */
    this.apertureDiameter = 0;
@@ -97,7 +97,7 @@ null.DirectedEnergyFirePdu = function()
    /** Fields shall contain one or more DE records, records shall conform to the variable record format (Section6.2.82), Section 7.3.4 */
     this.dERecords = new Array();
  
-  null.DirectedEnergyFirePdu.prototype.initFromBinary = function(inputStream)
+  dis7.DirectedEnergyFirePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -126,14 +126,14 @@ null.DirectedEnergyFirePdu = function()
        this.numberOfDERecords = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfDERecords; idx++)
        {
-           var anX = new null.StandardVariableSpecification();
+           var anX = new dis7.StandardVariableSpecification();
            anX.initFromBinary(inputStream);
            this.dERecords.push(anX);
        }
 
   };
 
-  null.DirectedEnergyFirePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.DirectedEnergyFirePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -169,7 +169,7 @@ null.DirectedEnergyFirePdu = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyFirePdu = null.DirectedEnergyFirePdu;
+exports.DirectedEnergyFirePdu = dis7.DirectedEnergyFirePdu;
 
 // End of DirectedEnergyFirePdu class
 

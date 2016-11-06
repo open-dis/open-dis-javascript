@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DetonationPdu = function()
+dis7.DetonationPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,28 +44,28 @@ null.DetonationPdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new null.EntityID(); 
+   this.firingEntityID = new dis7.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new null.EntityID(); 
+   this.targetEntityID = new dis7.EntityID(); 
 
    /** ID of the expendable entity, Section 7.3.3  */
-   this.explodingEntityID = new null.EntityID(); 
+   this.explodingEntityID = new dis7.EntityID(); 
 
    /** ID of event, Section 7.3.3 */
-   this.eventID = new null.EventIdentifier(); 
+   this.eventID = new dis7.EventIdentifier(); 
 
    /** velocity of the munition immediately before detonation/impact, Section 7.3.3  */
-   this.velocity = new null.Vector3Float(); 
+   this.velocity = new dis7.Vector3Float(); 
 
    /** location of the munition detonation, the expendable detonation, Section 7.3.3  */
-   this.locationInWorldCoordinates = new null.Vector3Double(); 
+   this.locationInWorldCoordinates = new dis7.Vector3Double(); 
 
    /** Describes the detonation represented, Section 7.3.3  */
-   this.descriptor = new null.MunitionDescriptor(); 
+   this.descriptor = new dis7.MunitionDescriptor(); 
 
    /** Velocity of the ammunition, Section 7.3.3  */
-   this.locationOfEntityCoordinates = new null.Vector3Float(); 
+   this.locationOfEntityCoordinates = new dis7.Vector3Float(); 
 
    /** result of the detonation, Section 7.3.3  */
    this.detonationResult = 0;
@@ -79,7 +79,7 @@ null.DetonationPdu = function()
    /** specify the parameter values for each Variable Parameter record, Section 7.3.3  */
     this.variableParameters = new Array();
  
-  null.DetonationPdu.prototype.initFromBinary = function(inputStream)
+  dis7.DetonationPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -102,14 +102,14 @@ null.DetonationPdu = function()
        this.pad = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new null.VariableParameter();
+           var anX = new dis7.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  null.DetonationPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.DetonationPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -139,7 +139,7 @@ null.DetonationPdu = function()
 }; // end of class
 
  // node.js module support
-exports.DetonationPdu = null.DetonationPdu;
+exports.DetonationPdu = dis7.DetonationPdu;
 
 // End of DetonationPdu class
 

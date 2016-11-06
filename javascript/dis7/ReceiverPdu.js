@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.ReceiverPdu = function()
+dis7.ReceiverPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -53,12 +53,12 @@ null.ReceiverPdu = function()
    this.receivedPoser = 0;
 
    /** ID of transmitter */
-   this.transmitterEntityId = new null.EntityID(); 
+   this.transmitterEntityId = new dis7.EntityID(); 
 
    /** ID of transmitting radio */
    this.transmitterRadioId = 0;
 
-  null.ReceiverPdu.prototype.initFromBinary = function(inputStream)
+  dis7.ReceiverPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -75,7 +75,7 @@ null.ReceiverPdu = function()
        this.transmitterRadioId = inputStream.readUShort();
   };
 
-  null.ReceiverPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.ReceiverPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -94,7 +94,7 @@ null.ReceiverPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ReceiverPdu = null.ReceiverPdu;
+exports.ReceiverPdu = dis7.ReceiverPdu;
 
 // End of ReceiverPdu class
 

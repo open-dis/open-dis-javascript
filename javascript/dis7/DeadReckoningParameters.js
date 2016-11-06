@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DeadReckoningParameters = function()
+dis7.DeadReckoningParameters = function()
 {
    /** Algorithm to use in computing dead reckoning. See EBV doc. */
    this.deadReckoningAlgorithm = 0;
@@ -26,12 +26,12 @@ null.DeadReckoningParameters = function()
    this.parameters = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
    /** Linear acceleration of the entity */
-   this.entityLinearAcceleration = new null.Vector3Float(); 
+   this.entityLinearAcceleration = new dis7.Vector3Float(); 
 
    /** Angular velocity of the entity */
-   this.entityAngularVelocity = new null.Vector3Float(); 
+   this.entityAngularVelocity = new dis7.Vector3Float(); 
 
-  null.DeadReckoningParameters.prototype.initFromBinary = function(inputStream)
+  dis7.DeadReckoningParameters.prototype.initFromBinary = function(inputStream)
   {
        this.deadReckoningAlgorithm = inputStream.readUByte();
        for(var idx = 0; idx < 15; idx++)
@@ -42,7 +42,7 @@ null.DeadReckoningParameters = function()
        this.entityAngularVelocity.initFromBinary(inputStream);
   };
 
-  null.DeadReckoningParameters.prototype.encodeToBinary = function(outputStream)
+  dis7.DeadReckoningParameters.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.deadReckoningAlgorithm);
        for(var idx = 0; idx < 15; idx++)
@@ -55,7 +55,7 @@ null.DeadReckoningParameters = function()
 }; // end of class
 
  // node.js module support
-exports.DeadReckoningParameters = null.DeadReckoningParameters;
+exports.DeadReckoningParameters = dis7.DeadReckoningParameters;
 
 // End of DeadReckoningParameters class
 

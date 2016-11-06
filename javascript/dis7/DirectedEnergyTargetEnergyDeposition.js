@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DirectedEnergyTargetEnergyDeposition = function()
+dis7.DirectedEnergyTargetEnergyDeposition = function()
 {
    /** Unique ID of the target entity. */
-   this.targetEntityID = new null.EntityID(); 
+   this.targetEntityID = new dis7.EntityID(); 
 
    /** padding */
    this.padding = 0;
@@ -28,14 +28,14 @@ null.DirectedEnergyTargetEnergyDeposition = function()
    /** Peak irrandiance */
    this.peakIrradiance = 0;
 
-  null.DirectedEnergyTargetEnergyDeposition.prototype.initFromBinary = function(inputStream)
+  dis7.DirectedEnergyTargetEnergyDeposition.prototype.initFromBinary = function(inputStream)
   {
        this.targetEntityID.initFromBinary(inputStream);
        this.padding = inputStream.readUShort();
        this.peakIrradiance = inputStream.readFloat32();
   };
 
-  null.DirectedEnergyTargetEnergyDeposition.prototype.encodeToBinary = function(outputStream)
+  dis7.DirectedEnergyTargetEnergyDeposition.prototype.encodeToBinary = function(outputStream)
   {
        this.targetEntityID.encodeToBinary(outputStream);
        outputStream.writeUShort(this.padding);
@@ -44,7 +44,7 @@ null.DirectedEnergyTargetEnergyDeposition = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyTargetEnergyDeposition = null.DirectedEnergyTargetEnergyDeposition;
+exports.DirectedEnergyTargetEnergyDeposition = dis7.DirectedEnergyTargetEnergyDeposition;
 
 // End of DirectedEnergyTargetEnergyDeposition class
 

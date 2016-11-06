@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,23 +17,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.BeamStatus = function()
+dis7.BeamStatus = function()
 {
    /** First bit zero means beam is active, first bit = 1 means deactivated. The rest is padding. */
    this.beamState = 0;
 
-  null.BeamStatus.prototype.initFromBinary = function(inputStream)
+  dis7.BeamStatus.prototype.initFromBinary = function(inputStream)
   {
        this.beamState = inputStream.readUByte();
   };
 
-  null.BeamStatus.prototype.encodeToBinary = function(outputStream)
+  dis7.BeamStatus.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.beamState);
   };
 
 /** 0 active, 1 deactivated */
-null.BeamStatus.prototype.getBeamState = function()
+dis7.BeamStatus.prototype.getBeamState_beamState = function()
 {
    var val = this.beamState & 0x1;
    return val >> 0;
@@ -41,9 +41,8 @@ null.BeamStatus.prototype.getBeamState = function()
 
 
 /** 0 active, 1 deactivated */
-null.BeamStatus.prototype.setBeamState= function(val)
+dis7.BeamStatus.prototype.setBeamState_beamState= function(val)
 {
-  var aVal = 0;
   this.beamState &= ~0x1; // Zero existing bits
   val = val << 0;
   this.beamState = this.beamState | val; 
@@ -51,7 +50,7 @@ null.BeamStatus.prototype.setBeamState= function(val)
 
 
 /** padding */
-null.BeamStatus.prototype.getPadding = function()
+dis7.BeamStatus.prototype.getBeamState_padding = function()
 {
    var val = this.beamState & 0xFE;
    return val >> 1;
@@ -59,9 +58,8 @@ null.BeamStatus.prototype.getPadding = function()
 
 
 /** padding */
-null.BeamStatus.prototype.setPadding= function(val)
+dis7.BeamStatus.prototype.setBeamState_padding= function(val)
 {
-  var aVal = 0;
   this.beamState &= ~0xFE; // Zero existing bits
   val = val << 1;
   this.beamState = this.beamState | val; 
@@ -70,7 +68,7 @@ null.BeamStatus.prototype.setPadding= function(val)
 }; // end of class
 
  // node.js module support
-exports.BeamStatus = null.BeamStatus;
+exports.BeamStatus = dis7.BeamStatus;
 
 // End of BeamStatus class
 

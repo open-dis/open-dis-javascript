@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.TotalRecordSets = function()
+dis7.TotalRecordSets = function()
 {
    /** Total number of record sets */
    this.totalRecordSets = 0;
@@ -25,13 +25,13 @@ null.TotalRecordSets = function()
    /** padding */
    this.padding = 0;
 
-  null.TotalRecordSets.prototype.initFromBinary = function(inputStream)
+  dis7.TotalRecordSets.prototype.initFromBinary = function(inputStream)
   {
        this.totalRecordSets = inputStream.readUShort();
        this.padding = inputStream.readUShort();
   };
 
-  null.TotalRecordSets.prototype.encodeToBinary = function(outputStream)
+  dis7.TotalRecordSets.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.totalRecordSets);
        outputStream.writeUShort(this.padding);
@@ -39,7 +39,7 @@ null.TotalRecordSets = function()
 }; // end of class
 
  // node.js module support
-exports.TotalRecordSets = null.TotalRecordSets;
+exports.TotalRecordSets = dis7.TotalRecordSets;
 
 // End of TotalRecordSets class
 

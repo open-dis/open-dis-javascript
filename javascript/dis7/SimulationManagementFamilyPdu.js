@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.SimulationManagementFamilyPdu = function()
+dis7.SimulationManagementFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,12 +44,12 @@ null.SimulationManagementFamilyPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
-  null.SimulationManagementFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis7.SimulationManagementFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -63,7 +63,7 @@ null.SimulationManagementFamilyPdu = function()
        this.receivingEntityID.initFromBinary(inputStream);
   };
 
-  null.SimulationManagementFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis7.SimulationManagementFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -79,7 +79,7 @@ null.SimulationManagementFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationManagementFamilyPdu = null.SimulationManagementFamilyPdu;
+exports.SimulationManagementFamilyPdu = dis7.SimulationManagementFamilyPdu;
 
 // End of SimulationManagementFamilyPdu class
 

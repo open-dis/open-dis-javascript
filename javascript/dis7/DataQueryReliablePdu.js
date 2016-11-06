@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof null === "undefined")
- null = {};
+if (typeof dis7 === "undefined")
+ dis7 = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-null.DataQueryReliablePdu = function()
+dis7.DataQueryReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ null.DataQueryReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new null.EntityID(); 
+   this.originatingEntityID = new dis7.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new null.EntityID(); 
+   this.receivingEntityID = new dis7.EntityID(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -76,7 +76,7 @@ null.DataQueryReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  null.DataQueryReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis7.DataQueryReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -97,21 +97,21 @@ null.DataQueryReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new null.FixedDatum();
+           var anX = new dis7.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new null.VariableDatum();
+           var anX = new dis7.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  null.DataQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis7.DataQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -144,7 +144,7 @@ null.DataQueryReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.DataQueryReliablePdu = null.DataQueryReliablePdu;
+exports.DataQueryReliablePdu = dis7.DataQueryReliablePdu;
 
 // End of DataQueryReliablePdu class
 
