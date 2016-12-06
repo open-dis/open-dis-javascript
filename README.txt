@@ -11,9 +11,12 @@ The code also includes some simple coordinate system transforms
 to change DIS world coordinates to (lat, lon, alt) or to a
 position in a local tanget plane coordinate system. 
 
-There are two XML files from which the DIS implementation is
-generated: DIS1998.xml (for DIS version 6) and DIS2012.xml
-(for DIS version 7). Two javascript DIS implementations are
-generated, dis6.js and dis7.js.
+This uses a git submodule to pull in XML description files for
+the messages sent in the protocol. To make the present, run
+
+git submodule init
+git submodule update
+
+This will check out the XML files to DISDescription/
 
 DMcG
