@@ -12,7 +12,9 @@ to change DIS world coordinates to (lat, lon, alt) or to a
 position in a local tanget plane coordinate system. 
 
 This uses a git submodule to pull in XML description files for
-the messages sent in the protocol. To make the present, run
+the messages sent in the protocol. You should not need these
+unless you're regenerating the messages, which is unlikely. 
+To make them present, run
 
 git submodule init
 git submodule update
