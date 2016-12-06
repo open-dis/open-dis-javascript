@@ -8,8 +8,8 @@
     <property name="lib" location="lib"/>
     <property name="DIS6SOURCE" location="javascript/dis/"/>
     <property name="DIS7SOURCE" location="javascript/dis7/"/>
-    <property name="DIS6XML" location="dis6.xml"/>
-    <property name="DIS7XML" location="dis7.xml"/>
+    <property name="DIS6XML" location="DISDescription/DIS6.xml"/>
+    <property name="DIS7XML" location="DISDescription/DIS7.xml"/>
 
     <path id="lib.path">
         <fileset id="lib.jars" dir="${lib}">
