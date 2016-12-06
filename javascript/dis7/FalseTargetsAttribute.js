@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FalseTargetsAttribute = function()
+dis.FalseTargetsAttribute = function()
 {
    this.recordType = 3502;
 
@@ -45,7 +45,7 @@ dis7.FalseTargetsAttribute = function()
 
    this.echoSpacing = 0;
 
-  dis7.FalseTargetsAttribute.prototype.initFromBinary = function(inputStream)
+  dis.FalseTargetsAttribute.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -62,7 +62,7 @@ dis7.FalseTargetsAttribute = function()
        this.echoSpacing = inputStream.readFloat32();
   };
 
-  dis7.FalseTargetsAttribute.prototype.encodeToBinary = function(outputStream)
+  dis.FalseTargetsAttribute.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -81,7 +81,7 @@ dis7.FalseTargetsAttribute = function()
 }; // end of class
 
  // node.js module support
-exports.FalseTargetsAttribute = dis7.FalseTargetsAttribute;
+exports.FalseTargetsAttribute = dis.FalseTargetsAttribute;
 
 // End of FalseTargetsAttribute class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.UaPdu = function()
+dis.UaPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ dis7.UaPdu = function()
    this.padding = 0;
 
    /** ID of the entity that is the source of the emission */
-   this.emittingEntityID = new dis7.EntityID(); 
+   this.emittingEntityID = new dis.EntityID(); 
 
    /** ID of event */
-   this.eventID = new dis7.EventIdentifier(); 
+   this.eventID = new dis.EventIdentifier(); 
 
    /** This field shall be used to indicate whether the data in the UA PDU represent a state update or data that have changed since issuance of the last UA PDU */
    this.stateChangeIndicator = 0;
@@ -79,7 +79,7 @@ dis7.UaPdu = function()
    /** THIS IS WRONG. It has the wrong class in the list. */
     this.emitterSystems = new Array();
  
-  dis7.UaPdu.prototype.initFromBinary = function(inputStream)
+  dis.UaPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -100,28 +100,28 @@ dis7.UaPdu = function()
        this.numberOfUAEmitterSystems = inputStream.readUByte();
        for(var idx = 0; idx < this.numberOfShafts; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.shaftRPMs.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfAPAs; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.apaData.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfUAEmitterSystems; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.emitterSystems.push(anX);
        }
 
   };
 
-  dis7.UaPdu.prototype.encodeToBinary = function(outputStream)
+  dis.UaPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -159,7 +159,7 @@ dis7.UaPdu = function()
 }; // end of class
 
  // node.js module support
-exports.UaPdu = dis7.UaPdu;
+exports.UaPdu = dis.UaPdu;
 
 // End of UaPdu class
 

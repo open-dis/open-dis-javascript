@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataQueryDatumSpecification = function()
+dis.DataQueryDatumSpecification = function()
 {
    /** Number of fixed datum IDs */
    this.numberOfFixedDatums = 0;
@@ -26,12 +26,12 @@ dis7.DataQueryDatumSpecification = function()
    this.numberOfVariableDatums = 0;
 
    /** variable length list fixed datum IDs */
-   this.fixedDatumIDList = new dis7.UnsignedDISInteger(); 
+   this.fixedDatumIDList = new dis.UnsignedDISInteger(); 
 
    /** variable length list variable datum IDs */
-   this.variableDatumIDList = new dis7.UnsignedDISInteger(); 
+   this.variableDatumIDList = new dis.UnsignedDISInteger(); 
 
-  dis7.DataQueryDatumSpecification.prototype.initFromBinary = function(inputStream)
+  dis.DataQueryDatumSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfFixedDatums = inputStream.readUInt();
        this.numberOfVariableDatums = inputStream.readUInt();
@@ -39,7 +39,7 @@ dis7.DataQueryDatumSpecification = function()
        this.variableDatumIDList.initFromBinary(inputStream);
   };
 
-  dis7.DataQueryDatumSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.DataQueryDatumSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfFixedDatums);
        outputStream.writeUInt(this.numberOfVariableDatums);
@@ -49,7 +49,7 @@ dis7.DataQueryDatumSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.DataQueryDatumSpecification = dis7.DataQueryDatumSpecification;
+exports.DataQueryDatumSpecification = dis.DataQueryDatumSpecification;
 
 // End of DataQueryDatumSpecification class
 

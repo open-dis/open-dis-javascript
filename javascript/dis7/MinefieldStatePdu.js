@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldStatePdu = function()
+dis.MinefieldStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,7 +44,7 @@ dis7.MinefieldStatePdu = function()
    this.padding = 0;
 
    /** Minefield ID */
-   this.minefieldID = new dis7.MinefieldIdentifier(); 
+   this.minefieldID = new dis.MinefieldIdentifier(); 
 
    /** Minefield sequence */
    this.minefieldSequence = 0;
@@ -56,16 +56,16 @@ dis7.MinefieldStatePdu = function()
    this.numberOfPerimeterPoints = 0;
 
    /** type of minefield */
-   this.minefieldType = new dis7.EntityType(); 
+   this.minefieldType = new dis.EntityType(); 
 
    /** how many mine types */
    this.numberOfMineTypes = 0;
 
    /** location of center of minefield in world coords */
-   this.minefieldLocation = new dis7.Vector3Double(); 
+   this.minefieldLocation = new dis.Vector3Double(); 
 
    /** orientation of minefield */
-   this.minefieldOrientation = new dis7.EulerAngles(); 
+   this.minefieldOrientation = new dis.EulerAngles(); 
 
    /** appearance bitflags */
    this.appearance = 0;
@@ -79,7 +79,7 @@ dis7.MinefieldStatePdu = function()
    /** Type of mines */
     this.mineType = new Array();
  
-  dis7.MinefieldStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -101,21 +101,21 @@ dis7.MinefieldStatePdu = function()
        this.protocolMode = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfPerimeterPoints; idx++)
        {
-           var anX = new dis7.Vector2Float();
+           var anX = new dis.Vector2Float();
            anX.initFromBinary(inputStream);
            this.perimeterPoints.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfMineTypes; idx++)
        {
-           var anX = new dis7.EntityType();
+           var anX = new dis.EntityType();
            anX.initFromBinary(inputStream);
            this.mineType.push(anX);
        }
 
   };
 
-  dis7.MinefieldStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -149,7 +149,7 @@ dis7.MinefieldStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldStatePdu = dis7.MinefieldStatePdu;
+exports.MinefieldStatePdu = dis.MinefieldStatePdu;
 
 // End of MinefieldStatePdu class
 

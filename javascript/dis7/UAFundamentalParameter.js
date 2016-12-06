@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.UAFundamentalParameter = function()
+dis.UAFundamentalParameter = function()
 {
    /** Which database record shall be used. An enumeration from EBV document */
    this.activeEmissionParameterIndex = 0;
@@ -37,7 +37,7 @@ dis7.UAFundamentalParameter = function()
    /** vertical beamwidth of the main beam. Meastured at the 3dB down point of peak radiated power. In radians. */
    this.beamwidthDownElevation = 0;
 
-  dis7.UAFundamentalParameter.prototype.initFromBinary = function(inputStream)
+  dis.UAFundamentalParameter.prototype.initFromBinary = function(inputStream)
   {
        this.activeEmissionParameterIndex = inputStream.readUShort();
        this.scanPattern = inputStream.readUShort();
@@ -47,7 +47,7 @@ dis7.UAFundamentalParameter = function()
        this.beamwidthDownElevation = inputStream.readFloat32();
   };
 
-  dis7.UAFundamentalParameter.prototype.encodeToBinary = function(outputStream)
+  dis.UAFundamentalParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.activeEmissionParameterIndex);
        outputStream.writeUShort(this.scanPattern);
@@ -59,7 +59,7 @@ dis7.UAFundamentalParameter = function()
 }; // end of class
 
  // node.js module support
-exports.UAFundamentalParameter = dis7.UAFundamentalParameter;
+exports.UAFundamentalParameter = dis.UAFundamentalParameter;
 
 // End of UAFundamentalParameter class
 

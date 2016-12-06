@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.VariableDatum = function()
+dis.VariableDatum = function()
 {
    /** ID of variable datum to be transmitted. 32 bit enumeration defined in EBV */
    this.variableDatumID = 0;
@@ -28,20 +28,20 @@ dis7.VariableDatum = function()
    /** Variable length data class */
     this.variableDatumData = new Array();
  
-  dis7.VariableDatum.prototype.initFromBinary = function(inputStream)
+  dis.VariableDatum.prototype.initFromBinary = function(inputStream)
   {
        this.variableDatumID = inputStream.readUInt();
        this.variableDatumLength = inputStream.readUInt();
        for(var idx = 0; idx < this.variableDatumLength; idx++)
        {
-           var anX = new dis7.OneByteChunk();
+           var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.variableDatumData.push(anX);
        }
 
   };
 
-  dis7.VariableDatum.prototype.encodeToBinary = function(outputStream)
+  dis.VariableDatum.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.variableDatumID);
        outputStream.writeUInt(this.variableDatumLength);
@@ -54,7 +54,7 @@ dis7.VariableDatum = function()
 }; // end of class
 
  // node.js module support
-exports.VariableDatum = dis7.VariableDatum;
+exports.VariableDatum = dis.VariableDatum;
 
 // End of VariableDatum class
 

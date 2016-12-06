@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,12 +17,12 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.TwoByteChunk = function()
+dis.TwoByteChunk = function()
 {
    /** two bytes of arbitrary data */
    this.otherParameters = new Array(0, 0);
 
-  dis7.TwoByteChunk.prototype.initFromBinary = function(inputStream)
+  dis.TwoByteChunk.prototype.initFromBinary = function(inputStream)
   {
        for(var idx = 0; idx < 2; idx++)
        {
@@ -30,7 +30,7 @@ dis7.TwoByteChunk = function()
        }
   };
 
-  dis7.TwoByteChunk.prototype.encodeToBinary = function(outputStream)
+  dis.TwoByteChunk.prototype.encodeToBinary = function(outputStream)
   {
        for(var idx = 0; idx < 2; idx++)
        {
@@ -40,7 +40,7 @@ dis7.TwoByteChunk = function()
 }; // end of class
 
  // node.js module support
-exports.TwoByteChunk = dis7.TwoByteChunk;
+exports.TwoByteChunk = dis.TwoByteChunk;
 
 // End of TwoByteChunk class
 

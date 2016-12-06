@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldResponseNackPdu = function()
+dis.MinefieldResponseNackPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ dis7.MinefieldResponseNackPdu = function()
    this.padding = 0;
 
    /** Minefield ID */
-   this.minefieldID = new dis7.EntityID(); 
+   this.minefieldID = new dis.EntityID(); 
 
    /** entity ID making the request */
-   this.requestingEntityID = new dis7.EntityID(); 
+   this.requestingEntityID = new dis.EntityID(); 
 
    /** request ID */
    this.requestID = 0;
@@ -58,7 +58,7 @@ dis7.MinefieldResponseNackPdu = function()
    /** PDU sequence numbers that were missing */
     this.missingPduSequenceNumbers = new Array();
  
-  dis7.MinefieldResponseNackPdu.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldResponseNackPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -74,14 +74,14 @@ dis7.MinefieldResponseNackPdu = function()
        this.numberOfMissingPdus = inputStream.readUByte();
        for(var idx = 0; idx < this.numberOfMissingPdus; idx++)
        {
-           var anX = new dis7.EightByteChunk();
+           var anX = new dis.EightByteChunk();
            anX.initFromBinary(inputStream);
            this.missingPduSequenceNumbers.push(anX);
        }
 
   };
 
-  dis7.MinefieldResponseNackPdu.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldResponseNackPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -104,7 +104,7 @@ dis7.MinefieldResponseNackPdu = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldResponseNackPdu = dis7.MinefieldResponseNackPdu;
+exports.MinefieldResponseNackPdu = dis.MinefieldResponseNackPdu;
 
 // End of MinefieldResponseNackPdu class
 

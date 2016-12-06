@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AggregateMarking = function()
+dis.AggregateMarking = function()
 {
    /** The character set */
    this.characterSet = 0;
@@ -25,13 +25,13 @@ dis7.AggregateMarking = function()
    /** The characters */
    this.characters = 0;
 
-  dis7.AggregateMarking.prototype.initFromBinary = function(inputStream)
+  dis.AggregateMarking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
        this.characters = inputStream.readUByte();
   };
 
-  dis7.AggregateMarking.prototype.encodeToBinary = function(outputStream)
+  dis.AggregateMarking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);
        outputStream.writeUByte(this.characters);
@@ -39,7 +39,7 @@ dis7.AggregateMarking = function()
 }; // end of class
 
  // node.js module support
-exports.AggregateMarking = dis7.AggregateMarking;
+exports.AggregateMarking = dis.AggregateMarking;
 
 // End of AggregateMarking class
 

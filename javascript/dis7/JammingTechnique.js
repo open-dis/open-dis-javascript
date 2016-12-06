@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.JammingTechnique = function()
+dis.JammingTechnique = function()
 {
    this.kind = 0;
 
@@ -27,7 +27,7 @@ dis7.JammingTechnique = function()
 
    this.specific = 0;
 
-  dis7.JammingTechnique.prototype.initFromBinary = function(inputStream)
+  dis.JammingTechnique.prototype.initFromBinary = function(inputStream)
   {
        this.kind = inputStream.readUByte();
        this.category = inputStream.readUByte();
@@ -35,7 +35,7 @@ dis7.JammingTechnique = function()
        this.specific = inputStream.readUByte();
   };
 
-  dis7.JammingTechnique.prototype.encodeToBinary = function(outputStream)
+  dis.JammingTechnique.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.kind);
        outputStream.writeUByte(this.category);
@@ -45,7 +45,7 @@ dis7.JammingTechnique = function()
 }; // end of class
 
  // node.js module support
-exports.JammingTechnique = dis7.JammingTechnique;
+exports.JammingTechnique = dis.JammingTechnique;
 
 // End of JammingTechnique class
 

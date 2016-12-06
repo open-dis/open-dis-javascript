@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityAssociation = function()
+dis.EntityAssociation = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 4;
@@ -32,7 +32,7 @@ dis7.EntityAssociation = function()
    this.associationType = 0;
 
    /** Object ID of entity associated with this entity */
-   this.entityID = new dis7.EntityID(); 
+   this.entityID = new dis.EntityID(); 
 
    /** Station location on one's own entity. EBV doc. */
    this.ownStationLocation = 0;
@@ -46,7 +46,7 @@ dis7.EntityAssociation = function()
    /** Group if any to which the entity belongs */
    this.groupNumber = 0;
 
-  dis7.EntityAssociation.prototype.initFromBinary = function(inputStream)
+  dis.EntityAssociation.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.changeIndicator = inputStream.readUByte();
@@ -59,7 +59,7 @@ dis7.EntityAssociation = function()
        this.groupNumber = inputStream.readUShort();
   };
 
-  dis7.EntityAssociation.prototype.encodeToBinary = function(outputStream)
+  dis.EntityAssociation.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.changeIndicator);
@@ -74,7 +74,7 @@ dis7.EntityAssociation = function()
 }; // end of class
 
  // node.js module support
-exports.EntityAssociation = dis7.EntityAssociation;
+exports.EntityAssociation = dis.EntityAssociation;
 
 // End of EntityAssociation class
 

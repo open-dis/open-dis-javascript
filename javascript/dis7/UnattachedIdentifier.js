@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.UnattachedIdentifier = function()
+dis.UnattachedIdentifier = function()
 {
    /** See 6.2.79 */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /** Reference number */
    this.referenceNumber = 0;
 
-  dis7.UnattachedIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.UnattachedIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.referenceNumber = inputStream.readUShort();
   };
 
-  dis7.UnattachedIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.UnattachedIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.referenceNumber);
@@ -39,7 +39,7 @@ dis7.UnattachedIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.UnattachedIdentifier = dis7.UnattachedIdentifier;
+exports.UnattachedIdentifier = dis.UnattachedIdentifier;
 
 // End of UnattachedIdentifier class
 

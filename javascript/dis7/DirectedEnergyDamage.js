@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DirectedEnergyDamage = function()
+dis.DirectedEnergyDamage = function()
 {
    /** DE Record Type. */
    this.recordType = 4500;
@@ -29,7 +29,7 @@ dis7.DirectedEnergyDamage = function()
    this.padding = 0;
 
    /** location of damage, relative to center of entity */
-   this.damageLocation = new dis7.Vector3Float(); 
+   this.damageLocation = new dis.Vector3Float(); 
 
    /** Size of damaged area, in meters. */
    this.damageDiameter = 0;
@@ -50,12 +50,12 @@ dis7.DirectedEnergyDamage = function()
    this.componentVisualSmokeColor = 0;
 
    /** For any component damage resulting this field shall be set to the fire event ID from that PDU. */
-   this.fireEventID = new dis7.EventIdentifier(); 
+   this.fireEventID = new dis.EventIdentifier(); 
 
    /** padding */
    this.padding2 = 0;
 
-  dis7.DirectedEnergyDamage.prototype.initFromBinary = function(inputStream)
+  dis.DirectedEnergyDamage.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -71,7 +71,7 @@ dis7.DirectedEnergyDamage = function()
        this.padding2 = inputStream.readUShort();
   };
 
-  dis7.DirectedEnergyDamage.prototype.encodeToBinary = function(outputStream)
+  dis.DirectedEnergyDamage.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -89,7 +89,7 @@ dis7.DirectedEnergyDamage = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyDamage = dis7.DirectedEnergyDamage;
+exports.DirectedEnergyDamage = dis.DirectedEnergyDamage;
 
 // End of DirectedEnergyDamage class
 

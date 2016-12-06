@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StorageFuelReload = function()
+dis.StorageFuelReload = function()
 {
    /**  the standard quantity of this fuel type normally loaded at this station/launcher if a station/launcher is specified. If the Station/Launcher field is set to zero, then this is the total quantity of this fuel type that would be present in a standard reload of all appli- cable stations/launchers associated with this entity. */
    this.standardQuantity = 0;
@@ -43,7 +43,7 @@ dis7.StorageFuelReload = function()
    /** padding */
    this.padding = 0;
 
-  dis7.StorageFuelReload.prototype.initFromBinary = function(inputStream)
+  dis.StorageFuelReload.prototype.initFromBinary = function(inputStream)
   {
        this.standardQuantity = inputStream.readUInt();
        this.maximumQuantity = inputStream.readUInt();
@@ -55,7 +55,7 @@ dis7.StorageFuelReload = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.StorageFuelReload.prototype.encodeToBinary = function(outputStream)
+  dis.StorageFuelReload.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.standardQuantity);
        outputStream.writeUInt(this.maximumQuantity);
@@ -69,7 +69,7 @@ dis7.StorageFuelReload = function()
 }; // end of class
 
  // node.js module support
-exports.StorageFuelReload = dis7.StorageFuelReload;
+exports.StorageFuelReload = dis.StorageFuelReload;
 
 // End of StorageFuelReload class
 

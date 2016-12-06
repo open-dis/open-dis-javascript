@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IOEffect = function()
+dis.IOEffect = function()
 {
    this.recordType = 5500;
 
@@ -27,7 +27,7 @@ dis7.IOEffect = function()
 
    this.ioLinkType = 0;
 
-   this.ioEffect = new dis7.EntityID(); 
+   this.ioEffect = new dis.EntityID(); 
 
    this.ioEffectDutyCycle = 0;
 
@@ -37,7 +37,7 @@ dis7.IOEffect = function()
 
    this.padding = 0;
 
-  dis7.IOEffect.prototype.initFromBinary = function(inputStream)
+  dis.IOEffect.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -50,7 +50,7 @@ dis7.IOEffect = function()
        this.padding = inputStream.readUShort();
   };
 
-  dis7.IOEffect.prototype.encodeToBinary = function(outputStream)
+  dis.IOEffect.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -65,7 +65,7 @@ dis7.IOEffect = function()
 }; // end of class
 
  // node.js module support
-exports.IOEffect = dis7.IOEffect;
+exports.IOEffect = dis.IOEffect;
 
 // End of IOEffect class
 

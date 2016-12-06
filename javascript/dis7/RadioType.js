@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RadioType = function()
+dis.RadioType = function()
 {
    /** Kind of entity */
    this.entityKind = 0;
@@ -38,7 +38,7 @@ dis7.RadioType = function()
 
    this.extra = 0;
 
-  dis7.RadioType.prototype.initFromBinary = function(inputStream)
+  dis.RadioType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -49,7 +49,7 @@ dis7.RadioType = function()
        this.extra = inputStream.readUByte();
   };
 
-  dis7.RadioType.prototype.encodeToBinary = function(outputStream)
+  dis.RadioType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);
        outputStream.writeUByte(this.domain);
@@ -62,7 +62,7 @@ dis7.RadioType = function()
 }; // end of class
 
  // node.js module support
-exports.RadioType = dis7.RadioType;
+exports.RadioType = dis.RadioType;
 
 // End of RadioType class
 

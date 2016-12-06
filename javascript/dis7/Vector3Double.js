@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Vector3Double = function()
+dis.Vector3Double = function()
 {
    /** X value */
    this.x = 0;
@@ -28,14 +28,14 @@ dis7.Vector3Double = function()
    /** Z value */
    this.z = 0;
 
-  dis7.Vector3Double.prototype.initFromBinary = function(inputStream)
+  dis.Vector3Double.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat64();
        this.y = inputStream.readFloat64();
        this.z = inputStream.readFloat64();
   };
 
-  dis7.Vector3Double.prototype.encodeToBinary = function(outputStream)
+  dis.Vector3Double.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat64(this.x);
        outputStream.writeFloat64(this.y);
@@ -44,7 +44,7 @@ dis7.Vector3Double = function()
 }; // end of class
 
  // node.js module support
-exports.Vector3Double = dis7.Vector3Double;
+exports.Vector3Double = dis.Vector3Double;
 
 // End of Vector3Double class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.GridAxisDescriptorVariable = function()
+dis.GridAxisDescriptorVariable = function()
 {
    /** coordinate of the grid origin or initial value */
    this.domainInitialXi = 0;
@@ -49,7 +49,7 @@ dis7.GridAxisDescriptorVariable = function()
    /** list of coordinates */
     this.xiValues = new Array();
  
-  dis7.GridAxisDescriptorVariable.prototype.initFromBinary = function(inputStream)
+  dis.GridAxisDescriptorVariable.prototype.initFromBinary = function(inputStream)
   {
        this.domainInitialXi = inputStream.readFloat64();
        this.domainFinalXi = inputStream.readFloat64();
@@ -62,14 +62,14 @@ dis7.GridAxisDescriptorVariable = function()
        this.coordinateOffsetXi = inputStream.readFloat64();
        for(var idx = 0; idx < this.numberOfPointsOnXiAxis; idx++)
        {
-           var anX = new dis7.TwoByteChunk();
+           var anX = new dis.TwoByteChunk();
            anX.initFromBinary(inputStream);
            this.xiValues.push(anX);
        }
 
   };
 
-  dis7.GridAxisDescriptorVariable.prototype.encodeToBinary = function(outputStream)
+  dis.GridAxisDescriptorVariable.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat64(this.domainInitialXi);
        outputStream.writeFloat64(this.domainFinalXi);
@@ -89,7 +89,7 @@ dis7.GridAxisDescriptorVariable = function()
 }; // end of class
 
  // node.js module support
-exports.GridAxisDescriptorVariable = dis7.GridAxisDescriptorVariable;
+exports.GridAxisDescriptorVariable = dis.GridAxisDescriptorVariable;
 
 // End of GridAxisDescriptorVariable class
 

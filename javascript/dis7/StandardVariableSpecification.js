@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StandardVariableSpecification = function()
+dis.StandardVariableSpecification = function()
 {
    /** Number of static variable records */
    this.numberOfStandardVariableRecords = 0;
@@ -25,19 +25,19 @@ dis7.StandardVariableSpecification = function()
    /** variable length list of standard variables, The class type and length here are WRONG and will cause the incorrect serialization of any class in whihc it is embedded. */
     this.standardVariables = new Array();
  
-  dis7.StandardVariableSpecification.prototype.initFromBinary = function(inputStream)
+  dis.StandardVariableSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfStandardVariableRecords = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfStandardVariableRecords; idx++)
        {
-           var anX = new dis7.SimulationManagementPduHeader();
+           var anX = new dis.SimulationManagementPduHeader();
            anX.initFromBinary(inputStream);
            this.standardVariables.push(anX);
        }
 
   };
 
-  dis7.StandardVariableSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.StandardVariableSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.numberOfStandardVariableRecords);
        for(var idx = 0; idx < this.standardVariables.length; idx++)
@@ -49,7 +49,7 @@ dis7.StandardVariableSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.StandardVariableSpecification = dis7.StandardVariableSpecification;
+exports.StandardVariableSpecification = dis.StandardVariableSpecification;
 
 // End of StandardVariableSpecification class
 

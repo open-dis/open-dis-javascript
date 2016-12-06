@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DatumSpecification = function()
+dis.DatumSpecification = function()
 {
    /** Number of fixed datums */
    this.numberOfFixedDatums = 0;
@@ -26,12 +26,12 @@ dis7.DatumSpecification = function()
    this.numberOfVariableDatums = 0;
 
    /** variable length list fixed datums */
-   this.fixedDatumList = new dis7.FixedDatum(); 
+   this.fixedDatumList = new dis.FixedDatum(); 
 
    /** variable length list variable datums. See 6.2.93 */
-   this.variableDatumList = new dis7.VariableDatum(); 
+   this.variableDatumList = new dis.VariableDatum(); 
 
-  dis7.DatumSpecification.prototype.initFromBinary = function(inputStream)
+  dis.DatumSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfFixedDatums = inputStream.readUInt();
        this.numberOfVariableDatums = inputStream.readUInt();
@@ -39,7 +39,7 @@ dis7.DatumSpecification = function()
        this.variableDatumList.initFromBinary(inputStream);
   };
 
-  dis7.DatumSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.DatumSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfFixedDatums);
        outputStream.writeUInt(this.numberOfVariableDatums);
@@ -49,7 +49,7 @@ dis7.DatumSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.DatumSpecification = dis7.DatumSpecification;
+exports.DatumSpecification = dis.DatumSpecification;
 
 // End of DatumSpecification class
 

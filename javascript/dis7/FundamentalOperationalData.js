@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FundamentalOperationalData = function()
+dis.FundamentalOperationalData = function()
 {
    /** system status */
    this.systemStatus = 0;
@@ -49,7 +49,7 @@ dis7.FundamentalOperationalData = function()
    /** parameter, enumeration */
    this.parameter6 = 0;
 
-  dis7.FundamentalOperationalData.prototype.initFromBinary = function(inputStream)
+  dis.FundamentalOperationalData.prototype.initFromBinary = function(inputStream)
   {
        this.systemStatus = inputStream.readUByte();
        this.dataField1 = inputStream.readUByte();
@@ -63,7 +63,7 @@ dis7.FundamentalOperationalData = function()
        this.parameter6 = inputStream.readUShort();
   };
 
-  dis7.FundamentalOperationalData.prototype.encodeToBinary = function(outputStream)
+  dis.FundamentalOperationalData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.systemStatus);
        outputStream.writeUByte(this.dataField1);
@@ -79,7 +79,7 @@ dis7.FundamentalOperationalData = function()
 }; // end of class
 
  // node.js module support
-exports.FundamentalOperationalData = dis7.FundamentalOperationalData;
+exports.FundamentalOperationalData = dis.FundamentalOperationalData;
 
 // End of FundamentalOperationalData class
 

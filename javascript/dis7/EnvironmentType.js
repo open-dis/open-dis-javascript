@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EnvironmentType = function()
+dis.EnvironmentType = function()
 {
    /** Kind of entity */
    this.entityKind = 0;
@@ -39,7 +39,7 @@ dis7.EnvironmentType = function()
 
    this.extra = 0;
 
-  dis7.EnvironmentType.prototype.initFromBinary = function(inputStream)
+  dis.EnvironmentType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -50,7 +50,7 @@ dis7.EnvironmentType = function()
        this.extra = inputStream.readUByte();
   };
 
-  dis7.EnvironmentType.prototype.encodeToBinary = function(outputStream)
+  dis.EnvironmentType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);
        outputStream.writeUByte(this.domain);
@@ -63,7 +63,7 @@ dis7.EnvironmentType = function()
 }; // end of class
 
  // node.js module support
-exports.EnvironmentType = dis7.EnvironmentType;
+exports.EnvironmentType = dis.EnvironmentType;
 
 // End of EnvironmentType class
 

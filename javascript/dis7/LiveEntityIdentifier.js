@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LiveEntityIdentifier = function()
+dis.LiveEntityIdentifier = function()
 {
    /** Live Simulation Address record (see 6.2.54)  */
-   this.liveSimulationAddress = new dis7.LiveSimulationAddress(); 
+   this.liveSimulationAddress = new dis.LiveSimulationAddress(); 
 
    /** Live entity number  */
    this.entityNumber = 0;
 
-  dis7.LiveEntityIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.LiveEntityIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.liveSimulationAddress.initFromBinary(inputStream);
        this.entityNumber = inputStream.readUShort();
   };
 
-  dis7.LiveEntityIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.LiveEntityIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.liveSimulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.entityNumber);
@@ -39,7 +39,7 @@ dis7.LiveEntityIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.LiveEntityIdentifier = dis7.LiveEntityIdentifier;
+exports.LiveEntityIdentifier = dis.LiveEntityIdentifier;
 
 // End of LiveEntityIdentifier class
 

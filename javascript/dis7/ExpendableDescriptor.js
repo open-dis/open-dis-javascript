@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ExpendableDescriptor = function()
+dis.ExpendableDescriptor = function()
 {
    /** Type of the object that exploded */
-   this.expendableType = new dis7.EntityType(); 
+   this.expendableType = new dis.EntityType(); 
 
    /** Padding */
    this.padding = 0;
 
-  dis7.ExpendableDescriptor.prototype.initFromBinary = function(inputStream)
+  dis.ExpendableDescriptor.prototype.initFromBinary = function(inputStream)
   {
        this.expendableType.initFromBinary(inputStream);
        this.padding = inputStream.readLong();
   };
 
-  dis7.ExpendableDescriptor.prototype.encodeToBinary = function(outputStream)
+  dis.ExpendableDescriptor.prototype.encodeToBinary = function(outputStream)
   {
        this.expendableType.encodeToBinary(outputStream);
        outputStream.writeLong(this.padding);
@@ -39,7 +39,7 @@ dis7.ExpendableDescriptor = function()
 }; // end of class
 
  // node.js module support
-exports.ExpendableDescriptor = dis7.ExpendableDescriptor;
+exports.ExpendableDescriptor = dis.ExpendableDescriptor;
 
 // End of ExpendableDescriptor class
 

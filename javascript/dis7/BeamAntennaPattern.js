@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.BeamAntennaPattern = function()
+dis.BeamAntennaPattern = function()
 {
    /** The rotation that transforms the reference coordinate sytem into the beam coordinate system. Either world coordinates or entity coordinates may be used as the reference coordinate system, as specified by the reference system field of the antenna pattern record. */
-   this.beamDirection = new dis7.EulerAngles(); 
+   this.beamDirection = new dis.EulerAngles(); 
 
    this.azimuthBeamwidth = 0;
 
@@ -44,7 +44,7 @@ dis7.BeamAntennaPattern = function()
    /** padding */
    this.padding3 = 0;
 
-  dis7.BeamAntennaPattern.prototype.initFromBinary = function(inputStream)
+  dis.BeamAntennaPattern.prototype.initFromBinary = function(inputStream)
   {
        this.beamDirection.initFromBinary(inputStream);
        this.azimuthBeamwidth = inputStream.readFloat32();
@@ -58,7 +58,7 @@ dis7.BeamAntennaPattern = function()
        this.padding3 = inputStream.readUInt();
   };
 
-  dis7.BeamAntennaPattern.prototype.encodeToBinary = function(outputStream)
+  dis.BeamAntennaPattern.prototype.encodeToBinary = function(outputStream)
   {
        this.beamDirection.encodeToBinary(outputStream);
        outputStream.writeFloat32(this.azimuthBeamwidth);
@@ -74,7 +74,7 @@ dis7.BeamAntennaPattern = function()
 }; // end of class
 
  // node.js module support
-exports.BeamAntennaPattern = dis7.BeamAntennaPattern;
+exports.BeamAntennaPattern = dis.BeamAntennaPattern;
 
 // End of BeamAntennaPattern class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IntercomCommunicationsParameters = function()
+dis.IntercomCommunicationsParameters = function()
 {
    /** Type of intercom parameters record */
    this.recordType = 0;
@@ -28,14 +28,14 @@ dis7.IntercomCommunicationsParameters = function()
    /** This is a placeholder. */
    this.recordSpecificField = 0;
 
-  dis7.IntercomCommunicationsParameters.prototype.initFromBinary = function(inputStream)
+  dis.IntercomCommunicationsParameters.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUShort();
        this.recordLength = inputStream.readUShort();
        this.recordSpecificField = inputStream.readUInt();
   };
 
-  dis7.IntercomCommunicationsParameters.prototype.encodeToBinary = function(outputStream)
+  dis.IntercomCommunicationsParameters.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -44,7 +44,7 @@ dis7.IntercomCommunicationsParameters = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomCommunicationsParameters = dis7.IntercomCommunicationsParameters;
+exports.IntercomCommunicationsParameters = dis.IntercomCommunicationsParameters;
 
 // End of IntercomCommunicationsParameters class
 

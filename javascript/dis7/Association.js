@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,19 +17,19 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Association = function()
+dis.Association = function()
 {
    this.associationType = 0;
 
    this.padding4 = 0;
 
    /** identity of associated entity. If none, NO_SPECIFIC_ENTITY */
-   this.associatedEntityID = new dis7.EntityID(); 
+   this.associatedEntityID = new dis.EntityID(); 
 
    /** location, in world coordinates */
-   this.associatedLocation = new dis7.Vector3Double(); 
+   this.associatedLocation = new dis.Vector3Double(); 
 
-  dis7.Association.prototype.initFromBinary = function(inputStream)
+  dis.Association.prototype.initFromBinary = function(inputStream)
   {
        this.associationType = inputStream.readUByte();
        this.padding4 = inputStream.readUByte();
@@ -37,7 +37,7 @@ dis7.Association = function()
        this.associatedLocation.initFromBinary(inputStream);
   };
 
-  dis7.Association.prototype.encodeToBinary = function(outputStream)
+  dis.Association.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.associationType);
        outputStream.writeUByte(this.padding4);
@@ -47,7 +47,7 @@ dis7.Association = function()
 }; // end of class
 
  // node.js module support
-exports.Association = dis7.Association;
+exports.Association = dis.Association;
 
 // End of Association class
 

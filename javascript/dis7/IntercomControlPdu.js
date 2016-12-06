@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IntercomControlPdu = function()
+dis.IntercomControlPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -50,7 +50,7 @@ dis7.IntercomControlPdu = function()
    this.communicationsChannelType = 0;
 
    /** Source entity ID */
-   this.sourceEntityID = new dis7.EntityID(); 
+   this.sourceEntityID = new dis.EntityID(); 
 
    /** The specific intercom device being simulated within an entity. */
    this.sourceCommunicationsDeviceID = 0;
@@ -68,7 +68,7 @@ dis7.IntercomControlPdu = function()
    this.command = 0;
 
    /** eid of the entity that has created this intercom channel. */
-   this.masterEntityID = new dis7.EntityID(); 
+   this.masterEntityID = new dis.EntityID(); 
 
    /** specific intercom device that has created this intercom channel */
    this.masterCommunicationsDeviceID = 0;
@@ -79,7 +79,7 @@ dis7.IntercomControlPdu = function()
    /** ^^^This is wrong the length of the data field is variable. Using a long for now. */
     this.intercomParameters = new Array();
  
-  dis7.IntercomControlPdu.prototype.initFromBinary = function(inputStream)
+  dis.IntercomControlPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -102,14 +102,14 @@ dis7.IntercomControlPdu = function()
        this.intercomParametersLength = inputStream.readUInt();
        for(var idx = 0; idx < this.intercomParametersLength; idx++)
        {
-           var anX = new dis7.IntercomCommunicationsParameters();
+           var anX = new dis.IntercomCommunicationsParameters();
            anX.initFromBinary(inputStream);
            this.intercomParameters.push(anX);
        }
 
   };
 
-  dis7.IntercomControlPdu.prototype.encodeToBinary = function(outputStream)
+  dis.IntercomControlPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -139,7 +139,7 @@ dis7.IntercomControlPdu = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomControlPdu = dis7.IntercomControlPdu;
+exports.IntercomControlPdu = dis.IntercomControlPdu;
 
 // End of IntercomControlPdu class
 

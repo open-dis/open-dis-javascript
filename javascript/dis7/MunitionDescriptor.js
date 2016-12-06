@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MunitionDescriptor = function()
+dis.MunitionDescriptor = function()
 {
    /** What munition was used in the burst */
-   this.munitionType = new dis7.EntityType(); 
+   this.munitionType = new dis.EntityType(); 
 
    /** type of warhead enumeration */
    this.warhead = 0;
@@ -34,7 +34,7 @@ dis7.MunitionDescriptor = function()
    /** rate at which the munition was fired */
    this.rate = 0;
 
-  dis7.MunitionDescriptor.prototype.initFromBinary = function(inputStream)
+  dis.MunitionDescriptor.prototype.initFromBinary = function(inputStream)
   {
        this.munitionType.initFromBinary(inputStream);
        this.warhead = inputStream.readUShort();
@@ -43,7 +43,7 @@ dis7.MunitionDescriptor = function()
        this.rate = inputStream.readUShort();
   };
 
-  dis7.MunitionDescriptor.prototype.encodeToBinary = function(outputStream)
+  dis.MunitionDescriptor.prototype.encodeToBinary = function(outputStream)
   {
        this.munitionType.encodeToBinary(outputStream);
        outputStream.writeUShort(this.warhead);
@@ -54,7 +54,7 @@ dis7.MunitionDescriptor = function()
 }; // end of class
 
  // node.js module support
-exports.MunitionDescriptor = dis7.MunitionDescriptor;
+exports.MunitionDescriptor = dis.MunitionDescriptor;
 
 // End of MunitionDescriptor class
 

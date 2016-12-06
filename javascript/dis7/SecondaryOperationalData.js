@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SecondaryOperationalData = function()
+dis.SecondaryOperationalData = function()
 {
    /** additional operational characteristics of the IFF emitting system. Each 8-bit field will vary depending on the system type. */
    this.operationalData1 = 0;
@@ -28,14 +28,14 @@ dis7.SecondaryOperationalData = function()
    /** the number of IFF Fundamental Parameter Data records that follow */
    this.numberOfIFFFundamentalParameterRecords = 0;
 
-  dis7.SecondaryOperationalData.prototype.initFromBinary = function(inputStream)
+  dis.SecondaryOperationalData.prototype.initFromBinary = function(inputStream)
   {
        this.operationalData1 = inputStream.readUByte();
        this.operationalData2 = inputStream.readUByte();
        this.numberOfIFFFundamentalParameterRecords = inputStream.readUShort();
   };
 
-  dis7.SecondaryOperationalData.prototype.encodeToBinary = function(outputStream)
+  dis.SecondaryOperationalData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.operationalData1);
        outputStream.writeUByte(this.operationalData2);
@@ -44,7 +44,7 @@ dis7.SecondaryOperationalData = function()
 }; // end of class
 
  // node.js module support
-exports.SecondaryOperationalData = dis7.SecondaryOperationalData;
+exports.SecondaryOperationalData = dis.SecondaryOperationalData;
 
 // End of SecondaryOperationalData class
 

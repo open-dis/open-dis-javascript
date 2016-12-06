@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IffDataSpecification = function()
+dis.IffDataSpecification = function()
 {
    /** Number of iff records */
    this.numberOfIffDataRecords = 0;
@@ -25,19 +25,19 @@ dis7.IffDataSpecification = function()
    /** IFF data records */
     this.iffDataRecords = new Array();
  
-  dis7.IffDataSpecification.prototype.initFromBinary = function(inputStream)
+  dis.IffDataSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfIffDataRecords = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfIffDataRecords; idx++)
        {
-           var anX = new dis7.IFFData();
+           var anX = new dis.IFFData();
            anX.initFromBinary(inputStream);
            this.iffDataRecords.push(anX);
        }
 
   };
 
-  dis7.IffDataSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.IffDataSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.numberOfIffDataRecords);
        for(var idx = 0; idx < this.iffDataRecords.length; idx++)
@@ -49,7 +49,7 @@ dis7.IffDataSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.IffDataSpecification = dis7.IffDataSpecification;
+exports.IffDataSpecification = dis.IffDataSpecification;
 
 // End of IffDataSpecification class
 

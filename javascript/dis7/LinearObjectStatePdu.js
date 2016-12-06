@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LinearObjectStatePdu = function()
+dis.LinearObjectStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ dis7.LinearObjectStatePdu = function()
    this.padding = 0;
 
    /** Object in synthetic environment */
-   this.objectID = new dis7.EntityID(); 
+   this.objectID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.referencedObjectID = new dis7.EntityID(); 
+   this.referencedObjectID = new dis.EntityID(); 
 
    /** unique update number of each state transition of an object */
    this.updateNumber = 0;
@@ -59,18 +59,18 @@ dis7.LinearObjectStatePdu = function()
    this.numberOfSegments = 0;
 
    /** requesterID */
-   this.requesterID = new dis7.SimulationAddress(); 
+   this.requesterID = new dis.SimulationAddress(); 
 
    /** receiver ID */
-   this.receivingID = new dis7.SimulationAddress(); 
+   this.receivingID = new dis.SimulationAddress(); 
 
    /** Object type */
-   this.objectType = new dis7.ObjectType(); 
+   this.objectType = new dis.ObjectType(); 
 
    /** Linear segment parameters */
     this.linearSegmentParameters = new Array();
  
-  dis7.LinearObjectStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.LinearObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -90,14 +90,14 @@ dis7.LinearObjectStatePdu = function()
        this.objectType.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfSegments; idx++)
        {
-           var anX = new dis7.LinearSegmentParameter();
+           var anX = new dis.LinearSegmentParameter();
            anX.initFromBinary(inputStream);
            this.linearSegmentParameters.push(anX);
        }
 
   };
 
-  dis7.LinearObjectStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.LinearObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -124,7 +124,7 @@ dis7.LinearObjectStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.LinearObjectStatePdu = dis7.LinearObjectStatePdu;
+exports.LinearObjectStatePdu = dis.LinearObjectStatePdu;
 
 // End of LinearObjectStatePdu class
 

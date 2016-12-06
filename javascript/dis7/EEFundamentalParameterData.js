@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EEFundamentalParameterData = function()
+dis.EEFundamentalParameterData = function()
 {
    /** center frequency of the emission in hertz. */
    this.frequency = 0;
@@ -34,7 +34,7 @@ dis7.EEFundamentalParameterData = function()
    /** Average pulse width  of the emission in microseconds. */
    this.pulseWidth = 0;
 
-  dis7.EEFundamentalParameterData.prototype.initFromBinary = function(inputStream)
+  dis.EEFundamentalParameterData.prototype.initFromBinary = function(inputStream)
   {
        this.frequency = inputStream.readFloat32();
        this.frequencyRange = inputStream.readFloat32();
@@ -43,7 +43,7 @@ dis7.EEFundamentalParameterData = function()
        this.pulseWidth = inputStream.readFloat32();
   };
 
-  dis7.EEFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
+  dis.EEFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.frequency);
        outputStream.writeFloat32(this.frequencyRange);
@@ -54,7 +54,7 @@ dis7.EEFundamentalParameterData = function()
 }; // end of class
 
  // node.js module support
-exports.EEFundamentalParameterData = dis7.EEFundamentalParameterData;
+exports.EEFundamentalParameterData = dis.EEFundamentalParameterData;
 
 // End of EEFundamentalParameterData class
 

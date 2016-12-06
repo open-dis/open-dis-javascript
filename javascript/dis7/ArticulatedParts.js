@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ArticulatedParts = function()
+dis.ArticulatedParts = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 0;
@@ -34,7 +34,7 @@ dis7.ArticulatedParts = function()
    /** The definition of the 64 bits shall be determined based on the type of parameter specified in the Parameter Type field  */
    this.parameterValue = 0;
 
-  dis7.ArticulatedParts.prototype.initFromBinary = function(inputStream)
+  dis.ArticulatedParts.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.changeIndicator = inputStream.readUByte();
@@ -43,7 +43,7 @@ dis7.ArticulatedParts = function()
        this.parameterValue = inputStream.readLong();
   };
 
-  dis7.ArticulatedParts.prototype.encodeToBinary = function(outputStream)
+  dis.ArticulatedParts.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.changeIndicator);
@@ -54,7 +54,7 @@ dis7.ArticulatedParts = function()
 }; // end of class
 
  // node.js module support
-exports.ArticulatedParts = dis7.ArticulatedParts;
+exports.ArticulatedParts = dis.ArticulatedParts;
 
 // End of ArticulatedParts class
 

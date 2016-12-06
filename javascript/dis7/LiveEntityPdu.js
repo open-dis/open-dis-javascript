@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LiveEntityPdu = function()
+dis.LiveEntityPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -43,7 +43,7 @@ dis7.LiveEntityPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.LiveEntityPdu.prototype.initFromBinary = function(inputStream)
+  dis.LiveEntityPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -55,7 +55,7 @@ dis7.LiveEntityPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.LiveEntityPdu.prototype.encodeToBinary = function(outputStream)
+  dis.LiveEntityPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -69,7 +69,7 @@ dis7.LiveEntityPdu = function()
 }; // end of class
 
  // node.js module support
-exports.LiveEntityPdu = dis7.LiveEntityPdu;
+exports.LiveEntityPdu = dis.LiveEntityPdu;
 
 // End of LiveEntityPdu class
 

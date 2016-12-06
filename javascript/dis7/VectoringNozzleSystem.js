@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.VectoringNozzleSystem = function()
+dis.VectoringNozzleSystem = function()
 {
    /** In degrees */
    this.horizontalDeflectionAngle = 0;
@@ -25,13 +25,13 @@ dis7.VectoringNozzleSystem = function()
    /** In degrees */
    this.verticalDeflectionAngle = 0;
 
-  dis7.VectoringNozzleSystem.prototype.initFromBinary = function(inputStream)
+  dis.VectoringNozzleSystem.prototype.initFromBinary = function(inputStream)
   {
        this.horizontalDeflectionAngle = inputStream.readFloat32();
        this.verticalDeflectionAngle = inputStream.readFloat32();
   };
 
-  dis7.VectoringNozzleSystem.prototype.encodeToBinary = function(outputStream)
+  dis.VectoringNozzleSystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.horizontalDeflectionAngle);
        outputStream.writeFloat32(this.verticalDeflectionAngle);
@@ -39,7 +39,7 @@ dis7.VectoringNozzleSystem = function()
 }; // end of class
 
  // node.js module support
-exports.VectoringNozzleSystem = dis7.VectoringNozzleSystem;
+exports.VectoringNozzleSystem = dis.VectoringNozzleSystem;
 
 // End of VectoringNozzleSystem class
 

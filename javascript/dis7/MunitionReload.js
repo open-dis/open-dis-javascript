@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MunitionReload = function()
+dis.MunitionReload = function()
 {
    /**  This field shall identify the entity type of the munition. See section 6.2.30. */
-   this.munitionType = new dis7.EntityType(); 
+   this.munitionType = new dis.EntityType(); 
 
    /** the station or launcher to which the munition is assigned. See Annex I */
    this.station = 0;
@@ -37,7 +37,7 @@ dis7.MunitionReload = function()
    /** the number of seconds of sim time required to reload the max possible quantity */
    this.maximumQuantityReloadTime = 0;
 
-  dis7.MunitionReload.prototype.initFromBinary = function(inputStream)
+  dis.MunitionReload.prototype.initFromBinary = function(inputStream)
   {
        this.munitionType.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -47,7 +47,7 @@ dis7.MunitionReload = function()
        this.maximumQuantityReloadTime = inputStream.readUInt();
   };
 
-  dis7.MunitionReload.prototype.encodeToBinary = function(outputStream)
+  dis.MunitionReload.prototype.encodeToBinary = function(outputStream)
   {
        this.munitionType.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -59,7 +59,7 @@ dis7.MunitionReload = function()
 }; // end of class
 
  // node.js module support
-exports.MunitionReload = dis7.MunitionReload;
+exports.MunitionReload = dis.MunitionReload;
 
 // End of MunitionReload class
 

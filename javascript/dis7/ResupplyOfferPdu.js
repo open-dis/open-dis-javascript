@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ResupplyOfferPdu = function()
+dis.ResupplyOfferPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ dis7.ResupplyOfferPdu = function()
    this.padding = 0;
 
    /** Field identifies the Entity and respective Entity Record ID that is receiving service (see 6.2.28), Section 7.4.3 */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Identifies the Entity and respective Entity ID Record that is supplying  (see 6.2.28), Section 7.4.3 */
-   this.supplyingEntityID = new dis7.EntityID(); 
+   this.supplyingEntityID = new dis.EntityID(); 
 
    /** How many supplies types are being offered, Section 7.4.3 */
    this.numberOfSupplyTypes = 0;
@@ -61,7 +61,7 @@ dis7.ResupplyOfferPdu = function()
    /** A Reord that Specifies the type of supply and the amount of that supply for each of the supply types in numberOfSupplyTypes (see 6.2.85), Section 7.4.3 */
     this.supplies = new Array();
  
-  dis7.ResupplyOfferPdu.prototype.initFromBinary = function(inputStream)
+  dis.ResupplyOfferPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -78,14 +78,14 @@ dis7.ResupplyOfferPdu = function()
        this.padding2 = inputStream.readShort();
        for(var idx = 0; idx < this.numberOfSupplyTypes; idx++)
        {
-           var anX = new dis7.SupplyQuantity();
+           var anX = new dis.SupplyQuantity();
            anX.initFromBinary(inputStream);
            this.supplies.push(anX);
        }
 
   };
 
-  dis7.ResupplyOfferPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ResupplyOfferPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -109,7 +109,7 @@ dis7.ResupplyOfferPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ResupplyOfferPdu = dis7.ResupplyOfferPdu;
+exports.ResupplyOfferPdu = dis.ResupplyOfferPdu;
 
 // End of ResupplyOfferPdu class
 

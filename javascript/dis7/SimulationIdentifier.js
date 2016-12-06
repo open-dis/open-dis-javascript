@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SimulationIdentifier = function()
+dis.SimulationIdentifier = function()
 {
    /** Simulation address  */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /** This field shall be set to zero as there is no reference number associated with a Simulation Identifier. */
    this.referenceNumber = 0;
 
-  dis7.SimulationIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.SimulationIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.referenceNumber = inputStream.readUShort();
   };
 
-  dis7.SimulationIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.SimulationIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.referenceNumber);
@@ -39,7 +39,7 @@ dis7.SimulationIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationIdentifier = dis7.SimulationIdentifier;
+exports.SimulationIdentifier = dis.SimulationIdentifier;
 
 // End of SimulationIdentifier class
 

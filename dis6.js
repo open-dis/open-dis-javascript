@@ -11724,14 +11724,14 @@ dis.SetDataPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis.UnsignedIntegerWrapper();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis.UnsignedIntegerWrapper();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }

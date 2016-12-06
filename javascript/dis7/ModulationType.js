@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ModulationType = function()
+dis.ModulationType = function()
 {
    /** This field shall indicate the spread spectrum technique or combination of spread spectrum techniques in use. Bit field. 0=freq hopping, 1=psuedo noise, time hopping=2, reamining bits unused */
    this.spreadSpectrum = 0;
@@ -31,7 +31,7 @@ dis7.ModulationType = function()
    /** the radio system associated with this Transmitter PDU and shall be used as the basis to interpret other fields whose values depend on a specific radio system. */
    this.radioSystem = 0;
 
-  dis7.ModulationType.prototype.initFromBinary = function(inputStream)
+  dis.ModulationType.prototype.initFromBinary = function(inputStream)
   {
        this.spreadSpectrum = inputStream.readUShort();
        this.majorModulation = inputStream.readUShort();
@@ -39,7 +39,7 @@ dis7.ModulationType = function()
        this.radioSystem = inputStream.readUShort();
   };
 
-  dis7.ModulationType.prototype.encodeToBinary = function(outputStream)
+  dis.ModulationType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.spreadSpectrum);
        outputStream.writeUShort(this.majorModulation);
@@ -49,7 +49,7 @@ dis7.ModulationType = function()
 }; // end of class
 
  // node.js module support
-exports.ModulationType = dis7.ModulationType;
+exports.ModulationType = dis.ModulationType;
 
 // End of ModulationType class
 

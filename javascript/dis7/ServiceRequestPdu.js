@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ServiceRequestPdu = function()
+dis.ServiceRequestPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ dis7.ServiceRequestPdu = function()
    this.padding = 0;
 
    /** Entity that is requesting service (see 6.2.28), Section 7.4.2 */
-   this.requestingEntityID = new dis7.EntityID(); 
+   this.requestingEntityID = new dis.EntityID(); 
 
    /** Entity that is providing the service (see 6.2.28), Section 7.4.2 */
-   this.servicingEntityID = new dis7.EntityID(); 
+   this.servicingEntityID = new dis.EntityID(); 
 
    /** Type of service requested, Section 7.4.2 */
    this.serviceTypeRequested = 0;
@@ -61,7 +61,7 @@ dis7.ServiceRequestPdu = function()
    /** Field shall specify the type of supply and the amount of that supply for the number specified in the numberOfSupplyTypes (see 6.2.85), Section 7.4.2 */
     this.supplies = new Array();
  
-  dis7.ServiceRequestPdu.prototype.initFromBinary = function(inputStream)
+  dis.ServiceRequestPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -78,14 +78,14 @@ dis7.ServiceRequestPdu = function()
        this.serviceRequestPadding = inputStream.readShort();
        for(var idx = 0; idx < this.numberOfSupplyTypes; idx++)
        {
-           var anX = new dis7.SupplyQuantity();
+           var anX = new dis.SupplyQuantity();
            anX.initFromBinary(inputStream);
            this.supplies.push(anX);
        }
 
   };
 
-  dis7.ServiceRequestPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ServiceRequestPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -109,7 +109,7 @@ dis7.ServiceRequestPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ServiceRequestPdu = dis7.ServiceRequestPdu;
+exports.ServiceRequestPdu = dis.ServiceRequestPdu;
 
 // End of ServiceRequestPdu class
 

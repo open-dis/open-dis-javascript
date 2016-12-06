@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RepairCompletePdu = function()
+dis.RepairCompletePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ dis7.RepairCompletePdu = function()
    this.padding = 0;
 
    /** Entity that is receiving service.  See 6.2.28 */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Entity that is supplying.  See 6.2.28 */
-   this.repairingEntityID = new dis7.EntityID(); 
+   this.repairingEntityID = new dis.EntityID(); 
 
    /** Enumeration for type of repair.  See 6.2.74 */
    this.repair = 0;
@@ -55,7 +55,7 @@ dis7.RepairCompletePdu = function()
    /** padding, number prevents conflict with superclass ivar name */
    this.padding4 = 0;
 
-  dis7.RepairCompletePdu.prototype.initFromBinary = function(inputStream)
+  dis.RepairCompletePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -71,7 +71,7 @@ dis7.RepairCompletePdu = function()
        this.padding4 = inputStream.readShort();
   };
 
-  dis7.RepairCompletePdu.prototype.encodeToBinary = function(outputStream)
+  dis.RepairCompletePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -89,7 +89,7 @@ dis7.RepairCompletePdu = function()
 }; // end of class
 
  // node.js module support
-exports.RepairCompletePdu = dis7.RepairCompletePdu;
+exports.RepairCompletePdu = dis.RepairCompletePdu;
 
 // End of RepairCompletePdu class
 

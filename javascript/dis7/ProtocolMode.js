@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,24 +17,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ProtocolMode = function()
+dis.ProtocolMode = function()
 {
    /** Bitfields, 14-15 contain an enum */
    this.protocolMode = 0;
 
-  dis7.ProtocolMode.prototype.initFromBinary = function(inputStream)
+  dis.ProtocolMode.prototype.initFromBinary = function(inputStream)
   {
        this.protocolMode = inputStream.readUShort();
   };
 
-  dis7.ProtocolMode.prototype.encodeToBinary = function(outputStream)
+  dis.ProtocolMode.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.protocolMode);
   };
 }; // end of class
 
  // node.js module support
-exports.ProtocolMode = dis7.ProtocolMode;
+exports.ProtocolMode = dis.ProtocolMode;
 
 // End of ProtocolMode class
 

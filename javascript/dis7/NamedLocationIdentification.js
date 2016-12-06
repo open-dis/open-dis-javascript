@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.NamedLocationIdentification = function()
+dis.NamedLocationIdentification = function()
 {
    /** the station name within the host at which the part entity is located. If the part entity is On Station, this field shall specify the representation of the part’s location data fields. This field shall be specified by a 16-bit enumeration  */
    this.stationName = 0;
@@ -25,13 +25,13 @@ dis7.NamedLocationIdentification = function()
    /** the number of the particular wing station, cargo hold etc., at which the part is attached.  */
    this.stationNumber = 0;
 
-  dis7.NamedLocationIdentification.prototype.initFromBinary = function(inputStream)
+  dis.NamedLocationIdentification.prototype.initFromBinary = function(inputStream)
   {
        this.stationName = inputStream.readUShort();
        this.stationNumber = inputStream.readUShort();
   };
 
-  dis7.NamedLocationIdentification.prototype.encodeToBinary = function(outputStream)
+  dis.NamedLocationIdentification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.stationName);
        outputStream.writeUShort(this.stationNumber);
@@ -39,7 +39,7 @@ dis7.NamedLocationIdentification = function()
 }; // end of class
 
  // node.js module support
-exports.NamedLocationIdentification = dis7.NamedLocationIdentification;
+exports.NamedLocationIdentification = dis.NamedLocationIdentification;
 
 // End of NamedLocationIdentification class
 

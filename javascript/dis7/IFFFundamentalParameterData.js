@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IFFFundamentalParameterData = function()
+dis.IFFFundamentalParameterData = function()
 {
    /** ERP */
    this.erp = 0;
@@ -40,7 +40,7 @@ dis7.IFFFundamentalParameterData = function()
    /** System-specific data */
    this.systemSpecificData = new Array(0, 0, 0);
 
-  dis7.IFFFundamentalParameterData.prototype.initFromBinary = function(inputStream)
+  dis.IFFFundamentalParameterData.prototype.initFromBinary = function(inputStream)
   {
        this.erp = inputStream.readFloat32();
        this.frequency = inputStream.readFloat32();
@@ -54,7 +54,7 @@ dis7.IFFFundamentalParameterData = function()
        }
   };
 
-  dis7.IFFFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
+  dis.IFFFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.erp);
        outputStream.writeFloat32(this.frequency);
@@ -70,7 +70,7 @@ dis7.IFFFundamentalParameterData = function()
 }; // end of class
 
  // node.js module support
-exports.IFFFundamentalParameterData = dis7.IFFFundamentalParameterData;
+exports.IFFFundamentalParameterData = dis.IFFFundamentalParameterData;
 
 // End of IFFFundamentalParameterData class
 

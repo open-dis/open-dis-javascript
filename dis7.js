@@ -939,8 +939,8 @@ exports.OutputStream = dis.OutputStream;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -949,7 +949,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AcknowledgePdu = function()
+dis.AcknowledgePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -976,16 +976,10 @@ dis7.AcknowledgePdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** type of message being acknowledged */
    this.acknowledgeFlag = 0;
@@ -996,7 +990,7 @@ dis7.AcknowledgePdu = function()
    /** Request ID that is unique */
    this.requestID = 0;
 
-  dis7.AcknowledgePdu.prototype.initFromBinary = function(inputStream)
+  dis.AcknowledgePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -1008,14 +1002,12 @@ dis7.AcknowledgePdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.acknowledgeFlag = inputStream.readUShort();
        this.responseFlag = inputStream.readUShort();
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.AcknowledgePdu.prototype.encodeToBinary = function(outputStream)
+  dis.AcknowledgePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -1027,8 +1019,6 @@ dis7.AcknowledgePdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        outputStream.writeUShort(this.acknowledgeFlag);
        outputStream.writeUShort(this.responseFlag);
        outputStream.writeUInt(this.requestID);
@@ -1036,7 +1026,7 @@ dis7.AcknowledgePdu = function()
 }; // end of class
 
  // node.js module support
-exports.AcknowledgePdu = dis7.AcknowledgePdu;
+exports.AcknowledgePdu = dis.AcknowledgePdu;
 
 // End of AcknowledgePdu class
 
@@ -1049,8 +1039,8 @@ exports.AcknowledgePdu = dis7.AcknowledgePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1059,7 +1049,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AcknowledgeReliablePdu = function()
+dis.AcknowledgeReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -1086,10 +1076,10 @@ dis7.AcknowledgeReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** ack flags */
    this.acknowledgeFlag = 0;
@@ -1100,7 +1090,7 @@ dis7.AcknowledgeReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  dis7.AcknowledgeReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.AcknowledgeReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -1117,7 +1107,7 @@ dis7.AcknowledgeReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.AcknowledgeReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.AcknowledgeReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -1136,7 +1126,7 @@ dis7.AcknowledgeReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.AcknowledgeReliablePdu = dis7.AcknowledgeReliablePdu;
+exports.AcknowledgeReliablePdu = dis.AcknowledgeReliablePdu;
 
 // End of AcknowledgeReliablePdu class
 
@@ -1149,8 +1139,8 @@ exports.AcknowledgeReliablePdu = dis7.AcknowledgeReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1159,7 +1149,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AcousticEmitter = function()
+dis.AcousticEmitter = function()
 {
    /** the system for a particular UA emitter, and an enumeration */
    this.acousticSystemName = 0;
@@ -1170,14 +1160,14 @@ dis7.AcousticEmitter = function()
    /** The UA emitter identification number relative to a specific system */
    this.acousticIDNumber = 0;
 
-  dis7.AcousticEmitter.prototype.initFromBinary = function(inputStream)
+  dis.AcousticEmitter.prototype.initFromBinary = function(inputStream)
   {
        this.acousticSystemName = inputStream.readUShort();
        this.acousticFunction = inputStream.readUByte();
        this.acousticIDNumber = inputStream.readUByte();
   };
 
-  dis7.AcousticEmitter.prototype.encodeToBinary = function(outputStream)
+  dis.AcousticEmitter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.acousticSystemName);
        outputStream.writeUByte(this.acousticFunction);
@@ -1186,7 +1176,7 @@ dis7.AcousticEmitter = function()
 }; // end of class
 
  // node.js module support
-exports.AcousticEmitter = dis7.AcousticEmitter;
+exports.AcousticEmitter = dis.AcousticEmitter;
 
 // End of AcousticEmitter class
 
@@ -1199,8 +1189,8 @@ exports.AcousticEmitter = dis7.AcousticEmitter;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1209,7 +1199,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ActionRequestPdu = function()
+dis.ActionRequestPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -1236,16 +1226,10 @@ dis7.ActionRequestPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** identifies the request being made by the simulaton manager */
    this.requestID = 0;
@@ -1265,7 +1249,7 @@ dis7.ActionRequestPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.ActionRequestPdu.prototype.initFromBinary = function(inputStream)
+  dis.ActionRequestPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -1277,29 +1261,27 @@ dis7.ActionRequestPdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.requestID = inputStream.readUInt();
        this.actionID = inputStream.readUInt();
        this.numberOfFixedDatumRecords = inputStream.readUInt();
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.ActionRequestPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ActionRequestPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -1311,8 +1293,6 @@ dis7.ActionRequestPdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        outputStream.writeUInt(this.requestID);
        outputStream.writeUInt(this.actionID);
        outputStream.writeUInt(this.numberOfFixedDatumRecords);
@@ -1331,7 +1311,7 @@ dis7.ActionRequestPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ActionRequestPdu = dis7.ActionRequestPdu;
+exports.ActionRequestPdu = dis.ActionRequestPdu;
 
 // End of ActionRequestPdu class
 
@@ -1344,8 +1324,8 @@ exports.ActionRequestPdu = dis7.ActionRequestPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1354,7 +1334,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ActionRequestReliablePdu = function()
+dis.ActionRequestReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -1381,10 +1361,10 @@ dis7.ActionRequestReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -1413,7 +1393,7 @@ dis7.ActionRequestReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  dis7.ActionRequestReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.ActionRequestReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -1434,21 +1414,21 @@ dis7.ActionRequestReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  dis7.ActionRequestReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.ActionRequestReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -1481,7 +1461,7 @@ dis7.ActionRequestReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.ActionRequestReliablePdu = dis7.ActionRequestReliablePdu;
+exports.ActionRequestReliablePdu = dis.ActionRequestReliablePdu;
 
 // End of ActionRequestReliablePdu class
 
@@ -1494,8 +1474,8 @@ exports.ActionRequestReliablePdu = dis7.ActionRequestReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1504,7 +1484,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ActionResponsePdu = function()
+dis.ActionResponsePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -1531,16 +1511,10 @@ dis7.ActionResponsePdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Request ID that is unique */
    this.requestID = 0;
@@ -1560,7 +1534,7 @@ dis7.ActionResponsePdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.ActionResponsePdu.prototype.initFromBinary = function(inputStream)
+  dis.ActionResponsePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -1572,29 +1546,27 @@ dis7.ActionResponsePdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.requestID = inputStream.readUInt();
        this.requestStatus = inputStream.readUInt();
        this.numberOfFixedDatumRecords = inputStream.readUInt();
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.ActionResponsePdu.prototype.encodeToBinary = function(outputStream)
+  dis.ActionResponsePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -1606,8 +1578,6 @@ dis7.ActionResponsePdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        outputStream.writeUInt(this.requestID);
        outputStream.writeUInt(this.requestStatus);
        outputStream.writeUInt(this.numberOfFixedDatumRecords);
@@ -1626,7 +1596,7 @@ dis7.ActionResponsePdu = function()
 }; // end of class
 
  // node.js module support
-exports.ActionResponsePdu = dis7.ActionResponsePdu;
+exports.ActionResponsePdu = dis.ActionResponsePdu;
 
 // End of ActionResponsePdu class
 
@@ -1639,8 +1609,8 @@ exports.ActionResponsePdu = dis7.ActionResponsePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1649,7 +1619,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ActionResponseReliablePdu = function()
+dis.ActionResponseReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -1676,10 +1646,10 @@ dis7.ActionResponseReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** request ID */
    this.requestID = 0;
@@ -1699,7 +1669,7 @@ dis7.ActionResponseReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  dis7.ActionResponseReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.ActionResponseReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -1717,21 +1687,21 @@ dis7.ActionResponseReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  dis7.ActionResponseReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.ActionResponseReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -1761,7 +1731,7 @@ dis7.ActionResponseReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.ActionResponseReliablePdu = dis7.ActionResponseReliablePdu;
+exports.ActionResponseReliablePdu = dis.ActionResponseReliablePdu;
 
 // End of ActionResponseReliablePdu class
 
@@ -1774,8 +1744,8 @@ exports.ActionResponseReliablePdu = dis7.ActionResponseReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1784,21 +1754,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AggregateIdentifier = function()
+dis.AggregateIdentifier = function()
 {
    /** Simulation address, ie site and application, the first two fields of the entity ID */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /** the aggregate ID, an object identifier */
    this.aggregateID = 0;
 
-  dis7.AggregateIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.AggregateIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.aggregateID = inputStream.readUShort();
   };
 
-  dis7.AggregateIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.AggregateIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.aggregateID);
@@ -1806,7 +1776,7 @@ dis7.AggregateIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.AggregateIdentifier = dis7.AggregateIdentifier;
+exports.AggregateIdentifier = dis.AggregateIdentifier;
 
 // End of AggregateIdentifier class
 
@@ -1819,8 +1789,8 @@ exports.AggregateIdentifier = dis7.AggregateIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1829,7 +1799,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AggregateMarking = function()
+dis.AggregateMarking = function()
 {
    /** The character set */
    this.characterSet = 0;
@@ -1837,13 +1807,13 @@ dis7.AggregateMarking = function()
    /** The characters */
    this.characters = 0;
 
-  dis7.AggregateMarking.prototype.initFromBinary = function(inputStream)
+  dis.AggregateMarking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
        this.characters = inputStream.readUByte();
   };
 
-  dis7.AggregateMarking.prototype.encodeToBinary = function(outputStream)
+  dis.AggregateMarking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);
        outputStream.writeUByte(this.characters);
@@ -1851,7 +1821,7 @@ dis7.AggregateMarking = function()
 }; // end of class
 
  // node.js module support
-exports.AggregateMarking = dis7.AggregateMarking;
+exports.AggregateMarking = dis.AggregateMarking;
 
 // End of AggregateMarking class
 
@@ -1864,8 +1834,8 @@ exports.AggregateMarking = dis7.AggregateMarking;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1874,7 +1844,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AggregateType = function()
+dis.AggregateType = function()
 {
    /** Grouping criterion used to group the aggregate. Enumeration from EBV document */
    this.aggregateKind = 0;
@@ -1897,7 +1867,7 @@ dis7.AggregateType = function()
    /** extra information needed to describe the aggregate */
    this.extra = 0;
 
-  dis7.AggregateType.prototype.initFromBinary = function(inputStream)
+  dis.AggregateType.prototype.initFromBinary = function(inputStream)
   {
        this.aggregateKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -1908,7 +1878,7 @@ dis7.AggregateType = function()
        this.extra = inputStream.readUByte();
   };
 
-  dis7.AggregateType.prototype.encodeToBinary = function(outputStream)
+  dis.AggregateType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.aggregateKind);
        outputStream.writeUByte(this.domain);
@@ -1921,7 +1891,7 @@ dis7.AggregateType = function()
 }; // end of class
 
  // node.js module support
-exports.AggregateType = dis7.AggregateType;
+exports.AggregateType = dis.AggregateType;
 
 // End of AggregateType class
 
@@ -1934,8 +1904,8 @@ exports.AggregateType = dis7.AggregateType;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -1944,7 +1914,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AngleDeception = function()
+dis.AngleDeception = function()
 {
    this.recordType = 3501;
 
@@ -1978,7 +1948,7 @@ dis7.AngleDeception = function()
 
    this.padding3 = 0;
 
-  dis7.AngleDeception.prototype.initFromBinary = function(inputStream)
+  dis.AngleDeception.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -1998,7 +1968,7 @@ dis7.AngleDeception = function()
        this.padding3 = inputStream.readUInt();
   };
 
-  dis7.AngleDeception.prototype.encodeToBinary = function(outputStream)
+  dis.AngleDeception.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -2020,7 +1990,7 @@ dis7.AngleDeception = function()
 }; // end of class
 
  // node.js module support
-exports.AngleDeception = dis7.AngleDeception;
+exports.AngleDeception = dis.AngleDeception;
 
 // End of AngleDeception class
 
@@ -2033,8 +2003,8 @@ exports.AngleDeception = dis7.AngleDeception;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2043,7 +2013,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AngularVelocityVector = function()
+dis.AngularVelocityVector = function()
 {
    /** velocity about the x axis */
    this.x = 0;
@@ -2054,14 +2024,14 @@ dis7.AngularVelocityVector = function()
    /** velocity about the zaxis */
    this.z = 0;
 
-  dis7.AngularVelocityVector.prototype.initFromBinary = function(inputStream)
+  dis.AngularVelocityVector.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat32();
        this.y = inputStream.readFloat32();
        this.z = inputStream.readFloat32();
   };
 
-  dis7.AngularVelocityVector.prototype.encodeToBinary = function(outputStream)
+  dis.AngularVelocityVector.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.x);
        outputStream.writeFloat32(this.y);
@@ -2070,7 +2040,7 @@ dis7.AngularVelocityVector = function()
 }; // end of class
 
  // node.js module support
-exports.AngularVelocityVector = dis7.AngularVelocityVector;
+exports.AngularVelocityVector = dis.AngularVelocityVector;
 
 // End of AngularVelocityVector class
 
@@ -2083,8 +2053,8 @@ exports.AngularVelocityVector = dis7.AngularVelocityVector;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2093,21 +2063,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AntennaLocation = function()
+dis.AntennaLocation = function()
 {
    /** Location of the radiating portion of the antenna in world    coordinates */
-   this.antennaLocation = new dis7.Vector3Double(); 
+   this.antennaLocation = new dis.Vector3Double(); 
 
    /** Location of the radiating portion of the antenna     in entity coordinates */
-   this.relativeAntennaLocation = new dis7.Vector3Float(); 
+   this.relativeAntennaLocation = new dis.Vector3Float(); 
 
-  dis7.AntennaLocation.prototype.initFromBinary = function(inputStream)
+  dis.AntennaLocation.prototype.initFromBinary = function(inputStream)
   {
        this.antennaLocation.initFromBinary(inputStream);
        this.relativeAntennaLocation.initFromBinary(inputStream);
   };
 
-  dis7.AntennaLocation.prototype.encodeToBinary = function(outputStream)
+  dis.AntennaLocation.prototype.encodeToBinary = function(outputStream)
   {
        this.antennaLocation.encodeToBinary(outputStream);
        this.relativeAntennaLocation.encodeToBinary(outputStream);
@@ -2115,7 +2085,7 @@ dis7.AntennaLocation = function()
 }; // end of class
 
  // node.js module support
-exports.AntennaLocation = dis7.AntennaLocation;
+exports.AntennaLocation = dis.AntennaLocation;
 
 // End of AntennaLocation class
 
@@ -2128,8 +2098,8 @@ exports.AntennaLocation = dis7.AntennaLocation;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2138,7 +2108,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ArealObjectStatePdu = function()
+dis.ArealObjectStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -2165,10 +2135,10 @@ dis7.ArealObjectStatePdu = function()
    this.padding = 0;
 
    /** Object in synthetic environment */
-   this.objectID = new dis7.EntityID(); 
+   this.objectID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.referencedObjectID = new dis7.EntityID(); 
+   this.referencedObjectID = new dis.EntityID(); 
 
    /** unique update number of each state transition of an object */
    this.updateNumber = 0;
@@ -2180,7 +2150,7 @@ dis7.ArealObjectStatePdu = function()
    this.modifications = 0;
 
    /** Object type */
-   this.objectType = new dis7.EntityType(); 
+   this.objectType = new dis.EntityType(); 
 
    /** Object appearance */
    this.specificObjectAppearance = 0;
@@ -2192,15 +2162,15 @@ dis7.ArealObjectStatePdu = function()
    this.numberOfPoints = 0;
 
    /** requesterID */
-   this.requesterID = new dis7.SimulationAddress(); 
+   this.requesterID = new dis.SimulationAddress(); 
 
    /** receiver ID */
-   this.receivingID = new dis7.SimulationAddress(); 
+   this.receivingID = new dis.SimulationAddress(); 
 
    /** location of object */
     this.objectLocation = new Array();
  
-  dis7.ArealObjectStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.ArealObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -2223,14 +2193,14 @@ dis7.ArealObjectStatePdu = function()
        this.receivingID.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfPoints; idx++)
        {
-           var anX = new dis7.Vector3Double();
+           var anX = new dis.Vector3Double();
            anX.initFromBinary(inputStream);
            this.objectLocation.push(anX);
        }
 
   };
 
-  dis7.ArealObjectStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.ArealObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -2260,7 +2230,7 @@ dis7.ArealObjectStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.ArealObjectStatePdu = dis7.ArealObjectStatePdu;
+exports.ArealObjectStatePdu = dis.ArealObjectStatePdu;
 
 // End of ArealObjectStatePdu class
 
@@ -2273,8 +2243,8 @@ exports.ArealObjectStatePdu = dis7.ArealObjectStatePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2283,7 +2253,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ArticulatedParts = function()
+dis.ArticulatedParts = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 0;
@@ -2300,7 +2270,7 @@ dis7.ArticulatedParts = function()
    /** The definition of the 64 bits shall be determined based on the type of parameter specified in the Parameter Type field  */
    this.parameterValue = 0;
 
-  dis7.ArticulatedParts.prototype.initFromBinary = function(inputStream)
+  dis.ArticulatedParts.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.changeIndicator = inputStream.readUByte();
@@ -2309,7 +2279,7 @@ dis7.ArticulatedParts = function()
        this.parameterValue = inputStream.readLong();
   };
 
-  dis7.ArticulatedParts.prototype.encodeToBinary = function(outputStream)
+  dis.ArticulatedParts.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.changeIndicator);
@@ -2320,7 +2290,7 @@ dis7.ArticulatedParts = function()
 }; // end of class
 
  // node.js module support
-exports.ArticulatedParts = dis7.ArticulatedParts;
+exports.ArticulatedParts = dis.ArticulatedParts;
 
 // End of ArticulatedParts class
 
@@ -2333,8 +2303,8 @@ exports.ArticulatedParts = dis7.ArticulatedParts;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2343,19 +2313,19 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Association = function()
+dis.Association = function()
 {
    this.associationType = 0;
 
    this.padding4 = 0;
 
    /** identity of associated entity. If none, NO_SPECIFIC_ENTITY */
-   this.associatedEntityID = new dis7.EntityID(); 
+   this.associatedEntityID = new dis.EntityID(); 
 
    /** location, in world coordinates */
-   this.associatedLocation = new dis7.Vector3Double(); 
+   this.associatedLocation = new dis.Vector3Double(); 
 
-  dis7.Association.prototype.initFromBinary = function(inputStream)
+  dis.Association.prototype.initFromBinary = function(inputStream)
   {
        this.associationType = inputStream.readUByte();
        this.padding4 = inputStream.readUByte();
@@ -2363,7 +2333,7 @@ dis7.Association = function()
        this.associatedLocation.initFromBinary(inputStream);
   };
 
-  dis7.Association.prototype.encodeToBinary = function(outputStream)
+  dis.Association.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.associationType);
        outputStream.writeUByte(this.padding4);
@@ -2373,7 +2343,7 @@ dis7.Association = function()
 }; // end of class
 
  // node.js module support
-exports.Association = dis7.Association;
+exports.Association = dis.Association;
 
 // End of Association class
 
@@ -2386,8 +2356,8 @@ exports.Association = dis7.Association;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2396,7 +2366,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AttachedParts = function()
+dis.AttachedParts = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 1;
@@ -2413,7 +2383,7 @@ dis7.AttachedParts = function()
    /** The definition of the 64 bits shall be determined based on the type of parameter specified in the Parameter Type field  */
    this.parameterValue = 0;
 
-  dis7.AttachedParts.prototype.initFromBinary = function(inputStream)
+  dis.AttachedParts.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.detachedIndicator = inputStream.readUByte();
@@ -2422,7 +2392,7 @@ dis7.AttachedParts = function()
        this.parameterValue = inputStream.readLong();
   };
 
-  dis7.AttachedParts.prototype.encodeToBinary = function(outputStream)
+  dis.AttachedParts.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.detachedIndicator);
@@ -2433,7 +2403,7 @@ dis7.AttachedParts = function()
 }; // end of class
 
  // node.js module support
-exports.AttachedParts = dis7.AttachedParts;
+exports.AttachedParts = dis.AttachedParts;
 
 // End of AttachedParts class
 
@@ -2446,8 +2416,8 @@ exports.AttachedParts = dis7.AttachedParts;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2456,7 +2426,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Attribute = function()
+dis.Attribute = function()
 {
    this.recordType = 0;
 
@@ -2464,14 +2434,14 @@ dis7.Attribute = function()
 
    this.recordSpecificFields = 0;
 
-  dis7.Attribute.prototype.initFromBinary = function(inputStream)
+  dis.Attribute.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
        this.recordSpecificFields = inputStream.readLong();
   };
 
-  dis7.Attribute.prototype.encodeToBinary = function(outputStream)
+  dis.Attribute.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -2480,7 +2450,7 @@ dis7.Attribute = function()
 }; // end of class
 
  // node.js module support
-exports.Attribute = dis7.Attribute;
+exports.Attribute = dis.Attribute;
 
 // End of Attribute class
 
@@ -2493,8 +2463,8 @@ exports.Attribute = dis7.Attribute;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2503,7 +2473,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.AttributePdu = function()
+dis.AttributePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -2530,7 +2500,7 @@ dis7.AttributePdu = function()
    this.padding = 0;
 
    /** This field shall identify the simulation issuing the Attribute PDU. It shall be represented by a Simulation Address record (see 6.2.79). */
-   this.originatingSimulationAddress = new dis7.SimulationAddress(); 
+   this.originatingSimulationAddress = new dis.SimulationAddress(); 
 
    /** Padding */
    this.padding1 = 0;
@@ -2556,7 +2526,7 @@ dis7.AttributePdu = function()
    /** This field shall specify the number of Attribute Record Sets that make up the remainder of the PDU. It shall be represented by a 16-bit unsigned integer. */
    this.numberAttributeRecordSet = 0;
 
-  dis7.AttributePdu.prototype.initFromBinary = function(inputStream)
+  dis.AttributePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -2577,7 +2547,7 @@ dis7.AttributePdu = function()
        this.numberAttributeRecordSet = inputStream.readUShort();
   };
 
-  dis7.AttributePdu.prototype.encodeToBinary = function(outputStream)
+  dis.AttributePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -2600,7 +2570,7 @@ dis7.AttributePdu = function()
 }; // end of class
 
  // node.js module support
-exports.AttributePdu = dis7.AttributePdu;
+exports.AttributePdu = dis.AttributePdu;
 
 // End of AttributePdu class
 
@@ -2613,8 +2583,8 @@ exports.AttributePdu = dis7.AttributePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2623,10 +2593,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.BeamAntennaPattern = function()
+dis.BeamAntennaPattern = function()
 {
    /** The rotation that transforms the reference coordinate sytem into the beam coordinate system. Either world coordinates or entity coordinates may be used as the reference coordinate system, as specified by the reference system field of the antenna pattern record. */
-   this.beamDirection = new dis7.EulerAngles(); 
+   this.beamDirection = new dis.EulerAngles(); 
 
    this.azimuthBeamwidth = 0;
 
@@ -2650,7 +2620,7 @@ dis7.BeamAntennaPattern = function()
    /** padding */
    this.padding3 = 0;
 
-  dis7.BeamAntennaPattern.prototype.initFromBinary = function(inputStream)
+  dis.BeamAntennaPattern.prototype.initFromBinary = function(inputStream)
   {
        this.beamDirection.initFromBinary(inputStream);
        this.azimuthBeamwidth = inputStream.readFloat32();
@@ -2664,7 +2634,7 @@ dis7.BeamAntennaPattern = function()
        this.padding3 = inputStream.readUInt();
   };
 
-  dis7.BeamAntennaPattern.prototype.encodeToBinary = function(outputStream)
+  dis.BeamAntennaPattern.prototype.encodeToBinary = function(outputStream)
   {
        this.beamDirection.encodeToBinary(outputStream);
        outputStream.writeFloat32(this.azimuthBeamwidth);
@@ -2680,7 +2650,7 @@ dis7.BeamAntennaPattern = function()
 }; // end of class
 
  // node.js module support
-exports.BeamAntennaPattern = dis7.BeamAntennaPattern;
+exports.BeamAntennaPattern = dis.BeamAntennaPattern;
 
 // End of BeamAntennaPattern class
 
@@ -2693,8 +2663,8 @@ exports.BeamAntennaPattern = dis7.BeamAntennaPattern;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2703,7 +2673,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.BeamData = function()
+dis.BeamData = function()
 {
    /** Specifies the beam azimuth an elevation centers and corresponding half-angles to describe the scan volume */
    this.beamAzimuthCenter = 0;
@@ -2720,7 +2690,7 @@ dis7.BeamData = function()
    /** allows receiver to synchronize its regenerated scan pattern to that of the emmitter. Specifies the percentage of time a scan is through its pattern from its origion. */
    this.beamSweepSync = 0;
 
-  dis7.BeamData.prototype.initFromBinary = function(inputStream)
+  dis.BeamData.prototype.initFromBinary = function(inputStream)
   {
        this.beamAzimuthCenter = inputStream.readFloat32();
        this.beamAzimuthSweep = inputStream.readFloat32();
@@ -2729,7 +2699,7 @@ dis7.BeamData = function()
        this.beamSweepSync = inputStream.readFloat32();
   };
 
-  dis7.BeamData.prototype.encodeToBinary = function(outputStream)
+  dis.BeamData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.beamAzimuthCenter);
        outputStream.writeFloat32(this.beamAzimuthSweep);
@@ -2740,7 +2710,7 @@ dis7.BeamData = function()
 }; // end of class
 
  // node.js module support
-exports.BeamData = dis7.BeamData;
+exports.BeamData = dis.BeamData;
 
 // End of BeamData class
 
@@ -2753,8 +2723,8 @@ exports.BeamData = dis7.BeamData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2763,23 +2733,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.BeamStatus = function()
+dis.BeamStatus = function()
 {
    /** First bit zero means beam is active, first bit = 1 means deactivated. The rest is padding. */
    this.beamState = 0;
 
-  dis7.BeamStatus.prototype.initFromBinary = function(inputStream)
+  dis.BeamStatus.prototype.initFromBinary = function(inputStream)
   {
        this.beamState = inputStream.readUByte();
   };
 
-  dis7.BeamStatus.prototype.encodeToBinary = function(outputStream)
+  dis.BeamStatus.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.beamState);
   };
 
 /** 0 active, 1 deactivated */
-dis7.BeamStatus.prototype.getBeamState_beamState = function()
+dis.BeamStatus.prototype.getBeamState_beamState = function()
 {
    var val = this.beamState & 0x1;
    return val >> 0;
@@ -2787,7 +2757,7 @@ dis7.BeamStatus.prototype.getBeamState_beamState = function()
 
 
 /** 0 active, 1 deactivated */
-dis7.BeamStatus.prototype.setBeamState_beamState= function(val)
+dis.BeamStatus.prototype.setBeamState_beamState= function(val)
 {
   this.beamState &= ~0x1; // Zero existing bits
   val = val << 0;
@@ -2796,7 +2766,7 @@ dis7.BeamStatus.prototype.setBeamState_beamState= function(val)
 
 
 /** padding */
-dis7.BeamStatus.prototype.getBeamState_padding = function()
+dis.BeamStatus.prototype.getBeamState_padding = function()
 {
    var val = this.beamState & 0xFE;
    return val >> 1;
@@ -2804,7 +2774,7 @@ dis7.BeamStatus.prototype.getBeamState_padding = function()
 
 
 /** padding */
-dis7.BeamStatus.prototype.setBeamState_padding= function(val)
+dis.BeamStatus.prototype.setBeamState_padding= function(val)
 {
   this.beamState &= ~0xFE; // Zero existing bits
   val = val << 1;
@@ -2814,7 +2784,7 @@ dis7.BeamStatus.prototype.setBeamState_padding= function(val)
 }; // end of class
 
  // node.js module support
-exports.BeamStatus = dis7.BeamStatus;
+exports.BeamStatus = dis.BeamStatus;
 
 // End of BeamStatus class
 
@@ -2827,8 +2797,8 @@ exports.BeamStatus = dis7.BeamStatus;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2837,7 +2807,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.BlankingSector = function()
+dis.BlankingSector = function()
 {
    this.recordType = 3500;
 
@@ -2867,7 +2837,7 @@ dis7.BlankingSector = function()
 
    this.padding4 = 0;
 
-  dis7.BlankingSector.prototype.initFromBinary = function(inputStream)
+  dis.BlankingSector.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readInt();
        this.recordLength = inputStream.readUShort();
@@ -2885,7 +2855,7 @@ dis7.BlankingSector = function()
        this.padding4 = inputStream.readInt();
   };
 
-  dis7.BlankingSector.prototype.encodeToBinary = function(outputStream)
+  dis.BlankingSector.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -2905,7 +2875,7 @@ dis7.BlankingSector = function()
 }; // end of class
 
  // node.js module support
-exports.BlankingSector = dis7.BlankingSector;
+exports.BlankingSector = dis.BlankingSector;
 
 // End of BlankingSector class
 
@@ -2918,8 +2888,8 @@ exports.BlankingSector = dis7.BlankingSector;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2928,19 +2898,19 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ChangeOptions = function()
+dis.ChangeOptions = function()
 {
-  dis7.ChangeOptions.prototype.initFromBinary = function(inputStream)
+  dis.ChangeOptions.prototype.initFromBinary = function(inputStream)
   {
   };
 
-  dis7.ChangeOptions.prototype.encodeToBinary = function(outputStream)
+  dis.ChangeOptions.prototype.encodeToBinary = function(outputStream)
   {
   };
 }; // end of class
 
  // node.js module support
-exports.ChangeOptions = dis7.ChangeOptions;
+exports.ChangeOptions = dis.ChangeOptions;
 
 // End of ChangeOptions class
 
@@ -2953,8 +2923,8 @@ exports.ChangeOptions = dis7.ChangeOptions;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -2963,21 +2933,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ClockTime = function()
+dis.ClockTime = function()
 {
    /** Hours since midnight, 1970, UTC */
    this.hour = 0;
 
    /** Time past the hour, in timestamp form */
-   this.timePastHour = new dis7.Timestamp(); 
+   this.timePastHour = new dis.Timestamp(); 
 
-  dis7.ClockTime.prototype.initFromBinary = function(inputStream)
+  dis.ClockTime.prototype.initFromBinary = function(inputStream)
   {
        this.hour = inputStream.readUInt();
        this.timePastHour.initFromBinary(inputStream);
   };
 
-  dis7.ClockTime.prototype.encodeToBinary = function(outputStream)
+  dis.ClockTime.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.hour);
        this.timePastHour.encodeToBinary(outputStream);
@@ -2985,7 +2955,7 @@ dis7.ClockTime = function()
 }; // end of class
 
  // node.js module support
-exports.ClockTime = dis7.ClockTime;
+exports.ClockTime = dis.ClockTime;
 
 // End of ClockTime class
 
@@ -2998,8 +2968,8 @@ exports.ClockTime = dis7.ClockTime;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3008,7 +2978,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.CollisionElasticPdu = function()
+dis.CollisionElasticPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -3035,25 +3005,25 @@ dis7.CollisionElasticPdu = function()
    this.padding = 0;
 
    /** This field shall identify the entity that is issuing the PDU and shall be represented by an Entity Identifier record (see 6.2.28) */
-   this.issuingEntityID = new dis7.EntityID(); 
+   this.issuingEntityID = new dis.EntityID(); 
 
    /** This field shall identify the entity that has collided with the issuing entity. This field shall be a valid identifier of an entity or server capable of responding to the receipt of this Collision-Elastic PDU. This field shall be represented by an Entity Identifier record (see 6.2.28). */
-   this.collidingEntityID = new dis7.EntityID(); 
+   this.collidingEntityID = new dis.EntityID(); 
 
    /** This field shall contain an identification generated by the issuing simulation application to associate related collision events. This field shall be represented by an Event Identifier record (see 6.2.34). */
-   this.collisionEventID = new dis7.EventIdentifier(); 
+   this.collisionEventID = new dis.EventIdentifier(); 
 
    /** some padding */
    this.pad = 0;
 
    /** This field shall contain the velocity at the time the collision is detected at the point the collision is detected. The velocity shall be represented in world coordinates. This field shall be represented by the Linear Velocity Vector record [see 6.2.95 item c)] */
-   this.contactVelocity = new dis7.Vector3Float(); 
+   this.contactVelocity = new dis.Vector3Float(); 
 
    /** This field shall contain the mass of the issuing entity and shall be represented by a 32-bit floating point number representing kilograms */
    this.mass = 0;
 
    /** This field shall specify the location of the collision with respect to the entity with which the issuing entity collided. This field shall be represented by an Entity Coordinate Vector record [see 6.2.95 item a)]. */
-   this.locationOfImpact = new dis7.Vector3Float(); 
+   this.locationOfImpact = new dis.Vector3Float(); 
 
    /** These six records represent the six independent components of a positive semi-definite matrix formed by pre-multiplying and post-multiplying the tensor of inertia, by the anti-symmetric matrix generated by the moment arm, and shall be represented by 32-bit floating point numbers (see 5.3.4.4) */
    this.collisionIntermediateResultXX = 0;
@@ -3074,12 +3044,12 @@ dis7.CollisionElasticPdu = function()
    this.collisionIntermediateResultZZ = 0;
 
    /** This record shall represent the normal vector to the surface at the point of collision detection. The surface normal shall be represented in world coordinates. This field shall be represented by an Entity Coordinate Vector record [see 6.2.95 item a)]. */
-   this.unitSurfaceNormal = new dis7.Vector3Float(); 
+   this.unitSurfaceNormal = new dis.Vector3Float(); 
 
    /** This field shall represent the degree to which energy is conserved in a collision and shall be represented by a 32-bit floating point number. In addition, it represents a free parameter by which simulation application developers may “tune” their collision interactions. */
    this.coefficientOfRestitution = 0;
 
-  dis7.CollisionElasticPdu.prototype.initFromBinary = function(inputStream)
+  dis.CollisionElasticPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -3106,7 +3076,7 @@ dis7.CollisionElasticPdu = function()
        this.coefficientOfRestitution = inputStream.readFloat32();
   };
 
-  dis7.CollisionElasticPdu.prototype.encodeToBinary = function(outputStream)
+  dis.CollisionElasticPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -3135,7 +3105,7 @@ dis7.CollisionElasticPdu = function()
 }; // end of class
 
  // node.js module support
-exports.CollisionElasticPdu = dis7.CollisionElasticPdu;
+exports.CollisionElasticPdu = dis.CollisionElasticPdu;
 
 // End of CollisionElasticPdu class
 
@@ -3148,8 +3118,8 @@ exports.CollisionElasticPdu = dis7.CollisionElasticPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3158,7 +3128,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.CollisionPdu = function()
+dis.CollisionPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -3185,13 +3155,13 @@ dis7.CollisionPdu = function()
    this.padding = 0;
 
    /** This field shall identify the entity that is issuing the PDU, and shall be represented by an Entity Identifier record (see 6.2.28). */
-   this.issuingEntityID = new dis7.EntityID(); 
+   this.issuingEntityID = new dis.EntityID(); 
 
    /** This field shall identify the entity that has collided with the issuing entity (see 5.3.3.4). This field shall be represented by an Entity Identifier record (see 6.2.28). */
-   this.collidingEntityID = new dis7.EntityID(); 
+   this.collidingEntityID = new dis.EntityID(); 
 
    /** This field shall contain an identification generated by the issuing simulation application to associate related collision events. This field shall be represented by an Event Identifier record (see 6.2.34). */
-   this.eventID = new dis7.EventIdentifier(); 
+   this.eventID = new dis.EventIdentifier(); 
 
    /** This field shall identify the type of collision. The Collision Type field shall be represented by an 8-bit record of enumerations */
    this.collisionType = 0;
@@ -3200,15 +3170,15 @@ dis7.CollisionPdu = function()
    this.pad = 0;
 
    /** This field shall contain the velocity (at the time the collision is detected) of the issuing entity. The velocity shall be represented in world coordinates. This field shall be represented by the Linear Velocity Vector record [see 6.2.95 item c)]. */
-   this.velocity = new dis7.Vector3Float(); 
+   this.velocity = new dis.Vector3Float(); 
 
    /** This field shall contain the mass of the issuing entity, and shall be represented by a 32-bit floating point number representing kilograms. */
    this.mass = 0;
 
    /** This field shall specify the location of the collision with respect to the entity with which the issuing entity collided. The Location field shall be represented by an Entity Coordinate Vector record [see 6.2.95 item a)]. */
-   this.location = new dis7.Vector3Float(); 
+   this.location = new dis.Vector3Float(); 
 
-  dis7.CollisionPdu.prototype.initFromBinary = function(inputStream)
+  dis.CollisionPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -3228,7 +3198,7 @@ dis7.CollisionPdu = function()
        this.location.initFromBinary(inputStream);
   };
 
-  dis7.CollisionPdu.prototype.encodeToBinary = function(outputStream)
+  dis.CollisionPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -3250,7 +3220,7 @@ dis7.CollisionPdu = function()
 }; // end of class
 
  // node.js module support
-exports.CollisionPdu = dis7.CollisionPdu;
+exports.CollisionPdu = dis.CollisionPdu;
 
 // End of CollisionPdu class
 
@@ -3263,8 +3233,8 @@ exports.CollisionPdu = dis7.CollisionPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3273,7 +3243,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.CommentPdu = function()
+dis.CommentPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -3300,10 +3270,10 @@ dis7.CommentPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Number of fixed datum records */
    this.numberOfFixedDatumRecords = 0;
@@ -3317,7 +3287,7 @@ dis7.CommentPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.CommentPdu.prototype.initFromBinary = function(inputStream)
+  dis.CommentPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -3333,21 +3303,21 @@ dis7.CommentPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.CommentPdu.prototype.encodeToBinary = function(outputStream)
+  dis.CommentPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -3375,7 +3345,7 @@ dis7.CommentPdu = function()
 }; // end of class
 
  // node.js module support
-exports.CommentPdu = dis7.CommentPdu;
+exports.CommentPdu = dis.CommentPdu;
 
 // End of CommentPdu class
 
@@ -3388,8 +3358,8 @@ exports.CommentPdu = dis7.CommentPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3398,7 +3368,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.CommentReliablePdu = function()
+dis.CommentReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -3425,10 +3395,10 @@ dis7.CommentReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Fixed datum record count */
    this.numberOfFixedDatumRecords = 0;
@@ -3442,7 +3412,7 @@ dis7.CommentReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  dis7.CommentReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.CommentReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -3458,21 +3428,21 @@ dis7.CommentReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  dis7.CommentReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.CommentReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -3500,7 +3470,7 @@ dis7.CommentReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.CommentReliablePdu = dis7.CommentReliablePdu;
+exports.CommentReliablePdu = dis.CommentReliablePdu;
 
 // End of CommentReliablePdu class
 
@@ -3513,8 +3483,8 @@ exports.CommentReliablePdu = dis7.CommentReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3523,19 +3493,19 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.CommunicationsNodeID = function()
+dis.CommunicationsNodeID = function()
 {
-   this.entityID = new dis7.EntityID(); 
+   this.entityID = new dis.EntityID(); 
 
    this.elementID = 0;
 
-  dis7.CommunicationsNodeID.prototype.initFromBinary = function(inputStream)
+  dis.CommunicationsNodeID.prototype.initFromBinary = function(inputStream)
   {
        this.entityID.initFromBinary(inputStream);
        this.elementID = inputStream.readUShort();
   };
 
-  dis7.CommunicationsNodeID.prototype.encodeToBinary = function(outputStream)
+  dis.CommunicationsNodeID.prototype.encodeToBinary = function(outputStream)
   {
        this.entityID.encodeToBinary(outputStream);
        outputStream.writeUShort(this.elementID);
@@ -3543,7 +3513,7 @@ dis7.CommunicationsNodeID = function()
 }; // end of class
 
  // node.js module support
-exports.CommunicationsNodeID = dis7.CommunicationsNodeID;
+exports.CommunicationsNodeID = dis.CommunicationsNodeID;
 
 // End of CommunicationsNodeID class
 
@@ -3556,8 +3526,8 @@ exports.CommunicationsNodeID = dis7.CommunicationsNodeID;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3566,7 +3536,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.CreateEntityPdu = function()
+dis.CreateEntityPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -3593,21 +3563,15 @@ dis7.CreateEntityPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for the request */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the request */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Identifier for the request.  See 6.2.75 */
    this.requestID = 0;
 
-  dis7.CreateEntityPdu.prototype.initFromBinary = function(inputStream)
+  dis.CreateEntityPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -3619,12 +3583,10 @@ dis7.CreateEntityPdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.CreateEntityPdu.prototype.encodeToBinary = function(outputStream)
+  dis.CreateEntityPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -3636,14 +3598,12 @@ dis7.CreateEntityPdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        outputStream.writeUInt(this.requestID);
   };
 }; // end of class
 
  // node.js module support
-exports.CreateEntityPdu = dis7.CreateEntityPdu;
+exports.CreateEntityPdu = dis.CreateEntityPdu;
 
 // End of CreateEntityPdu class
 
@@ -3656,8 +3616,8 @@ exports.CreateEntityPdu = dis7.CreateEntityPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3666,7 +3626,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.CreateEntityReliablePdu = function()
+dis.CreateEntityReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -3693,10 +3653,10 @@ dis7.CreateEntityReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -3710,7 +3670,7 @@ dis7.CreateEntityReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  dis7.CreateEntityReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.CreateEntityReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -3728,7 +3688,7 @@ dis7.CreateEntityReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.CreateEntityReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.CreateEntityReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -3748,7 +3708,7 @@ dis7.CreateEntityReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.CreateEntityReliablePdu = dis7.CreateEntityReliablePdu;
+exports.CreateEntityReliablePdu = dis.CreateEntityReliablePdu;
 
 // End of CreateEntityReliablePdu class
 
@@ -3761,8 +3721,8 @@ exports.CreateEntityReliablePdu = dis7.CreateEntityReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -3771,23 +3731,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataFilterRecord = function()
+dis.DataFilterRecord = function()
 {
    /** Bitflags field */
    this.bitFlags = 0;
 
-  dis7.DataFilterRecord.prototype.initFromBinary = function(inputStream)
+  dis.DataFilterRecord.prototype.initFromBinary = function(inputStream)
   {
        this.bitFlags = inputStream.readUInt();
   };
 
-  dis7.DataFilterRecord.prototype.encodeToBinary = function(outputStream)
+  dis.DataFilterRecord.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.bitFlags);
   };
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_groundBurialDepthOffset = function()
+dis.DataFilterRecord.prototype.getBitFlags_groundBurialDepthOffset = function()
 {
    var val = this.bitFlags & 0x1;
    return val >> 0;
@@ -3795,7 +3755,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_groundBurialDepthOffset = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_groundBurialDepthOffset= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_groundBurialDepthOffset= function(val)
 {
   this.bitFlags &= ~0x1; // Zero existing bits
   val = val << 0;
@@ -3804,7 +3764,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_groundBurialDepthOffset= function(va
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_waterBurialDepthOffset = function()
+dis.DataFilterRecord.prototype.getBitFlags_waterBurialDepthOffset = function()
 {
    var val = this.bitFlags & 0x2;
    return val >> 1;
@@ -3812,7 +3772,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_waterBurialDepthOffset = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_waterBurialDepthOffset= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_waterBurialDepthOffset= function(val)
 {
   this.bitFlags &= ~0x2; // Zero existing bits
   val = val << 1;
@@ -3821,7 +3781,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_waterBurialDepthOffset= function(val
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_snowBurialDepthOffset = function()
+dis.DataFilterRecord.prototype.getBitFlags_snowBurialDepthOffset = function()
 {
    var val = this.bitFlags & 0x4;
    return val >> 2;
@@ -3829,7 +3789,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_snowBurialDepthOffset = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_snowBurialDepthOffset= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_snowBurialDepthOffset= function(val)
 {
   this.bitFlags &= ~0x4; // Zero existing bits
   val = val << 2;
@@ -3838,7 +3798,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_snowBurialDepthOffset= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_mineOrientation = function()
+dis.DataFilterRecord.prototype.getBitFlags_mineOrientation = function()
 {
    var val = this.bitFlags & 0x8;
    return val >> 3;
@@ -3846,7 +3806,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_mineOrientation = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_mineOrientation= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_mineOrientation= function(val)
 {
   this.bitFlags &= ~0x8; // Zero existing bits
   val = val << 3;
@@ -3855,7 +3815,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_mineOrientation= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_thermalContrast = function()
+dis.DataFilterRecord.prototype.getBitFlags_thermalContrast = function()
 {
    var val = this.bitFlags & 0x10;
    return val >> 4;
@@ -3863,7 +3823,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_thermalContrast = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_thermalContrast= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_thermalContrast= function(val)
 {
   this.bitFlags &= ~0x10; // Zero existing bits
   val = val << 4;
@@ -3872,7 +3832,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_thermalContrast= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_reflectance = function()
+dis.DataFilterRecord.prototype.getBitFlags_reflectance = function()
 {
    var val = this.bitFlags & 0x20;
    return val >> 5;
@@ -3880,7 +3840,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_reflectance = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_reflectance= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_reflectance= function(val)
 {
   this.bitFlags &= ~0x20; // Zero existing bits
   val = val << 5;
@@ -3889,7 +3849,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_reflectance= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_mineEmplacementTime = function()
+dis.DataFilterRecord.prototype.getBitFlags_mineEmplacementTime = function()
 {
    var val = this.bitFlags & 0x40;
    return val >> 6;
@@ -3897,7 +3857,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_mineEmplacementTime = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_mineEmplacementTime= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_mineEmplacementTime= function(val)
 {
   this.bitFlags &= ~0x40; // Zero existing bits
   val = val << 6;
@@ -3906,7 +3866,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_mineEmplacementTime= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_tripDetonationWire = function()
+dis.DataFilterRecord.prototype.getBitFlags_tripDetonationWire = function()
 {
    var val = this.bitFlags & 0x80;
    return val >> 7;
@@ -3914,7 +3874,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_tripDetonationWire = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_tripDetonationWire= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_tripDetonationWire= function(val)
 {
   this.bitFlags &= ~0x80; // Zero existing bits
   val = val << 7;
@@ -3923,7 +3883,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_tripDetonationWire= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_fusing = function()
+dis.DataFilterRecord.prototype.getBitFlags_fusing = function()
 {
    var val = this.bitFlags & 0x100;
    return val >> 8;
@@ -3931,7 +3891,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_fusing = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_fusing= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_fusing= function(val)
 {
   this.bitFlags &= ~0x100; // Zero existing bits
   val = val << 8;
@@ -3940,7 +3900,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_fusing= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_scalarDetectionCoefficient = function()
+dis.DataFilterRecord.prototype.getBitFlags_scalarDetectionCoefficient = function()
 {
    var val = this.bitFlags & 0x200;
    return val >> 9;
@@ -3948,7 +3908,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_scalarDetectionCoefficient = functio
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_scalarDetectionCoefficient= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_scalarDetectionCoefficient= function(val)
 {
   this.bitFlags &= ~0x200; // Zero existing bits
   val = val << 9;
@@ -3957,7 +3917,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_scalarDetectionCoefficient= function
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_paintScheme = function()
+dis.DataFilterRecord.prototype.getBitFlags_paintScheme = function()
 {
    var val = this.bitFlags & 0x400;
    return val >> 10;
@@ -3965,7 +3925,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_paintScheme = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_paintScheme= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_paintScheme= function(val)
 {
   this.bitFlags &= ~0x400; // Zero existing bits
   val = val << 10;
@@ -3974,7 +3934,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_paintScheme= function(val)
 
 
 /** padding */
-dis7.DataFilterRecord.prototype.getBitFlags_padding = function()
+dis.DataFilterRecord.prototype.getBitFlags_padding = function()
 {
    var val = this.bitFlags & 0xff800;
    return val >> 11;
@@ -3982,7 +3942,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_padding = function()
 
 
 /** padding */
-dis7.DataFilterRecord.prototype.setBitFlags_padding= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_padding= function(val)
 {
   this.bitFlags &= ~0xff800; // Zero existing bits
   val = val << 11;
@@ -3992,7 +3952,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_padding= function(val)
 }; // end of class
 
  // node.js module support
-exports.DataFilterRecord = dis7.DataFilterRecord;
+exports.DataFilterRecord = dis.DataFilterRecord;
 
 // End of DataFilterRecord class
 
@@ -4005,8 +3965,8 @@ exports.DataFilterRecord = dis7.DataFilterRecord;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4015,7 +3975,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataPdu = function()
+dis.DataPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -4042,10 +4002,10 @@ dis7.DataPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** ID of request */
    this.requestID = 0;
@@ -4065,7 +4025,7 @@ dis7.DataPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.DataPdu.prototype.initFromBinary = function(inputStream)
+  dis.DataPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -4083,21 +4043,21 @@ dis7.DataPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.DataPdu.prototype.encodeToBinary = function(outputStream)
+  dis.DataPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -4127,7 +4087,7 @@ dis7.DataPdu = function()
 }; // end of class
 
  // node.js module support
-exports.DataPdu = dis7.DataPdu;
+exports.DataPdu = dis.DataPdu;
 
 // End of DataPdu class
 
@@ -4140,8 +4100,8 @@ exports.DataPdu = dis7.DataPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4150,7 +4110,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataQueryDatumSpecification = function()
+dis.DataQueryDatumSpecification = function()
 {
    /** Number of fixed datum IDs */
    this.numberOfFixedDatums = 0;
@@ -4159,12 +4119,12 @@ dis7.DataQueryDatumSpecification = function()
    this.numberOfVariableDatums = 0;
 
    /** variable length list fixed datum IDs */
-   this.fixedDatumIDList = new dis7.UnsignedDISInteger(); 
+   this.fixedDatumIDList = new dis.UnsignedDISInteger(); 
 
    /** variable length list variable datum IDs */
-   this.variableDatumIDList = new dis7.UnsignedDISInteger(); 
+   this.variableDatumIDList = new dis.UnsignedDISInteger(); 
 
-  dis7.DataQueryDatumSpecification.prototype.initFromBinary = function(inputStream)
+  dis.DataQueryDatumSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfFixedDatums = inputStream.readUInt();
        this.numberOfVariableDatums = inputStream.readUInt();
@@ -4172,7 +4132,7 @@ dis7.DataQueryDatumSpecification = function()
        this.variableDatumIDList.initFromBinary(inputStream);
   };
 
-  dis7.DataQueryDatumSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.DataQueryDatumSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfFixedDatums);
        outputStream.writeUInt(this.numberOfVariableDatums);
@@ -4182,7 +4142,7 @@ dis7.DataQueryDatumSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.DataQueryDatumSpecification = dis7.DataQueryDatumSpecification;
+exports.DataQueryDatumSpecification = dis.DataQueryDatumSpecification;
 
 // End of DataQueryDatumSpecification class
 
@@ -4195,8 +4155,8 @@ exports.DataQueryDatumSpecification = dis7.DataQueryDatumSpecification;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4205,7 +4165,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataQueryPdu = function()
+dis.DataQueryPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -4232,10 +4192,10 @@ dis7.DataQueryPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** ID of request */
    this.requestID = 0;
@@ -4255,7 +4215,7 @@ dis7.DataQueryPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.DataQueryPdu.prototype.initFromBinary = function(inputStream)
+  dis.DataQueryPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -4273,21 +4233,21 @@ dis7.DataQueryPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.DataQueryPdu.prototype.encodeToBinary = function(outputStream)
+  dis.DataQueryPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -4317,7 +4277,7 @@ dis7.DataQueryPdu = function()
 }; // end of class
 
  // node.js module support
-exports.DataQueryPdu = dis7.DataQueryPdu;
+exports.DataQueryPdu = dis.DataQueryPdu;
 
 // End of DataQueryPdu class
 
@@ -4330,8 +4290,8 @@ exports.DataQueryPdu = dis7.DataQueryPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4340,7 +4300,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataQueryReliablePdu = function()
+dis.DataQueryReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -4367,10 +4327,10 @@ dis7.DataQueryReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -4399,7 +4359,7 @@ dis7.DataQueryReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  dis7.DataQueryReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.DataQueryReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -4420,21 +4380,21 @@ dis7.DataQueryReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  dis7.DataQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.DataQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -4467,7 +4427,7 @@ dis7.DataQueryReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.DataQueryReliablePdu = dis7.DataQueryReliablePdu;
+exports.DataQueryReliablePdu = dis.DataQueryReliablePdu;
 
 // End of DataQueryReliablePdu class
 
@@ -4480,8 +4440,8 @@ exports.DataQueryReliablePdu = dis7.DataQueryReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4490,7 +4450,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataReliablePdu = function()
+dis.DataReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -4517,10 +4477,10 @@ dis7.DataReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Request ID */
    this.requestID = 0;
@@ -4546,7 +4506,7 @@ dis7.DataReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  dis7.DataReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.DataReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -4566,21 +4526,21 @@ dis7.DataReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  dis7.DataReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.DataReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -4612,7 +4572,7 @@ dis7.DataReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.DataReliablePdu = dis7.DataReliablePdu;
+exports.DataReliablePdu = dis.DataReliablePdu;
 
 // End of DataReliablePdu class
 
@@ -4625,8 +4585,8 @@ exports.DataReliablePdu = dis7.DataReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4635,7 +4595,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DatumSpecification = function()
+dis.DatumSpecification = function()
 {
    /** Number of fixed datums */
    this.numberOfFixedDatums = 0;
@@ -4644,12 +4604,12 @@ dis7.DatumSpecification = function()
    this.numberOfVariableDatums = 0;
 
    /** variable length list fixed datums */
-   this.fixedDatumList = new dis7.FixedDatum(); 
+   this.fixedDatumList = new dis.FixedDatum(); 
 
    /** variable length list variable datums. See 6.2.93 */
-   this.variableDatumList = new dis7.VariableDatum(); 
+   this.variableDatumList = new dis.VariableDatum(); 
 
-  dis7.DatumSpecification.prototype.initFromBinary = function(inputStream)
+  dis.DatumSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfFixedDatums = inputStream.readUInt();
        this.numberOfVariableDatums = inputStream.readUInt();
@@ -4657,7 +4617,7 @@ dis7.DatumSpecification = function()
        this.variableDatumList.initFromBinary(inputStream);
   };
 
-  dis7.DatumSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.DatumSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfFixedDatums);
        outputStream.writeUInt(this.numberOfVariableDatums);
@@ -4667,7 +4627,7 @@ dis7.DatumSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.DatumSpecification = dis7.DatumSpecification;
+exports.DatumSpecification = dis.DatumSpecification;
 
 // End of DatumSpecification class
 
@@ -4680,8 +4640,8 @@ exports.DatumSpecification = dis7.DatumSpecification;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4690,7 +4650,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DeadReckoningParameters = function()
+dis.DeadReckoningParameters = function()
 {
    /** Algorithm to use in computing dead reckoning. See EBV doc. */
    this.deadReckoningAlgorithm = 0;
@@ -4699,12 +4659,12 @@ dis7.DeadReckoningParameters = function()
    this.parameters = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
    /** Linear acceleration of the entity */
-   this.entityLinearAcceleration = new dis7.Vector3Float(); 
+   this.entityLinearAcceleration = new dis.Vector3Float(); 
 
    /** Angular velocity of the entity */
-   this.entityAngularVelocity = new dis7.Vector3Float(); 
+   this.entityAngularVelocity = new dis.Vector3Float(); 
 
-  dis7.DeadReckoningParameters.prototype.initFromBinary = function(inputStream)
+  dis.DeadReckoningParameters.prototype.initFromBinary = function(inputStream)
   {
        this.deadReckoningAlgorithm = inputStream.readUByte();
        for(var idx = 0; idx < 15; idx++)
@@ -4715,7 +4675,7 @@ dis7.DeadReckoningParameters = function()
        this.entityAngularVelocity.initFromBinary(inputStream);
   };
 
-  dis7.DeadReckoningParameters.prototype.encodeToBinary = function(outputStream)
+  dis.DeadReckoningParameters.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.deadReckoningAlgorithm);
        for(var idx = 0; idx < 15; idx++)
@@ -4728,7 +4688,7 @@ dis7.DeadReckoningParameters = function()
 }; // end of class
 
  // node.js module support
-exports.DeadReckoningParameters = dis7.DeadReckoningParameters;
+exports.DeadReckoningParameters = dis.DeadReckoningParameters;
 
 // End of DeadReckoningParameters class
 
@@ -4741,8 +4701,8 @@ exports.DeadReckoningParameters = dis7.DeadReckoningParameters;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4751,7 +4711,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DesignatorPdu = function()
+dis.DesignatorPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -4778,13 +4738,13 @@ dis7.DesignatorPdu = function()
    this.padding = 0;
 
    /** ID of the entity designating */
-   this.designatingEntityID = new dis7.EntityID(); 
+   this.designatingEntityID = new dis.EntityID(); 
 
    /** This field shall specify a unique emitter database number assigned to  differentiate between otherwise similar or identical emitter beams within an emitter system. */
    this.codeName = 0;
 
    /** ID of the entity being designated */
-   this.designatedEntityID = new dis7.EntityID(); 
+   this.designatedEntityID = new dis.EntityID(); 
 
    /** This field shall identify the designator code being used by the designating entity  */
    this.designatorCode = 0;
@@ -4796,10 +4756,10 @@ dis7.DesignatorPdu = function()
    this.designatorWavelength = 0;
 
    /** designtor spot wrt the designated entity */
-   this.designatorSpotWrtDesignated = new dis7.Vector3Float(); 
+   this.designatorSpotWrtDesignated = new dis.Vector3Float(); 
 
    /** designtor spot wrt the designated entity */
-   this.designatorSpotLocation = new dis7.Vector3Double(); 
+   this.designatorSpotLocation = new dis.Vector3Double(); 
 
    /** Dead reckoning algorithm */
    this.deadReckoningAlgorithm = 0;
@@ -4811,9 +4771,9 @@ dis7.DesignatorPdu = function()
    this.padding2 = 0;
 
    /** linear accelleration of entity */
-   this.entityLinearAcceleration = new dis7.Vector3Float(); 
+   this.entityLinearAcceleration = new dis.Vector3Float(); 
 
-  dis7.DesignatorPdu.prototype.initFromBinary = function(inputStream)
+  dis.DesignatorPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -4837,7 +4797,7 @@ dis7.DesignatorPdu = function()
        this.entityLinearAcceleration.initFromBinary(inputStream);
   };
 
-  dis7.DesignatorPdu.prototype.encodeToBinary = function(outputStream)
+  dis.DesignatorPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -4863,7 +4823,7 @@ dis7.DesignatorPdu = function()
 }; // end of class
 
  // node.js module support
-exports.DesignatorPdu = dis7.DesignatorPdu;
+exports.DesignatorPdu = dis.DesignatorPdu;
 
 // End of DesignatorPdu class
 
@@ -4876,8 +4836,8 @@ exports.DesignatorPdu = dis7.DesignatorPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -4886,7 +4846,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DetonationPdu = function()
+dis.DetonationPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -4913,28 +4873,28 @@ dis7.DetonationPdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new dis7.EntityID(); 
+   this.firingEntityID = new dis.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new dis7.EntityID(); 
+   this.targetEntityID = new dis.EntityID(); 
 
    /** ID of the expendable entity, Section 7.3.3  */
-   this.explodingEntityID = new dis7.EntityID(); 
+   this.explodingEntityID = new dis.EntityID(); 
 
    /** ID of event, Section 7.3.3 */
-   this.eventID = new dis7.EventIdentifier(); 
+   this.eventID = new dis.EventIdentifier(); 
 
    /** velocity of the munition immediately before detonation/impact, Section 7.3.3  */
-   this.velocity = new dis7.Vector3Float(); 
+   this.velocity = new dis.Vector3Float(); 
 
    /** location of the munition detonation, the expendable detonation, Section 7.3.3  */
-   this.locationInWorldCoordinates = new dis7.Vector3Double(); 
+   this.locationInWorldCoordinates = new dis.Vector3Double(); 
 
    /** Describes the detonation represented, Section 7.3.3  */
-   this.descriptor = new dis7.MunitionDescriptor(); 
+   this.descriptor = new dis.MunitionDescriptor(); 
 
    /** Velocity of the ammunition, Section 7.3.3  */
-   this.locationOfEntityCoordinates = new dis7.Vector3Float(); 
+   this.locationOfEntityCoordinates = new dis.Vector3Float(); 
 
    /** result of the detonation, Section 7.3.3  */
    this.detonationResult = 0;
@@ -4948,7 +4908,7 @@ dis7.DetonationPdu = function()
    /** specify the parameter values for each Variable Parameter record, Section 7.3.3  */
     this.variableParameters = new Array();
  
-  dis7.DetonationPdu.prototype.initFromBinary = function(inputStream)
+  dis.DetonationPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -4971,14 +4931,14 @@ dis7.DetonationPdu = function()
        this.pad = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new dis7.VariableParameter();
+           var anX = new dis.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  dis7.DetonationPdu.prototype.encodeToBinary = function(outputStream)
+  dis.DetonationPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -5008,7 +4968,7 @@ dis7.DetonationPdu = function()
 }; // end of class
 
  // node.js module support
-exports.DetonationPdu = dis7.DetonationPdu;
+exports.DetonationPdu = dis.DetonationPdu;
 
 // End of DetonationPdu class
 
@@ -5021,8 +4981,8 @@ exports.DetonationPdu = dis7.DetonationPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5031,7 +4991,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DirectedEnergyAreaAimpoint = function()
+dis.DirectedEnergyAreaAimpoint = function()
 {
    /** Type of Record enumeration */
    this.recordType = 4001;
@@ -5049,12 +5009,12 @@ dis7.DirectedEnergyAreaAimpoint = function()
    this.directedEnergyTargetEnergyDepositionRecordCount = 0;
 
    /** list of beam antenna records. See 6.2.9.2 */
-   this.beamAntennaParameterList = new dis7.BeamAntennaPattern(); 
+   this.beamAntennaParameterList = new dis.BeamAntennaPattern(); 
 
    /** list of DE target deposition records. See 6.2.21.4 */
-   this.directedEnergyTargetEnergyDepositionRecordList = new dis7.DirectedEnergyTargetEnergyDeposition(); 
+   this.directedEnergyTargetEnergyDepositionRecordList = new dis.DirectedEnergyTargetEnergyDeposition(); 
 
-  dis7.DirectedEnergyAreaAimpoint.prototype.initFromBinary = function(inputStream)
+  dis.DirectedEnergyAreaAimpoint.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -5065,7 +5025,7 @@ dis7.DirectedEnergyAreaAimpoint = function()
        this.directedEnergyTargetEnergyDepositionRecordList.initFromBinary(inputStream);
   };
 
-  dis7.DirectedEnergyAreaAimpoint.prototype.encodeToBinary = function(outputStream)
+  dis.DirectedEnergyAreaAimpoint.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -5078,7 +5038,7 @@ dis7.DirectedEnergyAreaAimpoint = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyAreaAimpoint = dis7.DirectedEnergyAreaAimpoint;
+exports.DirectedEnergyAreaAimpoint = dis.DirectedEnergyAreaAimpoint;
 
 // End of DirectedEnergyAreaAimpoint class
 
@@ -5091,8 +5051,8 @@ exports.DirectedEnergyAreaAimpoint = dis7.DirectedEnergyAreaAimpoint;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5101,7 +5061,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DirectedEnergyDamage = function()
+dis.DirectedEnergyDamage = function()
 {
    /** DE Record Type. */
    this.recordType = 4500;
@@ -5113,7 +5073,7 @@ dis7.DirectedEnergyDamage = function()
    this.padding = 0;
 
    /** location of damage, relative to center of entity */
-   this.damageLocation = new dis7.Vector3Float(); 
+   this.damageLocation = new dis.Vector3Float(); 
 
    /** Size of damaged area, in meters. */
    this.damageDiameter = 0;
@@ -5134,12 +5094,12 @@ dis7.DirectedEnergyDamage = function()
    this.componentVisualSmokeColor = 0;
 
    /** For any component damage resulting this field shall be set to the fire event ID from that PDU. */
-   this.fireEventID = new dis7.EventIdentifier(); 
+   this.fireEventID = new dis.EventIdentifier(); 
 
    /** padding */
    this.padding2 = 0;
 
-  dis7.DirectedEnergyDamage.prototype.initFromBinary = function(inputStream)
+  dis.DirectedEnergyDamage.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -5155,7 +5115,7 @@ dis7.DirectedEnergyDamage = function()
        this.padding2 = inputStream.readUShort();
   };
 
-  dis7.DirectedEnergyDamage.prototype.encodeToBinary = function(outputStream)
+  dis.DirectedEnergyDamage.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -5173,7 +5133,7 @@ dis7.DirectedEnergyDamage = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyDamage = dis7.DirectedEnergyDamage;
+exports.DirectedEnergyDamage = dis.DirectedEnergyDamage;
 
 // End of DirectedEnergyDamage class
 
@@ -5186,8 +5146,8 @@ exports.DirectedEnergyDamage = dis7.DirectedEnergyDamage;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5196,7 +5156,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DirectedEnergyFirePdu = function()
+dis.DirectedEnergyFirePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -5223,22 +5183,22 @@ dis7.DirectedEnergyFirePdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new dis7.EntityID(); 
+   this.firingEntityID = new dis.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new dis7.EntityID(); 
+   this.targetEntityID = new dis.EntityID(); 
 
    /** Field shall identify the munition type enumeration for the DE weapon beam, Section 7.3.4  */
-   this.munitionType = new dis7.EntityType(); 
+   this.munitionType = new dis.EntityType(); 
 
    /** Field shall indicate the simulation time at start of the shot, Section 7.3.4  */
-   this.shotStartTime = new dis7.ClockTime(); 
+   this.shotStartTime = new dis.ClockTime(); 
 
    /** Field shall indicate the current cumulative duration of the shot, Section 7.3.4  */
    this.commulativeShotTime = 0;
 
    /** Field shall identify the location of the DE weapon aperture/emitter, Section 7.3.4  */
-   this.ApertureEmitterLocation = new dis7.Vector3Float(); 
+   this.ApertureEmitterLocation = new dis.Vector3Float(); 
 
    /** Field shall identify the beam diameter at the aperture/emitter, Section 7.3.4  */
    this.apertureDiameter = 0;
@@ -5276,7 +5236,7 @@ dis7.DirectedEnergyFirePdu = function()
    /** Fields shall contain one or more DE records, records shall conform to the variable record format (Section6.2.82), Section 7.3.4 */
     this.dERecords = new Array();
  
-  dis7.DirectedEnergyFirePdu.prototype.initFromBinary = function(inputStream)
+  dis.DirectedEnergyFirePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -5305,14 +5265,14 @@ dis7.DirectedEnergyFirePdu = function()
        this.numberOfDERecords = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfDERecords; idx++)
        {
-           var anX = new dis7.StandardVariableSpecification();
+           var anX = new dis.StandardVariableSpecification();
            anX.initFromBinary(inputStream);
            this.dERecords.push(anX);
        }
 
   };
 
-  dis7.DirectedEnergyFirePdu.prototype.encodeToBinary = function(outputStream)
+  dis.DirectedEnergyFirePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -5348,7 +5308,7 @@ dis7.DirectedEnergyFirePdu = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyFirePdu = dis7.DirectedEnergyFirePdu;
+exports.DirectedEnergyFirePdu = dis.DirectedEnergyFirePdu;
 
 // End of DirectedEnergyFirePdu class
 
@@ -5361,8 +5321,8 @@ exports.DirectedEnergyFirePdu = dis7.DirectedEnergyFirePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5371,7 +5331,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DirectedEnergyPrecisionAimpoint = function()
+dis.DirectedEnergyPrecisionAimpoint = function()
 {
    /** Type of Record */
    this.recordType = 4000;
@@ -5383,19 +5343,19 @@ dis7.DirectedEnergyPrecisionAimpoint = function()
    this.padding = 0;
 
    /** Position of Target Spot in World Coordinates. */
-   this.targetSpotLocation = new dis7.Vector3Double(); 
+   this.targetSpotLocation = new dis.Vector3Double(); 
 
    /** Position (meters) of Target Spot relative to Entity Position. */
-   this.targetSpotEntityLocation = new dis7.Vector3Float(); 
+   this.targetSpotEntityLocation = new dis.Vector3Float(); 
 
    /** Velocity (meters/sec) of Target Spot. */
-   this.targetSpotVelocity = new dis7.Vector3Float(); 
+   this.targetSpotVelocity = new dis.Vector3Float(); 
 
    /** Acceleration (meters/sec/sec) of Target Spot. */
-   this.targetSpotAcceleration = new dis7.Vector3Float(); 
+   this.targetSpotAcceleration = new dis.Vector3Float(); 
 
    /** Unique ID of the target entity. */
-   this.targetEntityID = new dis7.EntityID(); 
+   this.targetEntityID = new dis.EntityID(); 
 
    /** Target Component ID ENUM, same as in DamageDescriptionRecord. */
    this.targetComponentID = 0;
@@ -5418,7 +5378,7 @@ dis7.DirectedEnergyPrecisionAimpoint = function()
    /** padding */
    this.padding2 = 0;
 
-  dis7.DirectedEnergyPrecisionAimpoint.prototype.initFromBinary = function(inputStream)
+  dis.DirectedEnergyPrecisionAimpoint.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -5437,7 +5397,7 @@ dis7.DirectedEnergyPrecisionAimpoint = function()
        this.padding2 = inputStream.readUInt();
   };
 
-  dis7.DirectedEnergyPrecisionAimpoint.prototype.encodeToBinary = function(outputStream)
+  dis.DirectedEnergyPrecisionAimpoint.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -5458,7 +5418,7 @@ dis7.DirectedEnergyPrecisionAimpoint = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyPrecisionAimpoint = dis7.DirectedEnergyPrecisionAimpoint;
+exports.DirectedEnergyPrecisionAimpoint = dis.DirectedEnergyPrecisionAimpoint;
 
 // End of DirectedEnergyPrecisionAimpoint class
 
@@ -5471,8 +5431,8 @@ exports.DirectedEnergyPrecisionAimpoint = dis7.DirectedEnergyPrecisionAimpoint;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5481,10 +5441,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DirectedEnergyTargetEnergyDeposition = function()
+dis.DirectedEnergyTargetEnergyDeposition = function()
 {
    /** Unique ID of the target entity. */
-   this.targetEntityID = new dis7.EntityID(); 
+   this.targetEntityID = new dis.EntityID(); 
 
    /** padding */
    this.padding = 0;
@@ -5492,14 +5452,14 @@ dis7.DirectedEnergyTargetEnergyDeposition = function()
    /** Peak irrandiance */
    this.peakIrradiance = 0;
 
-  dis7.DirectedEnergyTargetEnergyDeposition.prototype.initFromBinary = function(inputStream)
+  dis.DirectedEnergyTargetEnergyDeposition.prototype.initFromBinary = function(inputStream)
   {
        this.targetEntityID.initFromBinary(inputStream);
        this.padding = inputStream.readUShort();
        this.peakIrradiance = inputStream.readFloat32();
   };
 
-  dis7.DirectedEnergyTargetEnergyDeposition.prototype.encodeToBinary = function(outputStream)
+  dis.DirectedEnergyTargetEnergyDeposition.prototype.encodeToBinary = function(outputStream)
   {
        this.targetEntityID.encodeToBinary(outputStream);
        outputStream.writeUShort(this.padding);
@@ -5508,7 +5468,7 @@ dis7.DirectedEnergyTargetEnergyDeposition = function()
 }; // end of class
 
  // node.js module support
-exports.DirectedEnergyTargetEnergyDeposition = dis7.DirectedEnergyTargetEnergyDeposition;
+exports.DirectedEnergyTargetEnergyDeposition = dis.DirectedEnergyTargetEnergyDeposition;
 
 // End of DirectedEnergyTargetEnergyDeposition class
 
@@ -5521,8 +5481,8 @@ exports.DirectedEnergyTargetEnergyDeposition = dis7.DirectedEnergyTargetEnergyDe
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5531,7 +5491,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DistributedEmissionsFamilyPdu = function()
+dis.DistributedEmissionsFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -5557,7 +5517,7 @@ dis7.DistributedEmissionsFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.DistributedEmissionsFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.DistributedEmissionsFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -5569,7 +5529,7 @@ dis7.DistributedEmissionsFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.DistributedEmissionsFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.DistributedEmissionsFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -5583,7 +5543,7 @@ dis7.DistributedEmissionsFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.DistributedEmissionsFamilyPdu = dis7.DistributedEmissionsFamilyPdu;
+exports.DistributedEmissionsFamilyPdu = dis.DistributedEmissionsFamilyPdu;
 
 // End of DistributedEmissionsFamilyPdu class
 
@@ -5596,8 +5556,8 @@ exports.DistributedEmissionsFamilyPdu = dis7.DistributedEmissionsFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5606,7 +5566,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EEFundamentalParameterData = function()
+dis.EEFundamentalParameterData = function()
 {
    /** center frequency of the emission in hertz. */
    this.frequency = 0;
@@ -5623,7 +5583,7 @@ dis7.EEFundamentalParameterData = function()
    /** Average pulse width  of the emission in microseconds. */
    this.pulseWidth = 0;
 
-  dis7.EEFundamentalParameterData.prototype.initFromBinary = function(inputStream)
+  dis.EEFundamentalParameterData.prototype.initFromBinary = function(inputStream)
   {
        this.frequency = inputStream.readFloat32();
        this.frequencyRange = inputStream.readFloat32();
@@ -5632,7 +5592,7 @@ dis7.EEFundamentalParameterData = function()
        this.pulseWidth = inputStream.readFloat32();
   };
 
-  dis7.EEFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
+  dis.EEFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.frequency);
        outputStream.writeFloat32(this.frequencyRange);
@@ -5643,7 +5603,7 @@ dis7.EEFundamentalParameterData = function()
 }; // end of class
 
  // node.js module support
-exports.EEFundamentalParameterData = dis7.EEFundamentalParameterData;
+exports.EEFundamentalParameterData = dis.EEFundamentalParameterData;
 
 // End of EEFundamentalParameterData class
 
@@ -5656,8 +5616,8 @@ exports.EEFundamentalParameterData = dis7.EEFundamentalParameterData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5666,12 +5626,12 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EightByteChunk = function()
+dis.EightByteChunk = function()
 {
    /** Eight bytes of arbitrary data */
    this.otherParameters = new Array(0, 0, 0, 0, 0, 0, 0, 0);
 
-  dis7.EightByteChunk.prototype.initFromBinary = function(inputStream)
+  dis.EightByteChunk.prototype.initFromBinary = function(inputStream)
   {
        for(var idx = 0; idx < 8; idx++)
        {
@@ -5679,7 +5639,7 @@ dis7.EightByteChunk = function()
        }
   };
 
-  dis7.EightByteChunk.prototype.encodeToBinary = function(outputStream)
+  dis.EightByteChunk.prototype.encodeToBinary = function(outputStream)
   {
        for(var idx = 0; idx < 8; idx++)
        {
@@ -5689,7 +5649,7 @@ dis7.EightByteChunk = function()
 }; // end of class
 
  // node.js module support
-exports.EightByteChunk = dis7.EightByteChunk;
+exports.EightByteChunk = dis.EightByteChunk;
 
 // End of EightByteChunk class
 
@@ -5702,8 +5662,8 @@ exports.EightByteChunk = dis7.EightByteChunk;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5712,7 +5672,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ElectronicEmissionsPdu = function()
+dis.ElectronicEmissionsPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -5739,10 +5699,10 @@ dis7.ElectronicEmissionsPdu = function()
    this.padding = 0;
 
    /** ID of the entity emitting */
-   this.emittingEntityID = new dis7.EntityID(); 
+   this.emittingEntityID = new dis.EntityID(); 
 
    /** ID of event */
-   this.eventID = new dis7.EventIdentifier(); 
+   this.eventID = new dis.EventIdentifier(); 
 
    /** This field shall be used to indicate if the data in the PDU represents a state update or just data that has changed since issuance of the last Electromagnetic Emission PDU [relative to the identified entity and emission system(s)]. */
    this.stateUpdateIndicator = 0;
@@ -5760,15 +5720,15 @@ dis7.ElectronicEmissionsPdu = function()
    this.numberOfBeams = 0;
 
    /**  information about a particular emitter system and shall be represented by an Emitter System record (see 6.2.23). */
-   this.emitterSystem = new dis7.EmitterSystem(); 
+   this.emitterSystem = new dis.EmitterSystem(); 
 
    /** the location of the antenna beam source with respect to the emitting entity's coordinate system. This location shall be the origin of the emitter coordinate system that shall have the same orientation as the entity coordinate system. This field shall be represented by an Entity Coordinate Vector record see 6.2.95  */
-   this.location = new dis7.Vector3Float(); 
+   this.location = new dis.Vector3Float(); 
 
    /** Electronic emmissions systems THIS IS WRONG. It has the WRONG class type and will cause problems in any marshalling. */
     this.systems = new Array();
  
-  dis7.ElectronicEmissionsPdu.prototype.initFromBinary = function(inputStream)
+  dis.ElectronicEmissionsPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -5789,14 +5749,14 @@ dis7.ElectronicEmissionsPdu = function()
        this.location.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfSystems; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.systems.push(anX);
        }
 
   };
 
-  dis7.ElectronicEmissionsPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ElectronicEmissionsPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -5824,7 +5784,7 @@ dis7.ElectronicEmissionsPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ElectronicEmissionsPdu = dis7.ElectronicEmissionsPdu;
+exports.ElectronicEmissionsPdu = dis.ElectronicEmissionsPdu;
 
 // End of ElectronicEmissionsPdu class
 
@@ -5837,8 +5797,8 @@ exports.ElectronicEmissionsPdu = dis7.ElectronicEmissionsPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5847,7 +5807,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EmitterSystem = function()
+dis.EmitterSystem = function()
 {
    /** Name of the emitter, 16 bit enumeration */
    this.emitterName = 0;
@@ -5858,14 +5818,14 @@ dis7.EmitterSystem = function()
    /** emitter ID, 8 bit enumeration */
    this.emitterIDNumber = 0;
 
-  dis7.EmitterSystem.prototype.initFromBinary = function(inputStream)
+  dis.EmitterSystem.prototype.initFromBinary = function(inputStream)
   {
        this.emitterName = inputStream.readUShort();
        this.emitterFunction = inputStream.readUByte();
        this.emitterIDNumber = inputStream.readUByte();
   };
 
-  dis7.EmitterSystem.prototype.encodeToBinary = function(outputStream)
+  dis.EmitterSystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.emitterName);
        outputStream.writeUByte(this.emitterFunction);
@@ -5874,7 +5834,7 @@ dis7.EmitterSystem = function()
 }; // end of class
 
  // node.js module support
-exports.EmitterSystem = dis7.EmitterSystem;
+exports.EmitterSystem = dis.EmitterSystem;
 
 // End of EmitterSystem class
 
@@ -5887,8 +5847,8 @@ exports.EmitterSystem = dis7.EmitterSystem;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5897,7 +5857,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EngineFuel = function()
+dis.EngineFuel = function()
 {
    /** Fuel quantity, units specified by next field */
    this.fuelQuantity = 0;
@@ -5914,7 +5874,7 @@ dis7.EngineFuel = function()
    /** padding */
    this.padding = 0;
 
-  dis7.EngineFuel.prototype.initFromBinary = function(inputStream)
+  dis.EngineFuel.prototype.initFromBinary = function(inputStream)
   {
        this.fuelQuantity = inputStream.readUInt();
        this.fuelMeasurementUnits = inputStream.readUByte();
@@ -5923,7 +5883,7 @@ dis7.EngineFuel = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.EngineFuel.prototype.encodeToBinary = function(outputStream)
+  dis.EngineFuel.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.fuelQuantity);
        outputStream.writeUByte(this.fuelMeasurementUnits);
@@ -5934,7 +5894,7 @@ dis7.EngineFuel = function()
 }; // end of class
 
  // node.js module support
-exports.EngineFuel = dis7.EngineFuel;
+exports.EngineFuel = dis.EngineFuel;
 
 // End of EngineFuel class
 
@@ -5947,8 +5907,8 @@ exports.EngineFuel = dis7.EngineFuel;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -5957,7 +5917,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EngineFuelReload = function()
+dis.EngineFuelReload = function()
 {
    /** standard quantity of fuel loaded */
    this.standardQuantity = 0;
@@ -5980,7 +5940,7 @@ dis7.EngineFuelReload = function()
    /** padding */
    this.padding = 0;
 
-  dis7.EngineFuelReload.prototype.initFromBinary = function(inputStream)
+  dis.EngineFuelReload.prototype.initFromBinary = function(inputStream)
   {
        this.standardQuantity = inputStream.readUInt();
        this.maximumQuantity = inputStream.readUInt();
@@ -5991,7 +5951,7 @@ dis7.EngineFuelReload = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.EngineFuelReload.prototype.encodeToBinary = function(outputStream)
+  dis.EngineFuelReload.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.standardQuantity);
        outputStream.writeUInt(this.maximumQuantity);
@@ -6004,7 +5964,7 @@ dis7.EngineFuelReload = function()
 }; // end of class
 
  // node.js module support
-exports.EngineFuelReload = dis7.EngineFuelReload;
+exports.EngineFuelReload = dis.EngineFuelReload;
 
 // End of EngineFuelReload class
 
@@ -6017,8 +5977,8 @@ exports.EngineFuelReload = dis7.EngineFuelReload;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6027,7 +5987,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityAssociation = function()
+dis.EntityAssociation = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 4;
@@ -6042,7 +6002,7 @@ dis7.EntityAssociation = function()
    this.associationType = 0;
 
    /** Object ID of entity associated with this entity */
-   this.entityID = new dis7.EntityID(); 
+   this.entityID = new dis.EntityID(); 
 
    /** Station location on one's own entity. EBV doc. */
    this.ownStationLocation = 0;
@@ -6056,7 +6016,7 @@ dis7.EntityAssociation = function()
    /** Group if any to which the entity belongs */
    this.groupNumber = 0;
 
-  dis7.EntityAssociation.prototype.initFromBinary = function(inputStream)
+  dis.EntityAssociation.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.changeIndicator = inputStream.readUByte();
@@ -6069,7 +6029,7 @@ dis7.EntityAssociation = function()
        this.groupNumber = inputStream.readUShort();
   };
 
-  dis7.EntityAssociation.prototype.encodeToBinary = function(outputStream)
+  dis.EntityAssociation.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.changeIndicator);
@@ -6084,7 +6044,7 @@ dis7.EntityAssociation = function()
 }; // end of class
 
  // node.js module support
-exports.EntityAssociation = dis7.EntityAssociation;
+exports.EntityAssociation = dis.EntityAssociation;
 
 // End of EntityAssociation class
 
@@ -6097,8 +6057,8 @@ exports.EntityAssociation = dis7.EntityAssociation;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6107,7 +6067,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityDamageStatusPdu = function()
+dis.EntityDamageStatusPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -6134,13 +6094,13 @@ dis7.EntityDamageStatusPdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new dis7.EntityID(); 
+   this.firingEntityID = new dis.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new dis7.EntityID(); 
+   this.targetEntityID = new dis.EntityID(); 
 
    /** Field shall identify the damaged entity (see 6.2.28), Section 7.3.4 COMPLETE */
-   this.damagedEntityID = new dis7.EntityID(); 
+   this.damagedEntityID = new dis.EntityID(); 
 
    /** Padding. */
    this.padding1 = 0;
@@ -6154,7 +6114,7 @@ dis7.EntityDamageStatusPdu = function()
    /** Fields shall contain one or more Damage Description records (see 6.2.17) and may contain other Standard Variable records, Section 7.3.5 */
     this.damageDescriptionRecords = new Array();
  
-  dis7.EntityDamageStatusPdu.prototype.initFromBinary = function(inputStream)
+  dis.EntityDamageStatusPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -6172,14 +6132,14 @@ dis7.EntityDamageStatusPdu = function()
        this.numberOfDamageDescription = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfDamageDescription; idx++)
        {
-           var anX = new dis7.DirectedEnergyDamage();
+           var anX = new dis.DirectedEnergyDamage();
            anX.initFromBinary(inputStream);
            this.damageDescriptionRecords.push(anX);
        }
 
   };
 
-  dis7.EntityDamageStatusPdu.prototype.encodeToBinary = function(outputStream)
+  dis.EntityDamageStatusPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -6204,7 +6164,7 @@ dis7.EntityDamageStatusPdu = function()
 }; // end of class
 
  // node.js module support
-exports.EntityDamageStatusPdu = dis7.EntityDamageStatusPdu;
+exports.EntityDamageStatusPdu = dis.EntityDamageStatusPdu;
 
 // End of EntityDamageStatusPdu class
 
@@ -6217,8 +6177,8 @@ exports.EntityDamageStatusPdu = dis7.EntityDamageStatusPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6227,7 +6187,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityID = function()
+dis.EntityID = function()
 {
    /** Site ID */
    this.siteID = 0;
@@ -6238,14 +6198,14 @@ dis7.EntityID = function()
    /** Entity number ID */
    this.entityID = 0;
 
-  dis7.EntityID.prototype.initFromBinary = function(inputStream)
+  dis.EntityID.prototype.initFromBinary = function(inputStream)
   {
        this.siteID = inputStream.readUShort();
        this.applicationID = inputStream.readUShort();
        this.entityID = inputStream.readUShort();
   };
 
-  dis7.EntityID.prototype.encodeToBinary = function(outputStream)
+  dis.EntityID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.siteID);
        outputStream.writeUShort(this.applicationID);
@@ -6254,7 +6214,7 @@ dis7.EntityID = function()
 }; // end of class
 
  // node.js module support
-exports.EntityID = dis7.EntityID;
+exports.EntityID = dis.EntityID;
 
 // End of EntityID class
 
@@ -6267,8 +6227,8 @@ exports.EntityID = dis7.EntityID;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6277,21 +6237,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityIdentifier = function()
+dis.EntityIdentifier = function()
 {
    /** Site and application IDs */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /** Entity number */
    this.entityNumber = 0;
 
-  dis7.EntityIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.EntityIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.entityNumber = inputStream.readUShort();
   };
 
-  dis7.EntityIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.EntityIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.entityNumber);
@@ -6299,7 +6259,7 @@ dis7.EntityIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.EntityIdentifier = dis7.EntityIdentifier;
+exports.EntityIdentifier = dis.EntityIdentifier;
 
 // End of EntityIdentifier class
 
@@ -6312,8 +6272,8 @@ exports.EntityIdentifier = dis7.EntityIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6322,7 +6282,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityInformationFamilyPdu = function()
+dis.EntityInformationFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -6348,7 +6308,7 @@ dis7.EntityInformationFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.EntityInformationFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.EntityInformationFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -6360,7 +6320,7 @@ dis7.EntityInformationFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.EntityInformationFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.EntityInformationFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -6374,7 +6334,7 @@ dis7.EntityInformationFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.EntityInformationFamilyPdu = dis7.EntityInformationFamilyPdu;
+exports.EntityInformationFamilyPdu = dis.EntityInformationFamilyPdu;
 
 // End of EntityInformationFamilyPdu class
 
@@ -6387,8 +6347,8 @@ exports.EntityInformationFamilyPdu = dis7.EntityInformationFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6397,7 +6357,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityManagementFamilyPdu = function()
+dis.EntityManagementFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -6423,7 +6383,7 @@ dis7.EntityManagementFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.EntityManagementFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.EntityManagementFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -6435,7 +6395,7 @@ dis7.EntityManagementFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.EntityManagementFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.EntityManagementFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -6449,7 +6409,7 @@ dis7.EntityManagementFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.EntityManagementFamilyPdu = dis7.EntityManagementFamilyPdu;
+exports.EntityManagementFamilyPdu = dis.EntityManagementFamilyPdu;
 
 // End of EntityManagementFamilyPdu class
 
@@ -6462,8 +6422,8 @@ exports.EntityManagementFamilyPdu = dis7.EntityManagementFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6472,7 +6432,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityMarking = function()
+dis.EntityMarking = function()
 {
    /** The character set */
    this.characterSet = 0;
@@ -6480,13 +6440,13 @@ dis7.EntityMarking = function()
    /** The characters */
    this.characters = 0;
 
-  dis7.EntityMarking.prototype.initFromBinary = function(inputStream)
+  dis.EntityMarking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
        this.characters = inputStream.readByte();
   };
 
-  dis7.EntityMarking.prototype.encodeToBinary = function(outputStream)
+  dis.EntityMarking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);
        outputStream.writeByte(this.characters);
@@ -6541,7 +6501,7 @@ dis7.EntityMarking = function()
 }; // end of class
 
  // node.js module support
-exports.EntityMarking = dis7.EntityMarking;
+exports.EntityMarking = dis.EntityMarking;
 
 // End of EntityMarking class
 
@@ -6554,8 +6514,8 @@ exports.EntityMarking = dis7.EntityMarking;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6564,7 +6524,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityStatePdu = function()
+dis.EntityStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -6591,7 +6551,7 @@ dis7.EntityStatePdu = function()
    this.padding = 0;
 
    /** Unique ID for an entity that is tied to this state information */
-   this.entityID = new dis7.EntityID(); 
+   this.entityID = new dis.EntityID(); 
 
    /** What force this entity is affiliated with, eg red, blue, neutral, etc */
    this.forceId = 0;
@@ -6600,27 +6560,27 @@ dis7.EntityStatePdu = function()
    this.numberOfVariableParameters = 0;
 
    /** Describes the type of entity in the world */
-   this.entityType = new dis7.EntityType(); 
+   this.entityType = new dis.EntityType(); 
 
-   this.alternativeEntityType = new dis7.EntityType(); 
+   this.alternativeEntityType = new dis.EntityType(); 
 
    /** Describes the speed of the entity in the world */
-   this.entityLinearVelocity = new dis7.Vector3Float(); 
+   this.entityLinearVelocity = new dis.Vector3Float(); 
 
    /** describes the location of the entity in the world */
-   this.entityLocation = new dis7.Vector3Double(); 
+   this.entityLocation = new dis.Vector3Double(); 
 
    /** describes the orientation of the entity, in euler angles */
-   this.entityOrientation = new dis7.EulerAngles(); 
+   this.entityOrientation = new dis.EulerAngles(); 
 
    /** a series of bit flags that are used to help draw the entity, such as smoking, on fire, etc. */
    this.entityAppearance = 0;
 
    /** parameters used for dead reckoning */
-   this.deadReckoningParameters = new dis7.DeadReckoningParameters(); 
+   this.deadReckoningParameters = new dis.DeadReckoningParameters(); 
 
    /** characters that can be used for debugging, or to draw unique strings on the side of entities in the world */
-   this.marking = new dis7.EntityMarking(); 
+   this.marking = new dis.EntityMarking(); 
 
    /** a series of bit flags */
    this.capabilities = 0;
@@ -6628,7 +6588,7 @@ dis7.EntityStatePdu = function()
    /** variable length list of variable parameters. In earlier DIS versions this was articulation parameters. */
     this.variableParameters = new Array();
  
-  dis7.EntityStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.EntityStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -6652,14 +6612,14 @@ dis7.EntityStatePdu = function()
        this.capabilities = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new dis7.VariableParameter();
+           var anX = new dis.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  dis7.EntityStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.EntityStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -6687,10 +6647,231 @@ dis7.EntityStatePdu = function()
        }
 
   };
+
+/** 0 uniform color, 1 camouflage */
+dis.EntityStatePdu.prototype.getEntityAppearance_paintScheme = function()
+{
+   var val = this.entityAppearance & 0x1;
+   return val >> 0;
+};
+
+
+/** 0 uniform color, 1 camouflage */
+dis.EntityStatePdu.prototype.setEntityAppearance_paintScheme= function(val)
+{
+  this.entityAppearance &= ~0x1; // Zero existing bits
+  val = val << 0;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.EntityStatePdu.prototype.getEntityAppearance_mobility = function()
+{
+   var val = this.entityAppearance & 0x2;
+   return val >> 1;
+};
+
+
+/** 0 no mobility kill, 1 mobility kill */
+dis.EntityStatePdu.prototype.setEntityAppearance_mobility= function(val)
+{
+  this.entityAppearance &= ~0x2; // Zero existing bits
+  val = val << 1;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.EntityStatePdu.prototype.getEntityAppearance_firepower = function()
+{
+   var val = this.entityAppearance & 0x4;
+   return val >> 2;
+};
+
+
+/** 0 no firepower iill, 1 firepower kill */
+dis.EntityStatePdu.prototype.setEntityAppearance_firepower= function(val)
+{
+  this.entityAppearance &= ~0x4; // Zero existing bits
+  val = val << 2;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.EntityStatePdu.prototype.getEntityAppearance_damage = function()
+{
+   var val = this.entityAppearance & 0x18;
+   return val >> 3;
+};
+
+
+/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+dis.EntityStatePdu.prototype.setEntityAppearance_damage= function(val)
+{
+  this.entityAppearance &= ~0x18; // Zero existing bits
+  val = val << 3;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.EntityStatePdu.prototype.getEntityAppearance_smoke = function()
+{
+   var val = this.entityAppearance & 0x60;
+   return val >> 5;
+};
+
+
+/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+dis.EntityStatePdu.prototype.setEntityAppearance_smoke= function(val)
+{
+  this.entityAppearance &= ~0x60; // Zero existing bits
+  val = val << 5;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.EntityStatePdu.prototype.getEntityAppearance_trailingEffects = function()
+{
+   var val = this.entityAppearance & 0x180;
+   return val >> 7;
+};
+
+
+/** dust cloud, 0 none 1 small 2 medium 3 large */
+dis.EntityStatePdu.prototype.setEntityAppearance_trailingEffects= function(val)
+{
+  this.entityAppearance &= ~0x180; // Zero existing bits
+  val = val << 7;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.EntityStatePdu.prototype.getEntityAppearance_hatch = function()
+{
+   var val = this.entityAppearance & 0xe00;
+   return val >> 9;
+};
+
+
+/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+dis.EntityStatePdu.prototype.setEntityAppearance_hatch= function(val)
+{
+  this.entityAppearance &= ~0xe00; // Zero existing bits
+  val = val << 9;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_headlights = function()
+{
+   var val = this.entityAppearance & 0x1000;
+   return val >> 12;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_headlights= function(val)
+{
+  this.entityAppearance &= ~0x1000; // Zero existing bits
+  val = val << 12;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_tailLights = function()
+{
+   var val = this.entityAppearance & 0x2000;
+   return val >> 13;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_tailLights= function(val)
+{
+  this.entityAppearance &= ~0x2000; // Zero existing bits
+  val = val << 13;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_brakeLights = function()
+{
+   var val = this.entityAppearance & 0x4000;
+   return val >> 14;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_brakeLights= function(val)
+{
+  this.entityAppearance &= ~0x4000; // Zero existing bits
+  val = val << 14;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.getEntityAppearance_flaming = function()
+{
+   var val = this.entityAppearance & 0x8000;
+   return val >> 15;
+};
+
+
+/** 0 off 1 on */
+dis.EntityStatePdu.prototype.setEntityAppearance_flaming= function(val)
+{
+  this.entityAppearance &= ~0x8000; // Zero existing bits
+  val = val << 15;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 not raised 1 raised */
+dis.EntityStatePdu.prototype.getEntityAppearance_launcher = function()
+{
+   var val = this.entityAppearance & 0x10000;
+   return val >> 16;
+};
+
+
+/** 0 not raised 1 raised */
+dis.EntityStatePdu.prototype.setEntityAppearance_launcher= function(val)
+{
+  this.entityAppearance &= ~0x10000; // Zero existing bits
+  val = val << 16;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.EntityStatePdu.prototype.getEntityAppearance_camouflageType = function()
+{
+   var val = this.entityAppearance & 0x60000;
+   return val >> 17;
+};
+
+
+/** 0 desert 1 winter 2 forest 3 unused */
+dis.EntityStatePdu.prototype.setEntityAppearance_camouflageType= function(val)
+{
+  this.entityAppearance &= ~0x60000; // Zero existing bits
+  val = val << 17;
+  this.entityAppearance = this.entityAppearance | val; 
+};
+
 }; // end of class
 
  // node.js module support
-exports.EntityStatePdu = dis7.EntityStatePdu;
+exports.EntityStatePdu = dis.EntityStatePdu;
 
 // End of EntityStatePdu class
 
@@ -6703,8 +6884,8 @@ exports.EntityStatePdu = dis7.EntityStatePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6713,7 +6894,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityStateUpdatePdu = function()
+dis.EntityStateUpdatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -6740,7 +6921,7 @@ dis7.EntityStateUpdatePdu = function()
    this.padding = 0;
 
    /** This field shall identify the entity issuing the PDU, and shall be represented by an Entity Identifier record (see 6.2.28). */
-   this.entityID = new dis7.EntityID(); 
+   this.entityID = new dis.EntityID(); 
 
    /** Padding */
    this.padding1 = 0;
@@ -6749,13 +6930,13 @@ dis7.EntityStateUpdatePdu = function()
    this.numberOfVariableParameters = 0;
 
    /** This field shall specify an entity’s linear velocity. The coordinate system for an entity’s linear velocity depends on the dead reckoning algorithm used. This field shall be represented by a Linear Velocity Vector record [see 6.2.95 item c)]). */
-   this.entityLinearVelocity = new dis7.Vector3Float(); 
+   this.entityLinearVelocity = new dis.Vector3Float(); 
 
    /** This field shall specify an entity’s physical location in the simulated world and shall be represented by a World Coordinates record (see 6.2.97). */
-   this.entityLocation = new dis7.Vector3Double(); 
+   this.entityLocation = new dis.Vector3Double(); 
 
    /** This field shall specify an entity’s orientation and shall be represented by an Euler Angles record (see 6.2.33). */
-   this.entityOrientation = new dis7.EulerAngles(); 
+   this.entityOrientation = new dis.EulerAngles(); 
 
    /** This field shall specify the dynamic changes to the entity’s appearance attributes. This field shall be represented by an Entity Appearance record (see 6.2.26). */
    this.entityAppearance = 0;
@@ -6763,7 +6944,7 @@ dis7.EntityStateUpdatePdu = function()
    /** This field shall specify the parameter values for each Variable Parameter record that is included (see 6.2.93 and Annex I). */
     this.variableParameters = new Array();
  
-  dis7.EntityStateUpdatePdu.prototype.initFromBinary = function(inputStream)
+  dis.EntityStateUpdatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -6782,14 +6963,14 @@ dis7.EntityStateUpdatePdu = function()
        this.entityAppearance = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new dis7.VariableParameter();
+           var anX = new dis.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  dis7.EntityStateUpdatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.EntityStateUpdatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -6815,7 +6996,7 @@ dis7.EntityStateUpdatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.EntityStateUpdatePdu = dis7.EntityStateUpdatePdu;
+exports.EntityStateUpdatePdu = dis.EntityStateUpdatePdu;
 
 // End of EntityStateUpdatePdu class
 
@@ -6828,8 +7009,8 @@ exports.EntityStateUpdatePdu = dis7.EntityStateUpdatePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6838,7 +7019,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityType = function()
+dis.EntityType = function()
 {
    /** Kind of entity */
    this.entityKind = 0;
@@ -6860,7 +7041,7 @@ dis7.EntityType = function()
 
    this.extra = 0;
 
-  dis7.EntityType.prototype.initFromBinary = function(inputStream)
+  dis.EntityType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -6871,7 +7052,7 @@ dis7.EntityType = function()
        this.extra = inputStream.readUByte();
   };
 
-  dis7.EntityType.prototype.encodeToBinary = function(outputStream)
+  dis.EntityType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);
        outputStream.writeUByte(this.domain);
@@ -6884,7 +7065,7 @@ dis7.EntityType = function()
 }; // end of class
 
  // node.js module support
-exports.EntityType = dis7.EntityType;
+exports.EntityType = dis.EntityType;
 
 // End of EntityType class
 
@@ -6897,8 +7078,8 @@ exports.EntityType = dis7.EntityType;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6907,7 +7088,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityTypeVP = function()
+dis.EntityTypeVP = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 3;
@@ -6916,7 +7097,7 @@ dis7.EntityTypeVP = function()
    this.changeIndicator = 0;
 
    /**  */
-   this.entityType = new dis7.EntityType(); 
+   this.entityType = new dis.EntityType(); 
 
    /** padding */
    this.padding = 0;
@@ -6924,7 +7105,7 @@ dis7.EntityTypeVP = function()
    /** padding */
    this.padding1 = 0;
 
-  dis7.EntityTypeVP.prototype.initFromBinary = function(inputStream)
+  dis.EntityTypeVP.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.changeIndicator = inputStream.readUByte();
@@ -6933,7 +7114,7 @@ dis7.EntityTypeVP = function()
        this.padding1 = inputStream.readUInt();
   };
 
-  dis7.EntityTypeVP.prototype.encodeToBinary = function(outputStream)
+  dis.EntityTypeVP.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.changeIndicator);
@@ -6944,7 +7125,7 @@ dis7.EntityTypeVP = function()
 }; // end of class
 
  // node.js module support
-exports.EntityTypeVP = dis7.EntityTypeVP;
+exports.EntityTypeVP = dis.EntityTypeVP;
 
 // End of EntityTypeVP class
 
@@ -6957,8 +7138,8 @@ exports.EntityTypeVP = dis7.EntityTypeVP;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -6967,7 +7148,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Environment = function()
+dis.Environment = function()
 {
    /** type */
    this.environmentType = 0;
@@ -6981,7 +7162,7 @@ dis7.Environment = function()
    /** padding */
    this.padding = 0;
 
-  dis7.Environment.prototype.initFromBinary = function(inputStream)
+  dis.Environment.prototype.initFromBinary = function(inputStream)
   {
        this.environmentType = inputStream.readUInt();
        this.length = inputStream.readUShort();
@@ -6989,7 +7170,7 @@ dis7.Environment = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.Environment.prototype.encodeToBinary = function(outputStream)
+  dis.Environment.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.environmentType);
        outputStream.writeUShort(this.length);
@@ -6999,7 +7180,7 @@ dis7.Environment = function()
 }; // end of class
 
  // node.js module support
-exports.Environment = dis7.Environment;
+exports.Environment = dis.Environment;
 
 // End of Environment class
 
@@ -7012,8 +7193,8 @@ exports.Environment = dis7.Environment;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7022,7 +7203,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EnvironmentGeneral = function()
+dis.EnvironmentGeneral = function()
 {
    /** Record type */
    this.environmentType = 0;
@@ -7042,7 +7223,7 @@ dis7.EnvironmentGeneral = function()
    /** padding to bring the total size up to a 64 bit boundry */
    this.padding2 = 0;
 
-  dis7.EnvironmentGeneral.prototype.initFromBinary = function(inputStream)
+  dis.EnvironmentGeneral.prototype.initFromBinary = function(inputStream)
   {
        this.environmentType = inputStream.readUInt();
        this.length = inputStream.readUByte();
@@ -7052,7 +7233,7 @@ dis7.EnvironmentGeneral = function()
        this.padding2 = inputStream.readUByte();
   };
 
-  dis7.EnvironmentGeneral.prototype.encodeToBinary = function(outputStream)
+  dis.EnvironmentGeneral.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.environmentType);
        outputStream.writeUByte(this.length);
@@ -7064,7 +7245,7 @@ dis7.EnvironmentGeneral = function()
 }; // end of class
 
  // node.js module support
-exports.EnvironmentGeneral = dis7.EnvironmentGeneral;
+exports.EnvironmentGeneral = dis.EnvironmentGeneral;
 
 // End of EnvironmentGeneral class
 
@@ -7077,8 +7258,8 @@ exports.EnvironmentGeneral = dis7.EnvironmentGeneral;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7087,7 +7268,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EnvironmentType = function()
+dis.EnvironmentType = function()
 {
    /** Kind of entity */
    this.entityKind = 0;
@@ -7109,7 +7290,7 @@ dis7.EnvironmentType = function()
 
    this.extra = 0;
 
-  dis7.EnvironmentType.prototype.initFromBinary = function(inputStream)
+  dis.EnvironmentType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -7120,7 +7301,7 @@ dis7.EnvironmentType = function()
        this.extra = inputStream.readUByte();
   };
 
-  dis7.EnvironmentType.prototype.encodeToBinary = function(outputStream)
+  dis.EnvironmentType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);
        outputStream.writeUByte(this.domain);
@@ -7133,7 +7314,7 @@ dis7.EnvironmentType = function()
 }; // end of class
 
  // node.js module support
-exports.EnvironmentType = dis7.EnvironmentType;
+exports.EnvironmentType = dis.EnvironmentType;
 
 // End of EnvironmentType class
 
@@ -7146,8 +7327,8 @@ exports.EnvironmentType = dis7.EnvironmentType;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7156,7 +7337,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EulerAngles = function()
+dis.EulerAngles = function()
 {
    this.psi = 0;
 
@@ -7164,14 +7345,14 @@ dis7.EulerAngles = function()
 
    this.phi = 0;
 
-  dis7.EulerAngles.prototype.initFromBinary = function(inputStream)
+  dis.EulerAngles.prototype.initFromBinary = function(inputStream)
   {
        this.psi = inputStream.readFloat32();
        this.theta = inputStream.readFloat32();
        this.phi = inputStream.readFloat32();
   };
 
-  dis7.EulerAngles.prototype.encodeToBinary = function(outputStream)
+  dis.EulerAngles.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.psi);
        outputStream.writeFloat32(this.theta);
@@ -7180,7 +7361,7 @@ dis7.EulerAngles = function()
 }; // end of class
 
  // node.js module support
-exports.EulerAngles = dis7.EulerAngles;
+exports.EulerAngles = dis.EulerAngles;
 
 // End of EulerAngles class
 
@@ -7193,8 +7374,8 @@ exports.EulerAngles = dis7.EulerAngles;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7203,20 +7384,20 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EventIdentifier = function()
+dis.EventIdentifier = function()
 {
    /** Site and application IDs */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    this.eventNumber = 0;
 
-  dis7.EventIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.EventIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.eventNumber = inputStream.readUShort();
   };
 
-  dis7.EventIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.EventIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.eventNumber);
@@ -7224,7 +7405,7 @@ dis7.EventIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.EventIdentifier = dis7.EventIdentifier;
+exports.EventIdentifier = dis.EventIdentifier;
 
 // End of EventIdentifier class
 
@@ -7237,8 +7418,8 @@ exports.EventIdentifier = dis7.EventIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7247,7 +7428,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EventIdentifierLiveEntity = function()
+dis.EventIdentifierLiveEntity = function()
 {
    this.siteNumber = 0;
 
@@ -7255,14 +7436,14 @@ dis7.EventIdentifierLiveEntity = function()
 
    this.eventNumber = 0;
 
-  dis7.EventIdentifierLiveEntity.prototype.initFromBinary = function(inputStream)
+  dis.EventIdentifierLiveEntity.prototype.initFromBinary = function(inputStream)
   {
        this.siteNumber = inputStream.readUByte();
        this.applicationNumber = inputStream.readUByte();
        this.eventNumber = inputStream.readUShort();
   };
 
-  dis7.EventIdentifierLiveEntity.prototype.encodeToBinary = function(outputStream)
+  dis.EventIdentifierLiveEntity.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.siteNumber);
        outputStream.writeUByte(this.applicationNumber);
@@ -7271,7 +7452,7 @@ dis7.EventIdentifierLiveEntity = function()
 }; // end of class
 
  // node.js module support
-exports.EventIdentifierLiveEntity = dis7.EventIdentifierLiveEntity;
+exports.EventIdentifierLiveEntity = dis.EventIdentifierLiveEntity;
 
 // End of EventIdentifierLiveEntity class
 
@@ -7284,8 +7465,8 @@ exports.EventIdentifierLiveEntity = dis7.EventIdentifierLiveEntity;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7294,7 +7475,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EventReportPdu = function()
+dis.EventReportPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -7321,10 +7502,10 @@ dis7.EventReportPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Type of event */
    this.eventType = 0;
@@ -7344,7 +7525,7 @@ dis7.EventReportPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.EventReportPdu.prototype.initFromBinary = function(inputStream)
+  dis.EventReportPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -7362,21 +7543,21 @@ dis7.EventReportPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.EventReportPdu.prototype.encodeToBinary = function(outputStream)
+  dis.EventReportPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -7406,7 +7587,7 @@ dis7.EventReportPdu = function()
 }; // end of class
 
  // node.js module support
-exports.EventReportPdu = dis7.EventReportPdu;
+exports.EventReportPdu = dis.EventReportPdu;
 
 // End of EventReportPdu class
 
@@ -7419,8 +7600,8 @@ exports.EventReportPdu = dis7.EventReportPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7429,7 +7610,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EventReportReliablePdu = function()
+dis.EventReportReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -7456,10 +7637,10 @@ dis7.EventReportReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Event type */
    this.eventType = 0;
@@ -7479,7 +7660,7 @@ dis7.EventReportReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  dis7.EventReportReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.EventReportReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -7497,21 +7678,21 @@ dis7.EventReportReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  dis7.EventReportReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.EventReportReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -7541,7 +7722,7 @@ dis7.EventReportReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.EventReportReliablePdu = dis7.EventReportReliablePdu;
+exports.EventReportReliablePdu = dis.EventReportReliablePdu;
 
 // End of EventReportReliablePdu class
 
@@ -7554,8 +7735,8 @@ exports.EventReportReliablePdu = dis7.EventReportReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7564,10 +7745,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Expendable = function()
+dis.Expendable = function()
 {
    /** Type of expendable */
-   this.expendable = new dis7.EntityType(); 
+   this.expendable = new dis.EntityType(); 
 
    this.station = 0;
 
@@ -7577,7 +7758,7 @@ dis7.Expendable = function()
 
    this.padding = 0;
 
-  dis7.Expendable.prototype.initFromBinary = function(inputStream)
+  dis.Expendable.prototype.initFromBinary = function(inputStream)
   {
        this.expendable.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -7586,7 +7767,7 @@ dis7.Expendable = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.Expendable.prototype.encodeToBinary = function(outputStream)
+  dis.Expendable.prototype.encodeToBinary = function(outputStream)
   {
        this.expendable.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -7597,7 +7778,7 @@ dis7.Expendable = function()
 }; // end of class
 
  // node.js module support
-exports.Expendable = dis7.Expendable;
+exports.Expendable = dis.Expendable;
 
 // End of Expendable class
 
@@ -7610,8 +7791,8 @@ exports.Expendable = dis7.Expendable;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7620,21 +7801,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ExpendableDescriptor = function()
+dis.ExpendableDescriptor = function()
 {
    /** Type of the object that exploded */
-   this.expendableType = new dis7.EntityType(); 
+   this.expendableType = new dis.EntityType(); 
 
    /** Padding */
    this.padding = 0;
 
-  dis7.ExpendableDescriptor.prototype.initFromBinary = function(inputStream)
+  dis.ExpendableDescriptor.prototype.initFromBinary = function(inputStream)
   {
        this.expendableType.initFromBinary(inputStream);
        this.padding = inputStream.readLong();
   };
 
-  dis7.ExpendableDescriptor.prototype.encodeToBinary = function(outputStream)
+  dis.ExpendableDescriptor.prototype.encodeToBinary = function(outputStream)
   {
        this.expendableType.encodeToBinary(outputStream);
        outputStream.writeLong(this.padding);
@@ -7642,7 +7823,7 @@ dis7.ExpendableDescriptor = function()
 }; // end of class
 
  // node.js module support
-exports.ExpendableDescriptor = dis7.ExpendableDescriptor;
+exports.ExpendableDescriptor = dis.ExpendableDescriptor;
 
 // End of ExpendableDescriptor class
 
@@ -7655,8 +7836,8 @@ exports.ExpendableDescriptor = dis7.ExpendableDescriptor;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7665,10 +7846,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ExpendableReload = function()
+dis.ExpendableReload = function()
 {
    /** Type of expendable */
-   this.expendable = new dis7.EntityType(); 
+   this.expendable = new dis.EntityType(); 
 
    this.station = 0;
 
@@ -7680,7 +7861,7 @@ dis7.ExpendableReload = function()
 
    this.maximumQuantityReloadTime = 0;
 
-  dis7.ExpendableReload.prototype.initFromBinary = function(inputStream)
+  dis.ExpendableReload.prototype.initFromBinary = function(inputStream)
   {
        this.expendable.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -7690,7 +7871,7 @@ dis7.ExpendableReload = function()
        this.maximumQuantityReloadTime = inputStream.readUInt();
   };
 
-  dis7.ExpendableReload.prototype.encodeToBinary = function(outputStream)
+  dis.ExpendableReload.prototype.encodeToBinary = function(outputStream)
   {
        this.expendable.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -7702,7 +7883,7 @@ dis7.ExpendableReload = function()
 }; // end of class
 
  // node.js module support
-exports.ExpendableReload = dis7.ExpendableReload;
+exports.ExpendableReload = dis.ExpendableReload;
 
 // End of ExpendableReload class
 
@@ -7715,8 +7896,8 @@ exports.ExpendableReload = dis7.ExpendableReload;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7725,10 +7906,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ExplosionDescriptor = function()
+dis.ExplosionDescriptor = function()
 {
    /** Type of the object that exploded. See 6.2.30 */
-   this.explodingObject = new dis7.EntityType(); 
+   this.explodingObject = new dis.EntityType(); 
 
    /** Material that exploded. Can be grain dust, tnt, gasoline, etc. Enumeration */
    this.explosiveMaterial = 0;
@@ -7739,7 +7920,7 @@ dis7.ExplosionDescriptor = function()
    /** Force of explosion, in equivalent KG of TNT */
    this.explosiveForce = 0;
 
-  dis7.ExplosionDescriptor.prototype.initFromBinary = function(inputStream)
+  dis.ExplosionDescriptor.prototype.initFromBinary = function(inputStream)
   {
        this.explodingObject.initFromBinary(inputStream);
        this.explosiveMaterial = inputStream.readUShort();
@@ -7747,7 +7928,7 @@ dis7.ExplosionDescriptor = function()
        this.explosiveForce = inputStream.readFloat32();
   };
 
-  dis7.ExplosionDescriptor.prototype.encodeToBinary = function(outputStream)
+  dis.ExplosionDescriptor.prototype.encodeToBinary = function(outputStream)
   {
        this.explodingObject.encodeToBinary(outputStream);
        outputStream.writeUShort(this.explosiveMaterial);
@@ -7757,7 +7938,7 @@ dis7.ExplosionDescriptor = function()
 }; // end of class
 
  // node.js module support
-exports.ExplosionDescriptor = dis7.ExplosionDescriptor;
+exports.ExplosionDescriptor = dis.ExplosionDescriptor;
 
 // End of ExplosionDescriptor class
 
@@ -7770,8 +7951,8 @@ exports.ExplosionDescriptor = dis7.ExplosionDescriptor;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7780,7 +7961,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FalseTargetsAttribute = function()
+dis.FalseTargetsAttribute = function()
 {
    this.recordType = 3502;
 
@@ -7808,7 +7989,7 @@ dis7.FalseTargetsAttribute = function()
 
    this.echoSpacing = 0;
 
-  dis7.FalseTargetsAttribute.prototype.initFromBinary = function(inputStream)
+  dis.FalseTargetsAttribute.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -7825,7 +8006,7 @@ dis7.FalseTargetsAttribute = function()
        this.echoSpacing = inputStream.readFloat32();
   };
 
-  dis7.FalseTargetsAttribute.prototype.encodeToBinary = function(outputStream)
+  dis.FalseTargetsAttribute.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -7844,7 +8025,7 @@ dis7.FalseTargetsAttribute = function()
 }; // end of class
 
  // node.js module support
-exports.FalseTargetsAttribute = dis7.FalseTargetsAttribute;
+exports.FalseTargetsAttribute = dis.FalseTargetsAttribute;
 
 // End of FalseTargetsAttribute class
 
@@ -7857,8 +8038,8 @@ exports.FalseTargetsAttribute = dis7.FalseTargetsAttribute;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -7867,7 +8048,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FastEntityStatePdu = function()
+dis.FastEntityStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -8008,7 +8189,7 @@ dis7.FastEntityStatePdu = function()
    /** variable length list of variable parameters. In earlier versions of DIS these were known as articulation parameters */
     this.variableParameters = new Array();
  
-  dis7.FastEntityStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.FastEntityStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -8065,14 +8246,14 @@ dis7.FastEntityStatePdu = function()
        this.capabilities = inputStream.readInt();
        for(var idx = 0; idx < this.numberOfVariableParameters; idx++)
        {
-           var anX = new dis7.VariableParameter();
+           var anX = new dis.VariableParameter();
            anX.initFromBinary(inputStream);
            this.variableParameters.push(anX);
        }
 
   };
 
-  dis7.FastEntityStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.FastEntityStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -8136,7 +8317,7 @@ dis7.FastEntityStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.FastEntityStatePdu = dis7.FastEntityStatePdu;
+exports.FastEntityStatePdu = dis.FastEntityStatePdu;
 
 // End of FastEntityStatePdu class
 
@@ -8149,8 +8330,8 @@ exports.FastEntityStatePdu = dis7.FastEntityStatePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8159,7 +8340,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FirePdu = function()
+dis.FirePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -8186,33 +8367,33 @@ dis7.FirePdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new dis7.EntityID(); 
+   this.firingEntityID = new dis.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new dis7.EntityID(); 
+   this.targetEntityID = new dis.EntityID(); 
 
    /** This field shall specify the entity identification of the fired munition or expendable. This field shall be represented by an Entity Identifier record (see 6.2.28). */
-   this.munitionExpendibleID = new dis7.EntityID(); 
+   this.munitionExpendibleID = new dis.EntityID(); 
 
    /** This field shall contain an identification generated by the firing entity to associate related firing and detonation events. This field shall be represented by an Event Identifier record (see 6.2.34). */
-   this.eventID = new dis7.EventIdentifier(); 
+   this.eventID = new dis.EventIdentifier(); 
 
    /** This field shall identify the fire mission (see 5.4.3.3). This field shall be representedby a 32-bit unsigned integer. */
    this.fireMissionIndex = 0;
 
    /** This field shall specify the location, in world coordinates, from which the munition was launched, and shall be represented by a World Coordinates record (see 6.2.97). */
-   this.locationInWorldCoordinates = new dis7.Vector3Double(); 
+   this.locationInWorldCoordinates = new dis.Vector3Double(); 
 
    /** This field shall describe the firing or launch of a munition or expendable represented by one of the following types of Descriptor records: Munition Descriptor (6.2.20.2) or Expendable Descriptor (6.2.20.4). */
-   this.descriptor = new dis7.MunitionDescriptor(); 
+   this.descriptor = new dis.MunitionDescriptor(); 
 
    /** This field shall specify the velocity of the fired munition at the point when the issuing simulation application intends the externally visible effects of the launch (e.g. exhaust plume or muzzle blast) to first become apparent. The velocity shall be represented in world coordinates. This field shall be represented by a Linear Velocity Vector record [see 6.2.95 item c)]. */
-   this.velocity = new dis7.Vector3Float(); 
+   this.velocity = new dis.Vector3Float(); 
 
    /** This field shall specify the range that an entity’s fire control system has assumed in computing the fire control solution. This field shall be represented by a 32-bit floating point number in meters. For systems where range is unknown or unavailable, this field shall contain a value of zero. */
    this.range = 0;
 
-  dis7.FirePdu.prototype.initFromBinary = function(inputStream)
+  dis.FirePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -8233,7 +8414,7 @@ dis7.FirePdu = function()
        this.range = inputStream.readFloat32();
   };
 
-  dis7.FirePdu.prototype.encodeToBinary = function(outputStream)
+  dis.FirePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -8256,7 +8437,7 @@ dis7.FirePdu = function()
 }; // end of class
 
  // node.js module support
-exports.FirePdu = dis7.FirePdu;
+exports.FirePdu = dis.FirePdu;
 
 // End of FirePdu class
 
@@ -8269,8 +8450,8 @@ exports.FirePdu = dis7.FirePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8279,7 +8460,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FixedDatum = function()
+dis.FixedDatum = function()
 {
    /** ID of the fixed datum, an enumeration */
    this.fixedDatumID = 0;
@@ -8287,13 +8468,13 @@ dis7.FixedDatum = function()
    /** Value for the fixed datum */
    this.fixedDatumValue = 0;
 
-  dis7.FixedDatum.prototype.initFromBinary = function(inputStream)
+  dis.FixedDatum.prototype.initFromBinary = function(inputStream)
   {
        this.fixedDatumID = inputStream.readUInt();
        this.fixedDatumValue = inputStream.readUInt();
   };
 
-  dis7.FixedDatum.prototype.encodeToBinary = function(outputStream)
+  dis.FixedDatum.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.fixedDatumID);
        outputStream.writeUInt(this.fixedDatumValue);
@@ -8301,7 +8482,7 @@ dis7.FixedDatum = function()
 }; // end of class
 
  // node.js module support
-exports.FixedDatum = dis7.FixedDatum;
+exports.FixedDatum = dis.FixedDatum;
 
 // End of FixedDatum class
 
@@ -8314,8 +8495,8 @@ exports.FixedDatum = dis7.FixedDatum;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8324,12 +8505,12 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FourByteChunk = function()
+dis.FourByteChunk = function()
 {
    /** four bytes of arbitrary data */
    this.otherParameters = new Array(0, 0, 0, 0);
 
-  dis7.FourByteChunk.prototype.initFromBinary = function(inputStream)
+  dis.FourByteChunk.prototype.initFromBinary = function(inputStream)
   {
        for(var idx = 0; idx < 4; idx++)
        {
@@ -8337,7 +8518,7 @@ dis7.FourByteChunk = function()
        }
   };
 
-  dis7.FourByteChunk.prototype.encodeToBinary = function(outputStream)
+  dis.FourByteChunk.prototype.encodeToBinary = function(outputStream)
   {
        for(var idx = 0; idx < 4; idx++)
        {
@@ -8347,7 +8528,7 @@ dis7.FourByteChunk = function()
 }; // end of class
 
  // node.js module support
-exports.FourByteChunk = dis7.FourByteChunk;
+exports.FourByteChunk = dis.FourByteChunk;
 
 // End of FourByteChunk class
 
@@ -8360,8 +8541,8 @@ exports.FourByteChunk = dis7.FourByteChunk;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8370,7 +8551,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FundamentalOperationalData = function()
+dis.FundamentalOperationalData = function()
 {
    /** system status */
    this.systemStatus = 0;
@@ -8402,7 +8583,7 @@ dis7.FundamentalOperationalData = function()
    /** parameter, enumeration */
    this.parameter6 = 0;
 
-  dis7.FundamentalOperationalData.prototype.initFromBinary = function(inputStream)
+  dis.FundamentalOperationalData.prototype.initFromBinary = function(inputStream)
   {
        this.systemStatus = inputStream.readUByte();
        this.dataField1 = inputStream.readUByte();
@@ -8416,7 +8597,7 @@ dis7.FundamentalOperationalData = function()
        this.parameter6 = inputStream.readUShort();
   };
 
-  dis7.FundamentalOperationalData.prototype.encodeToBinary = function(outputStream)
+  dis.FundamentalOperationalData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.systemStatus);
        outputStream.writeUByte(this.dataField1);
@@ -8432,7 +8613,7 @@ dis7.FundamentalOperationalData = function()
 }; // end of class
 
  // node.js module support
-exports.FundamentalOperationalData = dis7.FundamentalOperationalData;
+exports.FundamentalOperationalData = dis.FundamentalOperationalData;
 
 // End of FundamentalOperationalData class
 
@@ -8445,8 +8626,8 @@ exports.FundamentalOperationalData = dis7.FundamentalOperationalData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8455,7 +8636,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.GridAxis = function()
+dis.GridAxis = function()
 {
    /** coordinate of the grid origin or initial value */
    this.domainInitialXi = 0;
@@ -8478,7 +8659,7 @@ dis7.GridAxis = function()
    /** initial grid point for the current pdu */
    this.initialIndex = 0;
 
-  dis7.GridAxis.prototype.initFromBinary = function(inputStream)
+  dis.GridAxis.prototype.initFromBinary = function(inputStream)
   {
        this.domainInitialXi = inputStream.readFloat64();
        this.domainFinalXi = inputStream.readFloat64();
@@ -8489,7 +8670,7 @@ dis7.GridAxis = function()
        this.initialIndex = inputStream.readUShort();
   };
 
-  dis7.GridAxis.prototype.encodeToBinary = function(outputStream)
+  dis.GridAxis.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat64(this.domainInitialXi);
        outputStream.writeFloat64(this.domainFinalXi);
@@ -8502,7 +8683,7 @@ dis7.GridAxis = function()
 }; // end of class
 
  // node.js module support
-exports.GridAxis = dis7.GridAxis;
+exports.GridAxis = dis.GridAxis;
 
 // End of GridAxis class
 
@@ -8515,8 +8696,8 @@ exports.GridAxis = dis7.GridAxis;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8525,7 +8706,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.GridAxisDescriptorVariable = function()
+dis.GridAxisDescriptorVariable = function()
 {
    /** coordinate of the grid origin or initial value */
    this.domainInitialXi = 0;
@@ -8557,7 +8738,7 @@ dis7.GridAxisDescriptorVariable = function()
    /** list of coordinates */
     this.xiValues = new Array();
  
-  dis7.GridAxisDescriptorVariable.prototype.initFromBinary = function(inputStream)
+  dis.GridAxisDescriptorVariable.prototype.initFromBinary = function(inputStream)
   {
        this.domainInitialXi = inputStream.readFloat64();
        this.domainFinalXi = inputStream.readFloat64();
@@ -8570,14 +8751,14 @@ dis7.GridAxisDescriptorVariable = function()
        this.coordinateOffsetXi = inputStream.readFloat64();
        for(var idx = 0; idx < this.numberOfPointsOnXiAxis; idx++)
        {
-           var anX = new dis7.TwoByteChunk();
+           var anX = new dis.TwoByteChunk();
            anX.initFromBinary(inputStream);
            this.xiValues.push(anX);
        }
 
   };
 
-  dis7.GridAxisDescriptorVariable.prototype.encodeToBinary = function(outputStream)
+  dis.GridAxisDescriptorVariable.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat64(this.domainInitialXi);
        outputStream.writeFloat64(this.domainFinalXi);
@@ -8597,7 +8778,7 @@ dis7.GridAxisDescriptorVariable = function()
 }; // end of class
 
  // node.js module support
-exports.GridAxisDescriptorVariable = dis7.GridAxisDescriptorVariable;
+exports.GridAxisDescriptorVariable = dis.GridAxisDescriptorVariable;
 
 // End of GridAxisDescriptorVariable class
 
@@ -8610,8 +8791,8 @@ exports.GridAxisDescriptorVariable = dis7.GridAxisDescriptorVariable;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8620,21 +8801,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.GroupID = function()
+dis.GroupID = function()
 {
    /** Simulation address (site and application number) */
-   this.simulationAddress = new dis7.EntityType(); 
+   this.simulationAddress = new dis.EntityType(); 
 
    /** group number */
    this.groupNumber = 0;
 
-  dis7.GroupID.prototype.initFromBinary = function(inputStream)
+  dis.GroupID.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.groupNumber = inputStream.readUShort();
   };
 
-  dis7.GroupID.prototype.encodeToBinary = function(outputStream)
+  dis.GroupID.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.groupNumber);
@@ -8642,7 +8823,7 @@ dis7.GroupID = function()
 }; // end of class
 
  // node.js module support
-exports.GroupID = dis7.GroupID;
+exports.GroupID = dis.GroupID;
 
 // End of GroupID class
 
@@ -8655,8 +8836,8 @@ exports.GroupID = dis7.GroupID;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8665,7 +8846,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IFFData = function()
+dis.IFFData = function()
 {
    /** enumeration for type of record */
    this.recordType = 0;
@@ -8676,20 +8857,20 @@ dis7.IFFData = function()
    /** IFF data. */
     this.iffData = new Array();
  
-  dis7.IFFData.prototype.initFromBinary = function(inputStream)
+  dis.IFFData.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
        for(var idx = 0; idx < this.recordLength; idx++)
        {
-           var anX = new dis7.OneByteChunk();
+           var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.iffData.push(anX);
        }
 
   };
 
-  dis7.IFFData.prototype.encodeToBinary = function(outputStream)
+  dis.IFFData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -8702,7 +8883,7 @@ dis7.IFFData = function()
 }; // end of class
 
  // node.js module support
-exports.IFFData = dis7.IFFData;
+exports.IFFData = dis.IFFData;
 
 // End of IFFData class
 
@@ -8715,8 +8896,8 @@ exports.IFFData = dis7.IFFData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8725,7 +8906,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IFFFundamentalParameterData = function()
+dis.IFFFundamentalParameterData = function()
 {
    /** ERP */
    this.erp = 0;
@@ -8748,7 +8929,7 @@ dis7.IFFFundamentalParameterData = function()
    /** System-specific data */
    this.systemSpecificData = new Array(0, 0, 0);
 
-  dis7.IFFFundamentalParameterData.prototype.initFromBinary = function(inputStream)
+  dis.IFFFundamentalParameterData.prototype.initFromBinary = function(inputStream)
   {
        this.erp = inputStream.readFloat32();
        this.frequency = inputStream.readFloat32();
@@ -8762,7 +8943,7 @@ dis7.IFFFundamentalParameterData = function()
        }
   };
 
-  dis7.IFFFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
+  dis.IFFFundamentalParameterData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.erp);
        outputStream.writeFloat32(this.frequency);
@@ -8778,7 +8959,7 @@ dis7.IFFFundamentalParameterData = function()
 }; // end of class
 
  // node.js module support
-exports.IFFFundamentalParameterData = dis7.IFFFundamentalParameterData;
+exports.IFFFundamentalParameterData = dis.IFFFundamentalParameterData;
 
 // End of IFFFundamentalParameterData class
 
@@ -8791,8 +8972,8 @@ exports.IFFFundamentalParameterData = dis7.IFFFundamentalParameterData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8801,7 +8982,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IOCommunicationsNode = function()
+dis.IOCommunicationsNode = function()
 {
    this.recordType = 5501;
 
@@ -8811,9 +8992,9 @@ dis7.IOCommunicationsNode = function()
 
    this.padding = 0;
 
-   this.communicationsNodeID = new dis7.CommunicationsNodeID(); 
+   this.communicationsNodeID = new dis.CommunicationsNodeID(); 
 
-  dis7.IOCommunicationsNode.prototype.initFromBinary = function(inputStream)
+  dis.IOCommunicationsNode.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -8822,7 +9003,7 @@ dis7.IOCommunicationsNode = function()
        this.communicationsNodeID.initFromBinary(inputStream);
   };
 
-  dis7.IOCommunicationsNode.prototype.encodeToBinary = function(outputStream)
+  dis.IOCommunicationsNode.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -8833,7 +9014,7 @@ dis7.IOCommunicationsNode = function()
 }; // end of class
 
  // node.js module support
-exports.IOCommunicationsNode = dis7.IOCommunicationsNode;
+exports.IOCommunicationsNode = dis.IOCommunicationsNode;
 
 // End of IOCommunicationsNode class
 
@@ -8846,8 +9027,8 @@ exports.IOCommunicationsNode = dis7.IOCommunicationsNode;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8856,7 +9037,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IOEffect = function()
+dis.IOEffect = function()
 {
    this.recordType = 5500;
 
@@ -8866,7 +9047,7 @@ dis7.IOEffect = function()
 
    this.ioLinkType = 0;
 
-   this.ioEffect = new dis7.EntityID(); 
+   this.ioEffect = new dis.EntityID(); 
 
    this.ioEffectDutyCycle = 0;
 
@@ -8876,7 +9057,7 @@ dis7.IOEffect = function()
 
    this.padding = 0;
 
-  dis7.IOEffect.prototype.initFromBinary = function(inputStream)
+  dis.IOEffect.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
@@ -8889,7 +9070,7 @@ dis7.IOEffect = function()
        this.padding = inputStream.readUShort();
   };
 
-  dis7.IOEffect.prototype.encodeToBinary = function(outputStream)
+  dis.IOEffect.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -8904,7 +9085,7 @@ dis7.IOEffect = function()
 }; // end of class
 
  // node.js module support
-exports.IOEffect = dis7.IOEffect;
+exports.IOEffect = dis.IOEffect;
 
 // End of IOEffect class
 
@@ -8917,8 +9098,8 @@ exports.IOEffect = dis7.IOEffect;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8927,7 +9108,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IffDataSpecification = function()
+dis.IffDataSpecification = function()
 {
    /** Number of iff records */
    this.numberOfIffDataRecords = 0;
@@ -8935,19 +9116,19 @@ dis7.IffDataSpecification = function()
    /** IFF data records */
     this.iffDataRecords = new Array();
  
-  dis7.IffDataSpecification.prototype.initFromBinary = function(inputStream)
+  dis.IffDataSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfIffDataRecords = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfIffDataRecords; idx++)
        {
-           var anX = new dis7.IFFData();
+           var anX = new dis.IFFData();
            anX.initFromBinary(inputStream);
            this.iffDataRecords.push(anX);
        }
 
   };
 
-  dis7.IffDataSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.IffDataSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.numberOfIffDataRecords);
        for(var idx = 0; idx < this.iffDataRecords.length; idx++)
@@ -8959,7 +9140,7 @@ dis7.IffDataSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.IffDataSpecification = dis7.IffDataSpecification;
+exports.IffDataSpecification = dis.IffDataSpecification;
 
 // End of IffDataSpecification class
 
@@ -8972,8 +9153,8 @@ exports.IffDataSpecification = dis7.IffDataSpecification;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -8982,7 +9163,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IntercomCommunicationsParameters = function()
+dis.IntercomCommunicationsParameters = function()
 {
    /** Type of intercom parameters record */
    this.recordType = 0;
@@ -8993,14 +9174,14 @@ dis7.IntercomCommunicationsParameters = function()
    /** This is a placeholder. */
    this.recordSpecificField = 0;
 
-  dis7.IntercomCommunicationsParameters.prototype.initFromBinary = function(inputStream)
+  dis.IntercomCommunicationsParameters.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUShort();
        this.recordLength = inputStream.readUShort();
        this.recordSpecificField = inputStream.readUInt();
   };
 
-  dis7.IntercomCommunicationsParameters.prototype.encodeToBinary = function(outputStream)
+  dis.IntercomCommunicationsParameters.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -9009,7 +9190,7 @@ dis7.IntercomCommunicationsParameters = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomCommunicationsParameters = dis7.IntercomCommunicationsParameters;
+exports.IntercomCommunicationsParameters = dis.IntercomCommunicationsParameters;
 
 // End of IntercomCommunicationsParameters class
 
@@ -9022,8 +9203,8 @@ exports.IntercomCommunicationsParameters = dis7.IntercomCommunicationsParameters
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9032,7 +9213,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IntercomControlPdu = function()
+dis.IntercomControlPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -9065,7 +9246,7 @@ dis7.IntercomControlPdu = function()
    this.communicationsChannelType = 0;
 
    /** Source entity ID */
-   this.sourceEntityID = new dis7.EntityID(); 
+   this.sourceEntityID = new dis.EntityID(); 
 
    /** The specific intercom device being simulated within an entity. */
    this.sourceCommunicationsDeviceID = 0;
@@ -9083,7 +9264,7 @@ dis7.IntercomControlPdu = function()
    this.command = 0;
 
    /** eid of the entity that has created this intercom channel. */
-   this.masterEntityID = new dis7.EntityID(); 
+   this.masterEntityID = new dis.EntityID(); 
 
    /** specific intercom device that has created this intercom channel */
    this.masterCommunicationsDeviceID = 0;
@@ -9094,7 +9275,7 @@ dis7.IntercomControlPdu = function()
    /** ^^^This is wrong the length of the data field is variable. Using a long for now. */
     this.intercomParameters = new Array();
  
-  dis7.IntercomControlPdu.prototype.initFromBinary = function(inputStream)
+  dis.IntercomControlPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -9117,14 +9298,14 @@ dis7.IntercomControlPdu = function()
        this.intercomParametersLength = inputStream.readUInt();
        for(var idx = 0; idx < this.intercomParametersLength; idx++)
        {
-           var anX = new dis7.IntercomCommunicationsParameters();
+           var anX = new dis.IntercomCommunicationsParameters();
            anX.initFromBinary(inputStream);
            this.intercomParameters.push(anX);
        }
 
   };
 
-  dis7.IntercomControlPdu.prototype.encodeToBinary = function(outputStream)
+  dis.IntercomControlPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -9154,7 +9335,7 @@ dis7.IntercomControlPdu = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomControlPdu = dis7.IntercomControlPdu;
+exports.IntercomControlPdu = dis.IntercomControlPdu;
 
 // End of IntercomControlPdu class
 
@@ -9167,8 +9348,8 @@ exports.IntercomControlPdu = dis7.IntercomControlPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9177,7 +9358,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IntercomIdentifier = function()
+dis.IntercomIdentifier = function()
 {
    this.siteNumber = 0;
 
@@ -9187,7 +9368,7 @@ dis7.IntercomIdentifier = function()
 
    this.intercomNumber = 0;
 
-  dis7.IntercomIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.IntercomIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.siteNumber = inputStream.readUShort();
        this.applicationNumber = inputStream.readUShort();
@@ -9195,7 +9376,7 @@ dis7.IntercomIdentifier = function()
        this.intercomNumber = inputStream.readUShort();
   };
 
-  dis7.IntercomIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.IntercomIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.siteNumber);
        outputStream.writeUShort(this.applicationNumber);
@@ -9205,7 +9386,7 @@ dis7.IntercomIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomIdentifier = dis7.IntercomIdentifier;
+exports.IntercomIdentifier = dis.IntercomIdentifier;
 
 // End of IntercomIdentifier class
 
@@ -9218,8 +9399,8 @@ exports.IntercomIdentifier = dis7.IntercomIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9228,7 +9409,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IntercomSignalPdu = function()
+dis.IntercomSignalPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -9255,7 +9436,7 @@ dis7.IntercomSignalPdu = function()
    this.padding = 0;
 
    /** entity ID */
-   this.entityID = new dis7.EntityID(); 
+   this.entityID = new dis.EntityID(); 
 
    /** ID of communications device */
    this.communicationsDeviceID = 0;
@@ -9278,7 +9459,7 @@ dis7.IntercomSignalPdu = function()
    /** data bytes */
     this.data = new Array();
  
-  dis7.IntercomSignalPdu.prototype.initFromBinary = function(inputStream)
+  dis.IntercomSignalPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -9297,14 +9478,14 @@ dis7.IntercomSignalPdu = function()
        this.samples = inputStream.readUShort();
        for(var idx = 0; idx < this.dataLength; idx++)
        {
-           var anX = new dis7.OneByteChunk();
+           var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.data.push(anX);
        }
 
   };
 
-  dis7.IntercomSignalPdu.prototype.encodeToBinary = function(outputStream)
+  dis.IntercomSignalPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -9330,7 +9511,7 @@ dis7.IntercomSignalPdu = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomSignalPdu = dis7.IntercomSignalPdu;
+exports.IntercomSignalPdu = dis.IntercomSignalPdu;
 
 // End of IntercomSignalPdu class
 
@@ -9343,8 +9524,8 @@ exports.IntercomSignalPdu = dis7.IntercomSignalPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9353,7 +9534,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IsPartOfPdu = function()
+dis.IsPartOfPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -9380,24 +9561,24 @@ dis7.IsPartOfPdu = function()
    this.padding = 0;
 
    /** ID of entity originating PDU */
-   this.orginatingEntityID = new dis7.EntityID(); 
+   this.orginatingEntityID = new dis.EntityID(); 
 
    /** ID of entity receiving PDU */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** relationship of joined parts */
-   this.relationship = new dis7.Relationship(); 
+   this.relationship = new dis.Relationship(); 
 
    /** location of part; centroid of part in host's coordinate system. x=range, y=bearing, z=0 */
-   this.partLocation = new dis7.Vector3Float(); 
+   this.partLocation = new dis.Vector3Float(); 
 
    /** named location */
-   this.namedLocationID = new dis7.NamedLocationIdentification(); 
+   this.namedLocationID = new dis.NamedLocationIdentification(); 
 
    /** entity type */
-   this.partEntityType = new dis7.EntityType(); 
+   this.partEntityType = new dis.EntityType(); 
 
-  dis7.IsPartOfPdu.prototype.initFromBinary = function(inputStream)
+  dis.IsPartOfPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -9415,7 +9596,7 @@ dis7.IsPartOfPdu = function()
        this.partEntityType.initFromBinary(inputStream);
   };
 
-  dis7.IsPartOfPdu.prototype.encodeToBinary = function(outputStream)
+  dis.IsPartOfPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -9435,7 +9616,7 @@ dis7.IsPartOfPdu = function()
 }; // end of class
 
  // node.js module support
-exports.IsPartOfPdu = dis7.IsPartOfPdu;
+exports.IsPartOfPdu = dis.IsPartOfPdu;
 
 // End of IsPartOfPdu class
 
@@ -9448,8 +9629,8 @@ exports.IsPartOfPdu = dis7.IsPartOfPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9458,7 +9639,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.JammingTechnique = function()
+dis.JammingTechnique = function()
 {
    this.kind = 0;
 
@@ -9468,7 +9649,7 @@ dis7.JammingTechnique = function()
 
    this.specific = 0;
 
-  dis7.JammingTechnique.prototype.initFromBinary = function(inputStream)
+  dis.JammingTechnique.prototype.initFromBinary = function(inputStream)
   {
        this.kind = inputStream.readUByte();
        this.category = inputStream.readUByte();
@@ -9476,7 +9657,7 @@ dis7.JammingTechnique = function()
        this.specific = inputStream.readUByte();
   };
 
-  dis7.JammingTechnique.prototype.encodeToBinary = function(outputStream)
+  dis.JammingTechnique.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.kind);
        outputStream.writeUByte(this.category);
@@ -9486,7 +9667,7 @@ dis7.JammingTechnique = function()
 }; // end of class
 
  // node.js module support
-exports.JammingTechnique = dis7.JammingTechnique;
+exports.JammingTechnique = dis.JammingTechnique;
 
 // End of JammingTechnique class
 
@@ -9499,8 +9680,8 @@ exports.JammingTechnique = dis7.JammingTechnique;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9509,23 +9690,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LaunchedMunitionRecord = function()
+dis.LaunchedMunitionRecord = function()
 {
-   this.fireEventID = new dis7.EventIdentifier(); 
+   this.fireEventID = new dis.EventIdentifier(); 
 
    this.padding = 0;
 
-   this.firingEntityID = new dis7.EventIdentifier(); 
+   this.firingEntityID = new dis.EventIdentifier(); 
 
    this.padding2 = 0;
 
-   this.targetEntityID = new dis7.EventIdentifier(); 
+   this.targetEntityID = new dis.EventIdentifier(); 
 
    this.padding3 = 0;
 
-   this.targetLocation = new dis7.Vector3Double(); 
+   this.targetLocation = new dis.Vector3Double(); 
 
-  dis7.LaunchedMunitionRecord.prototype.initFromBinary = function(inputStream)
+  dis.LaunchedMunitionRecord.prototype.initFromBinary = function(inputStream)
   {
        this.fireEventID.initFromBinary(inputStream);
        this.padding = inputStream.readUShort();
@@ -9536,7 +9717,7 @@ dis7.LaunchedMunitionRecord = function()
        this.targetLocation.initFromBinary(inputStream);
   };
 
-  dis7.LaunchedMunitionRecord.prototype.encodeToBinary = function(outputStream)
+  dis.LaunchedMunitionRecord.prototype.encodeToBinary = function(outputStream)
   {
        this.fireEventID.encodeToBinary(outputStream);
        outputStream.writeUShort(this.padding);
@@ -9549,7 +9730,7 @@ dis7.LaunchedMunitionRecord = function()
 }; // end of class
 
  // node.js module support
-exports.LaunchedMunitionRecord = dis7.LaunchedMunitionRecord;
+exports.LaunchedMunitionRecord = dis.LaunchedMunitionRecord;
 
 // End of LaunchedMunitionRecord class
 
@@ -9562,8 +9743,8 @@ exports.LaunchedMunitionRecord = dis7.LaunchedMunitionRecord;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9572,7 +9753,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LayerHeader = function()
+dis.LayerHeader = function()
 {
    this.layerNumber = 0;
 
@@ -9582,14 +9763,14 @@ dis7.LayerHeader = function()
    /** This field shall specify the length in octets of the layer, including the Layer Header record */
    this.length = 0;
 
-  dis7.LayerHeader.prototype.initFromBinary = function(inputStream)
+  dis.LayerHeader.prototype.initFromBinary = function(inputStream)
   {
        this.layerNumber = inputStream.readUByte();
        this.layerSpecificInformation = inputStream.readUByte();
        this.length = inputStream.readUShort();
   };
 
-  dis7.LayerHeader.prototype.encodeToBinary = function(outputStream)
+  dis.LayerHeader.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.layerNumber);
        outputStream.writeUByte(this.layerSpecificInformation);
@@ -9598,7 +9779,7 @@ dis7.LayerHeader = function()
 }; // end of class
 
  // node.js module support
-exports.LayerHeader = dis7.LayerHeader;
+exports.LayerHeader = dis.LayerHeader;
 
 // End of LayerHeader class
 
@@ -9611,8 +9792,8 @@ exports.LayerHeader = dis7.LayerHeader;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9621,7 +9802,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LinearObjectStatePdu = function()
+dis.LinearObjectStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -9648,10 +9829,10 @@ dis7.LinearObjectStatePdu = function()
    this.padding = 0;
 
    /** Object in synthetic environment */
-   this.objectID = new dis7.EntityID(); 
+   this.objectID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.referencedObjectID = new dis7.EntityID(); 
+   this.referencedObjectID = new dis.EntityID(); 
 
    /** unique update number of each state transition of an object */
    this.updateNumber = 0;
@@ -9663,18 +9844,18 @@ dis7.LinearObjectStatePdu = function()
    this.numberOfSegments = 0;
 
    /** requesterID */
-   this.requesterID = new dis7.SimulationAddress(); 
+   this.requesterID = new dis.SimulationAddress(); 
 
    /** receiver ID */
-   this.receivingID = new dis7.SimulationAddress(); 
+   this.receivingID = new dis.SimulationAddress(); 
 
    /** Object type */
-   this.objectType = new dis7.ObjectType(); 
+   this.objectType = new dis.ObjectType(); 
 
    /** Linear segment parameters */
     this.linearSegmentParameters = new Array();
  
-  dis7.LinearObjectStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.LinearObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -9694,14 +9875,14 @@ dis7.LinearObjectStatePdu = function()
        this.objectType.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfSegments; idx++)
        {
-           var anX = new dis7.LinearSegmentParameter();
+           var anX = new dis.LinearSegmentParameter();
            anX.initFromBinary(inputStream);
            this.linearSegmentParameters.push(anX);
        }
 
   };
 
-  dis7.LinearObjectStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.LinearObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -9728,7 +9909,7 @@ dis7.LinearObjectStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.LinearObjectStatePdu = dis7.LinearObjectStatePdu;
+exports.LinearObjectStatePdu = dis.LinearObjectStatePdu;
 
 // End of LinearObjectStatePdu class
 
@@ -9741,8 +9922,8 @@ exports.LinearObjectStatePdu = dis7.LinearObjectStatePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9751,7 +9932,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LinearSegmentParameter = function()
+dis.LinearSegmentParameter = function()
 {
    /** the individual segment of the linear segment  */
    this.segmentNumber = 0;
@@ -9766,10 +9947,10 @@ dis7.LinearSegmentParameter = function()
    this.specificSegmentAppearance = 0;
 
    /** This field shall specify the location of the linear segment in the simulated world and shall be represented by a World Coordinates record  */
-   this.segmentLocation = new dis7.Vector3Double(); 
+   this.segmentLocation = new dis.Vector3Double(); 
 
    /** orientation of the linear segment about the segment location and shall be represented by a Euler Angles record  */
-   this.segmentOrientation = new dis7.EulerAngles(); 
+   this.segmentOrientation = new dis.EulerAngles(); 
 
    /** length of the linear segment, in meters, extending in the positive X direction */
    this.segmentLength = 0;
@@ -9786,7 +9967,7 @@ dis7.LinearSegmentParameter = function()
    /** padding */
    this.padding = 0;
 
-  dis7.LinearSegmentParameter.prototype.initFromBinary = function(inputStream)
+  dis.LinearSegmentParameter.prototype.initFromBinary = function(inputStream)
   {
        this.segmentNumber = inputStream.readUByte();
        this.segmentModification = inputStream.readUByte();
@@ -9801,7 +9982,7 @@ dis7.LinearSegmentParameter = function()
        this.padding = inputStream.readUInt();
   };
 
-  dis7.LinearSegmentParameter.prototype.encodeToBinary = function(outputStream)
+  dis.LinearSegmentParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.segmentNumber);
        outputStream.writeUByte(this.segmentModification);
@@ -9818,7 +9999,7 @@ dis7.LinearSegmentParameter = function()
 }; // end of class
 
  // node.js module support
-exports.LinearSegmentParameter = dis7.LinearSegmentParameter;
+exports.LinearSegmentParameter = dis.LinearSegmentParameter;
 
 // End of LinearSegmentParameter class
 
@@ -9831,8 +10012,8 @@ exports.LinearSegmentParameter = dis7.LinearSegmentParameter;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9841,21 +10022,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LiveEntityIdentifier = function()
+dis.LiveEntityIdentifier = function()
 {
    /** Live Simulation Address record (see 6.2.54)  */
-   this.liveSimulationAddress = new dis7.LiveSimulationAddress(); 
+   this.liveSimulationAddress = new dis.LiveSimulationAddress(); 
 
    /** Live entity number  */
    this.entityNumber = 0;
 
-  dis7.LiveEntityIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.LiveEntityIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.liveSimulationAddress.initFromBinary(inputStream);
        this.entityNumber = inputStream.readUShort();
   };
 
-  dis7.LiveEntityIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.LiveEntityIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.liveSimulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.entityNumber);
@@ -9863,7 +10044,7 @@ dis7.LiveEntityIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.LiveEntityIdentifier = dis7.LiveEntityIdentifier;
+exports.LiveEntityIdentifier = dis.LiveEntityIdentifier;
 
 // End of LiveEntityIdentifier class
 
@@ -9876,8 +10057,8 @@ exports.LiveEntityIdentifier = dis7.LiveEntityIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9886,7 +10067,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LiveEntityPdu = function()
+dis.LiveEntityPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -9912,7 +10093,7 @@ dis7.LiveEntityPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.LiveEntityPdu.prototype.initFromBinary = function(inputStream)
+  dis.LiveEntityPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -9924,7 +10105,7 @@ dis7.LiveEntityPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.LiveEntityPdu.prototype.encodeToBinary = function(outputStream)
+  dis.LiveEntityPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -9938,7 +10119,7 @@ dis7.LiveEntityPdu = function()
 }; // end of class
 
  // node.js module support
-exports.LiveEntityPdu = dis7.LiveEntityPdu;
+exports.LiveEntityPdu = dis.LiveEntityPdu;
 
 // End of LiveEntityPdu class
 
@@ -9951,8 +10132,8 @@ exports.LiveEntityPdu = dis7.LiveEntityPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -9961,7 +10142,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LiveSimulationAddress = function()
+dis.LiveSimulationAddress = function()
 {
    /** facility, installation, organizational unit or geographic location may have multiple sites associated with it. The Site Number is the first component of the Live Simulation Address, which defines a live simulation. */
    this.liveSiteNumber = 0;
@@ -9969,13 +10150,13 @@ dis7.LiveSimulationAddress = function()
    /** An application associated with a live site is termed a live application. Each live application participating in an event  */
    this.liveApplicationNumber = 0;
 
-  dis7.LiveSimulationAddress.prototype.initFromBinary = function(inputStream)
+  dis.LiveSimulationAddress.prototype.initFromBinary = function(inputStream)
   {
        this.liveSiteNumber = inputStream.readUByte();
        this.liveApplicationNumber = inputStream.readUByte();
   };
 
-  dis7.LiveSimulationAddress.prototype.encodeToBinary = function(outputStream)
+  dis.LiveSimulationAddress.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.liveSiteNumber);
        outputStream.writeUByte(this.liveApplicationNumber);
@@ -9983,7 +10164,7 @@ dis7.LiveSimulationAddress = function()
 }; // end of class
 
  // node.js module support
-exports.LiveSimulationAddress = dis7.LiveSimulationAddress;
+exports.LiveSimulationAddress = dis.LiveSimulationAddress;
 
 // End of LiveSimulationAddress class
 
@@ -9996,8 +10177,8 @@ exports.LiveSimulationAddress = dis7.LiveSimulationAddress;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10006,7 +10187,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LogisticsFamilyPdu = function()
+dis.LogisticsFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -10032,7 +10213,7 @@ dis7.LogisticsFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.LogisticsFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.LogisticsFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -10044,7 +10225,7 @@ dis7.LogisticsFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.LogisticsFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.LogisticsFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -10058,7 +10239,7 @@ dis7.LogisticsFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.LogisticsFamilyPdu = dis7.LogisticsFamilyPdu;
+exports.LogisticsFamilyPdu = dis.LogisticsFamilyPdu;
 
 // End of LogisticsFamilyPdu class
 
@@ -10071,8 +10252,8 @@ exports.LogisticsFamilyPdu = dis7.LogisticsFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10081,21 +10262,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MineEntityIdentifier = function()
+dis.MineEntityIdentifier = function()
 {
    /**  */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /**  */
    this.mineEntityNumber = 0;
 
-  dis7.MineEntityIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.MineEntityIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.mineEntityNumber = inputStream.readUShort();
   };
 
-  dis7.MineEntityIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.MineEntityIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.mineEntityNumber);
@@ -10103,7 +10284,7 @@ dis7.MineEntityIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.MineEntityIdentifier = dis7.MineEntityIdentifier;
+exports.MineEntityIdentifier = dis.MineEntityIdentifier;
 
 // End of MineEntityIdentifier class
 
@@ -10116,8 +10297,8 @@ exports.MineEntityIdentifier = dis7.MineEntityIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10126,7 +10307,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldFamilyPdu = function()
+dis.MinefieldFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -10152,7 +10333,7 @@ dis7.MinefieldFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.MinefieldFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -10164,7 +10345,7 @@ dis7.MinefieldFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.MinefieldFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -10178,7 +10359,7 @@ dis7.MinefieldFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldFamilyPdu = dis7.MinefieldFamilyPdu;
+exports.MinefieldFamilyPdu = dis.MinefieldFamilyPdu;
 
 // End of MinefieldFamilyPdu class
 
@@ -10191,8 +10372,8 @@ exports.MinefieldFamilyPdu = dis7.MinefieldFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10201,21 +10382,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldIdentifier = function()
+dis.MinefieldIdentifier = function()
 {
    /**  */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /**  */
    this.minefieldNumber = 0;
 
-  dis7.MinefieldIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.minefieldNumber = inputStream.readUShort();
   };
 
-  dis7.MinefieldIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.minefieldNumber);
@@ -10223,7 +10404,7 @@ dis7.MinefieldIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldIdentifier = dis7.MinefieldIdentifier;
+exports.MinefieldIdentifier = dis.MinefieldIdentifier;
 
 // End of MinefieldIdentifier class
 
@@ -10236,8 +10417,8 @@ exports.MinefieldIdentifier = dis7.MinefieldIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10246,7 +10427,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldResponseNackPdu = function()
+dis.MinefieldResponseNackPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -10273,10 +10454,10 @@ dis7.MinefieldResponseNackPdu = function()
    this.padding = 0;
 
    /** Minefield ID */
-   this.minefieldID = new dis7.EntityID(); 
+   this.minefieldID = new dis.EntityID(); 
 
    /** entity ID making the request */
-   this.requestingEntityID = new dis7.EntityID(); 
+   this.requestingEntityID = new dis.EntityID(); 
 
    /** request ID */
    this.requestID = 0;
@@ -10287,7 +10468,7 @@ dis7.MinefieldResponseNackPdu = function()
    /** PDU sequence numbers that were missing */
     this.missingPduSequenceNumbers = new Array();
  
-  dis7.MinefieldResponseNackPdu.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldResponseNackPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -10303,14 +10484,14 @@ dis7.MinefieldResponseNackPdu = function()
        this.numberOfMissingPdus = inputStream.readUByte();
        for(var idx = 0; idx < this.numberOfMissingPdus; idx++)
        {
-           var anX = new dis7.EightByteChunk();
+           var anX = new dis.EightByteChunk();
            anX.initFromBinary(inputStream);
            this.missingPduSequenceNumbers.push(anX);
        }
 
   };
 
-  dis7.MinefieldResponseNackPdu.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldResponseNackPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -10333,7 +10514,7 @@ dis7.MinefieldResponseNackPdu = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldResponseNackPdu = dis7.MinefieldResponseNackPdu;
+exports.MinefieldResponseNackPdu = dis.MinefieldResponseNackPdu;
 
 // End of MinefieldResponseNackPdu class
 
@@ -10346,8 +10527,8 @@ exports.MinefieldResponseNackPdu = dis7.MinefieldResponseNackPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10356,24 +10537,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldSensorType = function()
+dis.MinefieldSensorType = function()
 {
    /** sensor type. bit fields 0-3 are the type category, 4-15 are teh subcategory */
    this.sensorType = 0;
 
-  dis7.MinefieldSensorType.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldSensorType.prototype.initFromBinary = function(inputStream)
   {
        this.sensorType = inputStream.readUShort();
   };
 
-  dis7.MinefieldSensorType.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldSensorType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.sensorType);
   };
 }; // end of class
 
  // node.js module support
-exports.MinefieldSensorType = dis7.MinefieldSensorType;
+exports.MinefieldSensorType = dis.MinefieldSensorType;
 
 // End of MinefieldSensorType class
 
@@ -10386,8 +10567,8 @@ exports.MinefieldSensorType = dis7.MinefieldSensorType;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10396,7 +10577,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldStatePdu = function()
+dis.MinefieldStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -10423,7 +10604,7 @@ dis7.MinefieldStatePdu = function()
    this.padding = 0;
 
    /** Minefield ID */
-   this.minefieldID = new dis7.MinefieldIdentifier(); 
+   this.minefieldID = new dis.MinefieldIdentifier(); 
 
    /** Minefield sequence */
    this.minefieldSequence = 0;
@@ -10435,16 +10616,16 @@ dis7.MinefieldStatePdu = function()
    this.numberOfPerimeterPoints = 0;
 
    /** type of minefield */
-   this.minefieldType = new dis7.EntityType(); 
+   this.minefieldType = new dis.EntityType(); 
 
    /** how many mine types */
    this.numberOfMineTypes = 0;
 
    /** location of center of minefield in world coords */
-   this.minefieldLocation = new dis7.Vector3Double(); 
+   this.minefieldLocation = new dis.Vector3Double(); 
 
    /** orientation of minefield */
-   this.minefieldOrientation = new dis7.EulerAngles(); 
+   this.minefieldOrientation = new dis.EulerAngles(); 
 
    /** appearance bitflags */
    this.appearance = 0;
@@ -10458,7 +10639,7 @@ dis7.MinefieldStatePdu = function()
    /** Type of mines */
     this.mineType = new Array();
  
-  dis7.MinefieldStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -10480,21 +10661,21 @@ dis7.MinefieldStatePdu = function()
        this.protocolMode = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfPerimeterPoints; idx++)
        {
-           var anX = new dis7.Vector2Float();
+           var anX = new dis.Vector2Float();
            anX.initFromBinary(inputStream);
            this.perimeterPoints.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfMineTypes; idx++)
        {
-           var anX = new dis7.EntityType();
+           var anX = new dis.EntityType();
            anX.initFromBinary(inputStream);
            this.mineType.push(anX);
        }
 
   };
 
-  dis7.MinefieldStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -10528,7 +10709,7 @@ dis7.MinefieldStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.MinefieldStatePdu = dis7.MinefieldStatePdu;
+exports.MinefieldStatePdu = dis.MinefieldStatePdu;
 
 // End of MinefieldStatePdu class
 
@@ -10541,8 +10722,8 @@ exports.MinefieldStatePdu = dis7.MinefieldStatePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10551,19 +10732,19 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ModulationParameters = function()
+dis.ModulationParameters = function()
 {
-  dis7.ModulationParameters.prototype.initFromBinary = function(inputStream)
+  dis.ModulationParameters.prototype.initFromBinary = function(inputStream)
   {
   };
 
-  dis7.ModulationParameters.prototype.encodeToBinary = function(outputStream)
+  dis.ModulationParameters.prototype.encodeToBinary = function(outputStream)
   {
   };
 }; // end of class
 
  // node.js module support
-exports.ModulationParameters = dis7.ModulationParameters;
+exports.ModulationParameters = dis.ModulationParameters;
 
 // End of ModulationParameters class
 
@@ -10576,8 +10757,8 @@ exports.ModulationParameters = dis7.ModulationParameters;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10586,7 +10767,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ModulationType = function()
+dis.ModulationType = function()
 {
    /** This field shall indicate the spread spectrum technique or combination of spread spectrum techniques in use. Bit field. 0=freq hopping, 1=psuedo noise, time hopping=2, reamining bits unused */
    this.spreadSpectrum = 0;
@@ -10600,7 +10781,7 @@ dis7.ModulationType = function()
    /** the radio system associated with this Transmitter PDU and shall be used as the basis to interpret other fields whose values depend on a specific radio system. */
    this.radioSystem = 0;
 
-  dis7.ModulationType.prototype.initFromBinary = function(inputStream)
+  dis.ModulationType.prototype.initFromBinary = function(inputStream)
   {
        this.spreadSpectrum = inputStream.readUShort();
        this.majorModulation = inputStream.readUShort();
@@ -10608,7 +10789,7 @@ dis7.ModulationType = function()
        this.radioSystem = inputStream.readUShort();
   };
 
-  dis7.ModulationType.prototype.encodeToBinary = function(outputStream)
+  dis.ModulationType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.spreadSpectrum);
        outputStream.writeUShort(this.majorModulation);
@@ -10618,7 +10799,7 @@ dis7.ModulationType = function()
 }; // end of class
 
  // node.js module support
-exports.ModulationType = dis7.ModulationType;
+exports.ModulationType = dis.ModulationType;
 
 // End of ModulationType class
 
@@ -10631,8 +10812,8 @@ exports.ModulationType = dis7.ModulationType;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10641,10 +10822,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Munition = function()
+dis.Munition = function()
 {
    /**  This field shall identify the entity type of the munition. See section 6.2.30. */
-   this.munitionType = new dis7.EntityType(); 
+   this.munitionType = new dis.EntityType(); 
 
    /** the station or launcher to which the munition is assigned. See Annex I */
    this.station = 0;
@@ -10658,7 +10839,7 @@ dis7.Munition = function()
    /** padding  */
    this.padding = 0;
 
-  dis7.Munition.prototype.initFromBinary = function(inputStream)
+  dis.Munition.prototype.initFromBinary = function(inputStream)
   {
        this.munitionType.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -10667,7 +10848,7 @@ dis7.Munition = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.Munition.prototype.encodeToBinary = function(outputStream)
+  dis.Munition.prototype.encodeToBinary = function(outputStream)
   {
        this.munitionType.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -10678,7 +10859,7 @@ dis7.Munition = function()
 }; // end of class
 
  // node.js module support
-exports.Munition = dis7.Munition;
+exports.Munition = dis.Munition;
 
 // End of Munition class
 
@@ -10691,8 +10872,8 @@ exports.Munition = dis7.Munition;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10701,10 +10882,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MunitionDescriptor = function()
+dis.MunitionDescriptor = function()
 {
    /** What munition was used in the burst */
-   this.munitionType = new dis7.EntityType(); 
+   this.munitionType = new dis.EntityType(); 
 
    /** type of warhead enumeration */
    this.warhead = 0;
@@ -10718,7 +10899,7 @@ dis7.MunitionDescriptor = function()
    /** rate at which the munition was fired */
    this.rate = 0;
 
-  dis7.MunitionDescriptor.prototype.initFromBinary = function(inputStream)
+  dis.MunitionDescriptor.prototype.initFromBinary = function(inputStream)
   {
        this.munitionType.initFromBinary(inputStream);
        this.warhead = inputStream.readUShort();
@@ -10727,7 +10908,7 @@ dis7.MunitionDescriptor = function()
        this.rate = inputStream.readUShort();
   };
 
-  dis7.MunitionDescriptor.prototype.encodeToBinary = function(outputStream)
+  dis.MunitionDescriptor.prototype.encodeToBinary = function(outputStream)
   {
        this.munitionType.encodeToBinary(outputStream);
        outputStream.writeUShort(this.warhead);
@@ -10738,7 +10919,7 @@ dis7.MunitionDescriptor = function()
 }; // end of class
 
  // node.js module support
-exports.MunitionDescriptor = dis7.MunitionDescriptor;
+exports.MunitionDescriptor = dis.MunitionDescriptor;
 
 // End of MunitionDescriptor class
 
@@ -10751,8 +10932,8 @@ exports.MunitionDescriptor = dis7.MunitionDescriptor;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10761,10 +10942,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MunitionReload = function()
+dis.MunitionReload = function()
 {
    /**  This field shall identify the entity type of the munition. See section 6.2.30. */
-   this.munitionType = new dis7.EntityType(); 
+   this.munitionType = new dis.EntityType(); 
 
    /** the station or launcher to which the munition is assigned. See Annex I */
    this.station = 0;
@@ -10781,7 +10962,7 @@ dis7.MunitionReload = function()
    /** the number of seconds of sim time required to reload the max possible quantity */
    this.maximumQuantityReloadTime = 0;
 
-  dis7.MunitionReload.prototype.initFromBinary = function(inputStream)
+  dis.MunitionReload.prototype.initFromBinary = function(inputStream)
   {
        this.munitionType.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -10791,7 +10972,7 @@ dis7.MunitionReload = function()
        this.maximumQuantityReloadTime = inputStream.readUInt();
   };
 
-  dis7.MunitionReload.prototype.encodeToBinary = function(outputStream)
+  dis.MunitionReload.prototype.encodeToBinary = function(outputStream)
   {
        this.munitionType.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -10803,7 +10984,7 @@ dis7.MunitionReload = function()
 }; // end of class
 
  // node.js module support
-exports.MunitionReload = dis7.MunitionReload;
+exports.MunitionReload = dis.MunitionReload;
 
 // End of MunitionReload class
 
@@ -10816,8 +10997,8 @@ exports.MunitionReload = dis7.MunitionReload;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10826,7 +11007,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.NamedLocationIdentification = function()
+dis.NamedLocationIdentification = function()
 {
    /** the station name within the host at which the part entity is located. If the part entity is On Station, this field shall specify the representation of the part’s location data fields. This field shall be specified by a 16-bit enumeration  */
    this.stationName = 0;
@@ -10834,13 +11015,13 @@ dis7.NamedLocationIdentification = function()
    /** the number of the particular wing station, cargo hold etc., at which the part is attached.  */
    this.stationNumber = 0;
 
-  dis7.NamedLocationIdentification.prototype.initFromBinary = function(inputStream)
+  dis.NamedLocationIdentification.prototype.initFromBinary = function(inputStream)
   {
        this.stationName = inputStream.readUShort();
        this.stationNumber = inputStream.readUShort();
   };
 
-  dis7.NamedLocationIdentification.prototype.encodeToBinary = function(outputStream)
+  dis.NamedLocationIdentification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.stationName);
        outputStream.writeUShort(this.stationNumber);
@@ -10848,7 +11029,7 @@ dis7.NamedLocationIdentification = function()
 }; // end of class
 
  // node.js module support
-exports.NamedLocationIdentification = dis7.NamedLocationIdentification;
+exports.NamedLocationIdentification = dis.NamedLocationIdentification;
 
 // End of NamedLocationIdentification class
 
@@ -10861,8 +11042,8 @@ exports.NamedLocationIdentification = dis7.NamedLocationIdentification;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10871,21 +11052,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ObjectIdentifier = function()
+dis.ObjectIdentifier = function()
 {
    /**  Simulation Address */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /** object number */
    this.objectNumber = 0;
 
-  dis7.ObjectIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.ObjectIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.objectNumber = inputStream.readUShort();
   };
 
-  dis7.ObjectIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.ObjectIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.objectNumber);
@@ -10893,7 +11074,7 @@ dis7.ObjectIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.ObjectIdentifier = dis7.ObjectIdentifier;
+exports.ObjectIdentifier = dis.ObjectIdentifier;
 
 // End of ObjectIdentifier class
 
@@ -10906,8 +11087,8 @@ exports.ObjectIdentifier = dis7.ObjectIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10916,7 +11097,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ObjectType = function()
+dis.ObjectType = function()
 {
    /** Domain of entity (air, surface, subsurface, space, etc) */
    this.domain = 0;
@@ -10930,7 +11111,7 @@ dis7.ObjectType = function()
    /** subcategory of entity */
    this.subcategory = 0;
 
-  dis7.ObjectType.prototype.initFromBinary = function(inputStream)
+  dis.ObjectType.prototype.initFromBinary = function(inputStream)
   {
        this.domain = inputStream.readUByte();
        this.objectKind = inputStream.readUByte();
@@ -10938,7 +11119,7 @@ dis7.ObjectType = function()
        this.subcategory = inputStream.readUByte();
   };
 
-  dis7.ObjectType.prototype.encodeToBinary = function(outputStream)
+  dis.ObjectType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.domain);
        outputStream.writeUByte(this.objectKind);
@@ -10948,7 +11129,7 @@ dis7.ObjectType = function()
 }; // end of class
 
  // node.js module support
-exports.ObjectType = dis7.ObjectType;
+exports.ObjectType = dis.ObjectType;
 
 // End of ObjectType class
 
@@ -10961,8 +11142,8 @@ exports.ObjectType = dis7.ObjectType;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -10971,12 +11152,12 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.OneByteChunk = function()
+dis.OneByteChunk = function()
 {
    /** one byte of arbitrary data */
    this.otherParameters = new Array(0);
 
-  dis7.OneByteChunk.prototype.initFromBinary = function(inputStream)
+  dis.OneByteChunk.prototype.initFromBinary = function(inputStream)
   {
        for(var idx = 0; idx < 1; idx++)
        {
@@ -10984,7 +11165,7 @@ dis7.OneByteChunk = function()
        }
   };
 
-  dis7.OneByteChunk.prototype.encodeToBinary = function(outputStream)
+  dis.OneByteChunk.prototype.encodeToBinary = function(outputStream)
   {
        for(var idx = 0; idx < 1; idx++)
        {
@@ -10994,7 +11175,7 @@ dis7.OneByteChunk = function()
 }; // end of class
 
  // node.js module support
-exports.OneByteChunk = dis7.OneByteChunk;
+exports.OneByteChunk = dis.OneByteChunk;
 
 // End of OneByteChunk class
 
@@ -11007,8 +11188,8 @@ exports.OneByteChunk = dis7.OneByteChunk;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11017,10 +11198,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.OwnershipStatus = function()
+dis.OwnershipStatus = function()
 {
    /** EntityID */
-   this.entityId = new dis7.EntityID(); 
+   this.entityId = new dis.EntityID(); 
 
    /** The ownership and/or ownership conflict status of the entity represented by the Entity ID field. */
    this.ownershipStatus = 0;
@@ -11028,14 +11209,14 @@ dis7.OwnershipStatus = function()
    /** padding */
    this.padding = 0;
 
-  dis7.OwnershipStatus.prototype.initFromBinary = function(inputStream)
+  dis.OwnershipStatus.prototype.initFromBinary = function(inputStream)
   {
        this.entityId.initFromBinary(inputStream);
        this.ownershipStatus = inputStream.readUByte();
        this.padding = inputStream.readUByte();
   };
 
-  dis7.OwnershipStatus.prototype.encodeToBinary = function(outputStream)
+  dis.OwnershipStatus.prototype.encodeToBinary = function(outputStream)
   {
        this.entityId.encodeToBinary(outputStream);
        outputStream.writeUByte(this.ownershipStatus);
@@ -11044,7 +11225,7 @@ dis7.OwnershipStatus = function()
 }; // end of class
 
  // node.js module support
-exports.OwnershipStatus = dis7.OwnershipStatus;
+exports.OwnershipStatus = dis.OwnershipStatus;
 
 // End of OwnershipStatus class
 
@@ -11057,8 +11238,8 @@ exports.OwnershipStatus = dis7.OwnershipStatus;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11067,7 +11248,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Pdu = function()
+dis.Pdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -11093,7 +11274,7 @@ dis7.Pdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.Pdu.prototype.initFromBinary = function(inputStream)
+  dis.Pdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -11105,7 +11286,7 @@ dis7.Pdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.Pdu.prototype.encodeToBinary = function(outputStream)
+  dis.Pdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -11119,7 +11300,7 @@ dis7.Pdu = function()
 }; // end of class
 
  // node.js module support
-exports.Pdu = dis7.Pdu;
+exports.Pdu = dis.Pdu;
 
 // End of Pdu class
 
@@ -11132,8 +11313,8 @@ exports.Pdu = dis7.Pdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11142,7 +11323,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PduContainer = function()
+dis.PduContainer = function()
 {
    /** Number of PDUs in the container list */
    this.numberOfPdus = 0;
@@ -11150,19 +11331,19 @@ dis7.PduContainer = function()
    /** List of PDUs */
     this.pdus = new Array();
  
-  dis7.PduContainer.prototype.initFromBinary = function(inputStream)
+  dis.PduContainer.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfPdus = inputStream.readInt();
        for(var idx = 0; idx < this.numberOfPdus; idx++)
        {
-           var anX = new dis7.Pdu();
+           var anX = new dis.Pdu();
            anX.initFromBinary(inputStream);
            this.pdus.push(anX);
        }
 
   };
 
-  dis7.PduContainer.prototype.encodeToBinary = function(outputStream)
+  dis.PduContainer.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeInt(this.numberOfPdus);
        for(var idx = 0; idx < this.pdus.length; idx++)
@@ -11174,7 +11355,7 @@ dis7.PduContainer = function()
 }; // end of class
 
  // node.js module support
-exports.PduContainer = dis7.PduContainer;
+exports.PduContainer = dis.PduContainer;
 
 // End of PduContainer class
 
@@ -11187,8 +11368,8 @@ exports.PduContainer = dis7.PduContainer;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11197,7 +11378,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PduHeader = function()
+dis.PduHeader = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -11223,7 +11404,7 @@ dis7.PduHeader = function()
    /** zero filled array of padding */
    this.padding = 0;
 
-  dis7.PduHeader.prototype.initFromBinary = function(inputStream)
+  dis.PduHeader.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -11235,7 +11416,7 @@ dis7.PduHeader = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.PduHeader.prototype.encodeToBinary = function(outputStream)
+  dis.PduHeader.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -11249,7 +11430,7 @@ dis7.PduHeader = function()
 }; // end of class
 
  // node.js module support
-exports.PduHeader = dis7.PduHeader;
+exports.PduHeader = dis.PduHeader;
 
 // End of PduHeader class
 
@@ -11262,8 +11443,8 @@ exports.PduHeader = dis7.PduHeader;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11272,24 +11453,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PduStatus = function()
+dis.PduStatus = function()
 {
    /** Bit fields. The semantics of the bit fields depend on the PDU type */
    this.pduStatus = 0;
 
-  dis7.PduStatus.prototype.initFromBinary = function(inputStream)
+  dis.PduStatus.prototype.initFromBinary = function(inputStream)
   {
        this.pduStatus = inputStream.readUByte();
   };
 
-  dis7.PduStatus.prototype.encodeToBinary = function(outputStream)
+  dis.PduStatus.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.pduStatus);
   };
 }; // end of class
 
  // node.js module support
-exports.PduStatus = dis7.PduStatus;
+exports.PduStatus = dis.PduStatus;
 
 // End of PduStatus class
 
@@ -11302,8 +11483,8 @@ exports.PduStatus = dis7.PduStatus;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11312,7 +11493,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PduStream = function()
+dis.PduStream = function()
 {
    /** Longish description of this PDU stream */
    this.description = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -11326,7 +11507,7 @@ dis7.PduStream = function()
    /** stop time of recording, in Unix time (seconds since epoch) */
    this.stopTime = 0;
 
-  dis7.PduStream.prototype.initFromBinary = function(inputStream)
+  dis.PduStream.prototype.initFromBinary = function(inputStream)
   {
        for(var idx = 0; idx < 512; idx++)
        {
@@ -11340,7 +11521,7 @@ dis7.PduStream = function()
        this.stopTime = inputStream.readLong();
   };
 
-  dis7.PduStream.prototype.encodeToBinary = function(outputStream)
+  dis.PduStream.prototype.encodeToBinary = function(outputStream)
   {
        for(var idx = 0; idx < 512; idx++)
        {
@@ -11356,7 +11537,7 @@ dis7.PduStream = function()
 }; // end of class
 
  // node.js module support
-exports.PduStream = dis7.PduStream;
+exports.PduStream = dis.PduStream;
 
 // End of PduStream class
 
@@ -11369,8 +11550,8 @@ exports.PduStream = dis7.PduStream;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11379,7 +11560,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PduSuperclass = function()
+dis.PduSuperclass = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -11399,7 +11580,7 @@ dis7.PduSuperclass = function()
    /** Length, in bytes, of the PDU */
    this.length = 0;
 
-  dis7.PduSuperclass.prototype.initFromBinary = function(inputStream)
+  dis.PduSuperclass.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -11409,7 +11590,7 @@ dis7.PduSuperclass = function()
        this.length = inputStream.readUShort();
   };
 
-  dis7.PduSuperclass.prototype.encodeToBinary = function(outputStream)
+  dis.PduSuperclass.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -11421,7 +11602,7 @@ dis7.PduSuperclass = function()
 }; // end of class
 
  // node.js module support
-exports.PduSuperclass = dis7.PduSuperclass;
+exports.PduSuperclass = dis.PduSuperclass;
 
 // End of PduSuperclass class
 
@@ -11434,8 +11615,8 @@ exports.PduSuperclass = dis7.PduSuperclass;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11444,7 +11625,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PointObjectStatePdu = function()
+dis.PointObjectStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -11471,10 +11652,10 @@ dis7.PointObjectStatePdu = function()
    this.padding = 0;
 
    /** Object in synthetic environment */
-   this.objectID = new dis7.EntityID(); 
+   this.objectID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.referencedObjectID = new dis7.EntityID(); 
+   this.referencedObjectID = new dis.EntityID(); 
 
    /** unique update number of each state transition of an object */
    this.updateNumber = 0;
@@ -11486,27 +11667,27 @@ dis7.PointObjectStatePdu = function()
    this.modifications = 0;
 
    /** Object type */
-   this.objectType = new dis7.ObjectType(); 
+   this.objectType = new dis.ObjectType(); 
 
    /** Object location */
-   this.objectLocation = new dis7.Vector3Double(); 
+   this.objectLocation = new dis.Vector3Double(); 
 
    /** Object orientation */
-   this.objectOrientation = new dis7.EulerAngles(); 
+   this.objectOrientation = new dis.EulerAngles(); 
 
    /** Object apperance */
    this.objectAppearance = 0;
 
    /** requesterID */
-   this.requesterID = new dis7.SimulationAddress(); 
+   this.requesterID = new dis.SimulationAddress(); 
 
    /** receiver ID */
-   this.receivingID = new dis7.SimulationAddress(); 
+   this.receivingID = new dis.SimulationAddress(); 
 
    /** padding */
    this.pad2 = 0;
 
-  dis7.PointObjectStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.PointObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -11530,7 +11711,7 @@ dis7.PointObjectStatePdu = function()
        this.pad2 = inputStream.readUInt();
   };
 
-  dis7.PointObjectStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.PointObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -11556,7 +11737,7 @@ dis7.PointObjectStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.PointObjectStatePdu = dis7.PointObjectStatePdu;
+exports.PointObjectStatePdu = dis.PointObjectStatePdu;
 
 // End of PointObjectStatePdu class
 
@@ -11569,8 +11750,8 @@ exports.PointObjectStatePdu = dis7.PointObjectStatePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11579,7 +11760,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PropulsionSystemData = function()
+dis.PropulsionSystemData = function()
 {
    /** powerSetting */
    this.powerSetting = 0;
@@ -11587,13 +11768,13 @@ dis7.PropulsionSystemData = function()
    /** engine RPMs */
    this.engineRpm = 0;
 
-  dis7.PropulsionSystemData.prototype.initFromBinary = function(inputStream)
+  dis.PropulsionSystemData.prototype.initFromBinary = function(inputStream)
   {
        this.powerSetting = inputStream.readFloat32();
        this.engineRpm = inputStream.readFloat32();
   };
 
-  dis7.PropulsionSystemData.prototype.encodeToBinary = function(outputStream)
+  dis.PropulsionSystemData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.powerSetting);
        outputStream.writeFloat32(this.engineRpm);
@@ -11601,7 +11782,7 @@ dis7.PropulsionSystemData = function()
 }; // end of class
 
  // node.js module support
-exports.PropulsionSystemData = dis7.PropulsionSystemData;
+exports.PropulsionSystemData = dis.PropulsionSystemData;
 
 // End of PropulsionSystemData class
 
@@ -11614,8 +11795,8 @@ exports.PropulsionSystemData = dis7.PropulsionSystemData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11624,24 +11805,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ProtocolMode = function()
+dis.ProtocolMode = function()
 {
    /** Bitfields, 14-15 contain an enum */
    this.protocolMode = 0;
 
-  dis7.ProtocolMode.prototype.initFromBinary = function(inputStream)
+  dis.ProtocolMode.prototype.initFromBinary = function(inputStream)
   {
        this.protocolMode = inputStream.readUShort();
   };
 
-  dis7.ProtocolMode.prototype.encodeToBinary = function(outputStream)
+  dis.ProtocolMode.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.protocolMode);
   };
 }; // end of class
 
  // node.js module support
-exports.ProtocolMode = dis7.ProtocolMode;
+exports.ProtocolMode = dis.ProtocolMode;
 
 // End of ProtocolMode class
 
@@ -11654,8 +11835,8 @@ exports.ProtocolMode = dis7.ProtocolMode;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11664,7 +11845,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RadioCommunicationsFamilyPdu = function()
+dis.RadioCommunicationsFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -11690,7 +11871,7 @@ dis7.RadioCommunicationsFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.RadioCommunicationsFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.RadioCommunicationsFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -11702,7 +11883,7 @@ dis7.RadioCommunicationsFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.RadioCommunicationsFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.RadioCommunicationsFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -11716,7 +11897,7 @@ dis7.RadioCommunicationsFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.RadioCommunicationsFamilyPdu = dis7.RadioCommunicationsFamilyPdu;
+exports.RadioCommunicationsFamilyPdu = dis.RadioCommunicationsFamilyPdu;
 
 // End of RadioCommunicationsFamilyPdu class
 
@@ -11729,8 +11910,8 @@ exports.RadioCommunicationsFamilyPdu = dis7.RadioCommunicationsFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11739,7 +11920,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RadioIdentifier = function()
+dis.RadioIdentifier = function()
 {
    /**  site */
    this.siteNumber = 0;
@@ -11753,7 +11934,7 @@ dis7.RadioIdentifier = function()
    /**  Radio number */
    this.radioNumber = 0;
 
-  dis7.RadioIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.RadioIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.siteNumber = inputStream.readUShort();
        this.applicationNumber = inputStream.readUShort();
@@ -11761,7 +11942,7 @@ dis7.RadioIdentifier = function()
        this.radioNumber = inputStream.readUShort();
   };
 
-  dis7.RadioIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.RadioIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.siteNumber);
        outputStream.writeUShort(this.applicationNumber);
@@ -11771,7 +11952,7 @@ dis7.RadioIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.RadioIdentifier = dis7.RadioIdentifier;
+exports.RadioIdentifier = dis.RadioIdentifier;
 
 // End of RadioIdentifier class
 
@@ -11784,8 +11965,8 @@ exports.RadioIdentifier = dis7.RadioIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11794,7 +11975,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RadioType = function()
+dis.RadioType = function()
 {
    /** Kind of entity */
    this.entityKind = 0;
@@ -11815,7 +11996,7 @@ dis7.RadioType = function()
 
    this.extra = 0;
 
-  dis7.RadioType.prototype.initFromBinary = function(inputStream)
+  dis.RadioType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
        this.domain = inputStream.readUByte();
@@ -11826,7 +12007,7 @@ dis7.RadioType = function()
        this.extra = inputStream.readUByte();
   };
 
-  dis7.RadioType.prototype.encodeToBinary = function(outputStream)
+  dis.RadioType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);
        outputStream.writeUByte(this.domain);
@@ -11839,7 +12020,7 @@ dis7.RadioType = function()
 }; // end of class
 
  // node.js module support
-exports.RadioType = dis7.RadioType;
+exports.RadioType = dis.RadioType;
 
 // End of RadioType class
 
@@ -11852,8 +12033,8 @@ exports.RadioType = dis7.RadioType;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11862,7 +12043,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ReceiverPdu = function()
+dis.ReceiverPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -11898,12 +12079,12 @@ dis7.ReceiverPdu = function()
    this.receivedPoser = 0;
 
    /** ID of transmitter */
-   this.transmitterEntityId = new dis7.EntityID(); 
+   this.transmitterEntityId = new dis.EntityID(); 
 
    /** ID of transmitting radio */
    this.transmitterRadioId = 0;
 
-  dis7.ReceiverPdu.prototype.initFromBinary = function(inputStream)
+  dis.ReceiverPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -11920,7 +12101,7 @@ dis7.ReceiverPdu = function()
        this.transmitterRadioId = inputStream.readUShort();
   };
 
-  dis7.ReceiverPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ReceiverPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -11939,7 +12120,7 @@ dis7.ReceiverPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ReceiverPdu = dis7.ReceiverPdu;
+exports.ReceiverPdu = dis.ReceiverPdu;
 
 // End of ReceiverPdu class
 
@@ -11952,8 +12133,8 @@ exports.ReceiverPdu = dis7.ReceiverPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -11962,7 +12143,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RecordQueryReliablePdu = function()
+dis.RecordQueryReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -11989,10 +12170,10 @@ dis7.RecordQueryReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** request ID */
    this.requestID = 0;
@@ -12018,7 +12199,7 @@ dis7.RecordQueryReliablePdu = function()
    /** record IDs */
     this.recordIDs = new Array();
  
-  dis7.RecordQueryReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.RecordQueryReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -12039,14 +12220,14 @@ dis7.RecordQueryReliablePdu = function()
        this.numberOfRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfRecords; idx++)
        {
-           var anX = new dis7.FourByteChunk();
+           var anX = new dis.FourByteChunk();
            anX.initFromBinary(inputStream);
            this.recordIDs.push(anX);
        }
 
   };
 
-  dis7.RecordQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.RecordQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -12074,7 +12255,7 @@ dis7.RecordQueryReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.RecordQueryReliablePdu = dis7.RecordQueryReliablePdu;
+exports.RecordQueryReliablePdu = dis.RecordQueryReliablePdu;
 
 // End of RecordQueryReliablePdu class
 
@@ -12087,8 +12268,8 @@ exports.RecordQueryReliablePdu = dis7.RecordQueryReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12097,26 +12278,26 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RecordQuerySpecification = function()
+dis.RecordQuerySpecification = function()
 {
    this.numberOfRecords = 0;
 
    /** variable length list of 32 bit records */
     this.records = new Array();
  
-  dis7.RecordQuerySpecification.prototype.initFromBinary = function(inputStream)
+  dis.RecordQuerySpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfRecords; idx++)
        {
-           var anX = new dis7.FourByteChunk();
+           var anX = new dis.FourByteChunk();
            anX.initFromBinary(inputStream);
            this.records.push(anX);
        }
 
   };
 
-  dis7.RecordQuerySpecification.prototype.encodeToBinary = function(outputStream)
+  dis.RecordQuerySpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfRecords);
        for(var idx = 0; idx < this.records.length; idx++)
@@ -12128,7 +12309,7 @@ dis7.RecordQuerySpecification = function()
 }; // end of class
 
  // node.js module support
-exports.RecordQuerySpecification = dis7.RecordQuerySpecification;
+exports.RecordQuerySpecification = dis.RecordQuerySpecification;
 
 // End of RecordQuerySpecification class
 
@@ -12141,8 +12322,8 @@ exports.RecordQuerySpecification = dis7.RecordQuerySpecification;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12151,7 +12332,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RecordSpecification = function()
+dis.RecordSpecification = function()
 {
    /** The number of record sets */
    this.numberOfRecordSets = 0;
@@ -12159,19 +12340,19 @@ dis7.RecordSpecification = function()
    /** variable length list record specifications. */
     this.recordSets = new Array();
  
-  dis7.RecordSpecification.prototype.initFromBinary = function(inputStream)
+  dis.RecordSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfRecordSets = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfRecordSets; idx++)
        {
-           var anX = new dis7.RecordSpecificationElement();
+           var anX = new dis.RecordSpecificationElement();
            anX.initFromBinary(inputStream);
            this.recordSets.push(anX);
        }
 
   };
 
-  dis7.RecordSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.RecordSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfRecordSets);
        for(var idx = 0; idx < this.recordSets.length; idx++)
@@ -12183,7 +12364,7 @@ dis7.RecordSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.RecordSpecification = dis7.RecordSpecification;
+exports.RecordSpecification = dis.RecordSpecification;
 
 // End of RecordSpecification class
 
@@ -12196,8 +12377,8 @@ exports.RecordSpecification = dis7.RecordSpecification;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12206,7 +12387,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RecordSpecificationElement = function()
+dis.RecordSpecificationElement = function()
 {
    /** the data structure used to convey the parameter values of the record for each record. 32 bit enumeration. */
    this.recordID = 0;
@@ -12226,7 +12407,7 @@ dis7.RecordSpecificationElement = function()
    /** Padding of 0 to 31 unused bits as required for 32-bit alignment of the Record Set field. ^^^This is wrong--variable sized padding. MUST be patched post-code generation */
    this.pad4 = 0;
 
-  dis7.RecordSpecificationElement.prototype.initFromBinary = function(inputStream)
+  dis.RecordSpecificationElement.prototype.initFromBinary = function(inputStream)
   {
        this.recordID = inputStream.readUInt();
        this.recordSetSerialNumber = inputStream.readUInt();
@@ -12236,7 +12417,7 @@ dis7.RecordSpecificationElement = function()
        this.pad4 = inputStream.readUByte();
   };
 
-  dis7.RecordSpecificationElement.prototype.encodeToBinary = function(outputStream)
+  dis.RecordSpecificationElement.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordID);
        outputStream.writeUInt(this.recordSetSerialNumber);
@@ -12248,7 +12429,7 @@ dis7.RecordSpecificationElement = function()
 }; // end of class
 
  // node.js module support
-exports.RecordSpecificationElement = dis7.RecordSpecificationElement;
+exports.RecordSpecificationElement = dis.RecordSpecificationElement;
 
 // End of RecordSpecificationElement class
 
@@ -12261,8 +12442,8 @@ exports.RecordSpecificationElement = dis7.RecordSpecificationElement;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12271,7 +12452,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Relationship = function()
+dis.Relationship = function()
 {
    /** the nature or purpose for joining of the part entity to the host entity and shall be represented by a 16-bit enumeration */
    this.nature = 0;
@@ -12279,13 +12460,13 @@ dis7.Relationship = function()
    /** the position of the part entity with respect to the host entity and shall be represented by a 16-bit enumeration */
    this.position = 0;
 
-  dis7.Relationship.prototype.initFromBinary = function(inputStream)
+  dis.Relationship.prototype.initFromBinary = function(inputStream)
   {
        this.nature = inputStream.readUShort();
        this.position = inputStream.readUShort();
   };
 
-  dis7.Relationship.prototype.encodeToBinary = function(outputStream)
+  dis.Relationship.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.nature);
        outputStream.writeUShort(this.position);
@@ -12293,7 +12474,7 @@ dis7.Relationship = function()
 }; // end of class
 
  // node.js module support
-exports.Relationship = dis7.Relationship;
+exports.Relationship = dis.Relationship;
 
 // End of Relationship class
 
@@ -12306,8 +12487,8 @@ exports.Relationship = dis7.Relationship;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12316,7 +12497,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RemoveEntityPdu = function()
+dis.RemoveEntityPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -12343,21 +12524,15 @@ dis7.RemoveEntityPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** This field shall identify the specific and unique start/resume request being made by the SM */
    this.requestID = 0;
 
-  dis7.RemoveEntityPdu.prototype.initFromBinary = function(inputStream)
+  dis.RemoveEntityPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -12369,12 +12544,10 @@ dis7.RemoveEntityPdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.RemoveEntityPdu.prototype.encodeToBinary = function(outputStream)
+  dis.RemoveEntityPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -12386,14 +12559,12 @@ dis7.RemoveEntityPdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        outputStream.writeUInt(this.requestID);
   };
 }; // end of class
 
  // node.js module support
-exports.RemoveEntityPdu = dis7.RemoveEntityPdu;
+exports.RemoveEntityPdu = dis.RemoveEntityPdu;
 
 // End of RemoveEntityPdu class
 
@@ -12406,8 +12577,8 @@ exports.RemoveEntityPdu = dis7.RemoveEntityPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12416,7 +12587,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RemoveEntityReliablePdu = function()
+dis.RemoveEntityReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -12443,10 +12614,10 @@ dis7.RemoveEntityReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -12460,7 +12631,7 @@ dis7.RemoveEntityReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  dis7.RemoveEntityReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.RemoveEntityReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -12478,7 +12649,7 @@ dis7.RemoveEntityReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.RemoveEntityReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.RemoveEntityReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -12498,7 +12669,7 @@ dis7.RemoveEntityReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.RemoveEntityReliablePdu = dis7.RemoveEntityReliablePdu;
+exports.RemoveEntityReliablePdu = dis.RemoveEntityReliablePdu;
 
 // End of RemoveEntityReliablePdu class
 
@@ -12511,8 +12682,8 @@ exports.RemoveEntityReliablePdu = dis7.RemoveEntityReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12521,7 +12692,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RepairCompletePdu = function()
+dis.RepairCompletePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -12548,10 +12719,10 @@ dis7.RepairCompletePdu = function()
    this.padding = 0;
 
    /** Entity that is receiving service.  See 6.2.28 */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Entity that is supplying.  See 6.2.28 */
-   this.repairingEntityID = new dis7.EntityID(); 
+   this.repairingEntityID = new dis.EntityID(); 
 
    /** Enumeration for type of repair.  See 6.2.74 */
    this.repair = 0;
@@ -12559,7 +12730,7 @@ dis7.RepairCompletePdu = function()
    /** padding, number prevents conflict with superclass ivar name */
    this.padding4 = 0;
 
-  dis7.RepairCompletePdu.prototype.initFromBinary = function(inputStream)
+  dis.RepairCompletePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -12575,7 +12746,7 @@ dis7.RepairCompletePdu = function()
        this.padding4 = inputStream.readShort();
   };
 
-  dis7.RepairCompletePdu.prototype.encodeToBinary = function(outputStream)
+  dis.RepairCompletePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -12593,7 +12764,7 @@ dis7.RepairCompletePdu = function()
 }; // end of class
 
  // node.js module support
-exports.RepairCompletePdu = dis7.RepairCompletePdu;
+exports.RepairCompletePdu = dis.RepairCompletePdu;
 
 // End of RepairCompletePdu class
 
@@ -12606,8 +12777,8 @@ exports.RepairCompletePdu = dis7.RepairCompletePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12616,7 +12787,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RepairResponsePdu = function()
+dis.RepairResponsePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -12643,10 +12814,10 @@ dis7.RepairResponsePdu = function()
    this.padding = 0;
 
    /** Entity that requested repairs.  See 6.2.28 */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Entity that is repairing.  See 6.2.28 */
-   this.repairingEntityID = new dis7.EntityID(); 
+   this.repairingEntityID = new dis.EntityID(); 
 
    /** Result of repair operation */
    this.repairResult = 0;
@@ -12657,7 +12828,7 @@ dis7.RepairResponsePdu = function()
    /** padding */
    this.padding2 = 0;
 
-  dis7.RepairResponsePdu.prototype.initFromBinary = function(inputStream)
+  dis.RepairResponsePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -12674,7 +12845,7 @@ dis7.RepairResponsePdu = function()
        this.padding2 = inputStream.readByte();
   };
 
-  dis7.RepairResponsePdu.prototype.encodeToBinary = function(outputStream)
+  dis.RepairResponsePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -12693,7 +12864,7 @@ dis7.RepairResponsePdu = function()
 }; // end of class
 
  // node.js module support
-exports.RepairResponsePdu = dis7.RepairResponsePdu;
+exports.RepairResponsePdu = dis.RepairResponsePdu;
 
 // End of RepairResponsePdu class
 
@@ -12706,8 +12877,8 @@ exports.RepairResponsePdu = dis7.RepairResponsePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12716,24 +12887,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RequestID = function()
+dis.RequestID = function()
 {
    /** monotonically increasing number */
    this.requestID = 0;
 
-  dis7.RequestID.prototype.initFromBinary = function(inputStream)
+  dis.RequestID.prototype.initFromBinary = function(inputStream)
   {
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.RequestID.prototype.encodeToBinary = function(outputStream)
+  dis.RequestID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.requestID);
   };
 }; // end of class
 
  // node.js module support
-exports.RequestID = dis7.RequestID;
+exports.RequestID = dis.RequestID;
 
 // End of RequestID class
 
@@ -12746,8 +12917,8 @@ exports.RequestID = dis7.RequestID;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12756,7 +12927,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ResupplyOfferPdu = function()
+dis.ResupplyOfferPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -12783,10 +12954,10 @@ dis7.ResupplyOfferPdu = function()
    this.padding = 0;
 
    /** Field identifies the Entity and respective Entity Record ID that is receiving service (see 6.2.28), Section 7.4.3 */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Identifies the Entity and respective Entity ID Record that is supplying  (see 6.2.28), Section 7.4.3 */
-   this.supplyingEntityID = new dis7.EntityID(); 
+   this.supplyingEntityID = new dis.EntityID(); 
 
    /** How many supplies types are being offered, Section 7.4.3 */
    this.numberOfSupplyTypes = 0;
@@ -12800,7 +12971,7 @@ dis7.ResupplyOfferPdu = function()
    /** A Reord that Specifies the type of supply and the amount of that supply for each of the supply types in numberOfSupplyTypes (see 6.2.85), Section 7.4.3 */
     this.supplies = new Array();
  
-  dis7.ResupplyOfferPdu.prototype.initFromBinary = function(inputStream)
+  dis.ResupplyOfferPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -12817,14 +12988,14 @@ dis7.ResupplyOfferPdu = function()
        this.padding2 = inputStream.readShort();
        for(var idx = 0; idx < this.numberOfSupplyTypes; idx++)
        {
-           var anX = new dis7.SupplyQuantity();
+           var anX = new dis.SupplyQuantity();
            anX.initFromBinary(inputStream);
            this.supplies.push(anX);
        }
 
   };
 
-  dis7.ResupplyOfferPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ResupplyOfferPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -12848,7 +13019,7 @@ dis7.ResupplyOfferPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ResupplyOfferPdu = dis7.ResupplyOfferPdu;
+exports.ResupplyOfferPdu = dis.ResupplyOfferPdu;
 
 // End of ResupplyOfferPdu class
 
@@ -12861,8 +13032,8 @@ exports.ResupplyOfferPdu = dis7.ResupplyOfferPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12871,7 +13042,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ResupplyReceivedPdu = function()
+dis.ResupplyReceivedPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -12898,10 +13069,10 @@ dis7.ResupplyReceivedPdu = function()
    this.padding = 0;
 
    /** Entity that is receiving service.  Shall be represented by Entity Identifier record (see 6.2.28) */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** Entity that is supplying.  Shall be represented by Entity Identifier record (see 6.2.28) */
-   this.supplyingEntityID = new dis7.EntityID(); 
+   this.supplyingEntityID = new dis.EntityID(); 
 
    /** How many supplies are taken by receiving entity */
    this.numberOfSupplyTypes = 0;
@@ -12915,7 +13086,7 @@ dis7.ResupplyReceivedPdu = function()
    /** Type and amount of supplies for each specified supply type.  See 6.2.85 for supply quantity record. */
     this.supplies = new Array();
  
-  dis7.ResupplyReceivedPdu.prototype.initFromBinary = function(inputStream)
+  dis.ResupplyReceivedPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -12932,14 +13103,14 @@ dis7.ResupplyReceivedPdu = function()
        this.padding2 = inputStream.readByte();
        for(var idx = 0; idx < this.numberOfSupplyTypes; idx++)
        {
-           var anX = new dis7.SupplyQuantity();
+           var anX = new dis.SupplyQuantity();
            anX.initFromBinary(inputStream);
            this.supplies.push(anX);
        }
 
   };
 
-  dis7.ResupplyReceivedPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ResupplyReceivedPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -12963,7 +13134,7 @@ dis7.ResupplyReceivedPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ResupplyReceivedPdu = dis7.ResupplyReceivedPdu;
+exports.ResupplyReceivedPdu = dis.ResupplyReceivedPdu;
 
 // End of ResupplyReceivedPdu class
 
@@ -12976,8 +13147,8 @@ exports.ResupplyReceivedPdu = dis7.ResupplyReceivedPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -12986,7 +13157,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SecondaryOperationalData = function()
+dis.SecondaryOperationalData = function()
 {
    /** additional operational characteristics of the IFF emitting system. Each 8-bit field will vary depending on the system type. */
    this.operationalData1 = 0;
@@ -12997,14 +13168,14 @@ dis7.SecondaryOperationalData = function()
    /** the number of IFF Fundamental Parameter Data records that follow */
    this.numberOfIFFFundamentalParameterRecords = 0;
 
-  dis7.SecondaryOperationalData.prototype.initFromBinary = function(inputStream)
+  dis.SecondaryOperationalData.prototype.initFromBinary = function(inputStream)
   {
        this.operationalData1 = inputStream.readUByte();
        this.operationalData2 = inputStream.readUByte();
        this.numberOfIFFFundamentalParameterRecords = inputStream.readUShort();
   };
 
-  dis7.SecondaryOperationalData.prototype.encodeToBinary = function(outputStream)
+  dis.SecondaryOperationalData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.operationalData1);
        outputStream.writeUByte(this.operationalData2);
@@ -13013,7 +13184,7 @@ dis7.SecondaryOperationalData = function()
 }; // end of class
 
  // node.js module support
-exports.SecondaryOperationalData = dis7.SecondaryOperationalData;
+exports.SecondaryOperationalData = dis.SecondaryOperationalData;
 
 // End of SecondaryOperationalData class
 
@@ -13026,8 +13197,8 @@ exports.SecondaryOperationalData = dis7.SecondaryOperationalData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13036,7 +13207,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SeesPdu = function()
+dis.SeesPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -13063,7 +13234,7 @@ dis7.SeesPdu = function()
    this.padding = 0;
 
    /** Originating entity ID */
-   this.orginatingEntityID = new dis7.EntityID(); 
+   this.orginatingEntityID = new dis.EntityID(); 
 
    /** IR Signature representation index */
    this.infraredSignatureRepresentationIndex = 0;
@@ -13086,7 +13257,7 @@ dis7.SeesPdu = function()
    /** variable length list of vectoring system data */
     this.vectoringSystemData = new Array();
  
-  dis7.SeesPdu.prototype.initFromBinary = function(inputStream)
+  dis.SeesPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -13104,21 +13275,21 @@ dis7.SeesPdu = function()
        this.numberOfVectoringNozzleSystems = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfPropulsionSystems; idx++)
        {
-           var anX = new dis7.PropulsionSystemData();
+           var anX = new dis.PropulsionSystemData();
            anX.initFromBinary(inputStream);
            this.propulsionSystemData.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVectoringNozzleSystems; idx++)
        {
-           var anX = new dis7.VectoringNozzleSystem();
+           var anX = new dis.VectoringNozzleSystem();
            anX.initFromBinary(inputStream);
            this.vectoringSystemData.push(anX);
        }
 
   };
 
-  dis7.SeesPdu.prototype.encodeToBinary = function(outputStream)
+  dis.SeesPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -13148,7 +13319,7 @@ dis7.SeesPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SeesPdu = dis7.SeesPdu;
+exports.SeesPdu = dis.SeesPdu;
 
 // End of SeesPdu class
 
@@ -13161,8 +13332,8 @@ exports.SeesPdu = dis7.SeesPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13171,7 +13342,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Sensor = function()
+dis.Sensor = function()
 {
    /**  the source of the Sensor Type field  */
    this.sensorTypeSource = 0;
@@ -13191,7 +13362,7 @@ dis7.Sensor = function()
    /** padding */
    this.padding = 0;
 
-  dis7.Sensor.prototype.initFromBinary = function(inputStream)
+  dis.Sensor.prototype.initFromBinary = function(inputStream)
   {
        this.sensorTypeSource = inputStream.readUByte();
        this.sensorOnOffStatus = inputStream.readUByte();
@@ -13201,7 +13372,7 @@ dis7.Sensor = function()
        this.padding = inputStream.readUShort();
   };
 
-  dis7.Sensor.prototype.encodeToBinary = function(outputStream)
+  dis.Sensor.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.sensorTypeSource);
        outputStream.writeUByte(this.sensorOnOffStatus);
@@ -13213,7 +13384,7 @@ dis7.Sensor = function()
 }; // end of class
 
  // node.js module support
-exports.Sensor = dis7.Sensor;
+exports.Sensor = dis.Sensor;
 
 // End of Sensor class
 
@@ -13226,8 +13397,8 @@ exports.Sensor = dis7.Sensor;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13236,7 +13407,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SeparationVP = function()
+dis.SeparationVP = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 2;
@@ -13251,7 +13422,7 @@ dis7.SeparationVP = function()
    this.padding1 = 0;
 
    /** ID of parent */
-   this.parentEntityID = new dis7.EntityID(); 
+   this.parentEntityID = new dis.EntityID(); 
 
    /** padding */
    this.padding2 = 0;
@@ -13259,7 +13430,7 @@ dis7.SeparationVP = function()
    /** Station separated from */
    this.stationLocation = 0;
 
-  dis7.SeparationVP.prototype.initFromBinary = function(inputStream)
+  dis.SeparationVP.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.reasonForSeparation = inputStream.readUByte();
@@ -13270,7 +13441,7 @@ dis7.SeparationVP = function()
        this.stationLocation = inputStream.readUInt();
   };
 
-  dis7.SeparationVP.prototype.encodeToBinary = function(outputStream)
+  dis.SeparationVP.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.reasonForSeparation);
@@ -13283,7 +13454,7 @@ dis7.SeparationVP = function()
 }; // end of class
 
  // node.js module support
-exports.SeparationVP = dis7.SeparationVP;
+exports.SeparationVP = dis.SeparationVP;
 
 // End of SeparationVP class
 
@@ -13296,8 +13467,8 @@ exports.SeparationVP = dis7.SeparationVP;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13306,7 +13477,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ServiceRequestPdu = function()
+dis.ServiceRequestPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -13333,10 +13504,10 @@ dis7.ServiceRequestPdu = function()
    this.padding = 0;
 
    /** Entity that is requesting service (see 6.2.28), Section 7.4.2 */
-   this.requestingEntityID = new dis7.EntityID(); 
+   this.requestingEntityID = new dis.EntityID(); 
 
    /** Entity that is providing the service (see 6.2.28), Section 7.4.2 */
-   this.servicingEntityID = new dis7.EntityID(); 
+   this.servicingEntityID = new dis.EntityID(); 
 
    /** Type of service requested, Section 7.4.2 */
    this.serviceTypeRequested = 0;
@@ -13350,7 +13521,7 @@ dis7.ServiceRequestPdu = function()
    /** Field shall specify the type of supply and the amount of that supply for the number specified in the numberOfSupplyTypes (see 6.2.85), Section 7.4.2 */
     this.supplies = new Array();
  
-  dis7.ServiceRequestPdu.prototype.initFromBinary = function(inputStream)
+  dis.ServiceRequestPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -13367,14 +13538,14 @@ dis7.ServiceRequestPdu = function()
        this.serviceRequestPadding = inputStream.readShort();
        for(var idx = 0; idx < this.numberOfSupplyTypes; idx++)
        {
-           var anX = new dis7.SupplyQuantity();
+           var anX = new dis.SupplyQuantity();
            anX.initFromBinary(inputStream);
            this.supplies.push(anX);
        }
 
   };
 
-  dis7.ServiceRequestPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ServiceRequestPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -13398,7 +13569,7 @@ dis7.ServiceRequestPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ServiceRequestPdu = dis7.ServiceRequestPdu;
+exports.ServiceRequestPdu = dis.ServiceRequestPdu;
 
 // End of ServiceRequestPdu class
 
@@ -13411,8 +13582,8 @@ exports.ServiceRequestPdu = dis7.ServiceRequestPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13421,7 +13592,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SetDataPdu = function()
+dis.SetDataPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -13448,10 +13619,10 @@ dis7.SetDataPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** ID of request */
    this.requestID = 0;
@@ -13471,7 +13642,7 @@ dis7.SetDataPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.SetDataPdu.prototype.initFromBinary = function(inputStream)
+  dis.SetDataPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -13489,21 +13660,21 @@ dis7.SetDataPdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.SetDataPdu.prototype.encodeToBinary = function(outputStream)
+  dis.SetDataPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -13533,7 +13704,7 @@ dis7.SetDataPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SetDataPdu = dis7.SetDataPdu;
+exports.SetDataPdu = dis.SetDataPdu;
 
 // End of SetDataPdu class
 
@@ -13546,8 +13717,8 @@ exports.SetDataPdu = dis7.SetDataPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13556,7 +13727,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SetDataReliablePdu = function()
+dis.SetDataReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -13583,10 +13754,10 @@ dis7.SetDataReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -13612,7 +13783,7 @@ dis7.SetDataReliablePdu = function()
    /** Variable datum records */
     this.variableDatumRecords = new Array();
  
-  dis7.SetDataReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.SetDataReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -13632,21 +13803,21 @@ dis7.SetDataReliablePdu = function()
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatumRecords.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatumRecords.push(anX);
        }
 
   };
 
-  dis7.SetDataReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.SetDataReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -13678,7 +13849,7 @@ dis7.SetDataReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.SetDataReliablePdu = dis7.SetDataReliablePdu;
+exports.SetDataReliablePdu = dis.SetDataReliablePdu;
 
 // End of SetDataReliablePdu class
 
@@ -13691,8 +13862,8 @@ exports.SetDataReliablePdu = dis7.SetDataReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13701,7 +13872,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SignalPdu = function()
+dis.SignalPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -13745,7 +13916,7 @@ dis7.SignalPdu = function()
    /** list of eight bit values */
     this.data = new Array();
  
-  dis7.SignalPdu.prototype.initFromBinary = function(inputStream)
+  dis.SignalPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -13762,14 +13933,14 @@ dis7.SignalPdu = function()
        this.samples = inputStream.readShort();
        for(var idx = 0; idx < this.dataLength; idx++)
        {
-           var anX = new dis7.OneByteChunk();
+           var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.data.push(anX);
        }
 
   };
 
-  dis7.SignalPdu.prototype.encodeToBinary = function(outputStream)
+  dis.SignalPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -13793,7 +13964,7 @@ dis7.SignalPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SignalPdu = dis7.SignalPdu;
+exports.SignalPdu = dis.SignalPdu;
 
 // End of SignalPdu class
 
@@ -13806,8 +13977,8 @@ exports.SignalPdu = dis7.SignalPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13816,7 +13987,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SilentEntitySystem = function()
+dis.SilentEntitySystem = function()
 {
    /** number of the type specified by the entity type field */
    this.numberOfEntities = 0;
@@ -13825,26 +13996,26 @@ dis7.SilentEntitySystem = function()
    this.numberOfAppearanceRecords = 0;
 
    /** Entity type */
-   this.entityType = new dis7.EntityType(); 
+   this.entityType = new dis.EntityType(); 
 
    /** Variable length list of appearance records */
     this.appearanceRecordList = new Array();
  
-  dis7.SilentEntitySystem.prototype.initFromBinary = function(inputStream)
+  dis.SilentEntitySystem.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfEntities = inputStream.readUShort();
        this.numberOfAppearanceRecords = inputStream.readUShort();
        this.entityType.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfAppearanceRecords; idx++)
        {
-           var anX = new dis7.FourByteChunk();
+           var anX = new dis.FourByteChunk();
            anX.initFromBinary(inputStream);
            this.appearanceRecordList.push(anX);
        }
 
   };
 
-  dis7.SilentEntitySystem.prototype.encodeToBinary = function(outputStream)
+  dis.SilentEntitySystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.numberOfEntities);
        outputStream.writeUShort(this.numberOfAppearanceRecords);
@@ -13858,7 +14029,7 @@ dis7.SilentEntitySystem = function()
 }; // end of class
 
  // node.js module support
-exports.SilentEntitySystem = dis7.SilentEntitySystem;
+exports.SilentEntitySystem = dis.SilentEntitySystem;
 
 // End of SilentEntitySystem class
 
@@ -13871,8 +14042,8 @@ exports.SilentEntitySystem = dis7.SilentEntitySystem;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13881,7 +14052,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SimulationAddress = function()
+dis.SimulationAddress = function()
 {
    /** A site is defined as a facility, installation, organizational unit or a geographic location that has one or more simulation applications capable of participating in a distributed event.  */
    this.site = 0;
@@ -13889,13 +14060,13 @@ dis7.SimulationAddress = function()
    /** An application is defined as a software program that is used to generate and process distributed simulation data including live, virtual and constructive data. */
    this.application = 0;
 
-  dis7.SimulationAddress.prototype.initFromBinary = function(inputStream)
+  dis.SimulationAddress.prototype.initFromBinary = function(inputStream)
   {
        this.site = inputStream.readUShort();
        this.application = inputStream.readUShort();
   };
 
-  dis7.SimulationAddress.prototype.encodeToBinary = function(outputStream)
+  dis.SimulationAddress.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.site);
        outputStream.writeUShort(this.application);
@@ -13903,7 +14074,7 @@ dis7.SimulationAddress = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationAddress = dis7.SimulationAddress;
+exports.SimulationAddress = dis.SimulationAddress;
 
 // End of SimulationAddress class
 
@@ -13916,8 +14087,8 @@ exports.SimulationAddress = dis7.SimulationAddress;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13926,21 +14097,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SimulationIdentifier = function()
+dis.SimulationIdentifier = function()
 {
    /** Simulation address  */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /** This field shall be set to zero as there is no reference number associated with a Simulation Identifier. */
    this.referenceNumber = 0;
 
-  dis7.SimulationIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.SimulationIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.referenceNumber = inputStream.readUShort();
   };
 
-  dis7.SimulationIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.SimulationIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.referenceNumber);
@@ -13948,7 +14119,7 @@ dis7.SimulationIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationIdentifier = dis7.SimulationIdentifier;
+exports.SimulationIdentifier = dis.SimulationIdentifier;
 
 // End of SimulationIdentifier class
 
@@ -13961,8 +14132,8 @@ exports.SimulationIdentifier = dis7.SimulationIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -13971,7 +14142,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SimulationManagementFamilyPdu = function()
+dis.SimulationManagementFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -13998,12 +14169,12 @@ dis7.SimulationManagementFamilyPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
-  dis7.SimulationManagementFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.SimulationManagementFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -14017,7 +14188,7 @@ dis7.SimulationManagementFamilyPdu = function()
        this.receivingEntityID.initFromBinary(inputStream);
   };
 
-  dis7.SimulationManagementFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.SimulationManagementFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -14033,7 +14204,7 @@ dis7.SimulationManagementFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationManagementFamilyPdu = dis7.SimulationManagementFamilyPdu;
+exports.SimulationManagementFamilyPdu = dis.SimulationManagementFamilyPdu;
 
 // End of SimulationManagementFamilyPdu class
 
@@ -14046,8 +14217,8 @@ exports.SimulationManagementFamilyPdu = dis7.SimulationManagementFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14056,25 +14227,25 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SimulationManagementPduHeader = function()
+dis.SimulationManagementPduHeader = function()
 {
    /** Conventional PDU header */
-   this.pduHeader = new dis7.PduHeader(); 
+   this.pduHeader = new dis.PduHeader(); 
 
    /** IDs the simulation or entity, etiehr a simulation or an entity. Either 6.2.80 or 6.2.28 */
-   this.originatingID = new dis7.SimulationIdentifier(); 
+   this.originatingID = new dis.SimulationIdentifier(); 
 
    /** simulation, all simulations, a special ID, or an entity. See 5.6.5 and 5.12.4 */
-   this.receivingID = new dis7.SimulationIdentifier(); 
+   this.receivingID = new dis.SimulationIdentifier(); 
 
-  dis7.SimulationManagementPduHeader.prototype.initFromBinary = function(inputStream)
+  dis.SimulationManagementPduHeader.prototype.initFromBinary = function(inputStream)
   {
        this.pduHeader.initFromBinary(inputStream);
        this.originatingID.initFromBinary(inputStream);
        this.receivingID.initFromBinary(inputStream);
   };
 
-  dis7.SimulationManagementPduHeader.prototype.encodeToBinary = function(outputStream)
+  dis.SimulationManagementPduHeader.prototype.encodeToBinary = function(outputStream)
   {
        this.pduHeader.encodeToBinary(outputStream);
        this.originatingID.encodeToBinary(outputStream);
@@ -14083,7 +14254,7 @@ dis7.SimulationManagementPduHeader = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationManagementPduHeader = dis7.SimulationManagementPduHeader;
+exports.SimulationManagementPduHeader = dis.SimulationManagementPduHeader;
 
 // End of SimulationManagementPduHeader class
 
@@ -14096,8 +14267,8 @@ exports.SimulationManagementPduHeader = dis7.SimulationManagementPduHeader;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14106,7 +14277,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SimulationManagementWithReliabilityFamilyPdu = function()
+dis.SimulationManagementWithReliabilityFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -14133,12 +14304,12 @@ dis7.SimulationManagementWithReliabilityFamilyPdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
-  dis7.SimulationManagementWithReliabilityFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.SimulationManagementWithReliabilityFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -14152,7 +14323,7 @@ dis7.SimulationManagementWithReliabilityFamilyPdu = function()
        this.receivingEntityID.initFromBinary(inputStream);
   };
 
-  dis7.SimulationManagementWithReliabilityFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.SimulationManagementWithReliabilityFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -14168,7 +14339,7 @@ dis7.SimulationManagementWithReliabilityFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationManagementWithReliabilityFamilyPdu = dis7.SimulationManagementWithReliabilityFamilyPdu;
+exports.SimulationManagementWithReliabilityFamilyPdu = dis.SimulationManagementWithReliabilityFamilyPdu;
 
 // End of SimulationManagementWithReliabilityFamilyPdu class
 
@@ -14181,8 +14352,8 @@ exports.SimulationManagementWithReliabilityFamilyPdu = dis7.SimulationManagement
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14191,7 +14362,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StandardVariableSpecification = function()
+dis.StandardVariableSpecification = function()
 {
    /** Number of static variable records */
    this.numberOfStandardVariableRecords = 0;
@@ -14199,19 +14370,19 @@ dis7.StandardVariableSpecification = function()
    /** variable length list of standard variables, The class type and length here are WRONG and will cause the incorrect serialization of any class in whihc it is embedded. */
     this.standardVariables = new Array();
  
-  dis7.StandardVariableSpecification.prototype.initFromBinary = function(inputStream)
+  dis.StandardVariableSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfStandardVariableRecords = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfStandardVariableRecords; idx++)
        {
-           var anX = new dis7.SimulationManagementPduHeader();
+           var anX = new dis.SimulationManagementPduHeader();
            anX.initFromBinary(inputStream);
            this.standardVariables.push(anX);
        }
 
   };
 
-  dis7.StandardVariableSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.StandardVariableSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.numberOfStandardVariableRecords);
        for(var idx = 0; idx < this.standardVariables.length; idx++)
@@ -14223,7 +14394,7 @@ dis7.StandardVariableSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.StandardVariableSpecification = dis7.StandardVariableSpecification;
+exports.StandardVariableSpecification = dis.StandardVariableSpecification;
 
 // End of StandardVariableSpecification class
 
@@ -14236,8 +14407,8 @@ exports.StandardVariableSpecification = dis7.StandardVariableSpecification;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14246,7 +14417,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StartResumePdu = function()
+dis.StartResumePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -14273,27 +14444,21 @@ dis7.StartResumePdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** This field shall specify the real-world time (UTC) at which the entity is to start/resume in the exercise. This information shall be used by the participating simulation applications to start/resume an exercise synchronously. This field shall be represented by a Clock Time record (see 6.2.16). */
-   this.realWorldTime = new dis7.ClockTime(); 
+   this.realWorldTime = new dis.ClockTime(); 
 
    /** The reference time within a simulation exercise. This time is established ahead of time by simulation management and is common to all participants in a particular exercise. Simulation time may be either Absolute Time or Relative Time. This field shall be represented by a Clock Time record (see 6.2.16) */
-   this.simulationTime = new dis7.ClockTime(); 
+   this.simulationTime = new dis.ClockTime(); 
 
    /** Identifier for the specific and unique start/resume request */
    this.requestID = 0;
 
-  dis7.StartResumePdu.prototype.initFromBinary = function(inputStream)
+  dis.StartResumePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -14305,14 +14470,12 @@ dis7.StartResumePdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.realWorldTime.initFromBinary(inputStream);
        this.simulationTime.initFromBinary(inputStream);
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.StartResumePdu.prototype.encodeToBinary = function(outputStream)
+  dis.StartResumePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -14324,8 +14487,6 @@ dis7.StartResumePdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        this.realWorldTime.encodeToBinary(outputStream);
        this.simulationTime.encodeToBinary(outputStream);
        outputStream.writeUInt(this.requestID);
@@ -14333,7 +14494,7 @@ dis7.StartResumePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StartResumePdu = dis7.StartResumePdu;
+exports.StartResumePdu = dis.StartResumePdu;
 
 // End of StartResumePdu class
 
@@ -14346,8 +14507,8 @@ exports.StartResumePdu = dis7.StartResumePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14356,7 +14517,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StartResumeReliablePdu = function()
+dis.StartResumeReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -14383,16 +14544,16 @@ dis7.StartResumeReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** time in real world for this operation to happen */
-   this.realWorldTime = new dis7.ClockTime(); 
+   this.realWorldTime = new dis.ClockTime(); 
 
    /** time in simulation for the simulation to resume */
-   this.simulationTime = new dis7.ClockTime(); 
+   this.simulationTime = new dis.ClockTime(); 
 
    /** level of reliability service used for this transaction */
    this.requiredReliabilityService = 0;
@@ -14406,7 +14567,7 @@ dis7.StartResumeReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  dis7.StartResumeReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.StartResumeReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -14426,7 +14587,7 @@ dis7.StartResumeReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.StartResumeReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.StartResumeReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -14448,7 +14609,7 @@ dis7.StartResumeReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StartResumeReliablePdu = dis7.StartResumeReliablePdu;
+exports.StartResumeReliablePdu = dis.StartResumeReliablePdu;
 
 // End of StartResumeReliablePdu class
 
@@ -14461,8 +14622,8 @@ exports.StartResumeReliablePdu = dis7.StartResumeReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14471,7 +14632,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StopFreezePdu = function()
+dis.StopFreezePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -14498,19 +14659,13 @@ dis7.StopFreezePdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** real-world(UTC) time at which the entity shall stop or freeze in the exercise */
-   this.realWorldTime = new dis7.ClockTime(); 
+   this.realWorldTime = new dis.ClockTime(); 
 
    /** Reason the simulation was stopped or frozen (see section 7 of SISO-REF-010) represented by an 8-bit enumeration */
    this.reason = 0;
@@ -14524,7 +14679,7 @@ dis7.StopFreezePdu = function()
    /** Request ID that is unique */
    this.requestID = 0;
 
-  dis7.StopFreezePdu.prototype.initFromBinary = function(inputStream)
+  dis.StopFreezePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -14536,8 +14691,6 @@ dis7.StopFreezePdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.realWorldTime.initFromBinary(inputStream);
        this.reason = inputStream.readUByte();
        this.frozenBehavior = inputStream.readUByte();
@@ -14545,7 +14698,7 @@ dis7.StopFreezePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.StopFreezePdu.prototype.encodeToBinary = function(outputStream)
+  dis.StopFreezePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -14557,8 +14710,6 @@ dis7.StopFreezePdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        this.realWorldTime.encodeToBinary(outputStream);
        outputStream.writeUByte(this.reason);
        outputStream.writeUByte(this.frozenBehavior);
@@ -14568,7 +14719,7 @@ dis7.StopFreezePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StopFreezePdu = dis7.StopFreezePdu;
+exports.StopFreezePdu = dis.StopFreezePdu;
 
 // End of StopFreezePdu class
 
@@ -14581,8 +14732,8 @@ exports.StopFreezePdu = dis7.StopFreezePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14591,7 +14742,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StopFreezeReliablePdu = function()
+dis.StopFreezeReliablePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -14618,13 +14769,13 @@ dis7.StopFreezeReliablePdu = function()
    this.padding = 0;
 
    /** Object originatig the request */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.receivingEntityID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** time in real world for this operation to happen */
-   this.realWorldTime = new dis7.ClockTime(); 
+   this.realWorldTime = new dis.ClockTime(); 
 
    /** Reason for stopping/freezing simulation */
    this.reason = 0;
@@ -14641,7 +14792,7 @@ dis7.StopFreezeReliablePdu = function()
    /** Request ID */
    this.requestID = 0;
 
-  dis7.StopFreezeReliablePdu.prototype.initFromBinary = function(inputStream)
+  dis.StopFreezeReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -14661,7 +14812,7 @@ dis7.StopFreezeReliablePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.StopFreezeReliablePdu.prototype.encodeToBinary = function(outputStream)
+  dis.StopFreezeReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -14683,7 +14834,7 @@ dis7.StopFreezeReliablePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StopFreezeReliablePdu = dis7.StopFreezeReliablePdu;
+exports.StopFreezeReliablePdu = dis.StopFreezeReliablePdu;
 
 // End of StopFreezeReliablePdu class
 
@@ -14696,8 +14847,8 @@ exports.StopFreezeReliablePdu = dis7.StopFreezeReliablePdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14706,7 +14857,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StorageFuel = function()
+dis.StorageFuel = function()
 {
    /** Fuel quantity, units specified by next field */
    this.fuelQuantity = 0;
@@ -14723,7 +14874,7 @@ dis7.StorageFuel = function()
    /** padding */
    this.padding = 0;
 
-  dis7.StorageFuel.prototype.initFromBinary = function(inputStream)
+  dis.StorageFuel.prototype.initFromBinary = function(inputStream)
   {
        this.fuelQuantity = inputStream.readUInt();
        this.fuelMeasurementUnits = inputStream.readUByte();
@@ -14732,7 +14883,7 @@ dis7.StorageFuel = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.StorageFuel.prototype.encodeToBinary = function(outputStream)
+  dis.StorageFuel.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.fuelQuantity);
        outputStream.writeUByte(this.fuelMeasurementUnits);
@@ -14743,7 +14894,7 @@ dis7.StorageFuel = function()
 }; // end of class
 
  // node.js module support
-exports.StorageFuel = dis7.StorageFuel;
+exports.StorageFuel = dis.StorageFuel;
 
 // End of StorageFuel class
 
@@ -14756,8 +14907,8 @@ exports.StorageFuel = dis7.StorageFuel;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14766,7 +14917,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StorageFuelReload = function()
+dis.StorageFuelReload = function()
 {
    /**  the standard quantity of this fuel type normally loaded at this station/launcher if a station/launcher is specified. If the Station/Launcher field is set to zero, then this is the total quantity of this fuel type that would be present in a standard reload of all appli- cable stations/launchers associated with this entity. */
    this.standardQuantity = 0;
@@ -14792,7 +14943,7 @@ dis7.StorageFuelReload = function()
    /** padding */
    this.padding = 0;
 
-  dis7.StorageFuelReload.prototype.initFromBinary = function(inputStream)
+  dis.StorageFuelReload.prototype.initFromBinary = function(inputStream)
   {
        this.standardQuantity = inputStream.readUInt();
        this.maximumQuantity = inputStream.readUInt();
@@ -14804,7 +14955,7 @@ dis7.StorageFuelReload = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.StorageFuelReload.prototype.encodeToBinary = function(outputStream)
+  dis.StorageFuelReload.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.standardQuantity);
        outputStream.writeUInt(this.maximumQuantity);
@@ -14818,7 +14969,7 @@ dis7.StorageFuelReload = function()
 }; // end of class
 
  // node.js module support
-exports.StorageFuelReload = dis7.StorageFuelReload;
+exports.StorageFuelReload = dis.StorageFuelReload;
 
 // End of StorageFuelReload class
 
@@ -14831,8 +14982,8 @@ exports.StorageFuelReload = dis7.StorageFuelReload;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14841,21 +14992,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SupplyQuantity = function()
+dis.SupplyQuantity = function()
 {
    /** Type of supply */
-   this.supplyType = new dis7.EntityType(); 
+   this.supplyType = new dis.EntityType(); 
 
    /** the number of units of a supply type.  */
    this.quantity = 0;
 
-  dis7.SupplyQuantity.prototype.initFromBinary = function(inputStream)
+  dis.SupplyQuantity.prototype.initFromBinary = function(inputStream)
   {
        this.supplyType.initFromBinary(inputStream);
        this.quantity = inputStream.readFloat32();
   };
 
-  dis7.SupplyQuantity.prototype.encodeToBinary = function(outputStream)
+  dis.SupplyQuantity.prototype.encodeToBinary = function(outputStream)
   {
        this.supplyType.encodeToBinary(outputStream);
        outputStream.writeFloat32(this.quantity);
@@ -14863,7 +15014,7 @@ dis7.SupplyQuantity = function()
 }; // end of class
 
  // node.js module support
-exports.SupplyQuantity = dis7.SupplyQuantity;
+exports.SupplyQuantity = dis.SupplyQuantity;
 
 // End of SupplyQuantity class
 
@@ -14876,8 +15027,8 @@ exports.SupplyQuantity = dis7.SupplyQuantity;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14886,7 +15037,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SyntheticEnvironmentFamilyPdu = function()
+dis.SyntheticEnvironmentFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -14912,7 +15063,7 @@ dis7.SyntheticEnvironmentFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.SyntheticEnvironmentFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.SyntheticEnvironmentFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -14924,7 +15075,7 @@ dis7.SyntheticEnvironmentFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.SyntheticEnvironmentFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.SyntheticEnvironmentFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -14938,7 +15089,7 @@ dis7.SyntheticEnvironmentFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SyntheticEnvironmentFamilyPdu = dis7.SyntheticEnvironmentFamilyPdu;
+exports.SyntheticEnvironmentFamilyPdu = dis.SyntheticEnvironmentFamilyPdu;
 
 // End of SyntheticEnvironmentFamilyPdu class
 
@@ -14951,8 +15102,8 @@ exports.SyntheticEnvironmentFamilyPdu = dis7.SyntheticEnvironmentFamilyPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -14961,7 +15112,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SystemIdentifier = function()
+dis.SystemIdentifier = function()
 {
    /** general type of emitting system, an enumeration */
    this.systemType = 0;
@@ -14973,9 +15124,9 @@ dis7.SystemIdentifier = function()
    this.systemMode = 0;
 
    /** status of this PDU, see section 6.2.15 */
-   this.changeOptions = new dis7.ChangeOptions(); 
+   this.changeOptions = new dis.ChangeOptions(); 
 
-  dis7.SystemIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.SystemIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.systemType = inputStream.readUShort();
        this.systemName = inputStream.readUShort();
@@ -14983,7 +15134,7 @@ dis7.SystemIdentifier = function()
        this.changeOptions.initFromBinary(inputStream);
   };
 
-  dis7.SystemIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.SystemIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.systemType);
        outputStream.writeUShort(this.systemName);
@@ -14993,7 +15144,7 @@ dis7.SystemIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.SystemIdentifier = dis7.SystemIdentifier;
+exports.SystemIdentifier = dis.SystemIdentifier;
 
 // End of SystemIdentifier class
 
@@ -15006,8 +15157,8 @@ exports.SystemIdentifier = dis7.SystemIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15016,23 +15167,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Timestamp = function()
+dis.Timestamp = function()
 {
    /** timestamp */
    this.timestamp = 0;
 
-  dis7.Timestamp.prototype.initFromBinary = function(inputStream)
+  dis.Timestamp.prototype.initFromBinary = function(inputStream)
   {
        this.timestamp = inputStream.readUInt();
   };
 
-  dis7.Timestamp.prototype.encodeToBinary = function(outputStream)
+  dis.Timestamp.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.timestamp);
   };
 
 /** 0 relative timestamp, 1 host synchronized timestamp */
-dis7.Timestamp.prototype.getTimestamp_timestampType = function()
+dis.Timestamp.prototype.getTimestamp_timestampType = function()
 {
    var val = this.timestamp & 0x1;
    return val >> 0;
@@ -15040,7 +15191,7 @@ dis7.Timestamp.prototype.getTimestamp_timestampType = function()
 
 
 /** 0 relative timestamp, 1 host synchronized timestamp */
-dis7.Timestamp.prototype.setTimestamp_timestampType= function(val)
+dis.Timestamp.prototype.setTimestamp_timestampType= function(val)
 {
   this.timestamp &= ~0x1; // Zero existing bits
   val = val << 0;
@@ -15049,7 +15200,7 @@ dis7.Timestamp.prototype.setTimestamp_timestampType= function(val)
 
 
 /** 2^31-1 per hour time units */
-dis7.Timestamp.prototype.getTimestamp_timestampValue = function()
+dis.Timestamp.prototype.getTimestamp_timestampValue = function()
 {
    var val = this.timestamp & 0xFE;
    return val >> 1;
@@ -15057,7 +15208,7 @@ dis7.Timestamp.prototype.getTimestamp_timestampValue = function()
 
 
 /** 2^31-1 per hour time units */
-dis7.Timestamp.prototype.setTimestamp_timestampValue= function(val)
+dis.Timestamp.prototype.setTimestamp_timestampValue= function(val)
 {
   this.timestamp &= ~0xFE; // Zero existing bits
   val = val << 1;
@@ -15067,7 +15218,7 @@ dis7.Timestamp.prototype.setTimestamp_timestampValue= function(val)
 }; // end of class
 
  // node.js module support
-exports.Timestamp = dis7.Timestamp;
+exports.Timestamp = dis.Timestamp;
 
 // End of Timestamp class
 
@@ -15080,8 +15231,8 @@ exports.Timestamp = dis7.Timestamp;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15090,7 +15241,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.TotalRecordSets = function()
+dis.TotalRecordSets = function()
 {
    /** Total number of record sets */
    this.totalRecordSets = 0;
@@ -15098,13 +15249,13 @@ dis7.TotalRecordSets = function()
    /** padding */
    this.padding = 0;
 
-  dis7.TotalRecordSets.prototype.initFromBinary = function(inputStream)
+  dis.TotalRecordSets.prototype.initFromBinary = function(inputStream)
   {
        this.totalRecordSets = inputStream.readUShort();
        this.padding = inputStream.readUShort();
   };
 
-  dis7.TotalRecordSets.prototype.encodeToBinary = function(outputStream)
+  dis.TotalRecordSets.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.totalRecordSets);
        outputStream.writeUShort(this.padding);
@@ -15112,7 +15263,7 @@ dis7.TotalRecordSets = function()
 }; // end of class
 
  // node.js module support
-exports.TotalRecordSets = dis7.TotalRecordSets;
+exports.TotalRecordSets = dis.TotalRecordSets;
 
 // End of TotalRecordSets class
 
@@ -15125,8 +15276,8 @@ exports.TotalRecordSets = dis7.TotalRecordSets;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15135,10 +15286,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.TrackJamData = function()
+dis.TrackJamData = function()
 {
    /** the entity tracked or illumated, or an emitter beam targeted with jamming */
-   this.entityID = new dis7.EntityID(); 
+   this.entityID = new dis.EntityID(); 
 
    /** Emitter system associated with the entity */
    this.emitterNumber = 0;
@@ -15146,14 +15297,14 @@ dis7.TrackJamData = function()
    /** Beam associated with the entity */
    this.beamNumber = 0;
 
-  dis7.TrackJamData.prototype.initFromBinary = function(inputStream)
+  dis.TrackJamData.prototype.initFromBinary = function(inputStream)
   {
        this.entityID.initFromBinary(inputStream);
        this.emitterNumber = inputStream.readUByte();
        this.beamNumber = inputStream.readUByte();
   };
 
-  dis7.TrackJamData.prototype.encodeToBinary = function(outputStream)
+  dis.TrackJamData.prototype.encodeToBinary = function(outputStream)
   {
        this.entityID.encodeToBinary(outputStream);
        outputStream.writeUByte(this.emitterNumber);
@@ -15162,7 +15313,7 @@ dis7.TrackJamData = function()
 }; // end of class
 
  // node.js module support
-exports.TrackJamData = dis7.TrackJamData;
+exports.TrackJamData = dis.TrackJamData;
 
 // End of TrackJamData class
 
@@ -15175,8 +15326,8 @@ exports.TrackJamData = dis7.TrackJamData;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15185,7 +15336,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.TransmitterPdu = function()
+dis.TransmitterPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -15212,13 +15363,13 @@ dis7.TransmitterPdu = function()
    this.padding = 0;
 
    /** ID of the entitythat is the source of the communication */
-   this.radioReferenceID = new dis7.EntityID(); 
+   this.radioReferenceID = new dis.EntityID(); 
 
    /** particular radio within an entity */
    this.radioNumber = 0;
 
    /** Type of radio */
-   this.radioEntityType = new dis7.EntityType(); 
+   this.radioEntityType = new dis.EntityType(); 
 
    /** transmit state */
    this.transmitState = 0;
@@ -15230,10 +15381,10 @@ dis7.TransmitterPdu = function()
    this.variableTransmitterParameterCount = 0;
 
    /** Location of antenna */
-   this.antennaLocation = new dis7.Vector3Double(); 
+   this.antennaLocation = new dis.Vector3Double(); 
 
    /** relative location of antenna */
-   this.relativeAntennaLocation = new dis7.Vector3Float(); 
+   this.relativeAntennaLocation = new dis.Vector3Float(); 
 
    /** antenna pattern type */
    this.antennaPatternType = 0;
@@ -15251,7 +15402,7 @@ dis7.TransmitterPdu = function()
    this.power = 0;
 
    /** modulation */
-   this.modulationType = new dis7.ModulationType(); 
+   this.modulationType = new dis.ModulationType(); 
 
    /** crypto system enumeration */
    this.cryptoSystem = 0;
@@ -15274,7 +15425,7 @@ dis7.TransmitterPdu = function()
    /** variable length list of antenna pattern records */
     this.antennaPatternList = new Array();
  
-  dis7.TransmitterPdu.prototype.initFromBinary = function(inputStream)
+  dis.TransmitterPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -15305,21 +15456,21 @@ dis7.TransmitterPdu = function()
        this.padding3 = inputStream.readUByte();
        for(var idx = 0; idx < this.modulationParameterCount; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.modulationParametersList.push(anX);
        }
 
        for(var idx = 0; idx < this.antennaPatternCount; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.antennaPatternList.push(anX);
        }
 
   };
 
-  dis7.TransmitterPdu.prototype.encodeToBinary = function(outputStream)
+  dis.TransmitterPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -15362,7 +15513,7 @@ dis7.TransmitterPdu = function()
 }; // end of class
 
  // node.js module support
-exports.TransmitterPdu = dis7.TransmitterPdu;
+exports.TransmitterPdu = dis.TransmitterPdu;
 
 // End of TransmitterPdu class
 
@@ -15375,8 +15526,8 @@ exports.TransmitterPdu = dis7.TransmitterPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15385,12 +15536,12 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.TwoByteChunk = function()
+dis.TwoByteChunk = function()
 {
    /** two bytes of arbitrary data */
    this.otherParameters = new Array(0, 0);
 
-  dis7.TwoByteChunk.prototype.initFromBinary = function(inputStream)
+  dis.TwoByteChunk.prototype.initFromBinary = function(inputStream)
   {
        for(var idx = 0; idx < 2; idx++)
        {
@@ -15398,7 +15549,7 @@ dis7.TwoByteChunk = function()
        }
   };
 
-  dis7.TwoByteChunk.prototype.encodeToBinary = function(outputStream)
+  dis.TwoByteChunk.prototype.encodeToBinary = function(outputStream)
   {
        for(var idx = 0; idx < 2; idx++)
        {
@@ -15408,7 +15559,7 @@ dis7.TwoByteChunk = function()
 }; // end of class
 
  // node.js module support
-exports.TwoByteChunk = dis7.TwoByteChunk;
+exports.TwoByteChunk = dis.TwoByteChunk;
 
 // End of TwoByteChunk class
 
@@ -15421,8 +15572,8 @@ exports.TwoByteChunk = dis7.TwoByteChunk;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15431,7 +15582,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.UAFundamentalParameter = function()
+dis.UAFundamentalParameter = function()
 {
    /** Which database record shall be used. An enumeration from EBV document */
    this.activeEmissionParameterIndex = 0;
@@ -15451,7 +15602,7 @@ dis7.UAFundamentalParameter = function()
    /** vertical beamwidth of the main beam. Meastured at the 3dB down point of peak radiated power. In radians. */
    this.beamwidthDownElevation = 0;
 
-  dis7.UAFundamentalParameter.prototype.initFromBinary = function(inputStream)
+  dis.UAFundamentalParameter.prototype.initFromBinary = function(inputStream)
   {
        this.activeEmissionParameterIndex = inputStream.readUShort();
        this.scanPattern = inputStream.readUShort();
@@ -15461,7 +15612,7 @@ dis7.UAFundamentalParameter = function()
        this.beamwidthDownElevation = inputStream.readFloat32();
   };
 
-  dis7.UAFundamentalParameter.prototype.encodeToBinary = function(outputStream)
+  dis.UAFundamentalParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.activeEmissionParameterIndex);
        outputStream.writeUShort(this.scanPattern);
@@ -15473,7 +15624,7 @@ dis7.UAFundamentalParameter = function()
 }; // end of class
 
  // node.js module support
-exports.UAFundamentalParameter = dis7.UAFundamentalParameter;
+exports.UAFundamentalParameter = dis.UAFundamentalParameter;
 
 // End of UAFundamentalParameter class
 
@@ -15486,8 +15637,8 @@ exports.UAFundamentalParameter = dis7.UAFundamentalParameter;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15496,7 +15647,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.UaPdu = function()
+dis.UaPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -15523,10 +15674,10 @@ dis7.UaPdu = function()
    this.padding = 0;
 
    /** ID of the entity that is the source of the emission */
-   this.emittingEntityID = new dis7.EntityID(); 
+   this.emittingEntityID = new dis.EntityID(); 
 
    /** ID of event */
-   this.eventID = new dis7.EventIdentifier(); 
+   this.eventID = new dis.EventIdentifier(); 
 
    /** This field shall be used to indicate whether the data in the UA PDU represent a state update or data that have changed since issuance of the last UA PDU */
    this.stateChangeIndicator = 0;
@@ -15558,7 +15709,7 @@ dis7.UaPdu = function()
    /** THIS IS WRONG. It has the wrong class in the list. */
     this.emitterSystems = new Array();
  
-  dis7.UaPdu.prototype.initFromBinary = function(inputStream)
+  dis.UaPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -15579,28 +15730,28 @@ dis7.UaPdu = function()
        this.numberOfUAEmitterSystems = inputStream.readUByte();
        for(var idx = 0; idx < this.numberOfShafts; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.shaftRPMs.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfAPAs; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.apaData.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfUAEmitterSystems; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.emitterSystems.push(anX);
        }
 
   };
 
-  dis7.UaPdu.prototype.encodeToBinary = function(outputStream)
+  dis.UaPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -15638,7 +15789,7 @@ dis7.UaPdu = function()
 }; // end of class
 
  // node.js module support
-exports.UaPdu = dis7.UaPdu;
+exports.UaPdu = dis.UaPdu;
 
 // End of UaPdu class
 
@@ -15651,8 +15802,8 @@ exports.UaPdu = dis7.UaPdu;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15661,21 +15812,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.UnattachedIdentifier = function()
+dis.UnattachedIdentifier = function()
 {
    /** See 6.2.79 */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /** Reference number */
    this.referenceNumber = 0;
 
-  dis7.UnattachedIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.UnattachedIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.referenceNumber = inputStream.readUShort();
   };
 
-  dis7.UnattachedIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.UnattachedIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.referenceNumber);
@@ -15683,7 +15834,7 @@ dis7.UnattachedIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.UnattachedIdentifier = dis7.UnattachedIdentifier;
+exports.UnattachedIdentifier = dis.UnattachedIdentifier;
 
 // End of UnattachedIdentifier class
 
@@ -15696,8 +15847,8 @@ exports.UnattachedIdentifier = dis7.UnattachedIdentifier;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15706,24 +15857,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.UnsignedDISInteger = function()
+dis.UnsignedDISInteger = function()
 {
    /** unsigned integer */
    this.val = 0;
 
-  dis7.UnsignedDISInteger.prototype.initFromBinary = function(inputStream)
+  dis.UnsignedDISInteger.prototype.initFromBinary = function(inputStream)
   {
        this.val = inputStream.readUInt();
   };
 
-  dis7.UnsignedDISInteger.prototype.encodeToBinary = function(outputStream)
+  dis.UnsignedDISInteger.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.val);
   };
 }; // end of class
 
  // node.js module support
-exports.UnsignedDISInteger = dis7.UnsignedDISInteger;
+exports.UnsignedDISInteger = dis.UnsignedDISInteger;
 
 // End of UnsignedDISInteger class
 
@@ -15736,8 +15887,8 @@ exports.UnsignedDISInteger = dis7.UnsignedDISInteger;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15746,7 +15897,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.VariableDatum = function()
+dis.VariableDatum = function()
 {
    /** ID of variable datum to be transmitted. 32 bit enumeration defined in EBV */
    this.variableDatumID = 0;
@@ -15757,20 +15908,20 @@ dis7.VariableDatum = function()
    /** Variable length data class */
     this.variableDatumData = new Array();
  
-  dis7.VariableDatum.prototype.initFromBinary = function(inputStream)
+  dis.VariableDatum.prototype.initFromBinary = function(inputStream)
   {
        this.variableDatumID = inputStream.readUInt();
        this.variableDatumLength = inputStream.readUInt();
        for(var idx = 0; idx < this.variableDatumLength; idx++)
        {
-           var anX = new dis7.OneByteChunk();
+           var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.variableDatumData.push(anX);
        }
 
   };
 
-  dis7.VariableDatum.prototype.encodeToBinary = function(outputStream)
+  dis.VariableDatum.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.variableDatumID);
        outputStream.writeUInt(this.variableDatumLength);
@@ -15783,7 +15934,7 @@ dis7.VariableDatum = function()
 }; // end of class
 
  // node.js module support
-exports.VariableDatum = dis7.VariableDatum;
+exports.VariableDatum = dis.VariableDatum;
 
 // End of VariableDatum class
 
@@ -15796,8 +15947,8 @@ exports.VariableDatum = dis7.VariableDatum;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15806,7 +15957,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.VariableParameter = function()
+dis.VariableParameter = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 0;
@@ -15823,7 +15974,7 @@ dis7.VariableParameter = function()
    /** Variable parameter data fields.  */
    this.variableParameterFields4 = 0;
 
-  dis7.VariableParameter.prototype.initFromBinary = function(inputStream)
+  dis.VariableParameter.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.variableParameterFields1 = inputStream.readFloat64();
@@ -15832,7 +15983,7 @@ dis7.VariableParameter = function()
        this.variableParameterFields4 = inputStream.readUByte();
   };
 
-  dis7.VariableParameter.prototype.encodeToBinary = function(outputStream)
+  dis.VariableParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeFloat64(this.variableParameterFields1);
@@ -15843,7 +15994,7 @@ dis7.VariableParameter = function()
 }; // end of class
 
  // node.js module support
-exports.VariableParameter = dis7.VariableParameter;
+exports.VariableParameter = dis.VariableParameter;
 
 // End of VariableParameter class
 
@@ -15856,8 +16007,8 @@ exports.VariableParameter = dis7.VariableParameter;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15866,7 +16017,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.VariableTransmitterParameters = function()
+dis.VariableTransmitterParameters = function()
 {
    /** Type of VTP. Enumeration from EBV */
    this.recordType = 0;
@@ -15874,13 +16025,13 @@ dis7.VariableTransmitterParameters = function()
    /** Length, in bytes */
    this.recordLength = 4;
 
-  dis7.VariableTransmitterParameters.prototype.initFromBinary = function(inputStream)
+  dis.VariableTransmitterParameters.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUInt();
   };
 
-  dis7.VariableTransmitterParameters.prototype.encodeToBinary = function(outputStream)
+  dis.VariableTransmitterParameters.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUInt(this.recordLength);
@@ -15888,7 +16039,7 @@ dis7.VariableTransmitterParameters = function()
 }; // end of class
 
  // node.js module support
-exports.VariableTransmitterParameters = dis7.VariableTransmitterParameters;
+exports.VariableTransmitterParameters = dis.VariableTransmitterParameters;
 
 // End of VariableTransmitterParameters class
 
@@ -15901,8 +16052,8 @@ exports.VariableTransmitterParameters = dis7.VariableTransmitterParameters;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15911,7 +16062,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Vector2Float = function()
+dis.Vector2Float = function()
 {
    /** X value */
    this.x = 0;
@@ -15919,13 +16070,13 @@ dis7.Vector2Float = function()
    /** y Value */
    this.y = 0;
 
-  dis7.Vector2Float.prototype.initFromBinary = function(inputStream)
+  dis.Vector2Float.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat32();
        this.y = inputStream.readFloat32();
   };
 
-  dis7.Vector2Float.prototype.encodeToBinary = function(outputStream)
+  dis.Vector2Float.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.x);
        outputStream.writeFloat32(this.y);
@@ -15933,7 +16084,7 @@ dis7.Vector2Float = function()
 }; // end of class
 
  // node.js module support
-exports.Vector2Float = dis7.Vector2Float;
+exports.Vector2Float = dis.Vector2Float;
 
 // End of Vector2Float class
 
@@ -15946,8 +16097,8 @@ exports.Vector2Float = dis7.Vector2Float;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -15956,7 +16107,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Vector3Double = function()
+dis.Vector3Double = function()
 {
    /** X value */
    this.x = 0;
@@ -15967,14 +16118,14 @@ dis7.Vector3Double = function()
    /** Z value */
    this.z = 0;
 
-  dis7.Vector3Double.prototype.initFromBinary = function(inputStream)
+  dis.Vector3Double.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat64();
        this.y = inputStream.readFloat64();
        this.z = inputStream.readFloat64();
   };
 
-  dis7.Vector3Double.prototype.encodeToBinary = function(outputStream)
+  dis.Vector3Double.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat64(this.x);
        outputStream.writeFloat64(this.y);
@@ -15983,7 +16134,7 @@ dis7.Vector3Double = function()
 }; // end of class
 
  // node.js module support
-exports.Vector3Double = dis7.Vector3Double;
+exports.Vector3Double = dis.Vector3Double;
 
 // End of Vector3Double class
 
@@ -15996,8 +16147,8 @@ exports.Vector3Double = dis7.Vector3Double;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -16006,7 +16157,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Vector3Float = function()
+dis.Vector3Float = function()
 {
    /** X value */
    this.x = 0;
@@ -16017,14 +16168,14 @@ dis7.Vector3Float = function()
    /** Z value */
    this.z = 0;
 
-  dis7.Vector3Float.prototype.initFromBinary = function(inputStream)
+  dis.Vector3Float.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat32();
        this.y = inputStream.readFloat32();
        this.z = inputStream.readFloat32();
   };
 
-  dis7.Vector3Float.prototype.encodeToBinary = function(outputStream)
+  dis.Vector3Float.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.x);
        outputStream.writeFloat32(this.y);
@@ -16033,7 +16184,7 @@ dis7.Vector3Float = function()
 }; // end of class
 
  // node.js module support
-exports.Vector3Float = dis7.Vector3Float;
+exports.Vector3Float = dis.Vector3Float;
 
 // End of Vector3Float class
 
@@ -16046,8 +16197,8 @@ exports.Vector3Float = dis7.Vector3Float;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -16056,7 +16207,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.VectoringNozzleSystem = function()
+dis.VectoringNozzleSystem = function()
 {
    /** In degrees */
    this.horizontalDeflectionAngle = 0;
@@ -16064,13 +16215,13 @@ dis7.VectoringNozzleSystem = function()
    /** In degrees */
    this.verticalDeflectionAngle = 0;
 
-  dis7.VectoringNozzleSystem.prototype.initFromBinary = function(inputStream)
+  dis.VectoringNozzleSystem.prototype.initFromBinary = function(inputStream)
   {
        this.horizontalDeflectionAngle = inputStream.readFloat32();
        this.verticalDeflectionAngle = inputStream.readFloat32();
   };
 
-  dis7.VectoringNozzleSystem.prototype.encodeToBinary = function(outputStream)
+  dis.VectoringNozzleSystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.horizontalDeflectionAngle);
        outputStream.writeFloat32(this.verticalDeflectionAngle);
@@ -16078,7 +16229,7 @@ dis7.VectoringNozzleSystem = function()
 }; // end of class
 
  // node.js module support
-exports.VectoringNozzleSystem = dis7.VectoringNozzleSystem;
+exports.VectoringNozzleSystem = dis.VectoringNozzleSystem;
 
 // End of VectoringNozzleSystem class
 
@@ -16091,8 +16242,8 @@ exports.VectoringNozzleSystem = dis7.VectoringNozzleSystem;
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -16101,7 +16252,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.WarfareFamilyPdu = function()
+dis.WarfareFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -16128,12 +16279,12 @@ dis7.WarfareFamilyPdu = function()
    this.padding = 0;
 
    /** ID of the entity that shot */
-   this.firingEntityID = new dis7.EntityID(); 
+   this.firingEntityID = new dis.EntityID(); 
 
    /** ID of the entity that is being shot at */
-   this.targetEntityID = new dis7.EntityID(); 
+   this.targetEntityID = new dis.EntityID(); 
 
-  dis7.WarfareFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.WarfareFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -16147,7 +16298,7 @@ dis7.WarfareFamilyPdu = function()
        this.targetEntityID.initFromBinary(inputStream);
   };
 
-  dis7.WarfareFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.WarfareFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -16163,7 +16314,7 @@ dis7.WarfareFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.WarfareFamilyPdu = dis7.WarfareFamilyPdu;
+exports.WarfareFamilyPdu = dis.WarfareFamilyPdu;
 
 // End of WarfareFamilyPdu class
 

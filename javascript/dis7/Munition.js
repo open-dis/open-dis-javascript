@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,10 +17,10 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Munition = function()
+dis.Munition = function()
 {
    /**  This field shall identify the entity type of the munition. See section 6.2.30. */
-   this.munitionType = new dis7.EntityType(); 
+   this.munitionType = new dis.EntityType(); 
 
    /** the station or launcher to which the munition is assigned. See Annex I */
    this.station = 0;
@@ -34,7 +34,7 @@ dis7.Munition = function()
    /** padding  */
    this.padding = 0;
 
-  dis7.Munition.prototype.initFromBinary = function(inputStream)
+  dis.Munition.prototype.initFromBinary = function(inputStream)
   {
        this.munitionType.initFromBinary(inputStream);
        this.station = inputStream.readUInt();
@@ -43,7 +43,7 @@ dis7.Munition = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.Munition.prototype.encodeToBinary = function(outputStream)
+  dis.Munition.prototype.encodeToBinary = function(outputStream)
   {
        this.munitionType.encodeToBinary(outputStream);
        outputStream.writeUInt(this.station);
@@ -54,7 +54,7 @@ dis7.Munition = function()
 }; // end of class
 
  // node.js module support
-exports.Munition = dis7.Munition;
+exports.Munition = dis.Munition;
 
 // End of Munition class
 

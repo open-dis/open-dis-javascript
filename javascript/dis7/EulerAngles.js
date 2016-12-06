@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EulerAngles = function()
+dis.EulerAngles = function()
 {
    this.psi = 0;
 
@@ -25,14 +25,14 @@ dis7.EulerAngles = function()
 
    this.phi = 0;
 
-  dis7.EulerAngles.prototype.initFromBinary = function(inputStream)
+  dis.EulerAngles.prototype.initFromBinary = function(inputStream)
   {
        this.psi = inputStream.readFloat32();
        this.theta = inputStream.readFloat32();
        this.phi = inputStream.readFloat32();
   };
 
-  dis7.EulerAngles.prototype.encodeToBinary = function(outputStream)
+  dis.EulerAngles.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.psi);
        outputStream.writeFloat32(this.theta);
@@ -41,7 +41,7 @@ dis7.EulerAngles = function()
 }; // end of class
 
  // node.js module support
-exports.EulerAngles = dis7.EulerAngles;
+exports.EulerAngles = dis.EulerAngles;
 
 // End of EulerAngles class
 

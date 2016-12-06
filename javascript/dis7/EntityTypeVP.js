@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityTypeVP = function()
+dis.EntityTypeVP = function()
 {
    /** the identification of the Variable Parameter record. Enumeration from EBV */
    this.recordType = 3;
@@ -26,7 +26,7 @@ dis7.EntityTypeVP = function()
    this.changeIndicator = 0;
 
    /**  */
-   this.entityType = new dis7.EntityType(); 
+   this.entityType = new dis.EntityType(); 
 
    /** padding */
    this.padding = 0;
@@ -34,7 +34,7 @@ dis7.EntityTypeVP = function()
    /** padding */
    this.padding1 = 0;
 
-  dis7.EntityTypeVP.prototype.initFromBinary = function(inputStream)
+  dis.EntityTypeVP.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUByte();
        this.changeIndicator = inputStream.readUByte();
@@ -43,7 +43,7 @@ dis7.EntityTypeVP = function()
        this.padding1 = inputStream.readUInt();
   };
 
-  dis7.EntityTypeVP.prototype.encodeToBinary = function(outputStream)
+  dis.EntityTypeVP.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.recordType);
        outputStream.writeUByte(this.changeIndicator);
@@ -54,7 +54,7 @@ dis7.EntityTypeVP = function()
 }; // end of class
 
  // node.js module support
-exports.EntityTypeVP = dis7.EntityTypeVP;
+exports.EntityTypeVP = dis.EntityTypeVP;
 
 // End of EntityTypeVP class
 

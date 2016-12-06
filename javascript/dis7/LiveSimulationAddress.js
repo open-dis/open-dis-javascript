@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LiveSimulationAddress = function()
+dis.LiveSimulationAddress = function()
 {
    /** facility, installation, organizational unit or geographic location may have multiple sites associated with it. The Site Number is the first component of the Live Simulation Address, which defines a live simulation. */
    this.liveSiteNumber = 0;
@@ -25,13 +25,13 @@ dis7.LiveSimulationAddress = function()
    /** An application associated with a live site is termed a live application. Each live application participating in an event  */
    this.liveApplicationNumber = 0;
 
-  dis7.LiveSimulationAddress.prototype.initFromBinary = function(inputStream)
+  dis.LiveSimulationAddress.prototype.initFromBinary = function(inputStream)
   {
        this.liveSiteNumber = inputStream.readUByte();
        this.liveApplicationNumber = inputStream.readUByte();
   };
 
-  dis7.LiveSimulationAddress.prototype.encodeToBinary = function(outputStream)
+  dis.LiveSimulationAddress.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.liveSiteNumber);
        outputStream.writeUByte(this.liveApplicationNumber);
@@ -39,7 +39,7 @@ dis7.LiveSimulationAddress = function()
 }; // end of class
 
  // node.js module support
-exports.LiveSimulationAddress = dis7.LiveSimulationAddress;
+exports.LiveSimulationAddress = dis.LiveSimulationAddress;
 
 // End of LiveSimulationAddress class
 

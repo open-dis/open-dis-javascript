@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LogisticsFamilyPdu = function()
+dis.LogisticsFamilyPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -43,7 +43,7 @@ dis7.LogisticsFamilyPdu = function()
    /** zero-filled array of padding */
    this.padding = 0;
 
-  dis7.LogisticsFamilyPdu.prototype.initFromBinary = function(inputStream)
+  dis.LogisticsFamilyPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -55,7 +55,7 @@ dis7.LogisticsFamilyPdu = function()
        this.padding = inputStream.readUByte();
   };
 
-  dis7.LogisticsFamilyPdu.prototype.encodeToBinary = function(outputStream)
+  dis.LogisticsFamilyPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -69,7 +69,7 @@ dis7.LogisticsFamilyPdu = function()
 }; // end of class
 
  // node.js module support
-exports.LogisticsFamilyPdu = dis7.LogisticsFamilyPdu;
+exports.LogisticsFamilyPdu = dis.LogisticsFamilyPdu;
 
 // End of LogisticsFamilyPdu class
 

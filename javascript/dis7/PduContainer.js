@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PduContainer = function()
+dis.PduContainer = function()
 {
    /** Number of PDUs in the container list */
    this.numberOfPdus = 0;
@@ -25,19 +25,19 @@ dis7.PduContainer = function()
    /** List of PDUs */
     this.pdus = new Array();
  
-  dis7.PduContainer.prototype.initFromBinary = function(inputStream)
+  dis.PduContainer.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfPdus = inputStream.readInt();
        for(var idx = 0; idx < this.numberOfPdus; idx++)
        {
-           var anX = new dis7.Pdu();
+           var anX = new dis.Pdu();
            anX.initFromBinary(inputStream);
            this.pdus.push(anX);
        }
 
   };
 
-  dis7.PduContainer.prototype.encodeToBinary = function(outputStream)
+  dis.PduContainer.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeInt(this.numberOfPdus);
        for(var idx = 0; idx < this.pdus.length; idx++)
@@ -49,7 +49,7 @@ dis7.PduContainer = function()
 }; // end of class
 
  // node.js module support
-exports.PduContainer = dis7.PduContainer;
+exports.PduContainer = dis.PduContainer;
 
 // End of PduContainer class
 

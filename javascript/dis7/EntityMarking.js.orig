@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EntityMarking = function()
+dis.EntityMarking = function()
 {
    /** The character set */
    this.characterSet = 0;
@@ -25,13 +25,13 @@ dis7.EntityMarking = function()
    /** The characters */
    this.characters = 0;
 
-  dis7.EntityMarking.prototype.initFromBinary = function(inputStream)
+  dis.EntityMarking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
        this.characters = inputStream.readByte();
   };
 
-  dis7.EntityMarking.prototype.encodeToBinary = function(outputStream)
+  dis.EntityMarking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);
        outputStream.writeByte(this.characters);
@@ -39,7 +39,7 @@ dis7.EntityMarking = function()
 }; // end of class
 
  // node.js module support
-exports.EntityMarking = dis7.EntityMarking;
+exports.EntityMarking = dis.EntityMarking;
 
 // End of EntityMarking class
 

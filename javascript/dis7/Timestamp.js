@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,23 +17,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Timestamp = function()
+dis.Timestamp = function()
 {
    /** timestamp */
    this.timestamp = 0;
 
-  dis7.Timestamp.prototype.initFromBinary = function(inputStream)
+  dis.Timestamp.prototype.initFromBinary = function(inputStream)
   {
        this.timestamp = inputStream.readUInt();
   };
 
-  dis7.Timestamp.prototype.encodeToBinary = function(outputStream)
+  dis.Timestamp.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.timestamp);
   };
 
 /** 0 relative timestamp, 1 host synchronized timestamp */
-dis7.Timestamp.prototype.getTimestamp_timestampType = function()
+dis.Timestamp.prototype.getTimestamp_timestampType = function()
 {
    var val = this.timestamp & 0x1;
    return val >> 0;
@@ -41,7 +41,7 @@ dis7.Timestamp.prototype.getTimestamp_timestampType = function()
 
 
 /** 0 relative timestamp, 1 host synchronized timestamp */
-dis7.Timestamp.prototype.setTimestamp_timestampType= function(val)
+dis.Timestamp.prototype.setTimestamp_timestampType= function(val)
 {
   this.timestamp &= ~0x1; // Zero existing bits
   val = val << 0;
@@ -50,7 +50,7 @@ dis7.Timestamp.prototype.setTimestamp_timestampType= function(val)
 
 
 /** 2^31-1 per hour time units */
-dis7.Timestamp.prototype.getTimestamp_timestampValue = function()
+dis.Timestamp.prototype.getTimestamp_timestampValue = function()
 {
    var val = this.timestamp & 0xFE;
    return val >> 1;
@@ -58,7 +58,7 @@ dis7.Timestamp.prototype.getTimestamp_timestampValue = function()
 
 
 /** 2^31-1 per hour time units */
-dis7.Timestamp.prototype.setTimestamp_timestampValue= function(val)
+dis.Timestamp.prototype.setTimestamp_timestampValue= function(val)
 {
   this.timestamp &= ~0xFE; // Zero existing bits
   val = val << 1;
@@ -68,7 +68,7 @@ dis7.Timestamp.prototype.setTimestamp_timestampValue= function(val)
 }; // end of class
 
  // node.js module support
-exports.Timestamp = dis7.Timestamp;
+exports.Timestamp = dis.Timestamp;
 
 // End of Timestamp class
 

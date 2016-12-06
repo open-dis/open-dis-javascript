@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.Relationship = function()
+dis.Relationship = function()
 {
    /** the nature or purpose for joining of the part entity to the host entity and shall be represented by a 16-bit enumeration */
    this.nature = 0;
@@ -25,13 +25,13 @@ dis7.Relationship = function()
    /** the position of the part entity with respect to the host entity and shall be represented by a 16-bit enumeration */
    this.position = 0;
 
-  dis7.Relationship.prototype.initFromBinary = function(inputStream)
+  dis.Relationship.prototype.initFromBinary = function(inputStream)
   {
        this.nature = inputStream.readUShort();
        this.position = inputStream.readUShort();
   };
 
-  dis7.Relationship.prototype.encodeToBinary = function(outputStream)
+  dis.Relationship.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.nature);
        outputStream.writeUShort(this.position);
@@ -39,7 +39,7 @@ dis7.Relationship = function()
 }; // end of class
 
  // node.js module support
-exports.Relationship = dis7.Relationship;
+exports.Relationship = dis.Relationship;
 
 // End of Relationship class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.StopFreezePdu = function()
+dis.StopFreezePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,19 +44,13 @@ dis7.StopFreezePdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** real-world(UTC) time at which the entity shall stop or freeze in the exercise */
-   this.realWorldTime = new dis7.ClockTime(); 
+   this.realWorldTime = new dis.ClockTime(); 
 
    /** Reason the simulation was stopped or frozen (see section 7 of SISO-REF-010) represented by an 8-bit enumeration */
    this.reason = 0;
@@ -70,7 +64,7 @@ dis7.StopFreezePdu = function()
    /** Request ID that is unique */
    this.requestID = 0;
 
-  dis7.StopFreezePdu.prototype.initFromBinary = function(inputStream)
+  dis.StopFreezePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -82,8 +76,6 @@ dis7.StopFreezePdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.realWorldTime.initFromBinary(inputStream);
        this.reason = inputStream.readUByte();
        this.frozenBehavior = inputStream.readUByte();
@@ -91,7 +83,7 @@ dis7.StopFreezePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.StopFreezePdu.prototype.encodeToBinary = function(outputStream)
+  dis.StopFreezePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -103,8 +95,6 @@ dis7.StopFreezePdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        this.realWorldTime.encodeToBinary(outputStream);
        outputStream.writeUByte(this.reason);
        outputStream.writeUByte(this.frozenBehavior);
@@ -114,7 +104,7 @@ dis7.StopFreezePdu = function()
 }; // end of class
 
  // node.js module support
-exports.StopFreezePdu = dis7.StopFreezePdu;
+exports.StopFreezePdu = dis.StopFreezePdu;
 
 // End of StopFreezePdu class
 

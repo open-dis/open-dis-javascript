@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IFFData = function()
+dis.IFFData = function()
 {
    /** enumeration for type of record */
    this.recordType = 0;
@@ -28,20 +28,20 @@ dis7.IFFData = function()
    /** IFF data. */
     this.iffData = new Array();
  
-  dis7.IFFData.prototype.initFromBinary = function(inputStream)
+  dis.IFFData.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUInt();
        this.recordLength = inputStream.readUShort();
        for(var idx = 0; idx < this.recordLength; idx++)
        {
-           var anX = new dis7.OneByteChunk();
+           var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.iffData.push(anX);
        }
 
   };
 
-  dis7.IFFData.prototype.encodeToBinary = function(outputStream)
+  dis.IFFData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordType);
        outputStream.writeUShort(this.recordLength);
@@ -54,7 +54,7 @@ dis7.IFFData = function()
 }; // end of class
 
  // node.js module support
-exports.IFFData = dis7.IFFData;
+exports.IFFData = dis.IFFData;
 
 // End of IFFData class
 

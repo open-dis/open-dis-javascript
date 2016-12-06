@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.FixedDatum = function()
+dis.FixedDatum = function()
 {
    /** ID of the fixed datum, an enumeration */
    this.fixedDatumID = 0;
@@ -25,13 +25,13 @@ dis7.FixedDatum = function()
    /** Value for the fixed datum */
    this.fixedDatumValue = 0;
 
-  dis7.FixedDatum.prototype.initFromBinary = function(inputStream)
+  dis.FixedDatum.prototype.initFromBinary = function(inputStream)
   {
        this.fixedDatumID = inputStream.readUInt();
        this.fixedDatumValue = inputStream.readUInt();
   };
 
-  dis7.FixedDatum.prototype.encodeToBinary = function(outputStream)
+  dis.FixedDatum.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.fixedDatumID);
        outputStream.writeUInt(this.fixedDatumValue);
@@ -39,7 +39,7 @@ dis7.FixedDatum = function()
 }; // end of class
 
  // node.js module support
-exports.FixedDatum = dis7.FixedDatum;
+exports.FixedDatum = dis.FixedDatum;
 
 // End of FixedDatum class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ActionRequestPdu = function()
+dis.ActionRequestPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,16 +44,10 @@ dis7.ActionRequestPdu = function()
    this.padding = 0;
 
    /** Entity that is sending message */
-   this.originatingEntityID = new dis7.EntityID(); 
+   this.originatingEntityID = new dis.EntityID(); 
 
    /** Entity that is intended to receive message */
-   this.receivingEntityID = new dis7.EntityID(); 
-
-   /** Identifier for originating entity(or simulation) */
-   this.originatingID = new dis7.EntityID(); 
-
-   /** Identifier for the receiving entity(or simulation) */
-   this.receivingID = new dis7.EntityID(); 
+   this.receivingEntityID = new dis.EntityID(); 
 
    /** identifies the request being made by the simulaton manager */
    this.requestID = 0;
@@ -73,7 +67,7 @@ dis7.ActionRequestPdu = function()
    /** variable length list of variable length datums */
     this.variableDatums = new Array();
  
-  dis7.ActionRequestPdu.prototype.initFromBinary = function(inputStream)
+  dis.ActionRequestPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -85,29 +79,27 @@ dis7.ActionRequestPdu = function()
        this.padding = inputStream.readUByte();
        this.originatingEntityID.initFromBinary(inputStream);
        this.receivingEntityID.initFromBinary(inputStream);
-       this.originatingID.initFromBinary(inputStream);
-       this.receivingID.initFromBinary(inputStream);
        this.requestID = inputStream.readUInt();
        this.actionID = inputStream.readUInt();
        this.numberOfFixedDatumRecords = inputStream.readUInt();
        this.numberOfVariableDatumRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfFixedDatumRecords; idx++)
        {
-           var anX = new dis7.FixedDatum();
+           var anX = new dis.FixedDatum();
            anX.initFromBinary(inputStream);
            this.fixedDatums.push(anX);
        }
 
        for(var idx = 0; idx < this.numberOfVariableDatumRecords; idx++)
        {
-           var anX = new dis7.VariableDatum();
+           var anX = new dis.VariableDatum();
            anX.initFromBinary(inputStream);
            this.variableDatums.push(anX);
        }
 
   };
 
-  dis7.ActionRequestPdu.prototype.encodeToBinary = function(outputStream)
+  dis.ActionRequestPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -119,8 +111,6 @@ dis7.ActionRequestPdu = function()
        outputStream.writeUByte(this.padding);
        this.originatingEntityID.encodeToBinary(outputStream);
        this.receivingEntityID.encodeToBinary(outputStream);
-       this.originatingID.encodeToBinary(outputStream);
-       this.receivingID.encodeToBinary(outputStream);
        outputStream.writeUInt(this.requestID);
        outputStream.writeUInt(this.actionID);
        outputStream.writeUInt(this.numberOfFixedDatumRecords);
@@ -139,7 +129,7 @@ dis7.ActionRequestPdu = function()
 }; // end of class
 
  // node.js module support
-exports.ActionRequestPdu = dis7.ActionRequestPdu;
+exports.ActionRequestPdu = dis.ActionRequestPdu;
 
 // End of ActionRequestPdu class
 

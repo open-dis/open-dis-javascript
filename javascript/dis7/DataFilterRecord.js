@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,23 +17,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.DataFilterRecord = function()
+dis.DataFilterRecord = function()
 {
    /** Bitflags field */
    this.bitFlags = 0;
 
-  dis7.DataFilterRecord.prototype.initFromBinary = function(inputStream)
+  dis.DataFilterRecord.prototype.initFromBinary = function(inputStream)
   {
        this.bitFlags = inputStream.readUInt();
   };
 
-  dis7.DataFilterRecord.prototype.encodeToBinary = function(outputStream)
+  dis.DataFilterRecord.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.bitFlags);
   };
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_groundBurialDepthOffset = function()
+dis.DataFilterRecord.prototype.getBitFlags_groundBurialDepthOffset = function()
 {
    var val = this.bitFlags & 0x1;
    return val >> 0;
@@ -41,7 +41,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_groundBurialDepthOffset = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_groundBurialDepthOffset= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_groundBurialDepthOffset= function(val)
 {
   this.bitFlags &= ~0x1; // Zero existing bits
   val = val << 0;
@@ -50,7 +50,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_groundBurialDepthOffset= function(va
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_waterBurialDepthOffset = function()
+dis.DataFilterRecord.prototype.getBitFlags_waterBurialDepthOffset = function()
 {
    var val = this.bitFlags & 0x2;
    return val >> 1;
@@ -58,7 +58,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_waterBurialDepthOffset = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_waterBurialDepthOffset= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_waterBurialDepthOffset= function(val)
 {
   this.bitFlags &= ~0x2; // Zero existing bits
   val = val << 1;
@@ -67,7 +67,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_waterBurialDepthOffset= function(val
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_snowBurialDepthOffset = function()
+dis.DataFilterRecord.prototype.getBitFlags_snowBurialDepthOffset = function()
 {
    var val = this.bitFlags & 0x4;
    return val >> 2;
@@ -75,7 +75,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_snowBurialDepthOffset = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_snowBurialDepthOffset= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_snowBurialDepthOffset= function(val)
 {
   this.bitFlags &= ~0x4; // Zero existing bits
   val = val << 2;
@@ -84,7 +84,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_snowBurialDepthOffset= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_mineOrientation = function()
+dis.DataFilterRecord.prototype.getBitFlags_mineOrientation = function()
 {
    var val = this.bitFlags & 0x8;
    return val >> 3;
@@ -92,7 +92,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_mineOrientation = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_mineOrientation= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_mineOrientation= function(val)
 {
   this.bitFlags &= ~0x8; // Zero existing bits
   val = val << 3;
@@ -101,7 +101,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_mineOrientation= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_thermalContrast = function()
+dis.DataFilterRecord.prototype.getBitFlags_thermalContrast = function()
 {
    var val = this.bitFlags & 0x10;
    return val >> 4;
@@ -109,7 +109,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_thermalContrast = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_thermalContrast= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_thermalContrast= function(val)
 {
   this.bitFlags &= ~0x10; // Zero existing bits
   val = val << 4;
@@ -118,7 +118,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_thermalContrast= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_reflectance = function()
+dis.DataFilterRecord.prototype.getBitFlags_reflectance = function()
 {
    var val = this.bitFlags & 0x20;
    return val >> 5;
@@ -126,7 +126,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_reflectance = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_reflectance= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_reflectance= function(val)
 {
   this.bitFlags &= ~0x20; // Zero existing bits
   val = val << 5;
@@ -135,7 +135,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_reflectance= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_mineEmplacementTime = function()
+dis.DataFilterRecord.prototype.getBitFlags_mineEmplacementTime = function()
 {
    var val = this.bitFlags & 0x40;
    return val >> 6;
@@ -143,7 +143,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_mineEmplacementTime = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_mineEmplacementTime= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_mineEmplacementTime= function(val)
 {
   this.bitFlags &= ~0x40; // Zero existing bits
   val = val << 6;
@@ -152,7 +152,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_mineEmplacementTime= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_tripDetonationWire = function()
+dis.DataFilterRecord.prototype.getBitFlags_tripDetonationWire = function()
 {
    var val = this.bitFlags & 0x80;
    return val >> 7;
@@ -160,7 +160,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_tripDetonationWire = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_tripDetonationWire= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_tripDetonationWire= function(val)
 {
   this.bitFlags &= ~0x80; // Zero existing bits
   val = val << 7;
@@ -169,7 +169,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_tripDetonationWire= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_fusing = function()
+dis.DataFilterRecord.prototype.getBitFlags_fusing = function()
 {
    var val = this.bitFlags & 0x100;
    return val >> 8;
@@ -177,7 +177,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_fusing = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_fusing= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_fusing= function(val)
 {
   this.bitFlags &= ~0x100; // Zero existing bits
   val = val << 8;
@@ -186,7 +186,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_fusing= function(val)
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_scalarDetectionCoefficient = function()
+dis.DataFilterRecord.prototype.getBitFlags_scalarDetectionCoefficient = function()
 {
    var val = this.bitFlags & 0x200;
    return val >> 9;
@@ -194,7 +194,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_scalarDetectionCoefficient = functio
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_scalarDetectionCoefficient= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_scalarDetectionCoefficient= function(val)
 {
   this.bitFlags &= ~0x200; // Zero existing bits
   val = val << 9;
@@ -203,7 +203,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_scalarDetectionCoefficient= function
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.getBitFlags_paintScheme = function()
+dis.DataFilterRecord.prototype.getBitFlags_paintScheme = function()
 {
    var val = this.bitFlags & 0x400;
    return val >> 10;
@@ -211,7 +211,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_paintScheme = function()
 
 
 /** boolean */
-dis7.DataFilterRecord.prototype.setBitFlags_paintScheme= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_paintScheme= function(val)
 {
   this.bitFlags &= ~0x400; // Zero existing bits
   val = val << 10;
@@ -220,7 +220,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_paintScheme= function(val)
 
 
 /** padding */
-dis7.DataFilterRecord.prototype.getBitFlags_padding = function()
+dis.DataFilterRecord.prototype.getBitFlags_padding = function()
 {
    var val = this.bitFlags & 0xff800;
    return val >> 11;
@@ -228,7 +228,7 @@ dis7.DataFilterRecord.prototype.getBitFlags_padding = function()
 
 
 /** padding */
-dis7.DataFilterRecord.prototype.setBitFlags_padding= function(val)
+dis.DataFilterRecord.prototype.setBitFlags_padding= function(val)
 {
   this.bitFlags &= ~0xff800; // Zero existing bits
   val = val << 11;
@@ -238,7 +238,7 @@ dis7.DataFilterRecord.prototype.setBitFlags_padding= function(val)
 }; // end of class
 
  // node.js module support
-exports.DataFilterRecord = dis7.DataFilterRecord;
+exports.DataFilterRecord = dis.DataFilterRecord;
 
 // End of DataFilterRecord class
 

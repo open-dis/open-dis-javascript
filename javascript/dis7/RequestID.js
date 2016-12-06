@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,24 +17,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RequestID = function()
+dis.RequestID = function()
 {
    /** monotonically increasing number */
    this.requestID = 0;
 
-  dis7.RequestID.prototype.initFromBinary = function(inputStream)
+  dis.RequestID.prototype.initFromBinary = function(inputStream)
   {
        this.requestID = inputStream.readUInt();
   };
 
-  dis7.RequestID.prototype.encodeToBinary = function(outputStream)
+  dis.RequestID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.requestID);
   };
 }; // end of class
 
  // node.js module support
-exports.RequestID = dis7.RequestID;
+exports.RequestID = dis.RequestID;
 
 // End of RequestID class
 

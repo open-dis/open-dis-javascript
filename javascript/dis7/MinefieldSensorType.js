@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,24 +17,24 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MinefieldSensorType = function()
+dis.MinefieldSensorType = function()
 {
    /** sensor type. bit fields 0-3 are the type category, 4-15 are teh subcategory */
    this.sensorType = 0;
 
-  dis7.MinefieldSensorType.prototype.initFromBinary = function(inputStream)
+  dis.MinefieldSensorType.prototype.initFromBinary = function(inputStream)
   {
        this.sensorType = inputStream.readUShort();
   };
 
-  dis7.MinefieldSensorType.prototype.encodeToBinary = function(outputStream)
+  dis.MinefieldSensorType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.sensorType);
   };
 }; // end of class
 
  // node.js module support
-exports.MinefieldSensorType = dis7.MinefieldSensorType;
+exports.MinefieldSensorType = dis.MinefieldSensorType;
 
 // End of MinefieldSensorType class
 

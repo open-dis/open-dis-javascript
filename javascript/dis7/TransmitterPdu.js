@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.TransmitterPdu = function()
+dis.TransmitterPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,13 +44,13 @@ dis7.TransmitterPdu = function()
    this.padding = 0;
 
    /** ID of the entitythat is the source of the communication */
-   this.radioReferenceID = new dis7.EntityID(); 
+   this.radioReferenceID = new dis.EntityID(); 
 
    /** particular radio within an entity */
    this.radioNumber = 0;
 
    /** Type of radio */
-   this.radioEntityType = new dis7.EntityType(); 
+   this.radioEntityType = new dis.EntityType(); 
 
    /** transmit state */
    this.transmitState = 0;
@@ -62,10 +62,10 @@ dis7.TransmitterPdu = function()
    this.variableTransmitterParameterCount = 0;
 
    /** Location of antenna */
-   this.antennaLocation = new dis7.Vector3Double(); 
+   this.antennaLocation = new dis.Vector3Double(); 
 
    /** relative location of antenna */
-   this.relativeAntennaLocation = new dis7.Vector3Float(); 
+   this.relativeAntennaLocation = new dis.Vector3Float(); 
 
    /** antenna pattern type */
    this.antennaPatternType = 0;
@@ -83,7 +83,7 @@ dis7.TransmitterPdu = function()
    this.power = 0;
 
    /** modulation */
-   this.modulationType = new dis7.ModulationType(); 
+   this.modulationType = new dis.ModulationType(); 
 
    /** crypto system enumeration */
    this.cryptoSystem = 0;
@@ -106,7 +106,7 @@ dis7.TransmitterPdu = function()
    /** variable length list of antenna pattern records */
     this.antennaPatternList = new Array();
  
-  dis7.TransmitterPdu.prototype.initFromBinary = function(inputStream)
+  dis.TransmitterPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -137,21 +137,21 @@ dis7.TransmitterPdu = function()
        this.padding3 = inputStream.readUByte();
        for(var idx = 0; idx < this.modulationParameterCount; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.modulationParametersList.push(anX);
        }
 
        for(var idx = 0; idx < this.antennaPatternCount; idx++)
        {
-           var anX = new dis7.Vector3Float();
+           var anX = new dis.Vector3Float();
            anX.initFromBinary(inputStream);
            this.antennaPatternList.push(anX);
        }
 
   };
 
-  dis7.TransmitterPdu.prototype.encodeToBinary = function(outputStream)
+  dis.TransmitterPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -194,7 +194,7 @@ dis7.TransmitterPdu = function()
 }; // end of class
 
  // node.js module support
-exports.TransmitterPdu = dis7.TransmitterPdu;
+exports.TransmitterPdu = dis.TransmitterPdu;
 
 // End of TransmitterPdu class
 

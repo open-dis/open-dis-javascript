@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.EventIdentifierLiveEntity = function()
+dis.EventIdentifierLiveEntity = function()
 {
    this.siteNumber = 0;
 
@@ -25,14 +25,14 @@ dis7.EventIdentifierLiveEntity = function()
 
    this.eventNumber = 0;
 
-  dis7.EventIdentifierLiveEntity.prototype.initFromBinary = function(inputStream)
+  dis.EventIdentifierLiveEntity.prototype.initFromBinary = function(inputStream)
   {
        this.siteNumber = inputStream.readUByte();
        this.applicationNumber = inputStream.readUByte();
        this.eventNumber = inputStream.readUShort();
   };
 
-  dis7.EventIdentifierLiveEntity.prototype.encodeToBinary = function(outputStream)
+  dis.EventIdentifierLiveEntity.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.siteNumber);
        outputStream.writeUByte(this.applicationNumber);
@@ -41,7 +41,7 @@ dis7.EventIdentifierLiveEntity = function()
 }; // end of class
 
  // node.js module support
-exports.EventIdentifierLiveEntity = dis7.EventIdentifierLiveEntity;
+exports.EventIdentifierLiveEntity = dis.EventIdentifierLiveEntity;
 
 // End of EventIdentifierLiveEntity class
 

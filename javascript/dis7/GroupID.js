@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.GroupID = function()
+dis.GroupID = function()
 {
    /** Simulation address (site and application number) */
-   this.simulationAddress = new dis7.EntityType(); 
+   this.simulationAddress = new dis.EntityType(); 
 
    /** group number */
    this.groupNumber = 0;
 
-  dis7.GroupID.prototype.initFromBinary = function(inputStream)
+  dis.GroupID.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.groupNumber = inputStream.readUShort();
   };
 
-  dis7.GroupID.prototype.encodeToBinary = function(outputStream)
+  dis.GroupID.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.groupNumber);
@@ -39,7 +39,7 @@ dis7.GroupID = function()
 }; // end of class
 
  // node.js module support
-exports.GroupID = dis7.GroupID;
+exports.GroupID = dis.GroupID;
 
 // End of GroupID class
 

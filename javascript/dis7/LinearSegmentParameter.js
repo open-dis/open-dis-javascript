@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LinearSegmentParameter = function()
+dis.LinearSegmentParameter = function()
 {
    /** the individual segment of the linear segment  */
    this.segmentNumber = 0;
@@ -32,10 +32,10 @@ dis7.LinearSegmentParameter = function()
    this.specificSegmentAppearance = 0;
 
    /** This field shall specify the location of the linear segment in the simulated world and shall be represented by a World Coordinates record  */
-   this.segmentLocation = new dis7.Vector3Double(); 
+   this.segmentLocation = new dis.Vector3Double(); 
 
    /** orientation of the linear segment about the segment location and shall be represented by a Euler Angles record  */
-   this.segmentOrientation = new dis7.EulerAngles(); 
+   this.segmentOrientation = new dis.EulerAngles(); 
 
    /** length of the linear segment, in meters, extending in the positive X direction */
    this.segmentLength = 0;
@@ -52,7 +52,7 @@ dis7.LinearSegmentParameter = function()
    /** padding */
    this.padding = 0;
 
-  dis7.LinearSegmentParameter.prototype.initFromBinary = function(inputStream)
+  dis.LinearSegmentParameter.prototype.initFromBinary = function(inputStream)
   {
        this.segmentNumber = inputStream.readUByte();
        this.segmentModification = inputStream.readUByte();
@@ -67,7 +67,7 @@ dis7.LinearSegmentParameter = function()
        this.padding = inputStream.readUInt();
   };
 
-  dis7.LinearSegmentParameter.prototype.encodeToBinary = function(outputStream)
+  dis.LinearSegmentParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.segmentNumber);
        outputStream.writeUByte(this.segmentModification);
@@ -84,7 +84,7 @@ dis7.LinearSegmentParameter = function()
 }; // end of class
 
  // node.js module support
-exports.LinearSegmentParameter = dis7.LinearSegmentParameter;
+exports.LinearSegmentParameter = dis.LinearSegmentParameter;
 
 // End of LinearSegmentParameter class
 

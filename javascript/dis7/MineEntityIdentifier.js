@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,21 +17,21 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.MineEntityIdentifier = function()
+dis.MineEntityIdentifier = function()
 {
    /**  */
-   this.simulationAddress = new dis7.SimulationAddress(); 
+   this.simulationAddress = new dis.SimulationAddress(); 
 
    /**  */
    this.mineEntityNumber = 0;
 
-  dis7.MineEntityIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.MineEntityIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.simulationAddress.initFromBinary(inputStream);
        this.mineEntityNumber = inputStream.readUShort();
   };
 
-  dis7.MineEntityIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.MineEntityIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        this.simulationAddress.encodeToBinary(outputStream);
        outputStream.writeUShort(this.mineEntityNumber);
@@ -39,7 +39,7 @@ dis7.MineEntityIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.MineEntityIdentifier = dis7.MineEntityIdentifier;
+exports.MineEntityIdentifier = dis.MineEntityIdentifier;
 
 // End of MineEntityIdentifier class
 

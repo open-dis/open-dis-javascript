@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.PointObjectStatePdu = function()
+dis.PointObjectStatePdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -44,10 +44,10 @@ dis7.PointObjectStatePdu = function()
    this.padding = 0;
 
    /** Object in synthetic environment */
-   this.objectID = new dis7.EntityID(); 
+   this.objectID = new dis.EntityID(); 
 
    /** Object with which this point object is associated */
-   this.referencedObjectID = new dis7.EntityID(); 
+   this.referencedObjectID = new dis.EntityID(); 
 
    /** unique update number of each state transition of an object */
    this.updateNumber = 0;
@@ -59,27 +59,27 @@ dis7.PointObjectStatePdu = function()
    this.modifications = 0;
 
    /** Object type */
-   this.objectType = new dis7.ObjectType(); 
+   this.objectType = new dis.ObjectType(); 
 
    /** Object location */
-   this.objectLocation = new dis7.Vector3Double(); 
+   this.objectLocation = new dis.Vector3Double(); 
 
    /** Object orientation */
-   this.objectOrientation = new dis7.EulerAngles(); 
+   this.objectOrientation = new dis.EulerAngles(); 
 
    /** Object apperance */
    this.objectAppearance = 0;
 
    /** requesterID */
-   this.requesterID = new dis7.SimulationAddress(); 
+   this.requesterID = new dis.SimulationAddress(); 
 
    /** receiver ID */
-   this.receivingID = new dis7.SimulationAddress(); 
+   this.receivingID = new dis.SimulationAddress(); 
 
    /** padding */
    this.pad2 = 0;
 
-  dis7.PointObjectStatePdu.prototype.initFromBinary = function(inputStream)
+  dis.PointObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -103,7 +103,7 @@ dis7.PointObjectStatePdu = function()
        this.pad2 = inputStream.readUInt();
   };
 
-  dis7.PointObjectStatePdu.prototype.encodeToBinary = function(outputStream)
+  dis.PointObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -129,7 +129,7 @@ dis7.PointObjectStatePdu = function()
 }; // end of class
 
  // node.js module support
-exports.PointObjectStatePdu = dis7.PointObjectStatePdu;
+exports.PointObjectStatePdu = dis.PointObjectStatePdu;
 
 // End of PointObjectStatePdu class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,23 +17,23 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.LaunchedMunitionRecord = function()
+dis.LaunchedMunitionRecord = function()
 {
-   this.fireEventID = new dis7.EventIdentifier(); 
+   this.fireEventID = new dis.EventIdentifier(); 
 
    this.padding = 0;
 
-   this.firingEntityID = new dis7.EventIdentifier(); 
+   this.firingEntityID = new dis.EventIdentifier(); 
 
    this.padding2 = 0;
 
-   this.targetEntityID = new dis7.EventIdentifier(); 
+   this.targetEntityID = new dis.EventIdentifier(); 
 
    this.padding3 = 0;
 
-   this.targetLocation = new dis7.Vector3Double(); 
+   this.targetLocation = new dis.Vector3Double(); 
 
-  dis7.LaunchedMunitionRecord.prototype.initFromBinary = function(inputStream)
+  dis.LaunchedMunitionRecord.prototype.initFromBinary = function(inputStream)
   {
        this.fireEventID.initFromBinary(inputStream);
        this.padding = inputStream.readUShort();
@@ -44,7 +44,7 @@ dis7.LaunchedMunitionRecord = function()
        this.targetLocation.initFromBinary(inputStream);
   };
 
-  dis7.LaunchedMunitionRecord.prototype.encodeToBinary = function(outputStream)
+  dis.LaunchedMunitionRecord.prototype.encodeToBinary = function(outputStream)
   {
        this.fireEventID.encodeToBinary(outputStream);
        outputStream.writeUShort(this.padding);
@@ -57,7 +57,7 @@ dis7.LaunchedMunitionRecord = function()
 }; // end of class
 
  // node.js module support
-exports.LaunchedMunitionRecord = dis7.LaunchedMunitionRecord;
+exports.LaunchedMunitionRecord = dis.LaunchedMunitionRecord;
 
 // End of LaunchedMunitionRecord class
 

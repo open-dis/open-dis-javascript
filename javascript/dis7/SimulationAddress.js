@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SimulationAddress = function()
+dis.SimulationAddress = function()
 {
    /** A site is defined as a facility, installation, organizational unit or a geographic location that has one or more simulation applications capable of participating in a distributed event.  */
    this.site = 0;
@@ -25,13 +25,13 @@ dis7.SimulationAddress = function()
    /** An application is defined as a software program that is used to generate and process distributed simulation data including live, virtual and constructive data. */
    this.application = 0;
 
-  dis7.SimulationAddress.prototype.initFromBinary = function(inputStream)
+  dis.SimulationAddress.prototype.initFromBinary = function(inputStream)
   {
        this.site = inputStream.readUShort();
        this.application = inputStream.readUShort();
   };
 
-  dis7.SimulationAddress.prototype.encodeToBinary = function(outputStream)
+  dis.SimulationAddress.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.site);
        outputStream.writeUShort(this.application);
@@ -39,7 +39,7 @@ dis7.SimulationAddress = function()
 }; // end of class
 
  // node.js module support
-exports.SimulationAddress = dis7.SimulationAddress;
+exports.SimulationAddress = dis.SimulationAddress;
 
 // End of SimulationAddress class
 

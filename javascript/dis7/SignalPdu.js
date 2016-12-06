@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.SignalPdu = function()
+dis.SignalPdu = function()
 {
    /** The version of the protocol. 5=DIS-1995, 6=DIS-1998, 7=DIS-2009. */
    this.protocolVersion = 7;
@@ -61,7 +61,7 @@ dis7.SignalPdu = function()
    /** list of eight bit values */
     this.data = new Array();
  
-  dis7.SignalPdu.prototype.initFromBinary = function(inputStream)
+  dis.SignalPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
        this.exerciseID = inputStream.readUByte();
@@ -78,14 +78,14 @@ dis7.SignalPdu = function()
        this.samples = inputStream.readShort();
        for(var idx = 0; idx < this.dataLength; idx++)
        {
-           var anX = new dis7.OneByteChunk();
+           var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
            this.data.push(anX);
        }
 
   };
 
-  dis7.SignalPdu.prototype.encodeToBinary = function(outputStream)
+  dis.SignalPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
        outputStream.writeUByte(this.exerciseID);
@@ -109,7 +109,7 @@ dis7.SignalPdu = function()
 }; // end of class
 
  // node.js module support
-exports.SignalPdu = dis7.SignalPdu;
+exports.SignalPdu = dis.SignalPdu;
 
 // End of SignalPdu class
 

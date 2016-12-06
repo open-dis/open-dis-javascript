@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,19 +17,19 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.ChangeOptions = function()
+dis.ChangeOptions = function()
 {
-  dis7.ChangeOptions.prototype.initFromBinary = function(inputStream)
+  dis.ChangeOptions.prototype.initFromBinary = function(inputStream)
   {
   };
 
-  dis7.ChangeOptions.prototype.encodeToBinary = function(outputStream)
+  dis.ChangeOptions.prototype.encodeToBinary = function(outputStream)
   {
   };
 }; // end of class
 
  // node.js module support
-exports.ChangeOptions = dis7.ChangeOptions;
+exports.ChangeOptions = dis.ChangeOptions;
 
 // End of ChangeOptions class
 

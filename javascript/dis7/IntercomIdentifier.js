@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.IntercomIdentifier = function()
+dis.IntercomIdentifier = function()
 {
    this.siteNumber = 0;
 
@@ -27,7 +27,7 @@ dis7.IntercomIdentifier = function()
 
    this.intercomNumber = 0;
 
-  dis7.IntercomIdentifier.prototype.initFromBinary = function(inputStream)
+  dis.IntercomIdentifier.prototype.initFromBinary = function(inputStream)
   {
        this.siteNumber = inputStream.readUShort();
        this.applicationNumber = inputStream.readUShort();
@@ -35,7 +35,7 @@ dis7.IntercomIdentifier = function()
        this.intercomNumber = inputStream.readUShort();
   };
 
-  dis7.IntercomIdentifier.prototype.encodeToBinary = function(outputStream)
+  dis.IntercomIdentifier.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.siteNumber);
        outputStream.writeUShort(this.applicationNumber);
@@ -45,7 +45,7 @@ dis7.IntercomIdentifier = function()
 }; // end of class
 
  // node.js module support
-exports.IntercomIdentifier = dis7.IntercomIdentifier;
+exports.IntercomIdentifier = dis.IntercomIdentifier;
 
 // End of IntercomIdentifier class
 

@@ -7,8 +7,8 @@
  * @author DMcG
  */
 // On the client side, support for a  namespace.
-if (typeof dis7 === "undefined")
- dis7 = {};
+if (typeof dis === "undefined")
+ dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
@@ -17,7 +17,7 @@ if (typeof exports === "undefined")
  exports = {};
 
 
-dis7.RecordSpecification = function()
+dis.RecordSpecification = function()
 {
    /** The number of record sets */
    this.numberOfRecordSets = 0;
@@ -25,19 +25,19 @@ dis7.RecordSpecification = function()
    /** variable length list record specifications. */
     this.recordSets = new Array();
  
-  dis7.RecordSpecification.prototype.initFromBinary = function(inputStream)
+  dis.RecordSpecification.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfRecordSets = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfRecordSets; idx++)
        {
-           var anX = new dis7.RecordSpecificationElement();
+           var anX = new dis.RecordSpecificationElement();
            anX.initFromBinary(inputStream);
            this.recordSets.push(anX);
        }
 
   };
 
-  dis7.RecordSpecification.prototype.encodeToBinary = function(outputStream)
+  dis.RecordSpecification.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.numberOfRecordSets);
        for(var idx = 0; idx < this.recordSets.length; idx++)
@@ -49,7 +49,7 @@ dis7.RecordSpecification = function()
 }; // end of class
 
  // node.js module support
-exports.RecordSpecification = dis7.RecordSpecification;
+exports.RecordSpecification = dis.RecordSpecification;
 
 // End of RecordSpecification class
 
