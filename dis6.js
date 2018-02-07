@@ -926,6 +926,7 @@ dis.StringConversion.prototype.DisMarkingToString = function(disMarking)
 if (typeof exports === "undefined")
    exports = {};
 
+exports.StringConversion = dis.StringConversion;
 exports.RangeCoordinates = dis.RangeCoordinates;
 exports.InputStream = dis.InputStream;
 exports.OutputStream = dis.OutputStream;
