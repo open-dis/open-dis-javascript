@@ -96,7 +96,7 @@ dis.PduStream = function()
        outputStream.writeUInt(this.pduCount);
        for(var idx = 0; idx < this.pdusInStream.length; idx++)
        {
-           pdusInStream[idx].encodeToBinary(outputStream);
+         this.pdusInStream[idx].encodeToBinary(outputStream);
        }
 
   };

@@ -62,7 +62,7 @@ dis.AcousticEmitterSystemData = function()
        this.emitterLocation.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.beamRecords.length; idx++)
        {
-           beamRecords[idx].encodeToBinary(outputStream);
+           this.beamRecords[idx].encodeToBinary(outputStream);
        }
 
   };

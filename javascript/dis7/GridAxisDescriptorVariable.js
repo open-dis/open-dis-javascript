@@ -82,7 +82,7 @@ dis.GridAxisDescriptorVariable = function()
        outputStream.writeFloat64(this.coordinateOffsetXi);
        for(var idx = 0; idx < this.xiValues.length; idx++)
        {
-           xiValues[idx].encodeToBinary(outputStream);
+        this.xiValues[idx].encodeToBinary(outputStream);
        }
 
   };

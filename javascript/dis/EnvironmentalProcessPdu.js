@@ -102,7 +102,7 @@ dis.EnvironmentalProcessPdu = function()
        outputStream.writeUShort(this.sequenceNumber);
        for(var idx = 0; idx < this.environmentRecords.length; idx++)
        {
-           environmentRecords[idx].encodeToBinary(outputStream);
+        this.environmentRecords[idx].encodeToBinary(outputStream);
        }
 
   };

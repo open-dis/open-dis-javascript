@@ -112,12 +112,12 @@ dis.SeesPdu = function()
        outputStream.writeUShort(this.numberOfVectoringNozzleSystems);
        for(var idx = 0; idx < this.propulsionSystemData.length; idx++)
        {
-           propulsionSystemData[idx].encodeToBinary(outputStream);
+        this.propulsionSystemData[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.vectoringSystemData.length; idx++)
        {
-           vectoringSystemData[idx].encodeToBinary(outputStream);
+        this.vectoringSystemData[idx].encodeToBinary(outputStream);
        }
 
   };

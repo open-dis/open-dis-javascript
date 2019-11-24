@@ -122,12 +122,12 @@ dis.MinefieldQueryPdu = function()
        this.requestedMineType.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.requestedPerimeterPoints.length; idx++)
        {
-           requestedPerimeterPoints[idx].encodeToBinary(outputStream);
+        this.requestedPerimeterPoints[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.sensorTypes.length; idx++)
        {
-           sensorTypes[idx].encodeToBinary(outputStream);
+        this.sensorTypes[idx].encodeToBinary(outputStream);
        }
 
   };

@@ -117,12 +117,12 @@ dis.DataPdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatums.length; idx++)
        {
-           fixedDatums[idx].encodeToBinary(outputStream);
+        this.fixedDatums[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatums.length; idx++)
        {
-           variableDatums[idx].encodeToBinary(outputStream);
+        this.variableDatums[idx].encodeToBinary(outputStream);
        }
 
   };

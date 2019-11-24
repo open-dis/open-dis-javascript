@@ -106,7 +106,7 @@ dis.EntityStateUpdatePdu = function()
        outputStream.writeInt(this.entityAppearance);
        for(var idx = 0; idx < this.articulationParameters.length; idx++)
        {
-           articulationParameters[idx].encodeToBinary(outputStream);
+        this.articulationParameters[idx].encodeToBinary(outputStream);
        }
 
   };

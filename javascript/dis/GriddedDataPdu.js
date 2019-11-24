@@ -142,7 +142,7 @@ dis.GriddedDataPdu = function()
        outputStream.writeUByte(this.padding2);
        for(var idx = 0; idx < this.gridDataList.length; idx++)
        {
-           gridDataList[idx].encodeToBinary(outputStream);
+        this.gridDataList[idx].encodeToBinary(outputStream);
        }
 
   };

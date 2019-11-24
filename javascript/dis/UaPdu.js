@@ -136,17 +136,17 @@ dis.UaPdu = function()
        outputStream.writeUByte(this.numberOfUAEmitterSystems);
        for(var idx = 0; idx < this.shaftRPMs.length; idx++)
        {
-           shaftRPMs[idx].encodeToBinary(outputStream);
+        this.shaftRPMs[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.apaData.length; idx++)
        {
-           apaData[idx].encodeToBinary(outputStream);
+        this.apaData[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.emitterSystems.length; idx++)
        {
-           emitterSystems[idx].encodeToBinary(outputStream);
+        this.emitterSystems[idx].encodeToBinary(outputStream);
        }
 
   };

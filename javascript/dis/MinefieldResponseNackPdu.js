@@ -92,7 +92,7 @@ dis.MinefieldResponseNackPdu = function()
        outputStream.writeUByte(this.numberOfMissingPdus);
        for(var idx = 0; idx < this.missingPduSequenceNumbers.length; idx++)
        {
-           missingPduSequenceNumbers[idx].encodeToBinary(outputStream);
+        this.missingPduSequenceNumbers[idx].encodeToBinary(outputStream);
        }
 
   };

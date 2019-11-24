@@ -62,7 +62,7 @@ dis.ElectronicEmissionSystemData = function()
        this.location.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.beamDataRecords.length; idx++)
        {
-           beamDataRecords[idx].encodeToBinary(outputStream);
+        this.beamDataRecords[idx].encodeToBinary(outputStream);
        }
 
   };

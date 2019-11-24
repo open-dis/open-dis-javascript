@@ -102,7 +102,7 @@ dis.IsGroupOfPdu = function()
        outputStream.writeFloat64(this.longitude);
        for(var idx = 0; idx < this.groupedEntityDescriptions.length; idx++)
        {
-           groupedEntityDescriptions[idx].encodeToBinary(outputStream);
+        this.groupedEntityDescriptions[idx].encodeToBinary(outputStream);
        }
 
   };

@@ -3334,12 +3334,12 @@ dis.CommentPdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatums.length; idx++)
        {
-           fixedDatums[idx].encodeToBinary(outputStream);
+           this.fixedDatums[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatums.length; idx++)
        {
-           variableDatums[idx].encodeToBinary(outputStream);
+          this.variableDatums[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -3459,12 +3459,12 @@ dis.CommentReliablePdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatumRecords.length; idx++)
        {
-           fixedDatumRecords[idx].encodeToBinary(outputStream);
+          this.fixedDatumRecords[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatumRecords.length; idx++)
        {
-           variableDatumRecords[idx].encodeToBinary(outputStream);
+          this.variableDatumRecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -4076,12 +4076,12 @@ dis.DataPdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatums.length; idx++)
        {
-           fixedDatums[idx].encodeToBinary(outputStream);
+          this.fixedDatums[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatums.length; idx++)
        {
-           variableDatums[idx].encodeToBinary(outputStream);
+          this.variableDatums[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -4266,12 +4266,12 @@ dis.DataQueryPdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatums.length; idx++)
        {
-           fixedDatums[idx].encodeToBinary(outputStream);
+          this.fixedDatums[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatums.length; idx++)
        {
-           variableDatums[idx].encodeToBinary(outputStream);
+          this.variableDatums[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -4416,12 +4416,12 @@ dis.DataQueryReliablePdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatumRecords.length; idx++)
        {
-           fixedDatumRecords[idx].encodeToBinary(outputStream);
+          this.fixedDatumRecords[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatumRecords.length; idx++)
        {
-           variableDatumRecords[idx].encodeToBinary(outputStream);
+          this.variableDatumRecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -4561,12 +4561,12 @@ dis.DataReliablePdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatumRecords.length; idx++)
        {
-           fixedDatumRecords[idx].encodeToBinary(outputStream);
+          this.fixedDatumRecords[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatumRecords.length; idx++)
        {
-           variableDatumRecords[idx].encodeToBinary(outputStream);
+          this.variableDatumRecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -4962,7 +4962,7 @@ dis.DetonationPdu = function()
        outputStream.writeUShort(this.pad);
        for(var idx = 0; idx < this.variableParameters.length; idx++)
        {
-           variableParameters[idx].encodeToBinary(outputStream);
+          this.variableParameters[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -5302,7 +5302,7 @@ dis.DirectedEnergyFirePdu = function()
        outputStream.writeUShort(this.numberOfDERecords);
        for(var idx = 0; idx < this.dERecords.length; idx++)
        {
-           dERecords[idx].encodeToBinary(outputStream);
+          this.dERecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -5778,7 +5778,7 @@ dis.ElectronicEmissionsPdu = function()
        this.location.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.systems.length; idx++)
        {
-           systems[idx].encodeToBinary(outputStream);
+          this.systems[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -6158,7 +6158,7 @@ dis.EntityDamageStatusPdu = function()
        outputStream.writeUShort(this.numberOfDamageDescription);
        for(var idx = 0; idx < this.damageDescriptionRecords.length; idx++)
        {
-           damageDescriptionRecords[idx].encodeToBinary(outputStream);
+          this.damageDescriptionRecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -6644,7 +6644,7 @@ dis.EntityStatePdu = function()
        outputStream.writeUInt(this.capabilities);
        for(var idx = 0; idx < this.variableParameters.length; idx++)
        {
-           variableParameters[idx].encodeToBinary(outputStream);
+          this.variableParameters[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -6990,7 +6990,7 @@ dis.EntityStateUpdatePdu = function()
        outputStream.writeUInt(this.entityAppearance);
        for(var idx = 0; idx < this.variableParameters.length; idx++)
        {
-           variableParameters[idx].encodeToBinary(outputStream);
+          this.variableParameters[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -7576,12 +7576,12 @@ dis.EventReportPdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatums.length; idx++)
        {
-           fixedDatums[idx].encodeToBinary(outputStream);
+          this.fixedDatums[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatums.length; idx++)
        {
-           variableDatums[idx].encodeToBinary(outputStream);
+          this.variableDatums[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -7711,12 +7711,12 @@ dis.EventReportReliablePdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatumRecords.length; idx++)
        {
-           fixedDatumRecords[idx].encodeToBinary(outputStream);
+          this.fixedDatumRecords[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatumRecords.length; idx++)
        {
-           variableDatumRecords[idx].encodeToBinary(outputStream);
+          this.variableDatumRecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -8311,7 +8311,7 @@ dis.FastEntityStatePdu = function()
        outputStream.writeInt(this.capabilities);
        for(var idx = 0; idx < this.variableParameters.length; idx++)
        {
-           variableParameters[idx].encodeToBinary(outputStream);
+          this.variableParameters[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -8772,7 +8772,7 @@ dis.GridAxisDescriptorVariable = function()
        outputStream.writeFloat64(this.coordinateOffsetXi);
        for(var idx = 0; idx < this.xiValues.length; idx++)
        {
-           xiValues[idx].encodeToBinary(outputStream);
+          this.xiValues[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -8877,7 +8877,7 @@ dis.IFFData = function()
        outputStream.writeUShort(this.recordLength);
        for(var idx = 0; idx < this.iffData.length; idx++)
        {
-           iffData[idx].encodeToBinary(outputStream);
+          this.iffData[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -9134,7 +9134,7 @@ dis.IffDataSpecification = function()
        outputStream.writeUShort(this.numberOfIffDataRecords);
        for(var idx = 0; idx < this.iffDataRecords.length; idx++)
        {
-           iffDataRecords[idx].encodeToBinary(outputStream);
+          this.iffDataRecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -9329,7 +9329,7 @@ dis.IntercomControlPdu = function()
        outputStream.writeUInt(this.intercomParametersLength);
        for(var idx = 0; idx < this.intercomParameters.length; idx++)
        {
-           intercomParameters[idx].encodeToBinary(outputStream);
+          this.intercomParameters[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -9505,7 +9505,7 @@ dis.IntercomSignalPdu = function()
        outputStream.writeUShort(this.samples);
        for(var idx = 0; idx < this.data.length; idx++)
        {
-           data[idx].encodeToBinary(outputStream);
+          this.data[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -9903,7 +9903,7 @@ dis.LinearObjectStatePdu = function()
        this.objectType.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.linearSegmentParameters.length; idx++)
        {
-           linearSegmentParameters[idx].encodeToBinary(outputStream);
+          this.linearSegmentParameters[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -10508,7 +10508,7 @@ dis.MinefieldResponseNackPdu = function()
        outputStream.writeUByte(this.numberOfMissingPdus);
        for(var idx = 0; idx < this.missingPduSequenceNumbers.length; idx++)
        {
-           missingPduSequenceNumbers[idx].encodeToBinary(outputStream);
+          this.missingPduSequenceNumbers[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -10698,12 +10698,12 @@ dis.MinefieldStatePdu = function()
        outputStream.writeUShort(this.protocolMode);
        for(var idx = 0; idx < this.perimeterPoints.length; idx++)
        {
-           perimeterPoints[idx].encodeToBinary(outputStream);
+          this.perimeterPoints[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.mineType.length; idx++)
        {
-           mineType[idx].encodeToBinary(outputStream);
+          this.mineType[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -11170,7 +11170,7 @@ dis.OneByteChunk = function()
   {
        for(var idx = 0; idx < 1; idx++)
        {
-          outputStream.writeByte(this.otherParameters[ idx ] );
+          this.outputStream.writeByte(this.otherParameters[ idx ] );
        }
   };
 }; // end of class
@@ -11349,7 +11349,7 @@ dis.PduContainer = function()
        outputStream.writeInt(this.numberOfPdus);
        for(var idx = 0; idx < this.pdus.length; idx++)
        {
-           pdus[idx].encodeToBinary(outputStream);
+          this.pdus[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -12249,7 +12249,7 @@ dis.RecordQueryReliablePdu = function()
        outputStream.writeUInt(this.numberOfRecords);
        for(var idx = 0; idx < this.recordIDs.length; idx++)
        {
-           recordIDs[idx].encodeToBinary(outputStream);
+          this.recordIDs[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -12303,7 +12303,7 @@ dis.RecordQuerySpecification = function()
        outputStream.writeUInt(this.numberOfRecords);
        for(var idx = 0; idx < this.records.length; idx++)
        {
-           records[idx].encodeToBinary(outputStream);
+          this.records[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -12358,7 +12358,7 @@ dis.RecordSpecification = function()
        outputStream.writeUInt(this.numberOfRecordSets);
        for(var idx = 0; idx < this.recordSets.length; idx++)
        {
-           recordSets[idx].encodeToBinary(outputStream);
+          this.recordSets[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -13013,7 +13013,7 @@ dis.ResupplyOfferPdu = function()
        outputStream.writeShort(this.padding2);
        for(var idx = 0; idx < this.supplies.length; idx++)
        {
-           supplies[idx].encodeToBinary(outputStream);
+          this.supplies[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -13128,7 +13128,7 @@ dis.ResupplyReceivedPdu = function()
        outputStream.writeByte(this.padding2);
        for(var idx = 0; idx < this.supplies.length; idx++)
        {
-           supplies[idx].encodeToBinary(outputStream);
+          this.supplies[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -13308,12 +13308,12 @@ dis.SeesPdu = function()
        outputStream.writeUShort(this.numberOfVectoringNozzleSystems);
        for(var idx = 0; idx < this.propulsionSystemData.length; idx++)
        {
-           propulsionSystemData[idx].encodeToBinary(outputStream);
+          this.propulsionSystemData[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.vectoringSystemData.length; idx++)
        {
-           vectoringSystemData[idx].encodeToBinary(outputStream);
+          this.vectoringSystemData[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -13563,7 +13563,7 @@ dis.ServiceRequestPdu = function()
        outputStream.writeShort(this.serviceRequestPadding);
        for(var idx = 0; idx < this.supplies.length; idx++)
        {
-           supplies[idx].encodeToBinary(outputStream);
+          this.supplies[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -13693,12 +13693,12 @@ dis.SetDataPdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatums.length; idx++)
        {
-           fixedDatums[idx].encodeToBinary(outputStream);
+          this.fixedDatums[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatums.length; idx++)
        {
-           variableDatums[idx].encodeToBinary(outputStream);
+          this.variableDatums[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -13838,12 +13838,12 @@ dis.SetDataReliablePdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatumRecords.length; idx++)
        {
-           fixedDatumRecords[idx].encodeToBinary(outputStream);
+          this.fixedDatumRecords[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatumRecords.length; idx++)
        {
-           variableDatumRecords[idx].encodeToBinary(outputStream);
+          this.variableDatumRecords[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -13958,7 +13958,7 @@ dis.SignalPdu = function()
        outputStream.writeShort(this.samples);
        for(var idx = 0; idx < this.data.length; idx++)
        {
-           data[idx].encodeToBinary(outputStream);
+          this.data[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -14023,7 +14023,7 @@ dis.SilentEntitySystem = function()
        this.entityType.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.appearanceRecordList.length; idx++)
        {
-           appearanceRecordList[idx].encodeToBinary(outputStream);
+          this.appearanceRecordList[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -14388,7 +14388,7 @@ dis.StandardVariableSpecification = function()
        outputStream.writeUShort(this.numberOfStandardVariableRecords);
        for(var idx = 0; idx < this.standardVariables.length; idx++)
        {
-           standardVariables[idx].encodeToBinary(outputStream);
+          this.standardVariables[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -15502,12 +15502,12 @@ dis.TransmitterPdu = function()
        outputStream.writeUByte(this.padding3);
        for(var idx = 0; idx < this.modulationParametersList.length; idx++)
        {
-           modulationParametersList[idx].encodeToBinary(outputStream);
+          this.modulationParametersList[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.antennaPatternList.length; idx++)
        {
-           antennaPatternList[idx].encodeToBinary(outputStream);
+          this.antennaPatternList[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -15773,17 +15773,17 @@ dis.UaPdu = function()
        outputStream.writeUByte(this.numberOfUAEmitterSystems);
        for(var idx = 0; idx < this.shaftRPMs.length; idx++)
        {
-           shaftRPMs[idx].encodeToBinary(outputStream);
+          this.shaftRPMs[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.apaData.length; idx++)
        {
-           apaData[idx].encodeToBinary(outputStream);
+          this.apaData[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.emitterSystems.length; idx++)
        {
-           emitterSystems[idx].encodeToBinary(outputStream);
+          this.emitterSystems[idx].encodeToBinary(outputStream);
        }
 
   };
@@ -15928,7 +15928,7 @@ dis.VariableDatum = function()
        outputStream.writeUInt(this.variableDatumLength);
        for(var idx = 0; idx < this.variableDatumData.length; idx++)
        {
-           variableDatumData[idx].encodeToBinary(outputStream);
+          this.variableDatumData[idx].encodeToBinary(outputStream);
        }
 
   };

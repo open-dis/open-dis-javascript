@@ -190,29 +190,29 @@ dis.AggregateStatePdu = function()
        outputStream.writeUShort(this.numberOfSilentEntityTypes);
        for(var idx = 0; idx < this.aggregateIDList.length; idx++)
        {
-           aggregateIDList[idx].encodeToBinary(outputStream);
+        this.aggregateIDList[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.entityIDList.length; idx++)
        {
-           entityIDList[idx].encodeToBinary(outputStream);
+        this.entityIDList[idx].encodeToBinary(outputStream);
        }
 
        outputStream.writeUByte(this.pad2);
        for(var idx = 0; idx < this.silentAggregateSystemList.length; idx++)
        {
-           silentAggregateSystemList[idx].encodeToBinary(outputStream);
+        this.silentAggregateSystemList[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.silentEntitySystemList.length; idx++)
        {
-           silentEntitySystemList[idx].encodeToBinary(outputStream);
+        this.silentEntitySystemList[idx].encodeToBinary(outputStream);
        }
 
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.variableDatumList.length; idx++)
        {
-           variableDatumList[idx].encodeToBinary(outputStream);
+        this.variableDatumList[idx].encodeToBinary(outputStream);
        }
 
   };

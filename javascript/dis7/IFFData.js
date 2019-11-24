@@ -47,7 +47,7 @@ dis.IFFData = function()
        outputStream.writeUShort(this.recordLength);
        for(var idx = 0; idx < this.iffData.length; idx++)
        {
-           iffData[idx].encodeToBinary(outputStream);
+        this.iffData[idx].encodeToBinary(outputStream);
        }
 
   };

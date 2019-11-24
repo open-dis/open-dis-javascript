@@ -177,12 +177,12 @@ dis.TransmitterPdu = function()
        outputStream.writeUByte(this.padding3);
        for(var idx = 0; idx < this.modulationParametersList.length; idx++)
        {
-           modulationParametersList[idx].encodeToBinary(outputStream);
+        this.modulationParametersList[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.antennaPatternList.length; idx++)
        {
-           antennaPatternList[idx].encodeToBinary(outputStream);
+        this.antennaPatternList[idx].encodeToBinary(outputStream);
        }
 
   };

@@ -162,7 +162,7 @@ dis.DirectedEnergyFirePdu = function()
        outputStream.writeUShort(this.numberOfDERecords);
        for(var idx = 0; idx < this.dERecords.length; idx++)
        {
-           dERecords[idx].encodeToBinary(outputStream);
+        this.dERecords[idx].encodeToBinary(outputStream);
        }
 
   };

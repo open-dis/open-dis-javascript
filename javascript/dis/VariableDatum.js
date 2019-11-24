@@ -47,7 +47,7 @@ dis.VariableDatum = function()
        outputStream.writeUInt(this.variableDatumLength);
        for(var idx = 0; idx < this.variableData.length; idx++)
        {
-           variableData[idx].encodeToBinary(outputStream);
+        this.variableData[idx].encodeToBinary(outputStream);
        }
 
   };

@@ -42,7 +42,7 @@ dis.IffDataSpecification = function()
        outputStream.writeUShort(this.numberOfIffDataRecords);
        for(var idx = 0; idx < this.iffDataRecords.length; idx++)
        {
-           iffDataRecords[idx].encodeToBinary(outputStream);
+        this.iffDataRecords[idx].encodeToBinary(outputStream);
        }
 
   };

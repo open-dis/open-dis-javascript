@@ -122,7 +122,7 @@ dis.ArealObjectStatePdu = function()
        this.receivingID.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.objectLocation.length; idx++)
        {
-           objectLocation[idx].encodeToBinary(outputStream);
+        this.objectLocation[idx].encodeToBinary(outputStream);
        }
 
   };

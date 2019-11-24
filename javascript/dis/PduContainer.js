@@ -42,7 +42,7 @@ dis.PduContainer = function()
        outputStream.writeInt(this.numberOfPdus);
        for(var idx = 0; idx < this.pdus.length; idx++)
        {
-           pdus[idx].encodeToBinary(outputStream);
+        this.pdus[idx].encodeToBinary(outputStream);
        }
 
   };
