@@ -1,67 +1,11 @@
 <?xml version="1.0"  encoding="UTF-8"?>
 
-<!--
-  ant build file for javascript. Generates source code for javascript
--->
-
 <project name="open-dis codebase" default="generateJavascriptSourceCode" basedir=".">
-    <property name="lib" location="lib"/>
+
     <property name="DIS6SOURCE" location="javascript/dis/"/>
-    <property name="DIS7SOURCE" location="javascript/dis7/"/>
-    <property name="DIS6XML" location="DISDescription/DIS6.xml"/>
-    <property name="DIS7XML" location="DISDescription/DIS7.xml"/>
+    <property name="DIS7SOURCE" location="javascript/dis7/"/> 
 
-    <path id="lib.path">
-        <fileset id="lib.jars" dir="${lib}">
-           <include name="**/*.jar"/>
-       </fileset>
-    </path>
-   
-    <target name="patch6" description="apply patches to dis6 code via bash script. Unix only">
-
-    <!-- Use this property for most Unix platforms -->
-        <property name="bash" value="/bin/bash"/>
-        <exec executable="${bash}" osfamily="unix">
-            <!-- The bash script to run. this applies the patches to the source code -->
-            <arg value="patches/applyPatchesDis6.sh"/>
-        </exec>
-
-    </target> 
-
-   <target name="patch7" description="apply patches to dis7 code via bash script. Unix only">
-
-    <!-- Use this property for most Unix platforms -->
-        <property name="bash" value="/bin/bash"/>
-        <exec executable="${bash}" osfamily="unix">
-            <!-- The bash script to run. this applies the patches to the source code -->
-            <arg value="patches/applyPatchesDis7.sh"/>
-        </exec>
-
-    </target>
-
-
-
-    <target name="init" description="create initial directories">
-        <mkdir dir="${DIS6SOURCE}"/>
-        <mkdir dir="${DIS7SOURCE}"/>
-    </target>
-    
-    <!-- Generate the  javascript code. This relies on the jar file xmlpg.jar, from 
-         a separate project in the trunk that is included in the lib directory of this project. You
-         must run patch after this to apply known manual fixes to the source code generated.
-    --> 
-
-<target name="generateJavascriptSourceCode" depends="init" description = "run program to generate DIS source code">
-       <property name="product" value="js"/>
-       
-        <java classname="edu.nps.moves.xmlpg.Xmlpg">
-            <classpath refid="lib.path"/>
-            <arg value="${DIS6XML}"/>
-            <arg value="javascript"/>
-            <sysproperty key="xmlpg.generatedSourceDir" value="${DIS6SOURCE}"/>
-        </java>
-        <!-- apply the patches, manual changes to the code captured in the patch files -->
-        <antcall target="patch6"/>
+    <target name="concatenate">
       
         <!-- create a single, concatenated javascript fle -->
         <concat destfile="dis6.js">
@@ -72,19 +16,7 @@
             <include name="**/*.js"/>
           </fileset>
         </concat>
-        
-        <!-- Generate for DIS version 7, which uses a different XML file -->
-         <echo message="Generating DIS 7 javascript source code"/>
-         <java classname="edu.nps.moves.xmlpg.Xmlpg">
-            <classpath refid="lib.path"/>
-            <arg value="${DIS7XML}"/>
-            <arg value="javascript"/>
-            <sysproperty key="xmlpg.generatedSourceDir" value="${DIS7SOURCE}"/>
-        </java>
-        
-        <!-- apply the patches, manual changes to the code captured in the patch files -->
-        <antcall target="patch7"/>
-      
+             
         <!-- create a single, concatenated javascript fle -->
         <concat destfile="dis7.js">
            <fileset dir="javascript/disSupporting">
