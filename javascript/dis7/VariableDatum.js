@@ -31,8 +31,8 @@ dis.VariableDatum = function()
   dis.VariableDatum.prototype.initFromBinary = function(inputStream)
   {
        this.variableDatumID = inputStream.readUInt();
-       this.variableDatumLength = inputStream.readUInt() >> 3;  //@check: Somehow this needs to be shifted to have correct length
-       for(var idx = 0; idx < this.variableDatumLength; idx++)
+       this.variableDatumLength = inputStream.readUInt();  
+       for(var idx = 0; idx < this.variableDatumLength/8; idx++)  //take care: the variableDatumLength is in bits (=> divide by 8 for bytes)
        {
            var anX = new dis.OneByteChunk();
            anX.initFromBinary(inputStream);
