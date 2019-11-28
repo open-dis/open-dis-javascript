@@ -102,7 +102,7 @@ dis.SignalPdu = function()
        outputStream.writeShort(this.samples);
        for(var idx = 0; idx < this.data.length; idx++)
        {
-           data[idx].encodeToBinary(outputStream);
+        this.data[idx].encodeToBinary(outputStream);
        }
 
   };

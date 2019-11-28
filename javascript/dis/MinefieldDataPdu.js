@@ -141,13 +141,13 @@ dis.MinefieldDataPdu = function()
        this.mineType.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.sensorTypes.length; idx++)
        {
-           sensorTypes[idx].encodeToBinary(outputStream);
+        this.sensorTypes[idx].encodeToBinary(outputStream);
        }
 
        outputStream.writeUByte(this.pad3);
        for(var idx = 0; idx < this.mineLocation.length; idx++)
        {
-           mineLocation[idx].encodeToBinary(outputStream);
+        this.mineLocation[idx].encodeToBinary(outputStream);
        }
 
   };

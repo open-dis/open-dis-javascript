@@ -82,7 +82,7 @@ dis.ElectronicEmissionBeamData = function()
        outputStream.writeUInt(this.jammingModeSequence);
        for(var idx = 0; idx < this.trackJamTargets.length; idx++)
        {
-           trackJamTargets[idx].encodeToBinary(outputStream);
+        this.trackJamTargets[idx].encodeToBinary(outputStream);
        }
 
   };

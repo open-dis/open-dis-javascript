@@ -112,7 +112,7 @@ dis.IntercomSignalPdu = function()
        outputStream.writeUShort(this.samples);
        for(var idx = 0; idx < this.data.length; idx++)
        {
-           data[idx].encodeToBinary(outputStream);
+        this.data[idx].encodeToBinary(outputStream);
        }
 
   };

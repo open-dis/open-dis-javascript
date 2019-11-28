@@ -279,7 +279,7 @@ dis.FastEntityStatePdu = function()
        outputStream.writeInt(this.capabilities);
        for(var idx = 0; idx < this.variableParameters.length; idx++)
        {
-           variableParameters[idx].encodeToBinary(outputStream);
+         this.variableParameters[idx].encodeToBinary(outputStream);
        }
 
   };

@@ -97,7 +97,7 @@ dis.ElectronicEmissionsPdu = function()
        outputStream.writeUShort(this.paddingForEmissionsPdu);
        for(var idx = 0; idx < this.systems.length; idx++)
        {
-           systems[idx].encodeToBinary(outputStream);
+        this.systems[idx].encodeToBinary(outputStream);
        }
 
   };

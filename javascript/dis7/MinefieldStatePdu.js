@@ -137,12 +137,12 @@ dis.MinefieldStatePdu = function()
        outputStream.writeUShort(this.protocolMode);
        for(var idx = 0; idx < this.perimeterPoints.length; idx++)
        {
-           perimeterPoints[idx].encodeToBinary(outputStream);
+        this.perimeterPoints[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.mineType.length; idx++)
        {
-           mineType[idx].encodeToBinary(outputStream);
+        this.mineType[idx].encodeToBinary(outputStream);
        }
 
   };

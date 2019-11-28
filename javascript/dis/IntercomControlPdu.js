@@ -127,7 +127,7 @@ dis.IntercomControlPdu = function()
        outputStream.writeUInt(this.intercomParametersLength);
        for(var idx = 0; idx < this.intercomParameters.length; idx++)
        {
-           intercomParameters[idx].encodeToBinary(outputStream);
+        this.intercomParameters[idx].encodeToBinary(outputStream);
        }
 
   };

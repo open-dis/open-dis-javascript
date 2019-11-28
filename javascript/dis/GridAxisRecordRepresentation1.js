@@ -62,7 +62,7 @@ dis.GridAxisRecordRepresentation1 = function()
        outputStream.writeUShort(this.numberOfValues);
        for(var idx = 0; idx < this.dataValues.length; idx++)
        {
-           dataValues[idx].encodeToBinary(outputStream);
+        this.dataValues[idx].encodeToBinary(outputStream);
        }
 
   };

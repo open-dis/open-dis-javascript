@@ -117,7 +117,7 @@ dis.LinearObjectStatePdu = function()
        this.objectType.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.linearSegmentParameters.length; idx++)
        {
-           linearSegmentParameters[idx].encodeToBinary(outputStream);
+        this.linearSegmentParameters[idx].encodeToBinary(outputStream);
        }
 
   };

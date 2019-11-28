@@ -117,7 +117,7 @@ dis.IffAtcNavAidsLayer2Pdu = function()
        this.secondaryOperationalData.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.fundamentalIffParameters.length; idx++)
        {
-           fundamentalIffParameters[idx].encodeToBinary(outputStream);
+        this.fundamentalIffParameters[idx].encodeToBinary(outputStream);
        }
 
   };

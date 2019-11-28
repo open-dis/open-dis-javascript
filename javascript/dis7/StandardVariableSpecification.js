@@ -42,7 +42,7 @@ dis.StandardVariableSpecification = function()
        outputStream.writeUShort(this.numberOfStandardVariableRecords);
        for(var idx = 0; idx < this.standardVariables.length; idx++)
        {
-           standardVariables[idx].encodeToBinary(outputStream);
+        this.standardVariables[idx].encodeToBinary(outputStream);
        }
 
   };

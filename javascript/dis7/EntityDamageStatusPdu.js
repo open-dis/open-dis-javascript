@@ -107,7 +107,7 @@ dis.EntityDamageStatusPdu = function()
        outputStream.writeUShort(this.numberOfDamageDescription);
        for(var idx = 0; idx < this.damageDescriptionRecords.length; idx++)
        {
-           damageDescriptionRecords[idx].encodeToBinary(outputStream);
+        this.damageDescriptionRecords[idx].encodeToBinary(outputStream);
        }
 
   };

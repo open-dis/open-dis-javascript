@@ -72,12 +72,26 @@ if (typeof exports === "undefined")
                 newPdu = new dis.RemoveEntityPdu();
                 newPdu.initFromBinary(inputStream);
                 break;
-
-            case 20:    // data
+            case 13:
+                newPdu = new dis.StartResumePdu();
+                newPdu.initFromBinary(inputStream);
+                break;
+            case 14:
+                newPdu = new dis.StopFreezePdu();
+                newPdu.initFromBinary(inputStream);
+                break;
+            case 20:    // DataPdu
                 newPdu = new dis.DataPdu();
                 newPdu.initFromBinary(inputStream);
                 break;
-
+            case 25:  // TransmitterPDU
+                newPdu = new dis.TransmitterPdu();
+                newPdu.initFromBinary(inputStream);
+                break;
+            case 27:  // receiverPDU
+                newPdu = new dis.ReceiverPdu();
+                newPdu.initFromBinary(inputStream);
+                break;
             default:
                throw  "PduType: " + pduType + " Unrecognized PDUType. Add PDU in dis.PduFactory.";
         }

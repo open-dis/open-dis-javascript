@@ -46,7 +46,7 @@ dis.EntityMarking = function()
       var marking = "";
       for(var idx = 0; idx < 11; idx++)
       {
-          marking = marking + String.fromCharCode(this.characters[idx]);
+        marking = marking + String.fromCharCode(this.characters[idx]);
       }
 
       return marking;

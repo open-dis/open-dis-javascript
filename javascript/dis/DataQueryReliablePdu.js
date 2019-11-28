@@ -127,12 +127,12 @@ dis.DataQueryReliablePdu = function()
        outputStream.writeUInt(this.numberOfVariableDatumRecords);
        for(var idx = 0; idx < this.fixedDatumRecords.length; idx++)
        {
-           fixedDatumRecords[idx].encodeToBinary(outputStream);
+        this.fixedDatumRecords[idx].encodeToBinary(outputStream);
        }
 
        for(var idx = 0; idx < this.variableDatumRecords.length; idx++)
        {
-           variableDatumRecords[idx].encodeToBinary(outputStream);
+        this.variableDatumRecords[idx].encodeToBinary(outputStream);
        }
 
   };

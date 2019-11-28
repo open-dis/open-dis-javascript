@@ -107,7 +107,7 @@ dis.SetRecordReliablePdu = function()
        outputStream.writeUInt(this.numberOfRecordSets);
        for(var idx = 0; idx < this.recordSets.length; idx++)
        {
-           recordSets[idx].encodeToBinary(outputStream);
+        this.recordSets[idx].encodeToBinary(outputStream);
        }
 
   };

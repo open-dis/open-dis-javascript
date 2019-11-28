@@ -96,7 +96,7 @@ dis.ServiceRequestPdu = function()
        outputStream.writeShort(this.serviceRequestPadding);
        for(var idx = 0; idx < this.supplies.length; idx++)
        {
-           supplies[idx].encodeToBinary(outputStream);
+        this.supplies[idx].encodeToBinary(outputStream);
        }
 
   };

@@ -47,7 +47,7 @@ dis.IntercomCommunicationsParameters = function()
        outputStream.writeUShort(this.recordLength);
        for(var idx = 0; idx < this.parameterValues.length; idx++)
        {
-           parameterValues[idx].encodeToBinary(outputStream);
+        this.parameterValues[idx].encodeToBinary(outputStream);
        }
 
   };

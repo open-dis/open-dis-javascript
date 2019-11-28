@@ -52,7 +52,7 @@ dis.SilentEntitySystem = function()
        this.entityType.encodeToBinary(outputStream);
        for(var idx = 0; idx < this.appearanceRecordList.length; idx++)
        {
-           appearanceRecordList[idx].encodeToBinary(outputStream);
+        this.appearanceRecordList[idx].encodeToBinary(outputStream);
        }
 
   };

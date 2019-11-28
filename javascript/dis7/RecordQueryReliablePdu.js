@@ -122,7 +122,7 @@ dis.RecordQueryReliablePdu = function()
        outputStream.writeUInt(this.numberOfRecords);
        for(var idx = 0; idx < this.recordIDs.length; idx++)
        {
-           recordIDs[idx].encodeToBinary(outputStream);
+        this.recordIDs[idx].encodeToBinary(outputStream);
        }
 
   };
