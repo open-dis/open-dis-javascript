@@ -14,3 +14,7 @@ to change DIS world coordinates to (lat, lon, alt) or to a
 position in a local tanget plane coordinate system. 
 
 DMcG
+
+## Examples
+
+Example code for sending and receiving DIS packets with Node.js can be found here: https://github.com/keckxde/node-disnetworkclient 
