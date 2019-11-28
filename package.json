@@ -28,7 +28,5 @@
   "bugs": {
     "url": "https://github.com/open-dis/open-dis-javascript/issues"
   },
-  "homepage": "https://github.com/open-dis/open-dis-javascript",
-  "readme": "open-dis\n========\n\nJavascript implementation of IEEE-1278.1, Distributed Interactive Simulation protocol, widely used in military simulations\n\nThis is intended to be used with node.js, primarily on the server side. However it can also be used on the web browser\nside with no modifications. Typically this will be used in conjunction with websockets or webrtc on the web server, \nor with node.js networking (native UDP sockets) on the server side. \n\nIt is an implementation of IEEE 1278.1, Distributed Interactive Simulation (DIS), which is widely used in military\nvirtual simulations.\n\nDon McGregor\nmcgredo@nps.edu\n",
-  "readmeFilename": "README.md"
+  "homepage": "https://github.com/open-dis/open-dis-javascript"
 }
