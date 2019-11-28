@@ -1,4 +1,8 @@
+# Open DIS for Javascript
+
 <span class="badge-npmversion"><a href="https://npmjs.org/package/open-dis" title="View this project on NPM"><img src="https://img.shields.io/npm/v/open-dis.svg" alt="NPM version" /></a></span>
+
+## Introduction
 
 A Javascript implemtation of DIS that decodes IEEE 1278.1
 binary data format messages and turns them into Javascript
