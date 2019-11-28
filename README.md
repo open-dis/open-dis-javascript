@@ -17,4 +17,4 @@ DMcG
 
 ## Examples
 
-Example code for sending and receiving DIS packets with Node.js can be found here: https://github.com/keckxde/node-disnetworkclient 
+Example code using this library for sending and receiving DIS packets with Node.js can be found here: https://github.com/keckxde/node-disnetworkclient 
