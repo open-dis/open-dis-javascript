@@ -4,6 +4,7 @@
   "description": "Javascript Node module for IEEE 1278.1, Distributed Interactive Simulation",
   "main": "dis6.js",
   "scripts": {
+    "lint": "eslint \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,5 +29,9 @@
   "bugs": {
     "url": "https://github.com/open-dis/open-dis-javascript/issues"
   },
-  "homepage": "https://github.com/open-dis/open-dis-javascript"
+  "homepage": "https://github.com/open-dis/open-dis-javascript",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.4.0"
+  }
 }
