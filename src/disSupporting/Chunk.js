@@ -8,18 +8,18 @@ if (typeof exports === "undefined")
 // Replaces (n)ByteChunk functions
 // chunkSize: specify the size of the chunk, ie 1 = 1 byte chunk, 8 = 8 byte chunk, etc.
 // usage: var foo = new Chunk(4) // for a 4 byte chunk
-dis.Chunk = class{
-	constructor(chunkSize){
-		this.data = new Array(chunkSize).fill(0);
-		this.chunkSize = chunkSize;
-	}
-	initFromBinaryDIS(inputStream){
-		for(var i = 0; i < this.chunkSize; i++){
+dis.Chunk = function(chunkSize) {
+
+	data = new Array(chunkSize).fill(0);
+	chunkSize = chunkSize;
+
+	dis.Chunk.prototype.initFromBinaryDIS = function(inputStream) {
+		for(var i = 0; i < this.chunkSize; i++) {
 			this.data[i] = inputStream.readByte();
 		}
 	}
-	encodeToBinaryDIS(outputStream){
-		for(var i = 0; i < this.chunkSize; i++){
+	dis.Chunk.prototype.encodeToBinaryDIS = function(outputStream) {
+		for(var i = 0; i < this.chunkSize; i++) {
 			outputStream.writeByte(this.data[i]);
 		}
 	}
