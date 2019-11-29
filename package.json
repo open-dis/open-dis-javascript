@@ -5,7 +5,8 @@
   "main": "dis6.js",
   "scripts": {
     "lint": "eslint \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "uglifyjs src/dis/*.js src/disSupporting/*.js -o dis6.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dis7.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "long": "^3.2.0"
   },
   "devDependencies": {
-    "eslint": "^6.4.0"
+    "eslint": "^6.7.1",
+    "uglify": "^3.7.0"
   }
 }

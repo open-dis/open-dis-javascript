@@ -19,6 +19,12 @@ position in a local tanget plane coordinate system.
 
 DMcG
 
+## Uglify
+
+To generate a single `dis6.js` and `dis7.js` from the source files, run the following command:
+
+`$ npm run prepublish`
+
 ## Examples
 
 Example code using this library for sending and receiving DIS packets with Node.js can be found here: https://github.com/keckxde/node-disnetworkclient 
