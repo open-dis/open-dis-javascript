@@ -88,6 +88,10 @@ if (typeof exports === "undefined")
                 newPdu = new dis.TransmitterPdu();
                 newPdu.initFromBinary(inputStream);
                 break;
+            case 26:
+                newPdu = new dis.SignalPdu();
+                newPdu.initFromBinary(inputStream);
+                break;
             case 27:  // receiverPDU
                 newPdu = new dis.ReceiverPdu();
                 newPdu.initFromBinary(inputStream);

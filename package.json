@@ -30,7 +30,9 @@
     "url": "https://github.com/open-dis/open-dis-javascript/issues"
   },
   "homepage": "https://github.com/open-dis/open-dis-javascript",
-  "dependencies": {},
+  "dependencies": {
+    "long": "^3.2.0"
+  },
   "devDependencies": {
     "eslint": "^6.4.0"
   }

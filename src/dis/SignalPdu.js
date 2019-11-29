@@ -80,13 +80,16 @@ dis.SignalPdu = function()
        this.sampleRate = inputStream.readUInt();
        this.dataLength = inputStream.readUShort();
        this.samples = inputStream.readUShort();
-       for(var idx = 0; idx < this.dataLength; idx++)
-       {
-           var anX = new dis.OneByteChunk();
-           anX.initFromBinary(inputStream);
-           this.data.push(anX);
-       }
-
+	try {
+	       for(var idx = 0; idx < (this.dataLength / 8); idx++)
+	       {
+		   var anX = new dis.OneByteChunk();
+		   anX.initFromBinary(inputStream);
+		   this.data.push(anX);
+	       }
+	} catch(e) {
+		console.log('error: ' + e.message);
+	}
   };
 
   dis.SignalPdu.prototype.encodeToBinary = function(outputStream)
@@ -105,7 +108,7 @@ dis.SignalPdu = function()
        outputStream.writeUInt(this.sampleRate);
        outputStream.writeUShort(this.dataLength);
        outputStream.writeUShort(this.samples);
-       for(var idx = 0; idx < this.data.length; idx++)
+       for(var idx = 0; idx < this.samples; idx++)
        {
         this.data[idx].encodeToBinary(outputStream);
        }

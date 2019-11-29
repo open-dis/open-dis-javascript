@@ -5,6 +5,8 @@ if (typeof dis === "undefined")
 if (typeof exports === "undefined")
    exports = {};
 
+var Long = require('long');
+
 /**
  * @param binaryDataBuffer ArrayBuffer
 */
@@ -79,11 +81,10 @@ dis.OutputStream = function(binaryDataBuffer)
     
     dis.OutputStream.prototype.writeLong = function(userData)
     {
-        console.log("Problem in dis.outputStream. Javascript cannot natively handle 64 bit ints");
-        console.log("writing 0, which is almost certainly wrong");
-        this.dataView.setInt32(this.currentPosition, 0);
-        this.dataView.setInt32(this.currentPosition + 4, 0);
-        this.currentPosition = this.currentPosition + 8;
+	var long = new Long.fromString(userData);
+	this.dataView.setInt32(this.currentPosition, long.getHighBits());
+	this.dataView.setInt32(this.currentPosition + 4, long.getLowBits());
+	this.currentPosition = this.currentPosition + 8;
     };
 };
 

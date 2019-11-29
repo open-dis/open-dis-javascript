@@ -7,6 +7,8 @@ if (typeof dis === "undefined")
 if (typeof exports === "undefined")
    exports = {};
 
+var Long = require('long');
+
 dis.InputStream = function(binaryData)
 {
     this.dataView = new DataView(binaryData, 0); // data, byte offset
@@ -80,10 +82,10 @@ dis.InputStream = function(binaryData)
     
     dis.InputStream.prototype.readLong = function()
     {
-        console.log("Problem in dis.InputStream. Javascript cannot natively handle 64 bit ints");
-        console.log("Returning 0 from read, which is almost certainly wrong");
-        this.currentPosition = this.currentPosition + 8;
-        return 0;
+	var high = this.dataView.getInt32(this.currentPosition);
+	var low = this.dataView.getInt32(this.currentPosition + 4);
+	var long = new Long(low, high);
+	return long.toString();
     };
 };
 
