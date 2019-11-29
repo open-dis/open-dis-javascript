@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "uglifyjs src/dis/*.js src/disSupporting/*.js -o dis6.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dis7.js"
+    "prepublish": "uglifyjs src/dis/*.js src/disSupporting/*.js -o dis6.min.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dis7.min.js"
   },
   "repository": {
     "type": "git",
