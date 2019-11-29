@@ -86,7 +86,7 @@ dis.IntercomSignalPdu = function()
        this.samples = inputStream.readUShort();
        for(var idx = 0; idx < this.dataLength; idx++)
        {
-           var anX = new dis.OneByteChunk();
+           var anX = new dis.Chunk(1);
            anX.initFromBinary(inputStream);
            this.data.push(anX);
        }

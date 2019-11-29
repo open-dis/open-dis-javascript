@@ -34,7 +34,7 @@ dis.IntercomCommunicationsParameters = function()
        this.recordLength = inputStream.readUShort();
        for(var idx = 0; idx < this.recordLength; idx++)
        {
-           var anX = new dis.OneByteChunk();
+           var anX = new dis.Chunk(1);
            anX.initFromBinary(inputStream);
            this.parameterValues.push(anX);
        }

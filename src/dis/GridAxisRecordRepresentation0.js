@@ -38,7 +38,7 @@ dis.GridAxisRecordRepresentation0 = function()
        this.numberOfBytes = inputStream.readUShort();
        for(var idx = 0; idx < this.numberOfBytes; idx++)
        {
-           var anX = new dis.OneByteChunk();
+           var anX = new dis.Chunk(1);
            anX.initFromBinary(inputStream);
            this.dataValues.push(anX);
        }

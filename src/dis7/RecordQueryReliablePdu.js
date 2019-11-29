@@ -94,7 +94,7 @@ dis.RecordQueryReliablePdu = function()
        this.numberOfRecords = inputStream.readUInt();
        for(var idx = 0; idx < this.numberOfRecords; idx++)
        {
-           var anX = new dis.FourByteChunk();
+           var anX = new dis.Chunk(4);
            anX.initFromBinary(inputStream);
            this.recordIDs.push(anX);
        }

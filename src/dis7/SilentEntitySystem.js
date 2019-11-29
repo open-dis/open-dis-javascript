@@ -38,7 +38,7 @@ dis.SilentEntitySystem = function()
        this.entityType.initFromBinary(inputStream);
        for(var idx = 0; idx < this.numberOfAppearanceRecords; idx++)
        {
-           var anX = new dis.FourByteChunk();
+           var anX = new dis.Chunk(4);
            anX.initFromBinary(inputStream);
            this.appearanceRecordList.push(anX);
        }

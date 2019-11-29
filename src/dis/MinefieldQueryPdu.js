@@ -96,7 +96,7 @@ dis.MinefieldQueryPdu = function()
 
        for(var idx = 0; idx < this.numberOfSensorTypes; idx++)
        {
-           var anX = new dis.TwoByteChunk();
+           var anX = new dis.Chunk(2);
            anX.initFromBinary(inputStream);
            this.sensorTypes.push(anX);
        }

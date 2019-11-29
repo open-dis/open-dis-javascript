@@ -59,7 +59,7 @@ dis.ArealObjectStatePdu = function()
    this.objectType = new dis.EntityType(); 
 
    /** Object appearance */
-   this.objectAppearance = new dis.SixByteChunk(); 
+   this.objectAppearance = new dis.Chunk(6);
 
    /** Number of points */
    this.numberOfPoints = 0;

@@ -70,7 +70,7 @@ dis.MinefieldResponseNackPdu = function()
        this.numberOfMissingPdus = inputStream.readUByte();
        for(var idx = 0; idx < this.numberOfMissingPdus; idx++)
        {
-           var anX = new dis.EightByteChunk();
+           var anX = new dis.Chunk(8);
            anX.initFromBinary(inputStream);
            this.missingPduSequenceNumbers.push(anX);
        }

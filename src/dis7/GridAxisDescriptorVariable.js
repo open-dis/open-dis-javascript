@@ -62,7 +62,7 @@ dis.GridAxisDescriptorVariable = function()
        this.coordinateOffsetXi = inputStream.readFloat64();
        for(var idx = 0; idx < this.numberOfPointsOnXiAxis; idx++)
        {
-           var anX = new dis.TwoByteChunk();
+           var anX = new dis.Chunk(2);
            anX.initFromBinary(inputStream);
            this.xiValues.push(anX);
        }

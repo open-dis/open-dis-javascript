@@ -83,7 +83,7 @@ dis.SignalPdu = function()
 	try {
 	       for(var idx = 0; idx < (this.dataLength / 8); idx++)
 	       {
-		   var anX = new dis.OneByteChunk();
+		   var anX = new dis.Chunk(1);
 		   anX.initFromBinary(inputStream);
 		   this.data.push(anX);
 	       }
