@@ -19,7 +19,7 @@ position in a local tanget plane coordinate system.
 
 DMcG
 
-## Uglify
+## Build
 
 To generate a single `dis6.js` and `dis7.js` from the source files, run the following command:
 
