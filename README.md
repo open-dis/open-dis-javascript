@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A Javascript implemtation of DIS that decodes IEEE 1278.1
+A Javascript implementation of DIS that decodes IEEE 1278.1
 binary data format messages and turns them into Javascript
 objects.
 
