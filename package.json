@@ -32,10 +32,10 @@
   },
   "homepage": "https://github.com/open-dis/open-dis-javascript",
   "dependencies": {
-    "long": "^3.2.0"
+    "long": "^4.0.0"
   },
   "devDependencies": {
-    "eslint": "^6.7.1",
-    "uglify": "^3.7.0"
+    "eslint": "^6.8.0",
+    "uglify-js": "^3.7.5"
   }
 }
