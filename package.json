@@ -26,7 +26,7 @@
     "email": "mcgredo@nps.edu",
     "url": "http://www.movesinstitute.org/"
   },
-  "license": "BSD",
+  "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/open-dis/open-dis-javascript/issues"
   },
@@ -36,6 +36,6 @@
   },
   "devDependencies": {
     "eslint": "^6.7.1",
-    "uglify": "^3.7.0"
+    "uglify-js": "^3.7.0"
   }
 }
