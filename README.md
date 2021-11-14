@@ -25,6 +25,16 @@ To generate a single `dis6.min.js` and `dis7.min.js` from the source files, run 
 
 `$ npm install`
 
+# Release
+
+Releases are published to http://npmjs.com/package/open-dis
+
+1. `$ npm login`
+1. `$ npm publish`
+1. `$ git tag XXX`
+1. `$ git push --tags`
+1. Open `package.json` and update the `version` field for next. git commit and push push the change.
+
 ## Examples
 
 Example code using this library for sending and receiving DIS packets with Node.js can be found here: https://github.com/keckxde/node-disnetworkclient 
