@@ -21,9 +21,9 @@ DMcG
 
 ## Build
 
-To generate a single `dis6.js` and `dis7.js` from the source files, run the following command:
+To generate a single `dis6.min.js` and `dis7.min.js` from the source files, run the following command:
 
-`$ npm run prepublish`
+`$ npm install`
 
 ## Examples
 
