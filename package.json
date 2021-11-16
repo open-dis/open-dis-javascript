@@ -37,5 +37,9 @@
   "devDependencies": {
     "eslint": "^6.7.1",
     "uglify-js": "^3.7.0"
-  }
+  },
+  "files": [
+    "dist",
+    "src"
+  ]
 }
