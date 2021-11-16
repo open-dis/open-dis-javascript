@@ -31,9 +31,7 @@ Releases are published to http://npmjs.com/package/open-dis
 
 1. `$ npm login`
 1. `$ npm publish`
-1. `$ git tag XXX`
-1. `$ git push --tags`
-1. Open `package.json` and update the `version` field for next. git commit and push push the change.
+1. `$ npm version`
 
 ## Examples
 
