@@ -30,8 +30,8 @@ To generate a single `dis6.min.js` and `dis7.min.js` from the source files, run 
 Releases are published to http://npmjs.com/package/open-dis
 
 1. `$ npm login`
+1. `$ npm version <version-to-be-released>`
 1. `$ npm publish`
-1. `$ npm version <version>`
 1. `$ git push --tags`
 
 ## Examples
