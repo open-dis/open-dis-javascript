@@ -23,18 +23,23 @@ dis.EntityMarking = function()
    this.characterSet = 0;
 
    /** The characters */
-   this.characters = 0;
+   this.characters = new Array(12);
+ 
+   // ensure null-terminated string
+   this.characters[0] = 0;
 
   dis.EntityMarking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
-       this.characters = inputStream.readByte();
+       for (var i = 0; i<this.characters.length; i++)
+           this.characters[i] = inputStream.readByte();
   };
 
   dis.EntityMarking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);
-       outputStream.writeByte(this.characters);
+       for (var i=0; i<this.characters.length; i++)
+           outputStream.writeByte(this.characters[i]);
   };
 
   /*
@@ -44,9 +49,13 @@ dis.EntityMarking = function()
   dis.EntityMarking.prototype.getMarking = function()
   {
       var marking = "";
-      for(var idx = 0; idx < 11; idx++)
+      for(var idx = 0; idx < this.characters.length; idx++)
       {
         marking = marking + String.fromCharCode(this.characters[idx]);
+       
+        // we hit a null terminator
+        if (this.characters[idx] == 0)
+          break;
       }
 
       return marking;
