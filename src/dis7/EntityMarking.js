@@ -51,11 +51,11 @@ dis.EntityMarking = function()
       var marking = "";
       for(var idx = 0; idx < this.characters.length; idx++)
       {
-        marking = marking + String.fromCharCode(this.characters[idx]);
-       
         // we hit a null terminator
         if (this.characters[idx] == 0)
           break;
+       
+        marking = marking + String.fromCharCode(this.characters[idx]);
       }
 
       return marking;
