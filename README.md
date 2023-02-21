@@ -31,6 +31,7 @@ Releases are published to http://npmjs.com/package/open-dis
 1. `$ npm version <version-to-be-released>`
 1. `$ npm publish`
 1. `$ git push --tags`
+1. Draft a new GitHub Release for this tag.
 
 ## Examples
 
