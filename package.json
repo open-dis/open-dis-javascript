@@ -2,7 +2,7 @@
   "name": "open-dis",
   "version": "1.3.2",
   "description": "Javascript Node module for IEEE 1278.1, Distributed Interactive Simulation",
-  "main": "dis6.js",
+  "main": "./dist/dis6.min.js",
   "scripts": {
     "lint": "eslint \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -32,7 +32,8 @@
   },
   "homepage": "https://github.com/open-dis/open-dis-javascript",
   "dependencies": {
-    "long": "^3.2.0"
+    "long": "^3.2.0",
+    "uglifyjs": "^2.4.11"
   },
   "devDependencies": {
     "eslint": "^6.7.1",
