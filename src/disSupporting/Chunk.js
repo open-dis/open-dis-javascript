@@ -13,12 +13,12 @@ dis.Chunk = function(chunkSize) {
 	data = new Array(chunkSize).fill(0);
 	chunkSize = chunkSize;
 
-	dis.Chunk.prototype.initFromBinaryDIS = function(inputStream) {
+	dis.Chunk.prototype.initFromBinary = function(inputStream) {
 		for(var i = 0; i < this.chunkSize; i++) {
 			this.data[i] = inputStream.readByte();
 		}
 	}
-	dis.Chunk.prototype.encodeToBinaryDIS = function(outputStream) {
+	dis.Chunk.prototype.encodeToBinary = function(outputStream) {
 		for(var i = 0; i < this.chunkSize; i++) {
 			outputStream.writeByte(this.data[i]);
 		}
