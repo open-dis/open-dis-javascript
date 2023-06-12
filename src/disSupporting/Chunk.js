@@ -10,8 +10,8 @@ if (typeof exports === "undefined")
 // usage: var foo = new Chunk(4) // for a 4 byte chunk
 dis.Chunk = function(chunkSize) {
 
-	data = new Array(chunkSize).fill(0);
-	chunkSize = chunkSize;
+	this.data = new Array(chunkSize).fill(0);
+	this.chunkSize = chunkSize;
 
 	dis.Chunk.prototype.initFromBinary = function(inputStream) {
 		for(var i = 0; i < this.chunkSize; i++) {
