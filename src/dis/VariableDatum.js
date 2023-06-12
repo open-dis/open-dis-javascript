@@ -26,17 +26,17 @@ dis.VariableDatum = function()
    this.variableDatumLength = 0;
 
    /** data can be any length, but must increase in 8 byte quanta. This requires some postprocessing patches. Note that setting the data allocates a new internal array to account for the possibly increased size. The default initial size is 64 bits. */
-    this.variableData = new Array();
- 
+    this.variableDatumData = new Array();
+
   dis.VariableDatum.prototype.initFromBinary = function(inputStream)
   {
        this.variableDatumID = inputStream.readUInt();
        this.variableDatumLength = inputStream.readUInt();
-       for(var idx = 0; idx < this.variableDatumLength; idx++)
+       for(var idx = 0; idx < this.variableDatumLength / 8; idx++)
        {
            var anX = new dis.Chunk(1);
            anX.initFromBinary(inputStream);
-           this.variableData.push(anX);
+           this.variableDatumData.push(anX);
        }
 
   };
@@ -45,9 +45,9 @@ dis.VariableDatum = function()
   {
        outputStream.writeUInt(this.variableDatumID);
        outputStream.writeUInt(this.variableDatumLength);
-       for(var idx = 0; idx < this.variableData.length; idx++)
+       for(var idx = 0; idx < this.variableDatumData.length; idx++)
        {
-        this.variableData[idx].encodeToBinary(outputStream);
+        this.variableDatumData[idx].encodeToBinary(outputStream);
        }
 
   };
