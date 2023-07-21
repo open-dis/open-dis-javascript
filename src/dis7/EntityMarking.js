@@ -23,7 +23,7 @@ dis.EntityMarking = function()
    this.characterSet = 0;
 
    /** The characters */
-   this.characters = new Array(12);
+   this.characters = new Array(11);
  
    // ensure null-terminated string
    this.characters[0] = 0;
