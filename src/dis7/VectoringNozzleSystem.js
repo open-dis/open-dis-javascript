@@ -8,7 +8,7 @@
  */
 // On the client side, support for a  namespace.
 if (typeof dis === "undefined")
- dis = {};
+ var dis = {};
 
 
 // Support for node.js style modules. Ignored if used in a client context.
