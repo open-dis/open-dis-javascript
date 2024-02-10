@@ -51,7 +51,7 @@
  **/
 
 if (typeof dis === "undefined")
- dis = {};
+ var dis = {};
  
 // Support for node.js style modules; ignore if not using node.js require
 if (typeof exports === "undefined")
