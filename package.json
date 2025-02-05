@@ -6,7 +6,7 @@
   "scripts": {
     "lint": "eslint \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "rm -rf dist && mkdir dist && uglifyjs src/dis/*.js src/disSupporting/*.js -o dist/dis6.min.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dist/dis7.min.js"
+    "prepare": "rimraf dist && mkdir dist && uglifyjs src/dis/*.js src/disSupporting/*.js -o dist/dis6.min.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dist/dis7.min.js"
   },
   "repository": {
     "type": "git",
@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "eslint": "^6.7.1",
+    "rimraf": "^6.0.1",
     "uglify-js": "^3.7.0"
   },
   "files": [
