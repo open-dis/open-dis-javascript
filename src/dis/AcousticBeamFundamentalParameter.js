@@ -17,26 +17,57 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AcousticBeamFundamentalParameter = function()
 {
-   /** parameter index */
+   /**
+    *  parameter index
+    * @type {number}
+    * @instance
+    */
    this.activeEmissionParameterIndex = 0;
 
-   /** scan pattern */
+   /**
+    *  scan pattern
+    * @type {number}
+    * @instance
+    */
    this.scanPattern = 0;
 
-   /** beam center azimuth */
+   /**
+    *  beam center azimuth
+    * @type {number}
+    * @instance
+    */
    this.beamCenterAzimuth = 0;
 
-   /** azimuthal beamwidth */
+   /**
+    *  azimuthal beamwidth
+    * @type {number}
+    * @instance
+    */
    this.azimuthalBeamwidth = 0;
 
-   /** beam center */
+   /**
+    *  beam center
+    * @type {number}
+    * @instance
+    */
    this.beamCenterDE = 0;
 
-   /** DE beamwidth (vertical beamwidth) */
+   /**
+    *  DE beamwidth (vertical beamwidth)
+    * @type {number}
+    * @instance
+    */
    this.deBeamwidth = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AcousticBeamFundamentalParameter.prototype.initFromBinary = function(inputStream)
   {
        this.activeEmissionParameterIndex = inputStream.readUShort();
@@ -47,6 +78,9 @@ dis.AcousticBeamFundamentalParameter = function()
        this.deBeamwidth = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AcousticBeamFundamentalParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.activeEmissionParameterIndex);

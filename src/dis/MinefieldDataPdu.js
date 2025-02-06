@@ -17,71 +17,162 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.MinefieldDataPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 39;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 8;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Minefield ID */
+   /**
+    * Minefield ID
+    * @type {EntityID}
+    * @instance
+    */
    this.minefieldID = new dis.EntityID(); 
 
-   /** ID of entity making request */
+   /**
+    * ID of entity making request
+    * @type {EntityID}
+    * @instance
+    */
    this.requestingEntityID = new dis.EntityID(); 
 
-   /** Minefield sequence number */
+   /**
+    * Minefield sequence number
+    * @type {number}
+    * @instance
+    */
    this.minefieldSequenceNumbeer = 0;
 
-   /** request ID */
+   /**
+    * request ID
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
-   /** pdu sequence number */
+   /**
+    * pdu sequence number
+    * @type {number}
+    * @instance
+    */
    this.pduSequenceNumber = 0;
 
-   /** number of pdus in response */
+   /**
+    * number of pdus in response
+    * @type {number}
+    * @instance
+    */
    this.numberOfPdus = 0;
 
-   /** how many mines are in this PDU */
+   /**
+    * how many mines are in this PDU
+    * @type {number}
+    * @instance
+    */
    this.numberOfMinesInThisPdu = 0;
 
-   /** how many sensor type are in this PDU */
+   /**
+    * how many sensor type are in this PDU
+    * @type {number}
+    * @instance
+    */
    this.numberOfSensorTypes = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** 32 boolean fields */
+   /**
+    * 32 boolean fields
+    * @type {number}
+    * @instance
+    */
    this.dataFilter = 0;
 
-   /** Mine type */
+   /**
+    * Mine type
+    * @type {EntityType}
+    * @instance
+    */
    this.mineType = new dis.EntityType(); 
 
-   /** Sensor types, each 16 bits long */
+   /**
+    * Sensor types, each 16 bits long
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.sensorTypes = new Array();
  
-   /** Padding to get things 32-bit aligned. ^^^this is wrong--dyanmically sized padding needed */
+   /**
+    * Padding to get things 32-bit aligned. ^^^this is wrong--dyanmically sized padding needed
+    * @type {number}
+    * @instance
+    */
    this.pad3 = 0;
 
-   /** Mine locations */
+   /**
+    * Mine locations
+    * @type {Array<Vector3Float>}
+    * @instance
+    */
     this.mineLocation = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.MinefieldDataPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -119,6 +210,9 @@ dis.MinefieldDataPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.MinefieldDataPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

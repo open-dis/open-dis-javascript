@@ -17,50 +17,113 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.IsGroupOfPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 34;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 7;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of aggregated entities */
+   /**
+    * ID of aggregated entities
+    * @type {EntityID}
+    * @instance
+    */
    this.groupEntityID = new dis.EntityID(); 
 
-   /** type of entities constituting the group */
+   /**
+    * type of entities constituting the group
+    * @type {number}
+    * @instance
+    */
    this.groupedEntityCategory = 0;
 
-   /** Number of individual entities constituting the group */
+   /**
+    * Number of individual entities constituting the group
+    * @type {number}
+    * @instance
+    */
    this.numberOfGroupedEntities = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** latitude */
+   /**
+    * latitude
+    * @type {number}
+    * @instance
+    */
    this.latitude = 0;
 
-   /** longitude */
+   /**
+    * longitude
+    * @type {number}
+    * @instance
+    */
    this.longitude = 0;
 
-   /** GED records about each individual entity in the group. ^^^this is wrong--need a database lookup to find the actual size of the list elements */
+   /**
+    * GED records about each individual entity in the group. ^^^this is wrong--need a database lookup to find the actual size of the list elements
+    * @type {Array<VariableDatum>}
+    * @instance
+    */
     this.groupedEntityDescriptions = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.IsGroupOfPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -85,6 +148,9 @@ dis.IsGroupOfPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.IsGroupOfPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

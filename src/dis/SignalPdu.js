@@ -17,53 +17,120 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.SignalPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 26;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 4;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of the entity that is the source of the communication, ie contains the radio */
+   /**
+    * ID of the entity that is the source of the communication, ie contains the radio
+    * @type {EntityID}
+    * @instance
+    */
    this.entityId = new dis.EntityID(); 
 
-   /** particular radio within an entity */
+   /**
+    * particular radio within an entity
+    * @type {number}
+    * @instance
+    */
    this.radioId = 0;
 
-   /** encoding scheme used, and enumeration */
+   /**
+    * encoding scheme used, and enumeration
+    * @type {number}
+    * @instance
+    */
    this.encodingScheme = 0;
 
-   /** tdl type */
+   /**
+    * tdl type
+    * @type {number}
+    * @instance
+    */
    this.tdlType = 0;
 
-   /** sample rate */
+   /**
+    * sample rate
+    * @type {number}
+    * @instance
+    */
    this.sampleRate = 0;
 
-   /** length of data, in bits */
+   /**
+    * length of data, in bits
+    * @type {number}
+    * @instance
+    */
    this.dataLength = 0;
 
-   /** number of samples. If the PDU contains encoded audio, this should be zero. */
+   /**
+    * number of samples. If the PDU contains encoded audio, this should be zero.
+    * @type {number}
+    * @instance
+    */
    this.samples = 0;
 
-   /** list of eight bit values. Must be padded to fall on a 32 bit boundary. */
+   /**
+    * list of eight bit values. Must be padded to fall on a 32 bit boundary.
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.data = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.SignalPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -92,6 +159,9 @@ dis.SignalPdu = function()
 	}
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.SignalPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

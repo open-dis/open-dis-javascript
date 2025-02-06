@@ -17,11 +17,22 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.SixByteChunk = function()
 {
-   /** six bytes of arbitrary data */
+   /**
+    * six bytes of arbitrary data
+    * @type {Array<number>}
+    * @instance
+    */
    this.otherParameters = new Array(0, 0, 0, 0, 0, 0);
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.SixByteChunk.prototype.initFromBinary = function(inputStream)
   {
        for(var idx = 0; idx < 6; idx++)
@@ -30,6 +41,9 @@ dis.SixByteChunk = function()
        }
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.SixByteChunk.prototype.encodeToBinary = function(outputStream)
   {
        for(var idx = 0; idx < 6; idx++)

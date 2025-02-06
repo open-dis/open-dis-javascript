@@ -17,59 +17,134 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.MinefieldQueryPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 38;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 8;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Minefield ID */
+   /**
+    * Minefield ID
+    * @type {EntityID}
+    * @instance
+    */
    this.minefieldID = new dis.EntityID(); 
 
-   /** EID of entity making the request */
+   /**
+    * EID of entity making the request
+    * @type {EntityID}
+    * @instance
+    */
    this.requestingEntityID = new dis.EntityID(); 
 
-   /** request ID */
+   /**
+    * request ID
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
-   /** Number of perimeter points for the minefield */
+   /**
+    * Number of perimeter points for the minefield
+    * @type {number}
+    * @instance
+    */
    this.numberOfPerimeterPoints = 0;
 
-   /** Padding */
+   /**
+    * Padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** Number of sensor types */
+   /**
+    * Number of sensor types
+    * @type {number}
+    * @instance
+    */
    this.numberOfSensorTypes = 0;
 
-   /** data filter, 32 boolean fields */
+   /**
+    * data filter, 32 boolean fields
+    * @type {number}
+    * @instance
+    */
    this.dataFilter = 0;
 
-   /** Entity type of mine being requested */
+   /**
+    * Entity type of mine being requested
+    * @type {EntityType}
+    * @instance
+    */
    this.requestedMineType = new dis.EntityType(); 
 
-   /** perimeter points of request */
+   /**
+    * perimeter points of request
+    * @type {Array<Point>}
+    * @instance
+    */
     this.requestedPerimeterPoints = new Array();
  
-   /** Sensor types, each 16 bits long */
+   /**
+    * Sensor types, each 16 bits long
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.sensorTypes = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.MinefieldQueryPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -103,6 +178,9 @@ dis.MinefieldQueryPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.MinefieldQueryPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

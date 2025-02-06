@@ -17,14 +17,33 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.Orientation = function()
 {
+   /**
+    * @type {number}
+    * @instance
+    */
    this.psi = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.theta = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.phi = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.Orientation.prototype.initFromBinary = function(inputStream)
   {
        this.psi = inputStream.readFloat32();
@@ -32,6 +51,9 @@ dis.Orientation = function()
        this.phi = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.Orientation.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.psi);

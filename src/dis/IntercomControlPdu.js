@@ -17,65 +17,148 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.IntercomControlPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 32;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 4;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** control type */
+   /**
+    * control type
+    * @type {number}
+    * @instance
+    */
    this.controlType = 0;
 
-   /** control type */
+   /**
+    * control type
+    * @type {number}
+    * @instance
+    */
    this.communicationsChannelType = 0;
 
-   /** Source entity ID */
+   /**
+    * Source entity ID
+    * @type {EntityID}
+    * @instance
+    */
    this.sourceEntityID = new dis.EntityID(); 
 
-   /** The specific intercom device being simulated within an entity. */
+   /**
+    * The specific intercom device being simulated within an entity.
+    * @type {number}
+    * @instance
+    */
    this.sourceCommunicationsDeviceID = 0;
 
-   /** Line number to which the intercom control refers */
+   /**
+    * Line number to which the intercom control refers
+    * @type {number}
+    * @instance
+    */
    this.sourceLineID = 0;
 
-   /** priority of this message relative to transmissons from other intercom devices */
+   /**
+    * priority of this message relative to transmissons from other intercom devices
+    * @type {number}
+    * @instance
+    */
    this.transmitPriority = 0;
 
-   /** current transmit state of the line */
+   /**
+    * current transmit state of the line
+    * @type {number}
+    * @instance
+    */
    this.transmitLineState = 0;
 
-   /** detailed type requested. */
+   /**
+    * detailed type requested.
+    * @type {number}
+    * @instance
+    */
    this.command = 0;
 
-   /** eid of the entity that has created this intercom channel. */
+   /**
+    * eid of the entity that has created this intercom channel.
+    * @type {number}
+    * @instance
+    */
    this.masterEntityID = new dis.EntityID(); 
 
-   /** specific intercom device that has created this intercom channel */
+   /**
+    * specific intercom device that has created this intercom channel
+    * @type {number}
+    * @instance
+    */
    this.masterCommunicationsDeviceID = 0;
 
-   /** number of intercom parameters */
+   /**
+    * number of intercom parameters
+    * @type {number}
+    * @instance
+    */
    this.intercomParametersLength = 0;
 
-   /** Must be  */
+   /**
+    * Must be
+    * @type {Array<IntercomCommunicationsParameters>}
+    * @instance
+    */
     this.intercomParameters = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.IntercomControlPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -105,6 +188,9 @@ dis.IntercomControlPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.IntercomControlPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

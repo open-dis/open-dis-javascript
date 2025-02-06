@@ -17,28 +17,63 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AggregateType = function()
 {
-   /** Kind of entity */
+   /**
+    * Kind of entity
+    * @type {number}
+    * @instance
+    */
    this.aggregateKind = 0;
 
-   /** Domain of entity (air, surface, subsurface, space, etc) */
+   /**
+    * Domain of entity (air, surface, subsurface, space, etc)
+    * @type {number}
+    * @instance
+    */
    this.domain = 0;
 
-   /** country to which the design of the entity is attributed */
+   /**
+    * country to which the design of the entity is attributed
+    * @type {number}
+    * @instance
+    */
    this.country = 0;
 
-   /** category of entity */
+   /**
+    * category of entity
+    * @type {number}
+    * @instance
+    */
    this.category = 0;
 
-   /** subcategory of entity */
+   /**
+    * subcategory of entity
+    * @type {number}
+    * @instance
+    */
    this.subcategory = 0;
 
-   /** specific info based on subcategory field, sql has a reserved word for specific */
+   /**
+    * specific info based on subcategory field, sql has a reserved word for specific
+    * @type {number}
+    * @instance
+    */
    this.specificInfo = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.extra = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AggregateType.prototype.initFromBinary = function(inputStream)
   {
        this.aggregateKind = inputStream.readUByte();
@@ -50,6 +85,9 @@ dis.AggregateType = function()
        this.extra = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AggregateType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.aggregateKind);

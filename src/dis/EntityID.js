@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.EntityID = function()
 {
-   /** The site ID */
+   /**
+    * The site ID
+    * @type {number}
+    * @instance
+    */
    this.site = 0;
 
-   /** The application ID */
+   /**
+    * The application ID
+    * @type {number}
+    * @instance
+    */
    this.application = 0;
 
-   /** the entity ID */
+   /**
+    * the entity ID
+    * @type {number}
+    * @instance
+    */
    this.entity = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.EntityID.prototype.initFromBinary = function(inputStream)
   {
        this.site = inputStream.readUShort();
@@ -35,6 +54,9 @@ dis.EntityID = function()
        this.entity = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.EntityID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.site);

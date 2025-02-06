@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.EmitterSystem = function()
 {
-   /** Name of the emitter, 16 bit enumeration */
+   /**
+    * Name of the emitter, 16 bit enumeration
+    * @type {number}
+    * @instance
+    */
    this.emitterName = 0;
 
-   /** function of the emitter, 8 bit enumeration */
+   /**
+    * function of the emitter, 8 bit enumeration
+    * @type {number}
+    * @instance
+    */
    this.function = 0;
 
-   /** emitter ID, 8 bit enumeration */
+   /**
+    * emitter ID, 8 bit enumeration
+    * @type {number}
+    * @instance
+    */
    this.emitterIdNumber = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.EmitterSystem.prototype.initFromBinary = function(inputStream)
   {
        this.emitterName = inputStream.readUShort();
@@ -35,6 +54,9 @@ dis.EmitterSystem = function()
        this.emitterIdNumber = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.EmitterSystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.emitterName);

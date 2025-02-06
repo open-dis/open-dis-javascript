@@ -5,14 +5,37 @@ if (typeof dis === "undefined")
 if (typeof exports === "undefined")
    exports = {};
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.CoordinateConversion = function()
  {
-     
+    /**
+     * @type {number}
+     * @instance
+     */
     this.RADIANS_TO_DEGREES = 180.0/Math.PI;
+    
+    /**
+     * @type {number}
+     * @instance
+     */
     this.DEGREES_TO_RADIANS = Math.PI/180.0;
     
-    this.a = 6378137.0;    //semi major axis (WGS 84)
-    this.b = 6356752.3142; //semi minor axis (WGS 84)
+    /**
+     * semi major axis (WGS 84)
+     * @type {number}
+     * @instance
+     */
+    this.a = 6378137.0;
+
+    /**
+     * semi minor axis (WGS 84)
+     * @type {number}
+     * @instance
+     */
+    this.b = 6356752.3142;
     
     /**
      * Converts DIS xyz world coordinates to latitude and longitude (IN DEGREES). This algorithm may not be 100% accurate
@@ -20,8 +43,8 @@ dis.CoordinateConversion = function()
      * else. These formulas were obtained from Military Handbook 600008. The code itself has been 
      * translated from C to Java to Javascript over the years, so hold onto your hats.
      * 
-     * @param position {x:, y:, z:}
-     * @return {latitude:, longitude: altitude:}
+     * @param {Vector3Float} position
+     * @return {LatLonAlt}
      */
     dis.CoordinateConversion.prototype.convertDisToLatLongInDegrees = function(position)
     {
@@ -90,8 +113,8 @@ dis.CoordinateConversion = function()
      * Converts lat long and geodetic height (elevation) into DIS XYZ
      * This algorithm also uses the WGS84 ellipsoid, though you can change the values
      * of a and b for a different ellipsoid. Adapted from Military Handbook 600008
-     * @param latLonAlt {lat: lon: alt:} in degrees and meters
-     * @return {x: y: z:} in meters
+     * @param {LatLonAlt} latLonAlt in degrees and meters
+     * @return {Vector3Float} in meters
      */
     dis.CoordinateConversion.prototype.getXYZfromLatLonAltDegrees = function(latLonAlt)
     {

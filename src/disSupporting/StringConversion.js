@@ -17,8 +17,8 @@ if (typeof exports === "undefined")
  * 
  * It is recommended that only ASCII character set (character set = 1)
  * be used.
- * 
- * @returns {undefined}
+ * @constructor
+ * @memberof dis
  */
 dis.StringConversion = function()
 {
@@ -28,8 +28,8 @@ dis.StringConversion = function()
  * Given a string, returns a DIS marking field. The character set is set to
  * 1, for ascii. The length is clamped to 11, and zero-filled if the string
  * is shorter than 11.
- * 
- * @returns {array} disMarking field, 12 bytes long, character set = 1 (ascii) in 0, zero-filled to 11 character codes 
+ * @param {string} markingString
+ * @returns {Array<number>} disMarking field, 12 bytes long, character set = 1 (ascii) in 0, zero-filled to 11 character codes 
  */
 dis.StringConversion.prototype.StringToDisMarking = function(markingString)
 {
@@ -63,7 +63,7 @@ dis.StringConversion.prototype.StringToDisMarking = function(markingString)
 /**
  * Given a DIS marking field, returns a string. Assumes always ascii.
  * 
- * @param {array} disMarking dis marking field, [0] = character set, the rest character codes
+ * @param {Array<number>} disMarking dis marking field, [0] = character set, the rest character codes
  * @returns {string} string equivalent of the marking field
  */
 dis.StringConversion.prototype.DisMarkingToString = function(disMarking)

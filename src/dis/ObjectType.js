@@ -17,23 +17,50 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ObjectType = function()
 {
-   /** Kind of entity */
+   /**
+    * Kind of entity
+    * @type {number}
+    * @instance
+    */
    this.entityKind = 0;
 
-   /** Domain of entity (air, surface, subsurface, space, etc) */
+   /**
+    * Domain of entity (air, surface, subsurface, space, etc)
+    * @type {number}
+    * @instance
+    */
    this.domain = 0;
 
-   /** country to which the design of the entity is attributed */
+   /**
+    * country to which the design of the entity is attributed
+    * @type {number}
+    * @instance
+    */
    this.country = 0;
 
-   /** category of entity */
+   /**
+    * category of entity
+    * @type {number}
+    * @instance
+    */
    this.category = 0;
 
-   /** subcategory of entity */
+   /**
+    * subcategory of entity
+    * @type {number}
+    * @instance
+    */
    this.subcategory = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ObjectType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
@@ -43,6 +70,9 @@ dis.ObjectType = function()
        this.subcategory = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ObjectType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);

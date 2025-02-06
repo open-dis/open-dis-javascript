@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.Point = function()
 {
-   /** x */
+   /**
+    * x
+    * @type {number}
+    * @instance
+    */
    this.x = 0;
 
-   /** y */
+   /**
+    * y
+    * @type {number}
+    * @instance
+    */
    this.y = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.Point.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat32();
        this.y = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.Point.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.x);

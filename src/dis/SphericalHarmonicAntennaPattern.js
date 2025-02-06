@@ -17,15 +17,29 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.SphericalHarmonicAntennaPattern = function()
 {
+   /**
+    * @type {number}
+    * @instance
+    */
    this.harmonicOrder = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.SphericalHarmonicAntennaPattern.prototype.initFromBinary = function(inputStream)
   {
        this.harmonicOrder = inputStream.readByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.SphericalHarmonicAntennaPattern.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeByte(this.harmonicOrder);

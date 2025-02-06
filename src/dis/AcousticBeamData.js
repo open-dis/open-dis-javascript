@@ -17,20 +17,43 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AcousticBeamData = function()
 {
-   /** beam data length */
+   /**
+    * beam data length
+    * @type {number}
+    * @instance
+    */
    this.beamDataLength = 0;
 
-   /** beamIDNumber */
+   /**
+    * beamIDNumber
+    * @type {number}
+    * @instance
+    */
    this.beamIDNumber = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** fundamental data parameters */
+   /**
+    *  fundamental data parameters
+    * @type {AcousticBeamFundamentalParameter}
+    * @instance
+    */
    this.fundamentalDataParameters = new dis.AcousticBeamFundamentalParameter(); 
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AcousticBeamData.prototype.initFromBinary = function(inputStream)
   {
        this.beamDataLength = inputStream.readUShort();
@@ -39,6 +62,9 @@ dis.AcousticBeamData = function()
        this.fundamentalDataParameters.initFromBinary(inputStream);
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AcousticBeamData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.beamDataLength);

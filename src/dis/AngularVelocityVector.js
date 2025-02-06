@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AngularVelocityVector = function()
 {
-   /** velocity about the x axis */
+   /**
+    * velocity about the x axis
+    * @type {number}
+    * @instance
+    */
    this.x = 0;
 
-   /** velocity about the y axis */
+   /**
+    * velocity about the y axis
+    * @type {number}
+    * @instance
+    */
    this.y = 0;
 
-   /** velocity about the zaxis */
+   /**
+    * velocity about the z axis
+    * @type {number}
+    * @instance
+    */
    this.z = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AngularVelocityVector.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat32();
@@ -35,6 +54,9 @@ dis.AngularVelocityVector = function()
        this.z = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AngularVelocityVector.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.x);

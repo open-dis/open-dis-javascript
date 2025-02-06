@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.IntercomCommunicationsParameters = function()
 {
-   /** Type of intercom parameters record */
+   /**
+    * Type of intercom parameters record
+    * @type {number}
+    * @instance
+    */
    this.recordType = 0;
 
-   /** length of record-specifid field, in octets */
+   /**
+    * length of record-specifid field, in octets
+    * @type {number}
+    * @instance
+    */
    this.recordLength = 0;
 
-   /** variable length variablelist of data parameters  */
+   /**
+    * variable length variablelist of data parameters
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.parameterValues = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.IntercomCommunicationsParameters.prototype.initFromBinary = function(inputStream)
   {
        this.recordType = inputStream.readUShort();
@@ -41,6 +60,9 @@ dis.IntercomCommunicationsParameters = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.IntercomCommunicationsParameters.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.recordType);

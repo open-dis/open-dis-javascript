@@ -17,14 +17,29 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AggregateMarking = function()
 {
-   /** The character set */
+   /**
+    * The character set
+    * @type {number}
+    * @instance
+    */
    this.characterSet = 0;
 
-   /** The characters */
+   /**
+    * The characters
+    * @type {Array<number>}
+    * @instance
+    */
    this.characters = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AggregateMarking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
@@ -34,6 +49,9 @@ dis.AggregateMarking = function()
        }
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AggregateMarking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);

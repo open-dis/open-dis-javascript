@@ -17,20 +17,43 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.SystemID = function()
 {
-   /** System Type */
+   /** 
+    * System Type
+    * @type {number}
+    * @instance
+    */
    this.systemType = 0;
 
-   /** System name, an enumeration */
+   /** 
+    * System name, an enumeration
+    * @type {number}
+    * @instance
+    */
    this.systemName = 0;
 
-   /** System mode */
+   /** 
+    * System mode
+    * @type {number}
+    * @instance
+    */
    this.systemMode = 0;
 
-   /** Change Options */
+   /** 
+    * Change Options
+    * @type {number}
+    * @instance
+    */
    this.changeOptions = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.SystemID.prototype.initFromBinary = function(inputStream)
   {
        this.systemType = inputStream.readUShort();
@@ -39,6 +62,9 @@ dis.SystemID = function()
        this.changeOptions = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.SystemID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.systemType);

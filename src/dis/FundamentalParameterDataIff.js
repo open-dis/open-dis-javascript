@@ -17,32 +17,71 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.FundamentalParameterDataIff = function()
 {
-   /** ERP */
+   /**
+    * ERP
+    * @type {number}
+    * @instance
+    */
    this.erp = 0;
 
-   /** frequency */
+   /**
+    * frequency
+    * @type {number}
+    * @instance
+    */
    this.frequency = 0;
 
-   /** pgrf */
+   /**
+    * pgrf
+    * @type {number}
+    * @instance
+    */
    this.pgrf = 0;
 
-   /** Pulse width */
+   /**
+    * Pulse width
+    * @type {number}
+    * @instance
+    */
    this.pulseWidth = 0;
 
-   /** Burst length */
+   /**
+    * Burst length
+    * @type {number}
+    * @instance
+    */
    this.burstLength = 0;
 
-   /** Applicable modes enumeration */
+   /**
+    * Applicable modes enumeration
+    * @type {number}
+    * @instance
+    */
    this.applicableModes = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad3 = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.FundamentalParameterDataIff.prototype.initFromBinary = function(inputStream)
   {
        this.erp = inputStream.readFloat32();
@@ -55,6 +94,9 @@ dis.FundamentalParameterDataIff = function()
        this.pad3 = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.FundamentalParameterDataIff.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.erp);

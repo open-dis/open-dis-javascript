@@ -20,14 +20,29 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.Marking = function()
 {
-   /** The character set */
+   /**
+    * The character set
+    * @type {number}
+    * @instance
+    */
    this.characterSet = 0;
 
-   /** The characters */
+   /**
+    * The characters
+    * @type {Array<number>}
+    * @instance
+    */
    this.characters = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.Marking.prototype.initFromBinary = function(inputStream)
   {
        this.characterSet = inputStream.readUByte();
@@ -37,6 +52,9 @@ dis.Marking = function()
        }
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.Marking.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.characterSet);
@@ -46,9 +64,9 @@ dis.Marking = function()
        }
   };
   
-  /*
+  /**
    * Returns the byte array marking, in string format. 
-   * @return string format marking characters
+   * @returns {string} string format marking characters
    */
   dis.Marking.prototype.getMarking = function()
   {
@@ -67,7 +85,6 @@ dis.Marking = function()
    * than 11 characters.
    * 
    * @param {String} newMarking string format marking
-   * @returns {nothing}
    */
   dis.Marking.prototype.setMarking = function(newMarking)
   {

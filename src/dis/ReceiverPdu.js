@@ -17,50 +17,113 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ReceiverPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 27;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 4;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of the entity that is the source of the communication, ie contains the radio */
+   /**
+    * ID of the entity that is the source of the communication, ie contains the radio
+    * @type {EntityID}
+    * @instance
+    */
    this.entityId = new dis.EntityID(); 
 
-   /** particular radio within an entity */
+   /**
+    * particular radio within an entity
+    * @type {number}
+    * @instance
+    */
    this.radioId = 0;
 
-   /** encoding scheme used, and enumeration */
+   /**
+    * encoding scheme used, and enumeration
+    * @type {number}
+    * @instance
+    */
    this.receiverState = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.padding1 = 0;
 
-   /** received power */
+   /**
+    * received power
+    * @type {number}
+    * @instance
+    */
    this.receivedPower = 0;
 
-   /** ID of transmitter */
+   /**
+    * ID of transmitter
+    * @type {EntityID}
+    * @instance
+    */
    this.transmitterEntityId = new dis.EntityID(); 
 
-   /** ID of transmitting radio */
+   /**
+    * ID of transmitting radio
+    * @type {number}
+    * @instance
+    */
    this.transmitterRadioId = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ReceiverPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -79,6 +142,9 @@ dis.ReceiverPdu = function()
        this.transmitterRadioId = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ReceiverPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

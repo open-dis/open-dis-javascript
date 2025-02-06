@@ -17,144 +17,339 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.FastEntityStatePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 1;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 1;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** The site ID */
+   /**
+    * The site ID
+    * @type {number}
+    * @instance
+    */
    this.site = 0;
 
-   /** The application ID */
+   /**
+    * The application ID
+    * @type {number}
+    * @instance
+    */
    this.application = 0;
 
-   /** the entity ID */
+   /**
+    * the entity ID
+    * @type {number}
+    * @instance
+    */
    this.entity = 0;
 
-   /** what force this entity is affiliated with, eg red, blue, neutral, etc */
+   /**
+    * what force this entity is affiliated with, eg red, blue, neutral, etc
+    * @type {number}
+    * @instance
+    */
    this.forceId = 0;
 
-   /** How many articulation parameters are in the variable length list */
+   /**
+    * How many articulation parameters are in the variable length list
+    * @type {number}
+    * @instance
+    */
    this.numberOfArticulationParameters = 0;
 
-   /** Kind of entity */
+   /**
+    * Kind of entity
+    * @type {number}
+    * @instance
+    */
    this.entityKind = 0;
 
-   /** Domain of entity (air, surface, subsurface, space, etc) */
+   /**
+    * Domain of entity (air, surface, subsurface, space, etc)
+    * @type {number}
+    * @instance
+    */
    this.domain = 0;
 
-   /** country to which the design of the entity is attributed */
+   /**
+    * country to which the design of the entity is attributed
+    * @type {number}
+    * @instance
+    */
    this.country = 0;
 
-   /** category of entity */
+   /**
+    * category of entity
+    * @type {number}
+    * @instance
+    */
    this.category = 0;
 
-   /** subcategory of entity */
+   /**
+    * subcategory of entity
+    * @type {number}
+    * @instance
+    */
    this.subcategory = 0;
 
-   /** specific info based on subcategory field. Name changed from specific because that is a reserved word in SQL. */
+   /**
+    * specific info based on subcategory field. Name changed from specific because that is a reserved word in SQL.
+    * @type {number}
+    * @instance
+    */
    this.specif = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.extra = 0;
 
-   /** Kind of entity */
+   /**
+    * Kind of entity
+    * @type {number}
+    * @instance
+    */
    this.altEntityKind = 0;
 
-   /** Domain of entity (air, surface, subsurface, space, etc) */
+   /**
+    * Domain of entity (air, surface, subsurface, space, etc)
+    * @type {number}
+    * @instance
+    */
    this.altDomain = 0;
 
-   /** country to which the design of the entity is attributed */
+   /**
+    * country to which the design of the entity is attributed
+    * @type {number}
+    * @instance
+    */
    this.altCountry = 0;
 
-   /** category of entity */
+   /**
+    * category of entity
+    * @type {number}
+    * @instance
+    */
    this.altCategory = 0;
 
-   /** subcategory of entity */
+   /**
+    * subcategory of entity
+    * @type {number}
+    * @instance
+    */
    this.altSubcategory = 0;
 
-   /** specific info based on subcategory field */
+   /**
+    * specific info based on subcategory field
+    * @type {number}
+    * @instance
+    */
    this.altSpecific = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.altExtra = 0;
 
-   /** X velo */
+   /**
+    * X velo
+    * @type {number}
+    * @instance
+    */
    this.xVelocity = 0;
 
-   /** y Value */
+   /**
+    * y Value
+    * @type {number}
+    * @instance
+    */
    this.yVelocity = 0;
 
-   /** Z value */
+   /**
+    * Z value
+    * @type {number}
+    * @instance
+    */
    this.zVelocity = 0;
 
-   /** X value */
+   /**
+    * X value
+    * @type {number}
+    * @instance
+    */
    this.xLocation = 0;
 
-   /** y Value */
+   /**
+    * y Value
+    * @type {number}
+    * @instance
+    */
    this.yLocation = 0;
 
-   /** Z value */
+   /**
+    * Z value
+    * @type {number}
+    * @instance
+    */
    this.zLocation = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.psi = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.theta = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.phi = 0;
 
-   /** a series of bit flags that are used to help draw the entity, such as smoking, on fire, etc. */
+   /**
+    * a series of bit flags that are used to help draw the entity, such as smoking, on fire, etc.
+    * @type {number}
+    * @instance
+    */
    this.entityAppearance = 0;
 
-   /** enumeration of what dead reckoning algorighm to use */
+   /**
+    * enumeration of what dead reckoning algorighm to use
+    * @type {number}
+    * @instance
+    */
    this.deadReckoningAlgorithm = 0;
 
-   /** other parameters to use in the dead reckoning algorithm */
+   /**
+    * other parameters to use in the dead reckoning algorithm
+    * @type {Array<number>}
+    * @instance
+    */
    this.otherParameters = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-   /** X value */
+   /**
+    * X value
+    * @type {number}
+    * @instance
+    */
    this.xAcceleration = 0;
 
-   /** y Value */
+   /**
+    * y Value
+    * @type {number}
+    * @instance
+    */
    this.yAcceleration = 0;
 
-   /** Z value */
+   /**
+    * Z value
+    * @type {number}
+    * @instance
+    */
    this.zAcceleration = 0;
 
-   /** X value */
+   /**
+    * X value
+    * @type {number}
+    * @instance
+    */
    this.xAngularVelocity = 0;
 
-   /** y Value */
+   /**
+    * y Value
+    * @type {number}
+    * @instance
+    */
    this.yAngularVelocity = 0;
 
-   /** Z value */
+   /**
+    * Z value
+    * @type {number}
+    * @instance
+    */
    this.zAngularVelocity = 0;
 
-   /** characters that can be used for debugging, or to draw unique strings on the side of entities in the world */
+   /**
+    * characters that can be used for debugging, or to draw unique strings on the side of entities in the world
+    * @type {Array<number>}
+    * @instance
+    */
    this.marking = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-   /** a series of bit flags */
+   /**
+    * a series of bit flags
+    * @type {number}
+    * @instance
+    */
    this.capabilities = 0;
 
-   /** variable length list of articulation parameters */
+   /**
+    * variable length list of articulation parameters
+    * @type {Array<ArticulationParameter>}
+    * @instance
+    */
     this.articulationParameters = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.FastEntityStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -218,6 +413,9 @@ dis.FastEntityStatePdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.FastEntityStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
@@ -279,7 +477,9 @@ dis.FastEntityStatePdu = function()
 
   };
 
-/** 0 uniform color, 1 camouflage */
+/** 
+ * @returns {number} 0 uniform color, 1 camouflage 
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_paintScheme = function()
 {
    var val = this.entityAppearance & 0x1;
@@ -287,7 +487,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_paintScheme = function()
 };
 
 
-/** 0 uniform color, 1 camouflage */
+/** 
+ * @param {number} val 0 uniform color, 1 camouflage  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_paintScheme= function(val)
 {
   this.entityAppearance &= ~0x1; // Zero existing bits
@@ -296,7 +498,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_paintScheme= function(val)
 };
 
 
-/** 0 no mobility kill, 1 mobility kill */
+/** 
+ * @returns {number} 0 no mobility kill, 1 mobility kill  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_mobility = function()
 {
    var val = this.entityAppearance & 0x2;
@@ -304,7 +508,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_mobility = function()
 };
 
 
-/** 0 no mobility kill, 1 mobility kill */
+/** 
+ * @param {number} val 0 no mobility kill, 1 mobility kill  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_mobility= function(val)
 {
   this.entityAppearance &= ~0x2; // Zero existing bits
@@ -313,7 +519,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_mobility= function(val)
 };
 
 
-/** 0 no firepower iill, 1 firepower kill */
+/** 
+ * @returns {number} 0 no firepower iill, 1 firepower kill  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_firepower = function()
 {
    var val = this.entityAppearance & 0x4;
@@ -321,7 +529,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_firepower = function()
 };
 
 
-/** 0 no firepower iill, 1 firepower kill */
+/** 
+ * @param {number} val 0 no firepower iill, 1 firepower kill  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_firepower= function(val)
 {
   this.entityAppearance &= ~0x4; // Zero existing bits
@@ -330,7 +540,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_firepower= function(val)
 };
 
 
-/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+/** 
+ * @returns {number} 0 no damage, 1 slight damage, 2 moderate, 3 destroyed  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_damage = function()
 {
    var val = this.entityAppearance & 0x18;
@@ -338,7 +550,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_damage = function()
 };
 
 
-/** 0 no damage, 1 slight damage, 2 moderate, 3 destroyed */
+/** 
+ * @param {number} val 0 no damage, 1 slight damage, 2 moderate, 3 destroyed  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_damage= function(val)
 {
   this.entityAppearance &= ~0x18; // Zero existing bits
@@ -347,7 +561,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_damage= function(val)
 };
 
 
-/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+/** 
+ * @returns {number} 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_smoke = function()
 {
    var val = this.entityAppearance & 0x60;
@@ -355,7 +571,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_smoke = function()
 };
 
 
-/** 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume */
+/** 
+ * @param {number} val 0 no smoke, 1 smoke plume, 2 engine smoke, 3 engine smoke and plume  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_smoke= function(val)
 {
   this.entityAppearance &= ~0x60; // Zero existing bits
@@ -364,7 +582,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_smoke= function(val)
 };
 
 
-/** dust cloud, 0 none 1 small 2 medium 3 large */
+/** 
+ * @param {number} val dust cloud, 0 none 1 small 2 medium 3 large  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_trailingEffects = function()
 {
    var val = this.entityAppearance & 0x180;
@@ -372,7 +592,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_trailingEffects = function(
 };
 
 
-/** dust cloud, 0 none 1 small 2 medium 3 large */
+/** 
+ * @param {number} val dust cloud, 0 none 1 small 2 medium 3 large  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_trailingEffects= function(val)
 {
   this.entityAppearance &= ~0x180; // Zero existing bits
@@ -381,7 +603,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_trailingEffects= function(v
 };
 
 
-/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+/** 
+ * @returns {number} 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_hatch = function()
 {
    var val = this.entityAppearance & 0xe00;
@@ -389,7 +613,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_hatch = function()
 };
 
 
-/** 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible */
+/** 
+ * @param {number} val 0 NA 1 closed popped 3 popped and person visible  4 open 5 open and person visible  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_hatch= function(val)
 {
   this.entityAppearance &= ~0xe00; // Zero existing bits
@@ -398,7 +624,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_hatch= function(val)
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @returns {number} 0 off 1 on
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_headlights = function()
 {
    var val = this.entityAppearance & 0x1000;
@@ -406,7 +634,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_headlights = function()
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @param {number} val 0 off 1 on  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_headlights= function(val)
 {
   this.entityAppearance &= ~0x1000; // Zero existing bits
@@ -415,7 +645,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_headlights= function(val)
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @returns {number} 0 off 1 on  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_tailLights = function()
 {
    var val = this.entityAppearance & 0x2000;
@@ -423,7 +655,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_tailLights = function()
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @param {number} val 0 off 1 on  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_tailLights= function(val)
 {
   this.entityAppearance &= ~0x2000; // Zero existing bits
@@ -432,7 +666,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_tailLights= function(val)
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @returns {number} 0 off 1 on  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_brakeLights = function()
 {
    var val = this.entityAppearance & 0x4000;
@@ -440,7 +676,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_brakeLights = function()
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @param {number} val 0 off 1 on  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_brakeLights= function(val)
 {
   this.entityAppearance &= ~0x4000; // Zero existing bits
@@ -449,7 +687,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_brakeLights= function(val)
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @returns {number} 0 off 1 on  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_flaming = function()
 {
    var val = this.entityAppearance & 0x8000;
@@ -457,7 +697,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_flaming = function()
 };
 
 
-/** 0 off 1 on */
+/** 
+ * @param {number} val 0 off 1 on  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_flaming= function(val)
 {
   this.entityAppearance &= ~0x8000; // Zero existing bits
@@ -466,7 +708,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_flaming= function(val)
 };
 
 
-/** 0 not raised 1 raised */
+/** 
+ * @returns {number} 0 not raised 1 raised  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_launcher = function()
 {
    var val = this.entityAppearance & 0x10000;
@@ -474,7 +718,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_launcher = function()
 };
 
 
-/** 0 not raised 1 raised */
+/** 
+ * @param {number} val 0 not raised 1 raised  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_launcher= function(val)
 {
   this.entityAppearance &= ~0x10000; // Zero existing bits
@@ -483,7 +729,9 @@ dis.FastEntityStatePdu.prototype.setEntityAppearance_launcher= function(val)
 };
 
 
-/** 0 desert 1 winter 2 forest 3 unused */
+/** 
+ * @returns {number} 0 desert 1 winter 2 forest 3 unused  
+ */
 dis.FastEntityStatePdu.prototype.getEntityAppearance_camouflageType = function()
 {
    var val = this.entityAppearance & 0x60000;
@@ -491,7 +739,9 @@ dis.FastEntityStatePdu.prototype.getEntityAppearance_camouflageType = function()
 };
 
 
-/** 0 desert 1 winter 2 forest 3 unused */
+/** 
+ * @param {number} val 0 desert 1 winter 2 forest 3 unused  
+ */
 dis.FastEntityStatePdu.prototype.setEntityAppearance_camouflageType= function(val)
 {
   this.entityAppearance &= ~0x60000; // Zero existing bits

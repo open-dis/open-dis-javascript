@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.TrackJamTarget = function()
 {
-   /** track/jam target */
+   /**
+    * track/jam target
+    * @type {EntityID}
+    * @instance
+    */
    this.trackJam = new dis.EntityID(); 
 
-   /** Emitter ID */
+   /**
+    * Emitter ID
+    * @type {number}
+    * @instance
+    */
    this.emitterID = 0;
 
-   /** beam ID */
+   /**
+    * beam ID
+    * @type {number}
+    * @instance
+    */
    this.beamID = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.TrackJamTarget.prototype.initFromBinary = function(inputStream)
   {
        this.trackJam.initFromBinary(inputStream);
@@ -35,6 +54,9 @@ dis.TrackJamTarget = function()
        this.beamID = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.TrackJamTarget.prototype.encodeToBinary = function(outputStream)
   {
        this.trackJam.encodeToBinary(outputStream);

@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.NamedLocation = function()
 {
-   /** station name enumeration */
+   /**
+    * station name enumeration
+    * @type {number}
+    * @instance
+    */
    this.stationName = 0;
 
-   /** station number */
+   /**
+    * station number
+    * @type {number}
+    * @instance
+    */
    this.stationNumber = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.NamedLocation.prototype.initFromBinary = function(inputStream)
   {
        this.stationName = inputStream.readUShort();
        this.stationNumber = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.NamedLocation.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.stationName);

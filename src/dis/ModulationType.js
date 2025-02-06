@@ -17,20 +17,43 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ModulationType = function()
 {
-   /** spread spectrum, 16 bit boolean array */
+   /**
+    * spread spectrum, 16 bit boolean array
+    * @type {number}
+    * @instance
+    */
    this.spreadSpectrum = 0;
 
-   /** major */
+   /**
+    * major
+    * @type {number}
+    * @instance
+    */
    this.major = 0;
 
-   /** detail */
+   /**
+    * detail
+    * @type {number}
+    * @instance
+    */
    this.detail = 0;
 
-   /** system */
+   /**
+    * system
+    * @type {number}
+    * @instance
+    */
    this.system = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ModulationType.prototype.initFromBinary = function(inputStream)
   {
        this.spreadSpectrum = inputStream.readUShort();
@@ -39,6 +62,9 @@ dis.ModulationType = function()
        this.system = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ModulationType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.spreadSpectrum);

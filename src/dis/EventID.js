@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.EventID = function()
 {
-   /** The site ID */
+   /**
+    * The site ID
+    * @type {number}
+    * @instance
+    */
    this.site = 0;
 
-   /** The application ID */
+   /**
+    * The application ID
+    * @type {number}
+    * @instance
+    */
    this.application = 0;
 
-   /** the number of the event */
+   /**
+    * the number of the event
+    * @type {number}
+    * @instance
+    */
    this.eventNumber = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.EventID.prototype.initFromBinary = function(inputStream)
   {
        this.site = inputStream.readUShort();
@@ -35,6 +54,9 @@ dis.EventID = function()
        this.eventNumber = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.EventID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.site);

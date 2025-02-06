@@ -17,26 +17,57 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AcousticEmitterSystemData = function()
 {
-   /** Length of emitter system data */
+   /**
+    *  Length of emitter system data
+    * @type {number}
+    * @instance
+    */
    this.emitterSystemDataLength = 0;
 
-   /** Number of beams */
+   /**
+    *  Number of beams
+    * @type {number}
+    * @instance
+    */
    this.numberOfBeams = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** This field shall specify the system for a particular UA emitter. */
+   /**
+    *  This field shall specify the system for a particular UA emitter.
+    * @type {AcousticEmitterSystem}
+    * @instance
+    */
    this.acousticEmitterSystem = new dis.AcousticEmitterSystem(); 
 
-   /** Represents the location wrt the entity */
+   /**
+    *  Represents the location wrt the entity
+    * @type {Vector3Float}
+    * @instance
+    */
    this.emitterLocation = new dis.Vector3Float(); 
 
-   /** For each beam in numberOfBeams, an emitter system. This is not right--the beam records need to be at the end of the PDU, rather than attached to each system. */
+   /**
+    *  For each beam in numberOfBeams, an emitter system. This is not right--the beam records need to be at the end of the PDU, rather than attached to each system.
+    * @type {Array<AcousticBeamData>}
+    * @instance
+    */
     this.beamRecords = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AcousticEmitterSystemData.prototype.initFromBinary = function(inputStream)
   {
        this.emitterSystemDataLength = inputStream.readUByte();
@@ -53,6 +84,9 @@ dis.AcousticEmitterSystemData = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AcousticEmitterSystemData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.emitterSystemDataLength);

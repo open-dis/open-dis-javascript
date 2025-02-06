@@ -17,44 +17,99 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.MinefieldResponseNackPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 40;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 8;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Minefield ID */
+   /**
+    * Minefield ID
+    * @type {EntityID}
+    * @instance
+    */
    this.minefieldID = new dis.EntityID(); 
 
-   /** entity ID making the request */
+   /**
+    * entity ID making the request
+    * @type {EntityID}
+    * @instance
+    */
    this.requestingEntityID = new dis.EntityID(); 
 
-   /** request ID */
+   /**
+    * request ID
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
-   /** how many pdus were missing */
+   /**
+    * how many pdus were missing
+    * @type {number}
+    * @instance
+    */
    this.numberOfMissingPdus = 0;
 
-   /** PDU sequence numbers that were missing */
+   /**
+    * PDU sequence numbers that were missing
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.missingPduSequenceNumbers = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.MinefieldResponseNackPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -77,6 +132,9 @@ dis.MinefieldResponseNackPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.MinefieldResponseNackPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

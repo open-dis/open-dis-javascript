@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.Vector3Double = function()
 {
-   /** X value */
+   /** 
+    * X value 
+    * @type {number}
+    * @instance
+    */
    this.x = 0;
 
-   /** Y value */
+   /** 
+    * Y value 
+    * @type {number}
+    * @instance
+    */
    this.y = 0;
 
-   /** Z value */
+   /** 
+    * Z value 
+    * @type {number}
+    * @instance
+    */
    this.z = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.Vector3Double.prototype.initFromBinary = function(inputStream)
   {
        this.x = inputStream.readFloat64();
@@ -35,6 +54,9 @@ dis.Vector3Double = function()
        this.z = inputStream.readFloat64();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.Vector3Double.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat64(this.x);

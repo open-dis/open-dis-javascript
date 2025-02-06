@@ -17,35 +17,78 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.LinearSegmentParameter = function()
 {
-   /** number of segments */
+   /**
+    * number of segments
+    * @type {number}
+    * @instance
+    */
    this.segmentNumber = 0;
 
-   /** segment appearance */
+   /**
+    * segment appearance
+    * @type {SixByteChunk}
+    * @instance
+    */
    this.segmentAppearance = new dis.SixByteChunk(); 
 
-   /** location */
+   /**
+    * location
+    * @type {Vector3Double}
+    * @instance
+    */
    this.location = new dis.Vector3Double(); 
 
-   /** orientation */
+   /**
+    * orientation
+    * @type {Orientation}
+    * @instance
+    */
    this.orientation = new dis.Orientation(); 
 
-   /** segmentLength */
+   /**
+    * segmentLength
+    * @type {number}
+    * @instance
+    */
    this.segmentLength = 0;
 
-   /** segmentWidth */
+   /**
+    * segmentWidth
+    * @type {number}
+    * @instance
+    */
    this.segmentWidth = 0;
 
-   /** segmentHeight */
+   /**
+    * segmentHeight
+    * @type {number}
+    * @instance
+    */
    this.segmentHeight = 0;
 
-   /** segment Depth */
+   /**
+    * segment Depth
+    * @type {number}
+    * @instance
+    */
    this.segmentDepth = 0;
 
-   /** segment Depth */
+   /**
+    * segment Depth
+    * @type {number}
+    * @instance
+    */
    this.pad1 = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.LinearSegmentParameter.prototype.initFromBinary = function(inputStream)
   {
        this.segmentNumber = inputStream.readUByte();
@@ -59,6 +102,9 @@ dis.LinearSegmentParameter = function()
        this.pad1 = inputStream.readUInt();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.LinearSegmentParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.segmentNumber);

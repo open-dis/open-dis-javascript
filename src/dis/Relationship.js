@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.Relationship = function()
 {
-   /** Nature of join */
+   /**
+    *  Nature of join
+    * @type {number}
+    * @instance
+    */
    this.nature = 0;
 
-   /** position of join */
+   /**
+    * position of join
+    * @type {number}
+    * @instance
+    */
    this.position = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.Relationship.prototype.initFromBinary = function(inputStream)
   {
        this.nature = inputStream.readUShort();
        this.position = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.Relationship.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.nature);

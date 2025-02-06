@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ClockTime = function()
 {
-   /** Hours in UTC */
+   /**
+    * Hours in UTC
+    * @type {number}
+    * @instance
+    */
    this.hour = 0;
 
-   /** Time past the hour */
+   /**
+    * Time past the hour
+    * @type {number}
+    * @instance
+    */
    this.timePastHour = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ClockTime.prototype.initFromBinary = function(inputStream)
   {
        this.hour = inputStream.readInt();
        this.timePastHour = inputStream.readUInt();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ClockTime.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeInt(this.hour);

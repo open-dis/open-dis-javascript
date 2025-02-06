@@ -6,20 +6,21 @@ if (typeof dis === "undefined")
 if (typeof exports === "undefined")
    exports = {};
 
- /**
-  * The PDU factory is responsible for decoding binary data and turning
-  * it into the appropriate type of PDU.
-  *
-  * The websocket will typically send the web page a IEEE 1278.1 binary
-  * array of data. It could be any one of dozens of PDUs. The start of
-  * all PDUs is the same--they have the same header. One of the fields in
-  * the header is the PduType, an 8 bit integer with a unqiue value for
-  * each type of PDU. We have to peak at that value, decide what type
-  * of PDU to create of the binary we have received, and then decode it.
-  *
-  *     * @DMcG
-  */
-
+/**
+ * The PDU factory is responsible for decoding binary data and turning
+ * it into the appropriate type of PDU.
+ *
+ * The websocket will typically send the web page a IEEE 1278.1 binary
+ * array of data. It could be any one of dozens of PDUs. The start of
+ * all PDUs is the same--they have the same header. One of the fields in
+ * the header is the PduType, an 8 bit integer with a unqiue value for
+ * each type of PDU. We have to peak at that value, decide what type
+ * of PDU to create of the binary we have received, and then decode it.
+ * @constructor
+ * @name PduFactory
+ * @memberof dis
+ * @author DMcG
+ */
  dis.PduFactory = function()
  {
 
@@ -29,7 +30,7 @@ if (typeof exports === "undefined")
   * decode incoming binary data and
   * return the correct type of PDU.
   *
-  * @param {type} data the IEEE 1278.1 binary data
+  * @param {ArrayBuffer} data the IEEE 1278.1 binary data
   * @returns {Pdu} Returns an instance of some PDU, be it espdu, fire, detonation, etc. Exception if PduType not known.
   */
  dis.PduFactory.prototype.createPdu = function(data)

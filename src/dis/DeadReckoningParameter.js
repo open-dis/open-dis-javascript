@@ -17,20 +17,43 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.DeadReckoningParameter = function()
 {
-   /** enumeration of what dead reckoning algorighm to use */
+   /**
+    * enumeration of what dead reckoning algorighm to use
+    * @type {number}
+    * @instance
+    */
    this.deadReckoningAlgorithm = 0;
 
-   /** other parameters to use in the dead reckoning algorithm */
+   /**
+    * other parameters to use in the dead reckoning algorithm
+    * @type {Array<number>}
+    * @instance
+    */
    this.otherParameters = new Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
-   /** Linear acceleration of the entity */
+   /**
+    * Linear acceleration of the entity
+    * @type {Vector3Float}
+    * @instance
+    */
    this.entityLinearAcceleration = new dis.Vector3Float(); 
 
-   /** angular velocity of the entity */
+   /**
+    * angular velocity of the entity
+    * @type {Vector3Float}
+    * @instance
+    */
    this.entityAngularVelocity = new dis.Vector3Float(); 
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.DeadReckoningParameter.prototype.initFromBinary = function(inputStream)
   {
        this.deadReckoningAlgorithm = inputStream.readUByte();
@@ -42,6 +65,9 @@ dis.DeadReckoningParameter = function()
        this.entityAngularVelocity.initFromBinary(inputStream);
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.DeadReckoningParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.deadReckoningAlgorithm);

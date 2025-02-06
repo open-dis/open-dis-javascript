@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.SupplyQuantity = function()
 {
-   /** Type of supply */
+   /**
+    * Type of supply
+    * @type {EntityType}
+    * @instance
+    */
    this.supplyType = new dis.EntityType(); 
 
-   /** quantity to be supplied */
+   /** 
+    * quantity to be supplied 
+    * @type {number}
+    * @instance
+    */
    this.quantity = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.SupplyQuantity.prototype.initFromBinary = function(inputStream)
   {
        this.supplyType.initFromBinary(inputStream);
        this.quantity = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.SupplyQuantity.prototype.encodeToBinary = function(outputStream)
   {
        this.supplyType.encodeToBinary(outputStream);

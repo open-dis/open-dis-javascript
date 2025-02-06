@@ -17,53 +17,120 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ActionResponseReliablePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 57;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 10;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Object originatig the request */
+   /**
+    * Object originatig the request
+    * @type {EntityID}
+    * @instance
+    */
    this.originatingEntityID = new dis.EntityID(); 
 
-   /** Object with which this point object is associated */
+   /**
+    * Object with which this point object is associated
+    * @type {EntityID}
+    * @instance
+    */
    this.receivingEntityID = new dis.EntityID(); 
 
-   /** request ID */
+   /**
+    * request ID
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
-   /** status of response */
+   /**
+    * status of response
+    * @type {number}
+    * @instance
+    */
    this.responseStatus = 0;
 
-   /** Fixed datum record count */
+   /**
+    * Fixed datum record count
+    * @type {number}
+    * @instance
+    */
    this.numberOfFixedDatumRecords = 0;
 
-   /** variable datum record count */
+   /**
+    * variable datum record count
+    * @type {number}
+    * @instance
+    */
    this.numberOfVariableDatumRecords = 0;
 
-   /** Fixed datum records */
+   /**
+    * Fixed datum records
+    * @type {Array<FixedDatum>}
+    * @instance
+    */
     this.fixedDatumRecords = new Array();
  
-   /** Variable datum records */
+   /**
+    * Variable datum records
+    * @type {Array<VariableDatum>}
+    * @instance
+    */
     this.variableDatumRecords = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ActionResponseReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -95,6 +162,9 @@ dis.ActionResponseReliablePdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ActionResponseReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

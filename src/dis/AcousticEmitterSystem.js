@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AcousticEmitterSystem = function()
 {
-   /** This field shall specify the system for a particular UA emitter. */
+   /**
+    *  This field shall specify the system for a particular UA emitter.
+    * @type {number}
+    * @instance
+    */
    this.acousticName = 0;
 
-   /** This field shall describe the function of the acoustic system.  */
+   /**
+    *  This field shall describe the function of the acoustic system.
+    * @type {number}
+    * @instance
+    */
    this.acousticFunction = 0;
 
-   /** This field shall specify the UA emitter identification number relative to a specific system. This field shall be represented by an 8-bit unsigned integer. This field allows the differentiation of multiple systems on an entity, even if in some instances two or more of the systems may be identical UA emitter types. Numbering of systems shall begin with the value 1.  */
+   /**
+    *  This field shall specify the UA emitter identification number relative to a specific system. This field shall be represented by an 8-bit unsigned integer. This field allows the differentiation of multiple systems on an entity, even if in some instances two or more of the systems may be identical UA emitter types. Numbering of systems shall begin with the value 1.
+    * @type {number}
+    * @instance
+    */
    this.acousticID = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AcousticEmitterSystem.prototype.initFromBinary = function(inputStream)
   {
        this.acousticName = inputStream.readUShort();
@@ -35,6 +54,9 @@ dis.AcousticEmitterSystem = function()
        this.acousticID = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AcousticEmitterSystem.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.acousticName);

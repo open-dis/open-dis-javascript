@@ -33,9 +33,6 @@
  * 
  * @DMcG
  * 
- * @param {float} lat latitude in degrees of the origin of the local tangent plane coordinate system
- * @param {float} lon longitude, in degrees, of origin
- * @param {float} alt altitude, in meters, of the origin of the local tangent plane coordinate system
  */
 
 if (typeof dis === "undefined")
@@ -52,35 +49,70 @@ if (typeof exports === "undefined")
  * aka an ENU coordinate system. Methods for converting from that coordinate system
  * to the DIS (ECEF) coordinate system or geotetic coordinate systems are provided.
  * 
- * @param {type} lat latitude, in degrees, of where the local tangent plane is located
- * @param {type} lon longitude, in degrees, of the origin of the local tangent plane
- * @param {type} alt altitude, in meters, of the origin of the local tangent plane
+ * @constructor
+ * @memberof dis
+ * @param {number} lat latitude, in degrees, of where the local tangent plane is located
+ * @param {number} lon longitude, in degrees, of the origin of the local tangent plane
+ * @param {number} alt altitude, in meters, of the origin of the local tangent plane
  * @returns {RangeCoordinates} An object that can do coordinate system conversions
  */
 dis.RangeCoordinates = function(lat, lon, alt)
 {
+    /** 
+     * @type {number}
+     * @instance
+     */
     this.RADIANS_PER_DEGREE = 2 * Math.PI / 360.0;
+
+    /** 
+     * @type {number}
+     * @instance
+     */
     this.DEGREES_PER_RADIAN = 360.0 / (2* Math.PI);
     
-    /** WGS84 semimajor axis (constant) */
+    /** 
+     * WGS84 semimajor axis (constant)
+     * @type {number}
+     * @instance
+     */
     this.a = 6378137.0;
     
-    /** WGS84 semiminor axis (constant) */
+    /** 
+     * WGS84 semiminor axis (constant) 
+     * @type {number}
+     * @instance
+     */
     this.b = 6356752.3142; 
     
-    /** Ellipsoidal Flatness (constant) */
+    /** 
+     * Ellipsoidal Flatness (constant) 
+     * @type {number}
+     * @instance
+     */
     this.f = (this.a - this.b) / this.a;                      // Should be 3.3528107 X 10^-3
     
-    /** Eccentricity (constant) */
+    /** 
+     * Eccentricity (constant) 
+     * @type {number} 
+     * @instance
+     */
     this.e = Math.sqrt(this.f * (2 - this.f)); // Should be 8.1819191 X 10^-2
     
-    // The origin of the local, East-North-Up (ENU) coordinate system, in lat/lon degrees and meters.
+    /** 
+     * The origin of the local, East-North-Up (ENU) coordinate system, in lat/lon degrees and meters.
+     * @type {LatLonAlt}
+     * @instance
+    */
     this.ENUOrigin = {};
     this.ENUOrigin.latitude  = lat;
     this.ENUOrigin.longitude = lon;
     this.ENUOrigin.altitude   = alt;
     
-    // Find the origin of the ENU in earth-centered, earth-fixed ECEF aka DIS coordinates
+    /** 
+     * Find the origin of the ENU in earth-centered, earth-fixed ECEF aka DIS coordinates
+     * @type {Vector3Float}
+     * @instance
+    */
     this.ENUOriginInECEF = {};
     this.ENUOriginInECEF = this.latLonAltDegreesToECEF(lat, lon, alt);
 };
@@ -89,8 +121,8 @@ dis.RangeCoordinates = function(lat, lon, alt)
      * latitude to the Z-axis running through the center of the earth.
      * This is NOT the same as the distance to the center of the earth.
      * 
-     * @param {float} lambda the latitude, in radians.
-     * @returns {float} distance in meters from the latitude to the axis of the earth
+     * @param {number} lambda the latitude, in radians.
+     * @returns {number} distance in meters from the latitude to the axis of the earth
      */
     dis.RangeCoordinates.prototype.N = function(lambda)
     {
@@ -103,8 +135,8 @@ dis.RangeCoordinates = function(lat, lon, alt)
      * Converts a latitude, longitude, and altitude object to DIS rectilinear
      * coordinates, aka earth-centered, earth-fixed, rectilinear. 
      *
-     * @param {latitude:longitude:altitude:} latLonAlt The lat/lon/alt, in degrees and meters
-     * @returns {x, y, z}  rectilienar coordinates in ECEF, aka DIS coordinates
+     * @param {LatLonAlt} latLonAlt The lat/lon/alt, in degrees and meters
+     * @returns {Vector3Float}  rectilienar coordinates in ECEF, aka DIS coordinates
      */
     dis.RangeCoordinates.prototype.latLonAltDegreesObjectToECEF = function(latLonAlt)
     {
@@ -115,10 +147,10 @@ dis.RangeCoordinates = function(lat, lon, alt)
      * Converts a latitude, longitude, and altitude to DIS rectilinear
      * coordinates, aka earth-centered, earth-fixed, rectilinear. 
      *
-     * @param {float} latitude (in radians)
-     * @param {float} longitude (in radians)
-     * @param {float} altitude (in meters)
-     * @returns {x, y, z} rectilienar coordinates in ECEF-r, aka DIS coordinates
+     * @param {number} latitude (in radians)
+     * @param {number} longitude (in radians)
+     * @param {number} altitude (in meters)
+     * @returns {Vector3Float} rectilienar coordinates in ECEF-r, aka DIS coordinates
      */
     dis.RangeCoordinates.prototype.latLonAltRadiansToECEF = function(latitude, longitude, altitude)
     {
@@ -146,12 +178,12 @@ dis.RangeCoordinates = function(lat, lon, alt)
         return {x:X, y:Y, z:Z};
     };
     
-    /*
+    /**
      * 
-     * @param {type} latitude in degrees
-     * @param {type} longitude in degrees
-     * @param {type} altitude in meters
-     * @returns {x,y,z} coordinates in ECEF, in meters aka DIS global coordinates
+     * @param {number} latitude in degrees
+     * @param {number} longitude in degrees
+     * @param {number} altitude in meters
+     * @returns {Vector3Float} coordinates in ECEF, in meters aka DIS global coordinates
      */
     dis.RangeCoordinates.prototype.latLonAltDegreesToECEF = function(latitude, longitude, altitude)
     {
@@ -165,8 +197,8 @@ dis.RangeCoordinates = function(lat, lon, alt)
      * translated from C to Java to Javascript over the years, so hold onto your hats. (This is
      * copied from other sources than those listed above. Seems to work, though.)
      *
-     * @param position {x:, y:, z:}
-     * @return {latitude:, longitude: altitude:}
+     * @param {Vector3Float} position
+     * @return {LatLonAlt}
      */
     dis.RangeCoordinates.prototype.ECEFObjectToLatLongAltInDegrees = function(position)
     {
@@ -204,7 +236,7 @@ dis.RangeCoordinates = function(lat, lon, alt)
         {
             answer[1] = Math.atan(y/x) - Math.PI;
         }
-        /**
+        /*
          * Longitude calculation done. Now calculate latitude.
          * NOTE: The handbook mentions using the calculated phi (latitude) value to recalculate B
          * using tan B = (1-f) tan phi and then performing the entire calculation again to get more accurate values.
@@ -216,7 +248,7 @@ dis.RangeCoordinates = function(lat, lon, alt)
         var tanPhi = (z + (ePrimeSquared * b * (Math.pow(Math.sin(BZero), 3))) ) /(W - (a * eSquared * (Math.pow(Math.cos(BZero), 3))));
         var phi = Math.atan(tanPhi);
         answer[0] = phi;
-        /**
+        /*
          * Latitude done, now get the elevation. Note: The handbook states that near the poles, it is preferable to use
          * h = (Z / sin phi ) - rSubN + (eSquared * rSubN). Our applications are never near the poles, so this formula
          * was left unimplemented.
@@ -236,8 +268,8 @@ dis.RangeCoordinates = function(lat, lon, alt)
     *  Converts an ECEF position to the local ENU coordinate system. Units are meters,
     *  and the origin of the ENU coordinate system is set in the constructor.
     *  
-    *  @param {x:y:z:} ecefPosition ecef position (in meters)
-    *  @returns {x:y:z:} object with x, y, and z local coordinates, ENU 
+    *  @param {Vector3Float} ecefPosition ecef position (in meters)
+    *  @returns {Vector3Float} object with x, y, and z local coordinates, ENU 
     */
    dis.RangeCoordinates.prototype.ECEFObjectToENU = function(ecefPosition)
    {
@@ -248,10 +280,10 @@ dis.RangeCoordinates = function(lat, lon, alt)
     *  Converts an ECEF position to the local ENU coordinate system. Units are meters,
     *  and the origin of the ENU coordinate system is set in the constructor.
     *  
-    *  @param {float} X the X coordinate of the ECEF position
-    *  @param {float} Y the Y coordinate 
-    *  @param {float} Z the Z coordinate
-    *  @returns {x:y:z:} object with x, y, and z local coordinates, ENU 
+    *  @param {number} X the X coordinate of the ECEF position
+    *  @param {number} Y the Y coordinate 
+    *  @param {number} Z the Z coordinate
+    *  @returns {Vector3Float} object with x, y, and z local coordinates, ENU 
     */
    dis.RangeCoordinates.prototype.ECEFtoENU = function(X, Y, Z)
    {
@@ -274,8 +306,8 @@ dis.RangeCoordinates = function(lat, lon, alt)
    /**
    * Converts a local coordinate system / ENU/ Local Tangent Plane object to ECEF, aka DIS coordinates.
    * 
-   * @param enuPosition {x:y:z:} local coordinate object
-   * @returns {x:y:z:} point in ECEF / DIS coordinate system
+   * @param {Vector3Float} enuPosition local coordinate object
+   * @returns {Vector3Float} point in ECEF / DIS coordinate system
    */
    dis.RangeCoordinates.prototype.ENUObjectToECEF = function(enuPosition)
    {
@@ -285,10 +317,10 @@ dis.RangeCoordinates = function(lat, lon, alt)
   /**
    * Converts a local coordinate system / ENU/ Local Tangent Plane point to ECEF, aka DIS coordinates.
    * 
-   * @param localX {float} local coordinate system X
-   * @param localY {float} local coordinate system Y
-   * @param localZ {float} local coordinate system Z
-   * @returns {x:y:z:} point in ECEF / DIS coordinate system
+   * @param {number} localX local coordinate system X
+   * @param {number} localY local coordinate system Y
+   * @param {number} localZ local coordinate system Z
+   * @returns {Vector3Float} point in ECEF / DIS coordinate system
    */
    dis.RangeCoordinates.prototype.ENUtoECEF = function(localX, localY, localZ)
    {
@@ -300,7 +332,7 @@ dis.RangeCoordinates = function(lat, lon, alt)
        var refLong = this.ENUOrigin.longitude;
        var refLat = this.ENUOrigin.latitude;       
       
-      /** original code this was copied from 
+      /* original code this was copied from 
       
        function [X, Y, Z] = enu2xyz(refLat, refLong, refH, e, n, u)
   % Convert east, north, up coordinates (labeled e, n, u) to ECEF

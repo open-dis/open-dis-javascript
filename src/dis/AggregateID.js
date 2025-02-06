@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AggregateID = function()
 {
-   /** The site ID */
+   /**
+    * The site ID
+    * @type {number}
+    * @instance
+    */
    this.site = 0;
 
-   /** The application ID */
+   /**
+    * The application ID
+    * @type {number}
+    * @instance
+    */
    this.application = 0;
 
-   /** the aggregate ID */
+   /**
+    * the aggregate ID
+    * @type {number}
+    * @instance
+    */
    this.aggregateID = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AggregateID.prototype.initFromBinary = function(inputStream)
   {
        this.site = inputStream.readUShort();
@@ -35,6 +54,9 @@ dis.AggregateID = function()
        this.aggregateID = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AggregateID.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.site);

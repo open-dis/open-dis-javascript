@@ -17,14 +17,29 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.PduContainer = function()
 {
-   /** Number of PDUs in the container list */
+   /**
+    * Number of PDUs in the container list
+    * @type {number}
+    * @instance
+    */
    this.numberOfPdus = 0;
 
-   /** List of PDUs */
+   /**
+    * List of PDUs
+    * @type {Array<Pdu>}
+    * @instance
+    */
     this.pdus = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.PduContainer.prototype.initFromBinary = function(inputStream)
   {
        this.numberOfPdus = inputStream.readInt();
@@ -37,6 +52,9 @@ dis.PduContainer = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.PduContainer.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeInt(this.numberOfPdus);

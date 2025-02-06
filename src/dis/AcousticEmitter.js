@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AcousticEmitter = function()
 {
-   /** the system for a particular UA emitter, and an enumeration */
+   /**
+    *  the system for a particular UA emitter, and an enumeration
+    * @type {number}
+    * @instance
+    */
    this.acousticName = 0;
 
-   /** The function of the acoustic system */
+   /**
+    *  The function of the acoustic system
+    * @type {number}
+    * @instance
+    */
    this.function = 0;
 
-   /** The UA emitter identification number relative to a specific system */
+   /**
+    *  The UA emitter identification number relative to a specific system
+    * @type {number}
+    * @instance
+    */
    this.acousticIdNumber = 0;
 
+  /**
+	 * @param {InputStream} inputStream 
+	 */
   dis.AcousticEmitter.prototype.initFromBinary = function(inputStream)
   {
        this.acousticName = inputStream.readUShort();
@@ -35,6 +54,9 @@ dis.AcousticEmitter = function()
        this.acousticIdNumber = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AcousticEmitter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.acousticName);

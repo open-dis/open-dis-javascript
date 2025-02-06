@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.VectoringNozzleSystemData = function()
 {
-   /** horizontal deflection angle */
+   /** 
+    * horizontal deflection angle
+    * @type {number}
+    * @instance
+    */
    this.horizontalDeflectionAngle = 0;
 
-   /** vertical deflection angle */
+   /** 
+    * vertical deflection angle
+    * @type {number}
+    * @instance
+    */
    this.verticalDeflectionAngle = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.VectoringNozzleSystemData.prototype.initFromBinary = function(inputStream)
   {
        this.horizontalDeflectionAngle = inputStream.readFloat32();
        this.verticalDeflectionAngle = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.VectoringNozzleSystemData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.horizontalDeflectionAngle);

@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.SimulationAddress = function()
 {
-   /** The site ID */
+   /**
+    * The site ID
+    * @type {number}
+    * @instance
+    */
    this.site = 0;
 
-   /** The application ID */
+   /**
+    * The application ID
+    * @type {number}
+    * @instance
+    */
    this.application = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.SimulationAddress.prototype.initFromBinary = function(inputStream)
   {
        this.site = inputStream.readUShort();
        this.application = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.SimulationAddress.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.site);

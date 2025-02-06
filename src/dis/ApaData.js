@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ApaData = function()
 {
-   /** Index of APA parameter */
+   /**
+    * Index of APA parameter
+    * @type {number}
+    * @instance
+    */
    this.parameterIndex = 0;
 
-   /** Index of APA parameter */
+   /**
+    * Index of APA parameter
+    * @type {number}
+    * @instance
+    */
    this.parameterValue = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ApaData.prototype.initFromBinary = function(inputStream)
   {
        this.parameterIndex = inputStream.readUShort();
        this.parameterValue = inputStream.readShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ApaData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.parameterIndex);

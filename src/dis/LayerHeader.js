@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.LayerHeader = function()
 {
-   /** Layer number */
+   /**
+    * Layer number
+    * @type {number}
+    * @instance
+    */
    this.layerNumber = 0;
 
-   /** Layer speccific information enumeration */
+   /**
+    * Layer speccific information enumeration
+    * @type {number}
+    * @instance
+    */
    this.layerSpecificInformaiton = 0;
 
-   /** information length */
+   /**
+    * information length
+    * @type {number}
+    * @instance
+    */
    this.length = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.LayerHeader.prototype.initFromBinary = function(inputStream)
   {
        this.layerNumber = inputStream.readUByte();
@@ -35,6 +54,9 @@ dis.LayerHeader = function()
        this.length = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.LayerHeader.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.layerNumber);

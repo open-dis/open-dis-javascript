@@ -8,13 +8,31 @@ if (typeof exports === "undefined")
 var Long = require('long');
 
 /**
- * @param binaryDataBuffer ArrayBuffer
-*/
+ * @constructor
+ * @memberof dis
+ * @param {ArrayBuffer} binaryDataBuffer
+ */
 dis.OutputStream = function(binaryDataBuffer)
 {
+    /**
+     * @type {ArrayBuffer}
+     * @instance
+     */
     this.binaryData = binaryDataBuffer;
-    this.dataView = new DataView(this.binaryData); // data, byte offset
-    this.currentPosition = 0;                    // ptr to current position in array
+
+    /**
+     * data, byte offset
+     * @type {DataView}
+     * @instance
+     */
+    this.dataView = new DataView(this.binaryData);
+    
+    /**
+     * ptr to current position in array
+     * @type {number}
+     * @instance
+     */
+    this.currentPosition = 0;
     
     /**
      * Returns a byte array trimmed to the maximum number of bytes written
@@ -30,55 +48,81 @@ dis.OutputStream = function(binaryDataBuffer)
         return trimmedData;
     };
     
-    
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeUByte = function(userData)
     {   
         this.dataView.setUint8(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 1;
     };
     
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeByte = function(userData)
     {
         this.dataView.setInt8(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 1;
     };
     
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeUShort = function(userData)
     {
         this.dataView.setUint16(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 2;
     };
     
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeShort = function(userData)
     {
         this.dataView.setInt16(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 2;
     };
-    
+
+    /**
+     * @param {number} userData 
+     */    
     dis.OutputStream.prototype.writeUInt = function(userData)
     {
         this.dataView.setUint32(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 4;
     };
-    
+
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeInt = function(userData)
     {
         this.dataView.setInt32(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 4;
     };
-   
+
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeFloat32 = function(userData)
     {
         this.dataView.setFloat32(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 4;
     };
-    
+
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeFloat64 = function(userData)
     {
         this.dataView.setFloat64(this.currentPosition, userData);
         this.currentPosition = this.currentPosition + 8;
     };
-    
+
+    /**
+     * @param {number} userData 
+     */
     dis.OutputStream.prototype.writeLong = function(userData)
     {
 	var long = new Long.fromString(userData);

@@ -17,23 +17,50 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.BurstDescriptor = function()
 {
-   /** What munition was used in the burst */
+   /**
+    * What munition was used in the burst
+    * @type {EntityType}
+    * @instance
+    */
    this.munition = new dis.EntityType(); 
 
-   /** type of warhead */
+   /**
+    * type of warhead
+    * @type {number}
+    * @instance
+    */
    this.warhead = 0;
 
-   /** type of fuse used */
+   /**
+    * type of fuse used
+    * @type {number}
+    * @instance
+    */
    this.fuse = 0;
 
-   /** how many of the munition were fired */
+   /**
+    * how many of the munition were fired
+    * @type {number}
+    * @instance
+    */
    this.quantity = 0;
 
-   /** rate at which the munition was fired */
+   /**
+    * rate at which the munition was fired
+    * @type {number}
+    * @instance
+    */
    this.rate = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.BurstDescriptor.prototype.initFromBinary = function(inputStream)
   {
        this.munition.initFromBinary(inputStream);
@@ -43,6 +70,9 @@ dis.BurstDescriptor = function()
        this.rate = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.BurstDescriptor.prototype.encodeToBinary = function(outputStream)
   {
        this.munition.encodeToBinary(outputStream);

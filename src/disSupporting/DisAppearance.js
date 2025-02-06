@@ -57,19 +57,24 @@ if (typeof dis === "undefined")
 if (typeof exports === "undefined")
    exports = {};
 
-/** Constructor. Takes the integer value extracted from the DIS Entity State Field appearance
- * 
- * @param {type} integerValue the entity appearance from the espdu
- * @returns {undefined}
+/** 
+ * Constructor. Takes the integer value extracted from the DIS Entity State Field appearance
+ * @constructor
+ * @memberof dis
+ * @param {number} integerValue - the entity appearance from the espdu
  */
 dis.DisAppearance = function(integerValue)
 {
+    /**
+     * @type {number}
+     * @instance
+     */
     this.entityAppearance = integerValue; 
 }
 
 /**
  * Test code for creating the correct bitmask
- * @returns {undefined}
+ * @returns {number}
  */
 dis.DisAppearance.prototype.getTestMask = function()
 {
@@ -83,10 +88,9 @@ dis.DisAppearance.prototype.getTestMask = function()
 };
 
 /**
- * 
- * @param {integer} startPosition
- * @param {integer} finishPosition
- * @returns {integer}
+ * @param {number} startPosition
+ * @param {number} finishPosition
+ * @returns {number}
  */
 dis.DisAppearance.prototype.getBitField = function(startPosition, finishPosition)
 {
@@ -112,11 +116,11 @@ dis.DisAppearance.prototype.getBitField = function(startPosition, finishPosition
     return fieldValue;
 };
 
-/** Set the "bit" position in a number to 1
- * 
- * @param {integer}  num the number whose bit we are setting. Typically zero.
- * @param {integer} bit which bit to set
- * @return {integer} the number passed in, with the "bit"th bit flipped on.
+/**
+ * Set the "bit" position in a number to 1
+ * @param {number} num the number whose bit we are setting. Typically zero.
+ * @param {number} bit which bit to set
+ * @return {number} the number passed in, with the "bit"th bit flipped on.
  **/
 dis.DisAppearance.prototype.bit_set = function(num, bit)
 {

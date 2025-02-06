@@ -17,92 +17,211 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.TransmitterPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 25;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 4;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of the entity that is the source of the communication, ie contains the radio */
+   /**
+    * ID of the entity that is the source of the communication, ie contains the radio
+    * @type {EntityID}
+    * @instance
+    */
    this.entityId = new dis.EntityID(); 
 
-   /** particular radio within an entity */
+   /**
+    * particular radio within an entity
+    * @type {number}
+    * @instance
+    */
    this.radioId = 0;
 
-   /** linear accelleration of entity */
+   /**
+    * linear accelleration of entity
+    * @type {RadioEntityType}
+    * @instance
+    */
    this.radioEntityType = new dis.RadioEntityType(); 
 
-   /** transmit state */
+   /**
+    * transmit state
+    * @type {number}
+    * @instance
+    */
    this.transmitState = 0;
 
-   /** input source */
+   /**
+    * input source
+    * @type {number}
+    * @instance
+    */
    this.inputSource = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.padding1 = 0;
 
-   /** Location of antenna */
+   /**
+    * Location of antenna
+    * @type {Vector3Double}
+    * @instance
+    */
    this.antennaLocation = new dis.Vector3Double(); 
 
-   /** relative location of antenna, in entity coordinates */
+   /**
+    * relative location of antenna, in entity coordinates
+    * @type {Vector3Float}
+    * @instance
+    */
    this.relativeAntennaLocation = new dis.Vector3Float(); 
 
-   /** antenna pattern type */
+   /**
+    * antenna pattern type
+    * @type {number}
+    * @instance
+    */
    this.antennaPatternType = 0;
 
-   /** atenna pattern length */
+   /**
+    * atenna pattern length
+    * @type {number}
+    * @instance
+    */
    this.antennaPatternCount = 0;
 
-   /** frequency */
+   /**
+    * frequency
+    * @type {number}
+    * @instance
+    */
    this.frequency = 0;
 
-   /** transmit frequency Bandwidth */
+   /**
+    * transmit frequency Bandwidth
+    * @type {number}
+    * @instance
+    */
    this.transmitFrequencyBandwidth = 0;
 
-   /** transmission power */
+   /**
+    * transmission power
+    * @type {number}
+    * @instance
+    */
    this.power = 0;
 
-   /** modulation */
+   /**
+    * modulation
+    * @type {ModulationType}
+    * @instance
+    */
    this.modulationType = new dis.ModulationType(); 
 
-   /** crypto system enumeration */
+   /**
+    * crypto system enumeration
+    * @type {number}
+    * @instance
+    */
    this.cryptoSystem = 0;
 
-   /** crypto system key identifer */
+   /**
+    * crypto system key identifer
+    * @type {number}
+    * @instance
+    */
    this.cryptoKeyId = 0;
 
-   /** how many modulation parameters we have */
+   /**
+    * how many modulation parameters we have
+    * @type {number}
+    * @instance
+    */
    this.modulationParameterCount = 0;
 
-   /** padding2 */
+   /**
+    * padding2
+    * @type {number}
+    * @instance
+    */
    this.padding2 = 0;
 
-   /** padding3 */
+   /**
+    * padding3
+    * @type {number}
+    * @instance
+    */
    this.padding3 = 0;
 
-   /** variable length list of modulation parameters */
+   /**
+    * variable length list of modulation parameters
+    * @type {Array<ModulationType>}
+    * @instance
+    */
     this.modulationParametersList = new Array();
  
-   /** variable length list of antenna pattern records */
+   /**
+    * variable length list of antenna pattern records
+    * @type {Array<BeamAntennaPattern>}
+    * @instance
+    */
     this.antennaPatternList = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.TransmitterPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -147,6 +266,9 @@ dis.TransmitterPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.TransmitterPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

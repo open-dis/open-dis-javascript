@@ -17,18 +17,45 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ArticulationParameter = function()
 {
+   /**
+    * @type {number}
+    * @instance
+    */
    this.parameterTypeDesignator = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.changeIndicator = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.partAttachedTo = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.parameterType = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.parameterValue = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ArticulationParameter.prototype.initFromBinary = function(inputStream)
   {
        this.parameterTypeDesignator = inputStream.readUByte();
@@ -38,6 +65,9 @@ dis.ArticulationParameter = function()
        this.parameterValue = inputStream.readFloat64();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ArticulationParameter.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.parameterTypeDesignator);

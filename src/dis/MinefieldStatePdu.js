@@ -17,65 +17,148 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.MinefieldStatePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 37;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 8;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Minefield ID */
+   /**
+    * Minefield ID
+    * @type {EntityID}
+    * @instance
+    */
    this.minefieldID = new dis.EntityID(); 
 
-   /** Minefield sequence */
+   /**
+    * Minefield sequence
+    * @type {number}
+    * @instance
+    */
    this.minefieldSequence = 0;
 
-   /** force ID */
+   /**
+    * force ID
+    * @type {number}
+    * @instance
+    */
    this.forceID = 0;
 
-   /** Number of permieter points */
+   /**
+    * Number of permieter points
+    * @type {number}
+    * @instance
+    */
    this.numberOfPerimeterPoints = 0;
 
-   /** type of minefield */
+   /**
+    * type of minefield
+    * @type {EntityType}
+    * @instance
+    */
    this.minefieldType = new dis.EntityType(); 
 
-   /** how many mine types */
+   /**
+    * how many mine types
+    * @type {number}
+    * @instance
+    */
    this.numberOfMineTypes = 0;
 
-   /** location of minefield in world coords */
+   /**
+    * location of minefield in world coords
+    * @type {Vector3Double}
+    * @instance
+    */
    this.minefieldLocation = new dis.Vector3Double(); 
 
-   /** orientation of minefield */
+   /**
+    * orientation of minefield
+    * @type {Orientation}
+    * @instance
+    */
    this.minefieldOrientation = new dis.Orientation(); 
 
-   /** appearance bitflags */
+   /**
+    * appearance bitflags
+    * @type {number}
+    * @instance
+    */
    this.appearance = 0;
 
-   /** protocolMode */
+   /**
+    * protocolMode
+    * @type {number}
+    * @instance
+    */
    this.protocolMode = 0;
 
-   /** perimeter points for the minefield */
+   /**
+    * perimeter points for the minefield
+    * @type {Array<Point>}
+    * @instance
+    */
     this.perimeterPoints = new Array();
  
-   /** Type of mines */
+   /**
+    * Type of mines
+    * @type {Array<EntityType>}
+    * @instance
+    */
     this.mineType = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.MinefieldStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -111,6 +194,9 @@ dis.MinefieldStatePdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.MinefieldStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

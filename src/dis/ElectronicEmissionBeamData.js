@@ -17,38 +17,85 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ElectronicEmissionBeamData = function()
 {
-   /** This field shall specify the length of this beams data in 32 bit words */
+   /**
+    * This field shall specify the length of this beams data in 32 bit words
+    * @type {number}
+    * @instance
+    */
    this.beamDataLength = 0;
 
-   /** This field shall specify a unique emitter database number assigned to differentiate between otherwise similar or identical emitter beams within an emitter system. */
+   /**
+    * This field shall specify a unique emitter database number assigned to differentiate between otherwise similar or identical emitter beams within an emitter system.
+    * @type {number}
+    * @instance
+    */
    this.beamIDNumber = 0;
 
-   /** This field shall specify a Beam Parameter Index number that shall be used by receiving entities in conjunction with the Emitter Name field to provide a pointer to the stored database parameters required to regenerate the beam.  */
+   /**
+    * This field shall specify a Beam Parameter Index number that shall be used by receiving entities in conjunction with the Emitter Name field to provide a pointer to the stored database parameters required to regenerate the beam.
+    * @type {number}
+    * @instance
+    */
    this.beamParameterIndex = 0;
 
-   /** Fundamental parameter data such as frequency range, beam sweep, etc. */
+   /**
+    * Fundamental parameter data such as frequency range, beam sweep, etc.
+    * @type {FundamentalParameterData}
+    * @instance
+    */
    this.fundamentalParameterData = new dis.FundamentalParameterData(); 
 
-   /** beam function of a particular beam */
+   /**
+    * beam function of a particular beam
+    * @type {number}
+    * @instance
+    */
    this.beamFunction = 0;
 
-   /** Number of track/jam targets */
+   /**
+    * Number of track/jam targets
+    * @type {number}
+    * @instance
+    */
    this.numberOfTrackJamTargets = 0;
 
-   /** wheher or not the receiving simulation apps can assume all the targets in the scan pattern are being tracked/jammed */
+   /**
+    * wheher or not the receiving simulation apps can assume all the targets in the scan pattern are being tracked/jammed
+    * @type {number}
+    * @instance
+    */
    this.highDensityTrackJam = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad4 = 0;
 
-   /** identify jamming techniques used */
+   /**
+    * identify jamming techniques used
+    * @type {number}
+    * @instance
+    */
    this.jammingModeSequence = 0;
 
-   /** variable length variablelist of track/jam targets */
+   /**
+    * variable length variablelist of track/jam targets
+    * @type {Array<TrackJamTarget>}
+    * @instance
+    */
     this.trackJamTargets = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ElectronicEmissionBeamData.prototype.initFromBinary = function(inputStream)
   {
        this.beamDataLength = inputStream.readUByte();
@@ -69,6 +116,9 @@ dis.ElectronicEmissionBeamData = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ElectronicEmissionBeamData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.beamDataLength);

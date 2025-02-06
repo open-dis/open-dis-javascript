@@ -16,45 +16,99 @@ if (typeof dis === "undefined")
 if (typeof exports === "undefined")
  exports = {};
 
-
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AcknowledgePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /** 
+    * Exercise ID 
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class 
+    * @type {number}
+    * @instance
+    */
    this.pduType = 15;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /** 
+    * value that refers to the protocol family, eg SimulationManagement, et  
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 5;
 
-   /** Timestamp value */
+   /** 
+    * Timestamp value  
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /** 
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word  
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /** 
+    * zero-filled array of padding  
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Entity that is sending message */
+   /** 
+    * Entity that is sending message  
+    * @type {number}
+    * @instance
+    */
    this.originatingEntityID = new dis.EntityID(); 
 
-   /** Entity that is intended to receive message */
+   /** 
+    * Entity that is intended to receive message  
+    * @type {number}
+    * @instance
+    */
    this.receivingEntityID = new dis.EntityID(); 
 
-   /** type of message being acknowledged */
+   /** 
+    * type of message being acknowledged  
+    * @type {number}
+    * @instance
+    */
    this.acknowledgeFlag = 0;
 
-   /** Whether or not the receiving entity was able to comply with the request */
+   /** 
+    * Whether or not the receiving entity was able to comply with the request  
+    * @type {number}
+    * @instance
+    */
    this.responseFlag = 0;
 
-   /** Request ID that is unique */
+   /** 
+    * Request ID that is unique  
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AcknowledgePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -71,6 +125,9 @@ dis.AcknowledgePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AcknowledgePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
