@@ -23,6 +23,12 @@ To generate a single `dis6.min.js` and `dis7.min.js` from the source files, run 
 
 `$ npm install`
 
+## Types
+
+To generate the types of DIS 6 for Typescript, run the following command:
+
+`$ npm run types`
+
 # Release
 
 Releases are published to http://npmjs.com/package/open-dis
