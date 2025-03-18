@@ -6160,7 +6160,7 @@ declare module "open-dis" {
          * @param latLonAlt - in degrees and meters
          * @returns in meters
          */
-        getXYZfromLatLonAltDegrees(latLonAlt: LatLonAlt): Vector3Float;
+        getXYZfromLatLonAltDegrees(latLonAlt: LatLonAltShort): Vector3Float;
     }
     /**
      * Constructor. Takes the integer value extracted from the DIS Entity State Field appearance
@@ -6210,6 +6210,17 @@ declare module "open-dis" {
         latitude: number;
         longitude: number;
         altitude: number;
+    };
+    /**
+     * Unfortunate re-typing of original LatLonAlt because one function
+    in CoordinateConversion uses different variable names.
+    
+    TODO: Remove when getXYZfromLatLonAltDegrees uses LatLonAlt.
+     */
+    type LatLonAltShort = {
+        lat: number;
+        lon: number;
+        alt: number;
     };
     class OutputStream {
         constructor(binaryDataBuffer: ArrayBuffer);

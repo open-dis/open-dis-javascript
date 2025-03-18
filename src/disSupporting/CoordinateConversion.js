@@ -113,7 +113,7 @@ dis.CoordinateConversion = function()
      * Converts lat long and geodetic height (elevation) into DIS XYZ
      * This algorithm also uses the WGS84 ellipsoid, though you can change the values
      * of a and b for a different ellipsoid. Adapted from Military Handbook 600008
-     * @param {LatLonAlt} latLonAlt in degrees and meters
+     * @param {LatLonAltShort} latLonAlt in degrees and meters
      * @return {Vector3Float} in meters
      */
     dis.CoordinateConversion.prototype.getXYZfromLatLonAltDegrees = function(latLonAlt)
