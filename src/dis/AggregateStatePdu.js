@@ -17,92 +17,211 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AggregateStatePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 33;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 7;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of aggregated entities */
+   /**
+    * ID of aggregated entities
+    * @type {EntityID}
+    * @instance
+    */
    this.aggregateID = new dis.EntityID(); 
 
-   /** force ID */
+   /**
+    * force ID
+    * @type {number}
+    * @instance
+    */
    this.forceID = 0;
 
-   /** state of aggregate */
+   /**
+    * state of aggregate
+    * @type {number}
+    * @instance
+    */
    this.aggregateState = 0;
 
-   /** entity type of the aggregated entities */
+   /**
+    * entity type of the aggregated entities
+    * @type {EntityType}
+    * @instance
+    */
    this.aggregateType = new dis.EntityType(); 
 
-   /** formation of aggregated entities */
+   /**
+    * formation of aggregated entities
+    * @type {number}
+    * @instance
+    */
    this.formation = 0;
 
-   /** marking for aggregate; first char is charset type, rest is char data */
+   /**
+    * marking for aggregate; first char is charset type, rest is char data
+    * @type {AggregateMarking}
+    * @instance
+    */
    this.aggregateMarking = new dis.AggregateMarking(); 
 
-   /** dimensions of bounding box for the aggregated entities, origin at the center of mass */
+   /**
+    * dimensions of bounding box for the aggregated entities, origin at the center of mass
+    * @type {Vector3Float}
+    * @instance
+    */
    this.dimensions = new dis.Vector3Float(); 
 
-   /** orientation of the bounding box */
+   /**
+    * orientation of the bounding box
+    * @type {Orientation}
+    * @instance
+    */
    this.orientation = new dis.Orientation(); 
 
-   /** center of mass of the aggregation */
+   /**
+    * center of mass of the aggregation
+    * @type {Vector3Double}
+    * @instance
+    */
    this.centerOfMass = new dis.Vector3Double(); 
 
-   /** velocity of aggregation */
+   /**
+    * velocity of aggregation
+    * @type {Vector3Float}
+    * @instance
+    */
    this.velocity = new dis.Vector3Float(); 
 
-   /** number of aggregates */
+   /**
+    * number of aggregates
+    * @type {number}
+    * @instance
+    */
    this.numberOfDisAggregates = 0;
 
-   /** number of entities */
+   /**
+    * number of entities
+    * @type {number}
+    * @instance
+    */
    this.numberOfDisEntities = 0;
 
-   /** number of silent aggregate types */
+   /**
+    * number of silent aggregate types
+    * @type {number}
+    * @instance
+    */
    this.numberOfSilentAggregateTypes = 0;
 
-   /** number of silent entity types */
+   /**
+    * number of silent entity types
+    * @type {number}
+    * @instance
+    */
    this.numberOfSilentEntityTypes = 0;
 
-   /** aggregates  list */
+   /**
+    * aggregates  list
+    * @type {Array<AggregateID>}
+    * @instance
+    */
     this.aggregateIDList = new Array();
  
-   /** entity ID list */
+   /**
+    * entity ID list
+    * @type {Array<EntityID>}
+    * @instance
+    */
     this.entityIDList = new Array();
  
-   /** ^^^padding to put the start of the next list on a 32 bit boundary. This needs to be fixed */
+   /**
+    * ^^^padding to put the start of the next list on a 32 bit boundary. This needs to be fixed
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** silent entity types */
+   /**
+    * silent entity types
+    * @type {Array<EntityType>}
+    * @instance
+    */
     this.silentAggregateSystemList = new Array();
  
-   /** silent entity types */
+   /**
+    * silent entity types
+    * @type {Array<EntityType>}
+    * @instance
+    */
     this.silentEntitySystemList = new Array();
  
-   /** number of variable datum records */
+   /**
+    * number of variable datum records
+    * @type {number}
+    * @instance
+    */
    this.numberOfVariableDatumRecords = 0;
 
-   /** variableDatums */
+   /**
+    * variableDatums
+    * @type {Array<VariableDatum>}
+    * @instance
+    */
     this.variableDatumList = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AggregateStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -165,6 +284,9 @@ dis.AggregateStatePdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AggregateStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

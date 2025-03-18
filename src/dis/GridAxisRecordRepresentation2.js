@@ -17,20 +17,43 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.GridAxisRecordRepresentation2 = function()
 {
-   /** type of environmental sample */
+   /**
+    * type of environmental sample
+    * @type {number}
+    * @instance
+    */
    this.sampleType = 0;
 
-   /** value that describes data representation */
+   /**
+    * value that describes data representation
+    * @type {number}
+    * @instance
+    */
    this.dataRepresentation = 0;
 
-   /** number of values */
+   /**
+    * number of values
+    * @type {number}
+    * @instance
+    */
    this.numberOfValues = 0;
 
-   /** variable length list of data parameters ^^^this is wrong--need padding as well */
+   /**
+    * variable length list of data parameters ^^^this is wrong--need padding as well
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.dataValues = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.GridAxisRecordRepresentation2.prototype.initFromBinary = function(inputStream)
   {
        this.sampleType = inputStream.readUShort();
@@ -45,6 +68,9 @@ dis.GridAxisRecordRepresentation2 = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.GridAxisRecordRepresentation2.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.sampleType);

@@ -17,38 +17,85 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.FundamentalParameterData = function()
 {
-   /** center frequency of the emission in hertz. */
+   /**
+    * center frequency of the emission in hertz.
+    * @type {number}
+    * @instance
+    */
    this.frequency = 0;
 
-   /** Bandwidth of the frequencies corresponding to the fequency field. */
+   /**
+    * Bandwidth of the frequencies corresponding to the fequency field.
+    * @type {number}
+    * @instance
+    */
    this.frequencyRange = 0;
 
-   /** Effective radiated power for the emission in DdBm. For a      radar noise jammer, indicates the peak of the transmitted power. */
+   /**
+    * Effective radiated power for the emission in DdBm. For a      radar noise jammer, indicates the peak of the transmitted power.
+    * @type {number}
+    * @instance
+    */
    this.effectiveRadiatedPower = 0;
 
-   /** Average repetition frequency of the emission in hertz. */
+   /**
+    * Average repetition frequency of the emission in hertz.
+    * @type {number}
+    * @instance
+    */
    this.pulseRepetitionFrequency = 0;
 
-   /** Average pulse width  of the emission in microseconds. */
+   /**
+    * Average pulse width  of the emission in microseconds.
+    * @type {number}
+    * @instance
+    */
    this.pulseWidth = 0;
 
-   /** Specifies the beam azimuth an elevation centers and corresponding half-angles     to describe the scan volume */
+   /**
+    * Specifies the beam azimuth an elevation centers and corresponding half-angles     to describe the scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamAzimuthCenter = 0;
 
-   /** Specifies the beam azimuth sweep to determine scan volume */
+   /**
+    * Specifies the beam azimuth sweep to determine scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamAzimuthSweep = 0;
 
-   /** Specifies the beam elevation center to determine scan volume */
+   /**
+    * Specifies the beam elevation center to determine scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamElevationCenter = 0;
 
-   /** Specifies the beam elevation sweep to determine scan volume */
+   /**
+    * Specifies the beam elevation sweep to determine scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamElevationSweep = 0;
 
-   /** allows receiver to synchronize its regenerated scan pattern to     that of the emmitter. Specifies the percentage of time a scan is through its pattern from its origion. */
+   /**
+    * allows receiver to synchronize its regenerated scan pattern to     that of the emmitter. Specifies the percentage of time a scan is through its pattern from its origion.
+    * @type {number}
+    * @instance
+    */
    this.beamSweepSync = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.FundamentalParameterData.prototype.initFromBinary = function(inputStream)
   {
        this.frequency = inputStream.readFloat32();
@@ -63,6 +110,9 @@ dis.FundamentalParameterData = function()
        this.beamSweepSync = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.FundamentalParameterData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.frequency);

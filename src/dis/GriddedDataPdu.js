@@ -17,74 +17,169 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.GriddedDataPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 42;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 9;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** environmental simulation application ID */
+   /**
+    * environmental simulation application ID
+    * @type {EntityID}
+    * @instance
+    */
    this.environmentalSimulationApplicationID = new dis.EntityID(); 
 
-   /** unique identifier for each piece of enviornmental data */
+   /**
+    * unique identifier for each piece of enviornmental data
+    * @type {number}
+    * @instance
+    */
    this.fieldNumber = 0;
 
-   /** sequence number for the total set of PDUS used to transmit the data */
+   /**
+    * sequence number for the total set of PDUS used to transmit the data
+    * @type {number}
+    * @instance
+    */
    this.pduNumber = 0;
 
-   /** Total number of PDUS used to transmit the data */
+   /**
+    * Total number of PDUS used to transmit the data
+    * @type {number}
+    * @instance
+    */
    this.pduTotal = 0;
 
-   /** coordinate system of the grid */
+   /**
+    * coordinate system of the grid
+    * @type {number}
+    * @instance
+    */
    this.coordinateSystem = 0;
 
-   /** number of grid axes for the environmental data */
+   /**
+    * number of grid axes for the environmental data
+    * @type {number}
+    * @instance
+    */
    this.numberOfGridAxes = 0;
 
-   /** are domain grid axes identidal to those of the priveious domain update? */
+   /**
+    * are domain grid axes identidal to those of the priveious domain update?
+    * @type {number}
+    * @instance
+    */
    this.constantGrid = 0;
 
-   /** type of environment */
+   /**
+    * type of environment
+    * @type {EntityType}
+    * @instance
+    */
    this.environmentType = new dis.EntityType(); 
 
-   /** orientation of the data grid */
+   /**
+    * orientation of the data grid
+    * @type {Orientation}
+    * @instance
+    */
    this.orientation = new dis.Orientation(); 
 
-   /** valid time of the enviormental data sample, 64 bit unsigned int */
+   /**
+    * valid time of the enviormental data sample, 64 bit unsigned int
+    * @type {number}
+    * @instance
+    */
    this.sampleTime = 0;
 
-   /** total number of all data values for all pdus for an environmental sample */
+   /**
+    * total number of all data values for all pdus for an environmental sample
+    * @type {number}
+    * @instance
+    */
    this.totalValues = 0;
 
-   /** total number of data values at each grid point. */
+   /**
+    * total number of data values at each grid point.
+    * @type {number}
+    * @instance
+    */
    this.vectorDimension = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.padding1 = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.padding2 = 0;
 
-   /** Grid data ^^^This is wrong */
+   /**
+    * Grid data ^^^This is wrong
+    * @type {Array<GridAxisRecord>}
+    * @instance
+    */
     this.gridDataList = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.GriddedDataPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -117,6 +212,9 @@ dis.GriddedDataPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.GriddedDataPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

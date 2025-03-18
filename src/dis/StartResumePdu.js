@@ -17,44 +17,99 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.StartResumePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 13;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 5;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Entity that is sending message */
+   /**
+    *  Entity that is sending message
+    * @type {EntityID}
+    * @instance
+    */
    this.originatingEntityID = new dis.EntityID(); 
 
-   /** Entity that is intended to receive message */
+   /**
+    *  Entity that is intended to receive message
+    * @type {EntityID}
+    * @instance
+    */
    this.receivingEntityID = new dis.EntityID(); 
 
-   /** UTC time at which the simulation shall start or resume */
+   /**
+    * UTC time at which the simulation shall start or resume
+    * @type {ClockTime}
+    * @instance
+    */
    this.realWorldTime = new dis.ClockTime(); 
 
-   /** Simulation clock time at which the simulation shall start or resume */
+   /**
+    * Simulation clock time at which the simulation shall start or resume
+    * @type {ClockTime}
+    * @instance
+    */
    this.simulationTime = new dis.ClockTime(); 
 
-   /** Identifier for the request */
+   /**
+    * Identifier for the request
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.StartResumePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -71,6 +126,9 @@ dis.StartResumePdu = function()
        this.requestID = inputStream.readUInt();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.StartResumePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

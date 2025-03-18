@@ -17,56 +17,127 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.LinearObjectStatePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 44;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 9;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Object in synthetic environment */
+   /**
+    * Object in synthetic environment
+    * @type {EntityID}
+    * @instance
+    */
    this.objectID = new dis.EntityID(); 
 
-   /** Object with which this point object is associated */
+   /**
+    * Object with which this point object is associated
+    * @type {EntityID}
+    * @instance
+    */
    this.referencedObjectID = new dis.EntityID(); 
 
-   /** unique update number of each state transition of an object */
+   /**
+    * unique update number of each state transition of an object
+    * @type {number}
+    * @instance
+    */
    this.updateNumber = 0;
 
-   /** force ID */
+   /**
+    * force ID
+    * @type {number}
+    * @instance
+    */
    this.forceID = 0;
 
-   /** number of linear segment parameters */
+   /**
+    * number of linear segment parameters
+    * @type {number}
+    * @instance
+    */
    this.numberOfSegments = 0;
 
-   /** requesterID */
+   /**
+    * requesterID
+    * @type {SimulationAddress}
+    * @instance
+    */
    this.requesterID = new dis.SimulationAddress(); 
 
-   /** receiver ID */
+   /**
+    * receiver ID
+    * @type {SimulationAddress}
+    * @instance
+    */
    this.receivingID = new dis.SimulationAddress(); 
 
-   /** Object type */
+   /**
+    * Object type
+    * @type {EntityType}
+    * @instance
+    */
    this.objectType = new dis.ObjectType(); 
 
-   /** Linear segment parameters */
+   /**
+    * Linear segment parameters
+    * @type {Array<LinearSegmentParameter>}
+    * @instance
+    */
     this.linearSegmentParameters = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.LinearObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -93,6 +164,9 @@ dis.LinearObjectStatePdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.LinearObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

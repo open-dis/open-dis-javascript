@@ -17,53 +17,120 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.TransferControlRequestPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 35;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 7;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of entity originating request */
+   /**
+    * ID of entity originating request
+    * @type {EntityID}
+    * @instance
+    */
    this.orginatingEntityID = new dis.EntityID(); 
 
-   /** ID of entity receiving request */
+   /**
+    * ID of entity receiving request
+    * @type {EntityID}
+    * @instance
+    */
    this.recevingEntityID = new dis.EntityID(); 
 
-   /** ID ofrequest */
+   /**
+    * ID ofrequest
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
-   /** required level of reliabliity service. */
+   /**
+    * required level of reliabliity service.
+    * @type {number}
+    * @instance
+    */
    this.requiredReliabilityService = 0;
 
-   /** type of transfer desired */
+   /**
+    * type of transfer desired
+    * @type {number}
+    * @instance
+    */
    this.tranferType = 0;
 
-   /** The entity for which control is being requested to transfer */
+   /**
+    * The entity for which control is being requested to transfer
+    * @type {EntityID}
+    * @instance
+    */
    this.transferEntityID = new dis.EntityID(); 
 
-   /** number of record sets to transfer */
+   /**
+    * number of record sets to transfer
+    * @type {number}
+    * @instance
+    */
    this.numberOfRecordSets = 0;
 
-   /** ^^^This is wrong--the RecordSet class needs more work */
+   /**
+    * ^^^This is wrong--the RecordSet class needs more work
+    * @type {Array<RecordSet>}
+    * @instance
+    */
     this.recordSets = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.TransferControlRequestPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -89,6 +156,9 @@ dis.TransferControlRequestPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.TransferControlRequestPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

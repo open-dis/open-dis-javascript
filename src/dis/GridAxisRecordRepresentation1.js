@@ -17,26 +17,57 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.GridAxisRecordRepresentation1 = function()
 {
-   /** type of environmental sample */
+   /**
+    * type of environmental sample
+    * @type {number}
+    * @instance
+    */
    this.sampleType = 0;
 
-   /** value that describes data representation */
+   /**
+    * value that describes data representation
+    * @type {number}
+    * @instance
+    */
    this.dataRepresentation = 0;
 
-   /** constant scale factor */
+   /**
+    * constant scale factor
+    * @type {number}
+    * @instance
+    */
    this.fieldScale = 0;
 
-   /** constant offset used to scale grid data */
+   /**
+    * constant offset used to scale grid data
+    * @type {number}
+    * @instance
+    */
    this.fieldOffset = 0;
 
-   /** Number of data values */
+   /**
+    * Number of data values
+    * @type {number}
+    * @instance
+    */
    this.numberOfValues = 0;
 
-   /** variable length list of data parameters ^^^this is wrong--need padding as well */
+   /**
+    * variable length list of data parameters ^^^this is wrong--need padding as well
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.dataValues = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.GridAxisRecordRepresentation1.prototype.initFromBinary = function(inputStream)
   {
        this.sampleType = inputStream.readUShort();
@@ -53,6 +84,9 @@ dis.GridAxisRecordRepresentation1 = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.GridAxisRecordRepresentation1.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUShort(this.sampleType);

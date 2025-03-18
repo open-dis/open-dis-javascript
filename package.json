@@ -3,10 +3,12 @@
   "version": "1.3.6",
   "description": "Javascript Node module for IEEE 1278.1, Distributed Interactive Simulation",
   "main": "./dist/dis6.min.js",
+  "types": "./types/types.d.ts",
   "scripts": {
     "lint": "eslint \"src/**/*.js\"",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "rimraf dist && mkdir dist && uglifyjs src/dis/*.js src/disSupporting/*.js -o dist/dis6.min.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dist/dis7.min.js"
+    "prepare": "rimraf dist && mkdir dist && uglifyjs src/dis/*.js src/disSupporting/*.js -o dist/dis6.min.js && uglifyjs src/dis7/*.js src/disSupporting/*.js -o dist/dis7.min.js",
+    "types": "jsdoc -t ./node_modules/tsd-jsdoc/dist/ -r ./src/dis/ ./src/disSupporting -d types && node types-module.js"
   },
   "repository": {
     "type": "git",
@@ -38,10 +40,12 @@
   "devDependencies": {
     "eslint": "^6.7.1",
     "rimraf": "^6.0.1",
+    "tsd-jsdoc": "^2.5.0",
     "uglify-js": "^3.7.0"
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "types"
   ]
 }

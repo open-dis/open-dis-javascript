@@ -17,16 +17,30 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.UnsignedIntegerWrapper = function()
 {
-   /** name can't be too accurate or the generated source code will have reserved word problems */
+   /**
+    * name can't be too accurate or the generated source code will have reserved word problems
+    * @type {number}
+    * @instance
+    */
    this.wrapper = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.UnsignedIntegerWrapper.prototype.initFromBinary = function(inputStream)
   {
        this.wrapper = inputStream.readUInt();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.UnsignedIntegerWrapper.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.wrapper);

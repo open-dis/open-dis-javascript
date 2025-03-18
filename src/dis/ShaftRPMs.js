@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ShaftRPMs = function()
 {
-   /** Current shaft RPMs */
+   /**
+    * Current shaft RPMs
+    * @type {number}
+    * @instance
+    */
    this.currentShaftRPMs = 0;
 
-   /** ordered shaft rpms */
+   /**
+    * ordered shaft rpms
+    * @type {number}
+    * @instance
+    */
    this.orderedShaftRPMs = 0;
 
-   /** rate of change of shaft RPMs */
+   /**
+    * rate of change of shaft RPMs
+    * @type {number}
+    * @instance
+    */
    this.shaftRPMRateOfChange = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ShaftRPMs.prototype.initFromBinary = function(inputStream)
   {
        this.currentShaftRPMs = inputStream.readShort();
@@ -35,6 +54,9 @@ dis.ShaftRPMs = function()
        this.shaftRPMRateOfChange = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ShaftRPMs.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeShort(this.currentShaftRPMs);

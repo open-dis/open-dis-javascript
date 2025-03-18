@@ -17,53 +17,120 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ActionRequestPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 16;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 5;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Entity that is sending message */
+   /**
+    *  Entity that is sending message
+    * @type {EntityID}
+    * @instance
+    */
    this.originatingEntityID = new dis.EntityID(); 
 
-   /** Entity that is intended to receive message */
+   /**
+    *  Entity that is intended to receive message
+    * @type {EntityID}
+    * @instance
+    */
    this.receivingEntityID = new dis.EntityID(); 
 
-   /** Request ID that is unique */
+   /**
+    *  Request ID that is unique
+    * @type {EntityID}
+    * @instance
+    */
    this.requestID = 0;
 
-   /** identifies the action being requested */
+   /**
+    *  identifies the action being requested
+    * @type {number}
+    * @instance
+    */
    this.actionID = 0;
 
-   /** Number of fixed datum records */
+   /**
+    * Number of fixed datum records
+    * @type {number}
+    * @instance
+    */
    this.numberOfFixedDatumRecords = 0;
 
-   /** Number of variable datum records */
+   /**
+    * Number of variable datum records
+    * @type {number}
+    * @instance
+    */
    this.numberOfVariableDatumRecords = 0;
 
-   /** variable length list of fixed datums */
+   /**
+    * variable length list of fixed datums
+    * @type {Array<FixedDatum>}
+    * @instance
+    */
     this.fixedDatums = new Array();
  
-   /** variable length list of variable length datums */
+   /**
+    * variable length list of variable length datums
+    * @type {Array<VariableDatum>}
+    * @instance
+    */
     this.variableDatums = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ActionRequestPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -95,6 +162,9 @@ dis.ActionRequestPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ActionRequestPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

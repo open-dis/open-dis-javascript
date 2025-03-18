@@ -17,64 +17,147 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.DetonationPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 3;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 2;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of the entity that shot */
+   /**
+    * ID of the entity that shot
+    * @type {EntityID}
+    * @instance
+    */
    this.firingEntityID = new dis.EntityID(); 
 
-   /** ID of the entity that is being shot at */
+   /**
+    * ID of the entity that is being shot at
+    * @type {EntityID}
+    * @instance
+    */
    this.targetEntityID = new dis.EntityID(); 
 
-   /** ID of muntion that was fired */
+   /**
+    * ID of muntion that was fired
+    * @type {EntityID}
+    * @instance
+    */
    this.munitionID = new dis.EntityID(); 
 
-   /** ID firing event */
+   /**
+    * ID firing event
+    * @type {EventID}
+    * @instance
+    */
    this.eventID = new dis.EventID(); 
 
-   /** ID firing event */
+   /**
+    * ID firing event
+    * @type {Vector3Float}
+    * @instance
+    */
    this.velocity = new dis.Vector3Float(); 
 
-   /** where the detonation is, in world coordinates */
+   /**
+    * where the detonation is, in world coordinates
+    * @type {Vector3Double}
+    * @instance
+    */
    this.locationInWorldCoordinates = new dis.Vector3Double(); 
 
-   /** Describes munition used */
+   /**
+    * Describes munition used
+    * @type {BurstDescriptor}
+    * @instance
+    */
    this.burstDescriptor = new dis.BurstDescriptor(); 
 
-   /** location of the detonation or impact in the target entity's coordinate system. This information should be used for damage assessment. */
+   /**
+    * location of the detonation or impact in the target entity's coordinate system. This information should be used for damage assessment.
+    * @type {Vector3Float}
+    * @instance
+    */
    this.locationInEntityCoordinates = new dis.Vector3Float(); 
 
-   /** result of the explosion */
+   /**
+    * result of the explosion
+    * @type {number}
+    * @instance
+    */
    this.detonationResult = 0;
 
-   /** How many articulation parameters we have */
+   /**
+    * How many articulation parameters we have
+    * @type {number}
+    * @instance
+    */
    this.numberOfArticulationParameters = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad = 0;
 
-    this.articulationParameters = new Array();
+   /**
+    * @type {Array<ArticulationParameter>}
+    * @instance
+    */
+   this.articulationParameters = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.DetonationPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -104,6 +187,9 @@ dis.DetonationPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.DetonationPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

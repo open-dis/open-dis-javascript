@@ -17,23 +17,50 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.BeamData = function()
 {
-   /** Specifies the beam azimuth an elevation centers and corresponding half-angles     to describe the scan volume */
+   /**
+    * Specifies the beam azimuth an elevation centers and corresponding half-angles     to describe the scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamAzimuthCenter = 0;
 
-   /** Specifies the beam azimuth sweep to determine scan volume */
+   /**
+    * Specifies the beam azimuth sweep to determine scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamAzimuthSweep = 0;
 
-   /** Specifies the beam elevation center to determine scan volume */
+   /**
+    * Specifies the beam elevation center to determine scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamElevationCenter = 0;
 
-   /** Specifies the beam elevation sweep to determine scan volume */
+   /**
+    * Specifies the beam elevation sweep to determine scan volume
+    * @type {number}
+    * @instance
+    */
    this.beamElevationSweep = 0;
 
-   /** allows receiver to synchronize its regenerated scan pattern to     that of the emmitter. Specifies the percentage of time a scan is through its pattern from its origion. */
+   /**
+    * allows receiver to synchronize its regenerated scan pattern to     that of the emmitter. Specifies the percentage of time a scan is through its pattern from its origion.
+    * @type {number}
+    * @instance
+    */
    this.beamSweepSync = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.BeamData.prototype.initFromBinary = function(inputStream)
   {
        this.beamAzimuthCenter = inputStream.readFloat32();
@@ -43,6 +70,9 @@ dis.BeamData = function()
        this.beamSweepSync = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.BeamData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.beamAzimuthCenter);

@@ -17,17 +17,36 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.VariableDatum = function()
 {
-   /** ID of the variable datum */
+   /**
+    * ID of the variable datum
+    * @type {number}
+    * @instance
+    */
    this.variableDatumID = 0;
 
-   /** length of the variable datums, in bits. Note that this is not programmatically tied to the size of the variableData. The variable data field may be 64 bits long but only 16 bits of it could actually be used. */
+   /**
+    * length of the variable datums, in bits. Note that this is not programmatically tied to the size of the variableData. The variable data field may be 64 bits long but only 16 bits of it could actually be used.
+    * @type {number}
+    * @instance
+    */
    this.variableDatumLength = 0;
 
-   /** data can be any length, but must increase in 8 byte quanta. This requires some postprocessing patches. Note that setting the data allocates a new internal array to account for the possibly increased size. The default initial size is 64 bits. */
+   /** 
+    * data can be any length, but must increase in 8 byte quanta. This requires some postprocessing patches. Note that setting the data allocates a new internal array to account for the possibly increased size. The default initial size is 64 bits. 
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.variableDatumData = new Array();
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.VariableDatum.prototype.initFromBinary = function(inputStream)
   {
        this.variableDatumID = inputStream.readUInt();
@@ -41,6 +60,9 @@ dis.VariableDatum = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.VariableDatum.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.variableDatumID);

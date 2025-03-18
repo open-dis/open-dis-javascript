@@ -17,74 +17,169 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.CollisionElasticPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 66;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 1;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of the entity that issued the collision PDU */
+   /**
+    * ID of the entity that issued the collision PDU
+    * @type {EntityID}
+    * @instance
+    */
    this.issuingEntityID = new dis.EntityID(); 
 
-   /** ID of entity that has collided with the issuing entity ID */
+   /**
+    * ID of entity that has collided with the issuing entity ID
+    * @type {EntityID}
+    * @instance
+    */
    this.collidingEntityID = new dis.EntityID(); 
 
-   /** ID of event */
+   /**
+    * ID of event
+    * @type {EventID}
+    * @instance
+    */
    this.collisionEventID = new dis.EventID(); 
 
-   /** some padding */
+   /**
+    * some padding
+    * @type {number}
+    * @instance
+    */
    this.pad = 0;
 
-   /** velocity at collision */
+   /**
+    * velocity at collision
+    * @type {Vector3Float}
+    * @instance
+    */
    this.contactVelocity = new dis.Vector3Float(); 
 
-   /** mass of issuing entity */
+   /**
+    * mass of issuing entity
+    * @type {number}
+    * @instance
+    */
    this.mass = 0;
 
-   /** Location with respect to entity the issuing entity collided with */
+   /**
+    * Location with respect to entity the issuing entity collided with
+    * @type {Vector3Float}
+    * @instance
+    */
    this.location = new dis.Vector3Float(); 
 
-   /** tensor values */
+   /**
+    * tensor values
+    * @type {number}
+    * @instance
+    */
    this.collisionResultXX = 0;
 
-   /** tensor values */
+   /**
+    * tensor values
+    * @type {number}
+    * @instance
+    */
    this.collisionResultXY = 0;
 
-   /** tensor values */
+   /**
+    * tensor values
+    * @type {number}
+    * @instance
+    */
    this.collisionResultXZ = 0;
 
-   /** tensor values */
+   /**
+    * tensor values
+    * @type {number}
+    * @instance
+    */
    this.collisionResultYY = 0;
 
-   /** tensor values */
+   /**
+    * tensor values
+    * @type {number}
+    * @instance
+    */
    this.collisionResultYZ = 0;
 
-   /** tensor values */
+   /**
+    * tensor values
+    * @type {number}
+    * @instance
+    */
    this.collisionResultZZ = 0;
 
-   /** This record shall represent the normal vector to the surface at the point of collision detection. The surface normal shall be represented in world coordinates. */
+   /**
+    * This record shall represent the normal vector to the surface at the point of collision detection. The surface normal shall be represented in world coordinates.
+    * @type {Vector3Float}
+    * @instance
+    */
    this.unitSurfaceNormal = new dis.Vector3Float(); 
 
-   /** This field shall represent the degree to which energy is conserved in a collision */
+   /**
+    * This field shall represent the degree to which energy is conserved in a collision
+    * @type {number}
+    * @instance
+    */
    this.coefficientOfRestitution = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.CollisionElasticPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -111,6 +206,9 @@ dis.CollisionElasticPdu = function()
        this.coefficientOfRestitution = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.CollisionElasticPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

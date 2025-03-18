@@ -17,26 +17,57 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.Environment = function()
 {
-   /** Record type */
+   /**
+    * Record type
+    * @type {number}
+    * @instance
+    */
    this.environmentType = 0;
 
-   /** length, in bits */
+   /**
+    * length, in bits
+    * @type {number}
+    * @instance
+    */
    this.length = 0;
 
-   /** Identify the sequentially numbered record index */
+   /**
+    * Identify the sequentially numbered record index
+    * @type {number}
+    * @instance
+    */
    this.recordIndex = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.padding1 = 0;
 
-   /** Geometry or state record */
+   /**
+    * Geometry or state record
+    * @type {number}
+    * @instance
+    */
    this.geometry = 0;
 
-   /** padding to bring the total size up to a 64 bit boundry */
+   /**
+    * padding to bring the total size up to a 64 bit boundry
+    * @type {number}
+    * @instance
+    */
    this.padding2 = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.Environment.prototype.initFromBinary = function(inputStream)
   {
        this.environmentType = inputStream.readUInt();
@@ -47,6 +78,9 @@ dis.Environment = function()
        this.padding2 = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.Environment.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.environmentType);

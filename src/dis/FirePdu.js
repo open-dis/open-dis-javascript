@@ -17,55 +17,126 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.FirePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 2;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 2;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of the entity that shot */
+   /**
+    * ID of the entity that shot
+    * @type {EntityID}
+    * @instance
+    */
    this.firingEntityID = new dis.EntityID(); 
 
-   /** ID of the entity that is being shot at */
+   /**
+    * ID of the entity that is being shot at
+    * @type {EntityID}
+    * @instance
+    */
    this.targetEntityID = new dis.EntityID(); 
 
-   /** ID of the munition that is being shot */
+   /**
+    * ID of the munition that is being shot
+    * @type {EntityID}
+    * @instance
+    */
    this.munitionID = new dis.EntityID(); 
 
-   /** ID of event */
+   /**
+    * ID of event
+    * @type {EventID}
+    * @instance
+    */
    this.eventID = new dis.EventID(); 
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.fireMissionIndex = 0;
 
-   /** location of the firing event */
+   /**
+    * location of the firing event
+    * @type {Vector3Double}
+    * @instance
+    */
    this.locationInWorldCoordinates = new dis.Vector3Double(); 
 
-   /** Describes munitions used in the firing event */
+   /**
+    * Describes munitions used in the firing event
+    * @type {BurstDescriptor}
+    * @instance
+    */
    this.burstDescriptor = new dis.BurstDescriptor(); 
 
-   /** Velocity of the ammunition */
+   /**
+    * Velocity of the ammunition
+    * @type {Vector3Float}
+    * @instance
+    */
    this.velocity = new dis.Vector3Float(); 
 
-   /** range to the target. Note the word range is a SQL reserved word. */
+   /**
+    * range to the target. Note the word range is a SQL reserved word.
+    * @type {number}
+    * @instance
+    */
    this.rangeToTarget = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.FirePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -86,6 +157,9 @@ dis.FirePdu = function()
        this.rangeToTarget = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.FirePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

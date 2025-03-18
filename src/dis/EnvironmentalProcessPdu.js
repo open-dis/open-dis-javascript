@@ -17,50 +17,113 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.EnvironmentalProcessPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 41;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 9;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Environmental process ID */
+   /**
+    *  Environmental process ID
+    * @type {EntityID}
+    * @instance
+    */
    this.environementalProcessID = new dis.EntityID(); 
 
-   /** Environment type */
+   /**
+    * Environment type
+    * @type {EntityType}
+    * @instance
+    */
    this.environmentType = new dis.EntityType(); 
 
-   /** model type */
+   /**
+    * model type
+    * @type {number}
+    * @instance
+    */
    this.modelType = 0;
 
-   /** Environment status */
+   /**
+    * Environment status
+    * @type {number}
+    * @instance
+    */
    this.environmentStatus = 0;
 
-   /** number of environment records  */
+   /**
+    * number of environment records
+    * @type {number}
+    * @instance
+    */
    this.numberOfEnvironmentRecords = 0;
 
-   /** PDU sequence number for the environmentla process if pdu sequencing required */
+   /**
+    * PDU sequence number for the environmentla process if pdu sequencing required
+    * @type {number}
+    * @instance
+    */
    this.sequenceNumber = 0;
 
-   /** environemt records */
+   /**
+    * environemt records
+    * @type {Array<Environment>}
+    * @instance
+    */
     this.environmentRecords = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.EnvironmentalProcessPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -85,6 +148,9 @@ dis.EnvironmentalProcessPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.EnvironmentalProcessPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

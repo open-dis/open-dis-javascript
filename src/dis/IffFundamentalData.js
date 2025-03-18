@@ -17,38 +17,85 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.IffFundamentalData = function()
 {
-   /** system status */
+   /**
+    * system status
+    * @type {number}
+    * @instance
+    */
    this.systemStatus = 0;
 
-   /** Alternate parameter 4 */
+   /**
+    * Alternate parameter 4
+    * @type {number}
+    * @instance
+    */
    this.alternateParameter4 = 0;
 
-   /** eight boolean fields */
+   /**
+    * eight boolean fields
+    * @type {number}
+    * @instance
+    */
    this.informationLayers = 0;
 
-   /** enumeration */
+   /**
+    * enumeration
+    * @type {number}
+    * @instance
+    */
    this.modifier = 0;
 
-   /** parameter, enumeration */
+   /**
+    * parameter, enumeration
+    * @type {number}
+    * @instance
+    */
    this.parameter1 = 0;
 
-   /** parameter, enumeration */
+   /**
+    * parameter, enumeration
+    * @type {number}
+    * @instance
+    */
    this.parameter2 = 0;
 
-   /** parameter, enumeration */
+   /**
+    * parameter, enumeration
+    * @type {number}
+    * @instance
+    */
    this.parameter3 = 0;
 
-   /** parameter, enumeration */
+   /**
+    * parameter, enumeration
+    * @type {number}
+    * @instance
+    */
    this.parameter4 = 0;
 
-   /** parameter, enumeration */
+   /**
+    * parameter, enumeration
+    * @type {number}
+    * @instance
+    */
    this.parameter5 = 0;
 
-   /** parameter, enumeration */
+   /**
+    * parameter, enumeration
+    * @type {number}
+    * @instance
+    */
    this.parameter6 = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.IffFundamentalData.prototype.initFromBinary = function(inputStream)
   {
        this.systemStatus = inputStream.readUByte();
@@ -63,6 +110,9 @@ dis.IffFundamentalData = function()
        this.parameter6 = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.IffFundamentalData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.systemStatus);

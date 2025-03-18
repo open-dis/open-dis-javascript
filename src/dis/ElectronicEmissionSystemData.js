@@ -17,26 +17,57 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.ElectronicEmissionSystemData = function()
 {
-   /** This field shall specify the length of this emitter system�s data (including beam data and its track/jam information) in 32-bit words. The length shall include the System Data Length field.  */
+   /**
+    * This field shall specify the length of this emitter system�s data (including beam data and its track/jam information) in 32-bit words. The length shall include the System Data Length field. 
+    * @type {number}
+    * @instance
+    */
    this.systemDataLength = 0;
 
-   /** This field shall specify the number of beams being described in the current PDU for the system being described.  */
+   /**
+    * This field shall specify the number of beams being described in the current PDU for the system being described. 
+    * @type {number}
+    * @instance
+    */
    this.numberOfBeams = 0;
 
-   /** padding. */
+   /**
+    * padding.
+    * @type {number}
+    * @instance
+    */
    this.emissionsPadding2 = 0;
 
-   /** This field shall specify information about a particular emitter system */
+   /**
+    * This field shall specify information about a particular emitter system
+    * @type {EmitterSystem}
+    * @instance
+    */
    this.emitterSystem = new dis.EmitterSystem(); 
 
-   /** Location with respect to the entity */
+   /**
+    * Location with respect to the entity
+    * @type {Vector3Float}
+    * @instance
+    */
    this.location = new dis.Vector3Float(); 
 
-   /** variable length variablelist of beam data records */
+   /**
+    * variable length variablelist of beam data records
+    * @type {Array<ElectronicEmissionBeamData>}
+    * @instance
+    */
     this.beamDataRecords = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.ElectronicEmissionSystemData.prototype.initFromBinary = function(inputStream)
   {
        this.systemDataLength = inputStream.readUByte();
@@ -53,6 +84,9 @@ dis.ElectronicEmissionSystemData = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.ElectronicEmissionSystemData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.systemDataLength);

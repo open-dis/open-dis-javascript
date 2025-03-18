@@ -17,26 +17,57 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.RecordSet = function()
 {
-   /** record ID */
+   /**
+    * record ID
+    * @type {number}
+    * @instance
+    */
    this.recordID = 0;
 
-   /** record set serial number */
+   /**
+    * record set serial number
+    * @type {number}
+    * @instance
+    */
    this.recordSetSerialNumber = 0;
 
-   /** record length */
+   /**
+    * record length
+    * @type {number}
+    * @instance
+    */
    this.recordLength = 0;
 
-   /** record count */
+   /**
+    * record count
+    * @type {number}
+    * @instance
+    */
    this.recordCount = 0;
 
-   /** ^^^This is wrong--variable sized data records */
+   /**
+    *  ^^^This is wrong--variable sized data records
+    * @type {number}
+    * @instance
+    */
    this.recordValues = 0;
 
-   /** ^^^This is wrong--variable sized padding */
+   /**
+    *  ^^^This is wrong--variable sized padding
+    * @type {number}
+    * @instance
+    */
    this.pad4 = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.RecordSet.prototype.initFromBinary = function(inputStream)
   {
        this.recordID = inputStream.readUInt();
@@ -47,6 +78,9 @@ dis.RecordSet = function()
        this.pad4 = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.RecordSet.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.recordID);

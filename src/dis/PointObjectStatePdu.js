@@ -17,65 +17,148 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.PointObjectStatePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 43;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 9;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Object in synthetic environment */
+   /**
+    * Object in synthetic environment
+    * @type {EntityID}
+    * @instance
+    */
    this.objectID = new dis.EntityID(); 
 
-   /** Object with which this point object is associated */
+   /**
+    * Object with which this point object is associated
+    * @type {EntityID}
+    * @instance
+    */
    this.referencedObjectID = new dis.EntityID(); 
 
-   /** unique update number of each state transition of an object */
+   /**
+    * unique update number of each state transition of an object
+    * @type {number}
+    * @instance
+    */
    this.updateNumber = 0;
 
-   /** force ID */
+   /**
+    * force ID
+    * @type {number}
+    * @instance
+    */
    this.forceID = 0;
 
-   /** modifications */
+   /**
+    * modifications
+    * @type {number}
+    * @instance
+    */
    this.modifications = 0;
 
-   /** Object type */
+   /**
+    * Object type
+    * @type {EntityType}
+    * @instance
+    */
    this.objectType = new dis.ObjectType(); 
 
-   /** Object location */
+   /**
+    * Object location
+    * @type {Vector3Double}
+    * @instance
+    */
    this.objectLocation = new dis.Vector3Double(); 
 
-   /** Object orientation */
+   /**
+    * Object orientation
+    * @type {Orientation}
+    * @instance
+    */
    this.objectOrientation = new dis.Orientation(); 
 
-   /** Object apperance */
+   /**
+    * Object apperance
+    * @type {number}
+    * @instance
+    */
    this.objectAppearance = 0;
 
-   /** requesterID */
+   /**
+    * requesterID
+    * @type {SimulationAddress}
+    * @instance
+    */
    this.requesterID = new dis.SimulationAddress(); 
 
-   /** receiver ID */
+   /**
+    * receiver ID
+    * @type {SimulationAddress}
+    * @instance
+    */
    this.receivingID = new dis.SimulationAddress(); 
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.PointObjectStatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -99,6 +182,9 @@ dis.PointObjectStatePdu = function()
        this.pad2 = inputStream.readUInt();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.PointObjectStatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

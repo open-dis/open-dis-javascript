@@ -16,53 +16,119 @@ if (typeof dis === "undefined")
 if (typeof exports === "undefined")
  exports = {};
 
-
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.EntityStateUpdatePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 67;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 1;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** This field shall identify the entity issuing the PDU */
+   /**
+    * This field shall identify the entity issuing the PDU
+    * @type {EntityID}
+    * @instance
+    */
    this.entityID = new dis.EntityID(); 
 
-   /** Padding */
+   /**
+    * Padding
+    * @type {number}
+    * @instance
+    */
    this.padding1 = 0;
 
-   /** How many articulation parameters are in the variable length list */
+   /**
+    * How many articulation parameters are in the variable length list
+    * @type {number}
+    * @instance
+    */
    this.numberOfArticulationParameters = 0;
 
-   /** Describes the speed of the entity in the world */
+   /**
+    * Describes the speed of the entity in the world
+    * @type {Vector3Float}
+    * @instance
+    */
    this.entityLinearVelocity = new dis.Vector3Float(); 
 
-   /** describes the location of the entity in the world */
+   /**
+    * describes the location of the entity in the world
+    * @type {Vector3Double}
+    * @instance
+    */
    this.entityLocation = new dis.Vector3Double(); 
 
-   /** describes the orientation of the entity, in euler angles */
+   /**
+    * describes the orientation of the entity, in euler angles
+    * @type {Orientation}
+    * @instance
+    */
    this.entityOrientation = new dis.Orientation(); 
 
-   /** a series of bit flags that are used to help draw the entity, such as smoking, on fire, etc. */
+   /**
+    * a series of bit flags that are used to help draw the entity, such as smoking, on fire, etc.
+    * @type {number}
+    * @instance
+    */
    this.entityAppearance = 0;
 
-    this.articulationParameters = new Array();
+   /**
+    * @type {Array<ArticulationParameter>}
+    * @instance
+    */
+   this.articulationParameters = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.EntityStateUpdatePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -88,6 +154,9 @@ dis.EntityStateUpdatePdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.EntityStateUpdatePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

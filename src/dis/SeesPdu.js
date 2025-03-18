@@ -17,53 +17,120 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.SeesPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 30;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 6;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Originating entity ID */
+   /**
+    * Originating entity ID
+    * @type {EntityID}
+    * @instance
+    */
    this.orginatingEntityID = new dis.EntityID(); 
 
-   /** IR Signature representation index */
+   /**
+    * IR Signature representation index
+    * @type {number}
+    * @instance
+    */
    this.infraredSignatureRepresentationIndex = 0;
 
-   /** acoustic Signature representation index */
+   /**
+    * acoustic Signature representation index
+    * @type {number}
+    * @instance
+    */
    this.acousticSignatureRepresentationIndex = 0;
 
-   /** radar cross section representation index */
+   /**
+    * radar cross section representation index
+    * @type {number}
+    * @instance
+    */
    this.radarCrossSectionSignatureRepresentationIndex = 0;
 
-   /** how many propulsion systems */
+   /**
+    * how many propulsion systems
+    * @type {number}
+    * @instance
+    */
    this.numberOfPropulsionSystems = 0;
 
-   /** how many vectoring nozzle systems */
+   /**
+    * how many vectoring nozzle systems
+    * @type {number}
+    * @instance
+    */
    this.numberOfVectoringNozzleSystems = 0;
 
-   /** variable length list of propulsion system data */
+   /**
+    * variable length list of propulsion system data
+    * @type {Array<PropulsionSystemData>}
+    * @instance
+    */
     this.propulsionSystemData = new Array();
  
-   /** variable length list of vectoring system data */
+   /**
+    * variable length list of vectoring system data
+    * @type {Array<VectoringNozzleSystemData>}
+    * @instance
+    */
     this.vectoringSystemData = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.SeesPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -95,6 +162,9 @@ dis.SeesPdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.SeesPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

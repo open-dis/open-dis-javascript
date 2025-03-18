@@ -17,65 +17,148 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.DesignatorPdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 24;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 6;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** ID of the entity designating */
+   /**
+    * ID of the entity designating
+    * @type {EntityID}
+    * @instance
+    */
    this.designatingEntityID = new dis.EntityID(); 
 
-   /** This field shall specify a unique emitter database number assigned to  differentiate between otherwise similar or identical emitter beams within an emitter system. */
+   /**
+    * This field shall specify a unique emitter database number assigned to  differentiate between otherwise similar or identical emitter beams within an emitter system.
+    * @type {number}
+    * @instance
+    */
    this.codeName = 0;
 
-   /** ID of the entity being designated */
+   /**
+    * ID of the entity being designated
+    * @type {EntityID}
+    * @instance
+    */
    this.designatedEntityID = new dis.EntityID(); 
 
-   /** This field shall identify the designator code being used by the designating entity  */
+   /**
+    * This field shall identify the designator code being used by the designating entity
+    * @type {number}
+    * @instance
+    */
    this.designatorCode = 0;
 
-   /** This field shall identify the designator output power in watts */
+   /**
+    * This field shall identify the designator output power in watts
+    * @type {number}
+    * @instance
+    */
    this.designatorPower = 0;
 
-   /** This field shall identify the designator wavelength in units of microns */
+   /**
+    * This field shall identify the designator wavelength in units of microns
+    * @type {number}
+    * @instance
+    */
    this.designatorWavelength = 0;
 
-   /** designtor spot wrt the designated entity */
+   /**
+    * designtor spot wrt the designated entity
+    * @type {Vector3Float}
+    * @instance
+    */
    this.designatorSpotWrtDesignated = new dis.Vector3Float(); 
 
-   /** designtor spot wrt the designated entity */
+   /**
+    * designtor spot wrt the designated entity
+    * @type {Vector3Float}
+    * @instance
+    */
    this.designatorSpotLocation = new dis.Vector3Double(); 
 
-   /** Dead reckoning algorithm */
+   /**
+    * Dead reckoning algorithm
+    * @type {number}
+    * @instance
+    */
    this.deadReckoningAlgorithm = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.padding1 = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.padding2 = 0;
 
-   /** linear accelleration of entity */
+   /**
+    * linear accelleration of entity
+    * @type {Vector3Float}
+    * @instance
+    */
    this.entityLinearAcceleration = new dis.Vector3Float(); 
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.DesignatorPdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -99,6 +182,9 @@ dis.DesignatorPdu = function()
        this.entityLinearAcceleration.initFromBinary(inputStream);
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.DesignatorPdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);

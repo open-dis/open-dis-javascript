@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.FixedDatum = function()
 {
-   /** ID of the fixed datum */
+   /**
+    * ID of the fixed datum
+    * @type {number}
+    * @instance
+    */
    this.fixedDatumID = 0;
 
-   /** Value for the fixed datum */
+   /**
+    * Value for the fixed datum
+    * @type {number}
+    * @instance
+    */
    this.fixedDatumValue = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.FixedDatum.prototype.initFromBinary = function(inputStream)
   {
        this.fixedDatumID = inputStream.readUInt();
        this.fixedDatumValue = inputStream.readUInt();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.FixedDatum.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUInt(this.fixedDatumID);

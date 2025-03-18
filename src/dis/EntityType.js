@@ -17,28 +17,63 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.EntityType = function()
 {
-   /** Kind of entity */
+   /**
+    * Kind of entity
+    * @type {number}
+    * @instance
+    */
    this.entityKind = 0;
 
-   /** Domain of entity (air, surface, subsurface, space, etc) */
+   /**
+    * Domain of entity (air, surface, subsurface, space, etc)
+    * @type {number}
+    * @instance
+    */
    this.domain = 0;
 
-   /** country to which the design of the entity is attributed */
+   /**
+    * country to which the design of the entity is attributed
+    * @type {number}
+    * @instance
+    */
    this.country = 0;
 
-   /** category of entity */
+   /**
+    * category of entity
+    * @type {number}
+    * @instance
+    */
    this.category = 0;
 
-   /** subcategory of entity */
+   /**
+    * subcategory of entity
+    * @type {number}
+    * @instance
+    */
    this.subcategory = 0;
 
-   /** specific info based on subcategory field. Renamed from specific because that is a reserved word in SQL */
+   /**
+    * specific info based on subcategory field. Renamed from specific because that is a reserved word in SQL
+    * @type {number}
+    * @instance
+    */
    this.spec = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.extra = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.EntityType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
@@ -50,6 +85,9 @@ dis.EntityType = function()
        this.extra = inputStream.readUByte();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.EntityType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);

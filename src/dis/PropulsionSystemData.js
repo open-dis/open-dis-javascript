@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.PropulsionSystemData = function()
 {
-   /** powerSetting */
+   /**
+    * powerSetting
+    * @type {number}
+    * @instance
+    */
    this.powerSetting = 0;
 
-   /** engine RPMs */
+   /**
+    * engine RPMs
+    * @type {number}
+    * @instance
+    */
    this.engineRpm = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.PropulsionSystemData.prototype.initFromBinary = function(inputStream)
   {
        this.powerSetting = inputStream.readFloat32();
        this.engineRpm = inputStream.readFloat32();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.PropulsionSystemData.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeFloat32(this.powerSetting);

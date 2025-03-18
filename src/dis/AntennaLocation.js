@@ -17,20 +17,38 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.AntennaLocation = function()
 {
-   /** Location of the radiating portion of the antenna in world    coordinates */
+   /** 
+    * Location of the radiating portion of the antenna in world coordinates 
+    * @type {Vector3Double}
+    * @instance
+    */
    this.antennaLocation = new dis.Vector3Double(); 
 
-   /** Location of the radiating portion of the antenna     in entity coordinates */
+   /** 
+    * Location of the radiating portion of the antenna in entity coordinates
+    * @type {Vector3Double}
+    * @instance
+    */
    this.relativeAntennaLocation = new dis.Vector3Float(); 
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.AntennaLocation.prototype.initFromBinary = function(inputStream)
   {
        this.antennaLocation.initFromBinary(inputStream);
        this.relativeAntennaLocation.initFromBinary(inputStream);
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.AntennaLocation.prototype.encodeToBinary = function(outputStream)
   {
        this.antennaLocation.encodeToBinary(outputStream);

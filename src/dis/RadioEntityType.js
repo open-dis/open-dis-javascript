@@ -17,25 +17,56 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.RadioEntityType = function()
 {
-   /** Kind of entity */
+   /**
+    * Kind of entity
+    * @type {number}
+    * @instance
+    */
    this.entityKind = 0;
 
-   /** Domain of entity (air, surface, subsurface, space, etc) */
+   /**
+    * Domain of entity (air, surface, subsurface, space, etc)
+    * @type {number}
+    * @instance
+    */
    this.domain = 0;
 
-   /** country to which the design of the entity is attributed */
+   /**
+    * country to which the design of the entity is attributed
+    * @type {number}
+    * @instance
+    */
    this.country = 0;
 
-   /** category of entity */
+   /**
+    * category of entity
+    * @type {number}
+    * @instance
+    */
    this.category = 0;
 
-   /** specific info based on subcategory field */
+   /**
+    * specific info based on subcategory field
+    * @type {number}
+    * @instance
+    */
    this.nomenclatureVersion = 0;
 
+   /**
+    * @type {number}
+    * @instance
+    */
    this.nomenclature = 0;
 
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.RadioEntityType.prototype.initFromBinary = function(inputStream)
   {
        this.entityKind = inputStream.readUByte();
@@ -46,6 +77,9 @@ dis.RadioEntityType = function()
        this.nomenclature = inputStream.readUShort();
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.RadioEntityType.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.entityKind);

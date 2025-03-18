@@ -17,59 +17,134 @@ if (typeof exports === "undefined")
  exports = {};
 
 
+/**
+ * @constructor
+ * @memberof dis
+ */
 dis.RecordQueryReliablePdu = function()
 {
-   /** The version of the protocol. 5=DIS-1995, 6=DIS-1998. */
+   /**
+    * The version of the protocol. 5=DIS-1995, 6=DIS-1998.
+    * @type {number}
+    * @instance
+    */
    this.protocolVersion = 6;
 
-   /** Exercise ID */
+   /**
+    * Exercise ID
+    * @type {number}
+    * @instance
+    */
    this.exerciseID = 0;
 
-   /** Type of pdu, unique for each PDU class */
+   /**
+    * Type of pdu, unique for each PDU class
+    * @type {number}
+    * @instance
+    */
    this.pduType = 65;
 
-   /** value that refers to the protocol family, eg SimulationManagement, et */
+   /**
+    * value that refers to the protocol family, eg SimulationManagement, et
+    * @type {number}
+    * @instance
+    */
    this.protocolFamily = 10;
 
-   /** Timestamp value */
+   /**
+    * Timestamp value
+    * @type {number}
+    * @instance
+    */
    this.timestamp = 0;
 
-   /** Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word */
+   /**
+    * Length, in bytes, of the PDU. Changed name from length to avoid use of Hibernate QL reserved word
+    * @type {number}
+    * @instance
+    */
    this.pduLength = 0;
 
-   /** zero-filled array of padding */
+   /**
+    * zero-filled array of padding
+    * @type {number}
+    * @instance
+    */
    this.padding = 0;
 
-   /** Object originatig the request */
+   /**
+    * Object originatig the request
+    * @type {EntityID}
+    * @instance
+    */
    this.originatingEntityID = new dis.EntityID(); 
 
-   /** Object with which this point object is associated */
+   /**
+    * Object with which this point object is associated
+    * @type {EntityID}
+    * @instance
+    */
    this.receivingEntityID = new dis.EntityID(); 
 
-   /** request ID */
+   /**
+    * request ID
+    * @type {number}
+    * @instance
+    */
    this.requestID = 0;
 
-   /** level of reliability service used for this transaction */
+   /**
+    * level of reliability service used for this transaction
+    * @type {number}
+    * @instance
+    */
    this.requiredReliabilityService = 0;
 
-   /** padding. The spec is unclear and contradictory here. */
+   /**
+    * padding. The spec is unclear and contradictory here.
+    * @type {number}
+    * @instance
+    */
    this.pad1 = 0;
 
-   /** padding */
+   /**
+    * padding
+    * @type {number}
+    * @instance
+    */
    this.pad2 = 0;
 
-   /** event type */
+   /**
+    * event type
+    * @type {number}
+    * @instance
+    */
    this.eventType = 0;
 
-   /** time */
+   /**
+    * time
+    * @type {number}
+    * @instance
+    */
    this.time = 0;
 
-   /** numberOfRecords */
+   /**
+    * numberOfRecords
+    * @type {number}
+    * @instance
+    */
    this.numberOfRecords = 0;
 
-   /** record IDs */
+   /**
+    * record IDs
+    * @type {Array<Chunk>}
+    * @instance
+    */
     this.recordIDs = new Array();
  
+  /**
+   * @param {InputStream} inputStream
+   */
   dis.RecordQueryReliablePdu.prototype.initFromBinary = function(inputStream)
   {
        this.protocolVersion = inputStream.readUByte();
@@ -97,6 +172,9 @@ dis.RecordQueryReliablePdu = function()
 
   };
 
+  /**
+	 * @param {OutputStream} outputStream 
+	 */
   dis.RecordQueryReliablePdu.prototype.encodeToBinary = function(outputStream)
   {
        outputStream.writeUByte(this.protocolVersion);
